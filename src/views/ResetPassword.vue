@@ -36,7 +36,7 @@
             @click="handleResetPassword"
           >
             <span v-if="isLoading">
-              <CustomBeatLoader />
+              <CustomLoader />
             </span>
 
             <span v-else>Reset Password</span>
@@ -63,7 +63,7 @@
 import CustomButton from '@/components/Button/CustomButton.vue';
 import { getErrorMessage } from '@/helpers/getErrorMessage';
 import { getResponse } from '@/helpers/getResponse';
-import CustomBeatLoader from '@/components/Loader/CustomBeatLoader.vue';
+import CustomLoader from '@/components/Loader/CustomLoader.vue';
 import { ArrowLeftIcon, KeyIcon } from '@heroicons/vue/24/solid';
 import AuthenticationContainer from '@/components/Card/AuthenticationContainer.vue';
 import CustomInput from '@/components/Form/CustomInput.vue';
@@ -72,7 +72,7 @@ export default {
   name: 'ResetPasswordPage',
   components: {
     CustomButton,
-    CustomBeatLoader,
+    CustomLoader,
     ArrowLeftIcon,
     KeyIcon,
     AuthenticationContainer,

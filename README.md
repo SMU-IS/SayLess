@@ -1,15 +1,15 @@
 ## Project SayLess
 
-![Contributors](https://img.shields.io/github/contributors/SMU-IS/Project-IS216)
-![Issue](https://img.shields.io/github/issues/SMU-IS/Project-IS216)
-![Pull Request](https://img.shields.io/github/issues-pr/SMU-IS/Project-IS216)
-![Release Badge](https://img.shields.io/github/downloads/SMU-IS/Project-IS216/total)
+![Contributors](https://img.shields.io/github/contributors/SMU-IS/SayLess)
+![Issue](https://img.shields.io/github/issues/SMU-IS/SayLess)
+![Pull Request](https://img.shields.io/github/issues-pr/SMU-IS/SayLess)
+![Release Badge](https://img.shields.io/github/downloads/SMU-IS/SayLess/total)
 
 <img src="https://github.com/SMU-IS/SayLess/assets/54788382/81dd94d0-71e4-469a-8528-7929f2f0183d" alt="landing-banner" width="200" /> 
 <br />
 <br />
 
-- [View Project](https://joshuadavid.dev)
+- [View Project](https://sayless.netlify.app)
 - [Report Bug](https://github.com/SMU-IS/SayLess/issues/new?assignees=&labels=&projects=&template=bug_report.md&title=)
 - [Request Feature](https://github.com/SMU-IS/SayLess/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=)
 
@@ -66,8 +66,8 @@ CI/CD
 
 ## Contact
 
-Joshua - joshuadavidang@outlook.sg  
-Project Link - https://XXX.XXX
+Joshua / Chun Xiong - cxang.2022@scis.smu.edu.sg
+Project Link - https://sayless.netlify.app
 
 ## Acknowledgements
 

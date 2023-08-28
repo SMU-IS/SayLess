@@ -44,7 +44,6 @@ export default {
 :deep(.mu-container) {
   background-color: rgb(243 244 246) !important;
   border: none !important;
-  /* margin-bottom: 16px !important; */
   margin-top: 12px !important;
 }
 </style>

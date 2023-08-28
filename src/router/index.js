@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import MessagePage from '@/views/MessagePage.vue';
 import AddItem from '@/views/AddItem.vue';
-import OnboardPage from '@/views/Onboard.vue';
+import OnboardPage from '@/views/OnboardPage.vue';
 import PageNotFound from '@/views/PageNotFound.vue';
 import LandingPageVue from '@/views/LandingPage.vue';
 import LoginPageVue from '@/views/LoginPage.vue';
@@ -58,7 +58,7 @@ const routes = [
     component: ListItemDetails,
   },
   {
-    path: '/recipe',
+    path: '/get-recipe',
     name: 'RecipePage',
     component: RecipePage,
   },

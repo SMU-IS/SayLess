@@ -10,7 +10,7 @@
 import { CirclesToRhombusesSpinner } from 'epic-spinners';
 
 export default {
-  name: 'CustomBeatLoader',
+  name: 'CustomLoader',
   components: { CirclesToRhombusesSpinner },
 };
 </script>

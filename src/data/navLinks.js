@@ -14,7 +14,7 @@ const navLinks = [
   },
   {
     id: 3,
-    path: '/recipe',
+    path: '/get-recipe',
     icon: ClipboardDocumentListIcon,
   },
 ];

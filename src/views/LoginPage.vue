@@ -79,7 +79,7 @@
               @click="handleLogin"
             >
               <span v-if="isLoading">
-                <CustomBeatLoader />
+                <CustomLoader />
               </span>
 
               <p v-else>
@@ -117,7 +117,7 @@
 import CustomButton from '@/components/Button/CustomButton.vue';
 import { getErrorMessage } from '@/helpers/getErrorMessage';
 import { getResponse } from '@/helpers/getResponse';
-import CustomBeatLoader from '@/components/Loader/CustomBeatLoader.vue';
+import CustomLoader from '@/components/Loader/CustomLoader.vue';
 import GoogleIcon from '@/assets/GoogleIcon.png';
 import { FingerPrintIcon } from '@heroicons/vue/24/solid';
 import AuthenticationContainer from '@/components/Card/AuthenticationContainer.vue';
@@ -127,7 +127,7 @@ export default {
   name: 'LoginPage',
   components: {
     CustomButton,
-    CustomBeatLoader,
+    CustomLoader,
     FingerPrintIcon,
     AuthenticationContainer,
     CustomInput,

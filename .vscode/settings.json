@@ -1,0 +1,15 @@
+{
+  "terminal.integrated.persistentSessionReviveProcess": "never",
+  "workbench.startupEditor": "none",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.preferences.importModuleSpecifier": "non-relative",
+  "vue.updateImportsOnFileMove.enabled": true,
+  "eslint.validate": ["javascript"],
+  "css.lint.unknownProperties": "ignore",
+  "css.lint.unknownAtRules": "ignore",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+}

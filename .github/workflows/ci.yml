@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: ['master', 'release']
+  pull_request:
+    branches: ['master', 'release']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set node version to 20.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Check for linting error
+        run: npm run lint

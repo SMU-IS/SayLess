@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, system-ui,
+      Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+      Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji !important;
+  }
+
+  h1 {
+    @apply text-4xl;
+  }
+
+  h2 {
+    @apply text-3xl;
+  }
+
+  h3 {
+    @apply text-2xl;
+  }
+
+  p {
+    @apply text-base;
+  }
+}
+
+@layer components {
+  .container-center {
+    @apply flex justify-center items-center w-screen h-screen;
+  }
+
+  .gradientX {
+    @apply bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500 text-white hover:opacity-95;
+  }
+
+  .gradientY {
+    @apply bg-gradient-to-r from-purple-600 to-purple-700 text-white hover:opacity-95;
+  }
+
+  .gradientZ {
+    @apply bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:opacity-95;
+  }
+}

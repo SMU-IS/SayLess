@@ -10,7 +10,7 @@
 
       <div class="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
         <form class="space-y-5">
-          <div>
+          <div class="flex flex-col gap-2">
             <label for="email">Email Address</label>
 
             <CustomInput
@@ -21,7 +21,7 @@
             />
           </div>
 
-          <div>
+          <div class="flex flex-col gap-2">
             <label for="password">Password</label>
             <div class="flex flex-row gap-3 pb-3">
               <CustomInput
@@ -58,7 +58,7 @@
             @click="handleRegister"
           >
             <span v-if="isLoading">
-              <CustomBeatLoader />
+              <CustomLoader />
             </span>
 
             <p v-else>
@@ -82,16 +82,17 @@
 import CustomButton from '@/components/Button/CustomButton.vue';
 import { getErrorMessage } from '@/helpers/getErrorMessage';
 import { getResponse } from '@/helpers/getResponse';
-import CustomBeatLoader from '@/components/Loader/CustomBeatLoader.vue';
+import CustomLoader from '@/components/Loader/CustomLoader.vue';
 import { IdentificationIcon } from '@heroicons/vue/24/solid';
 import AuthenticationContainer from '@/components/Card/AuthenticationContainer.vue';
 import CustomInput from '@/components/Form/CustomInput.vue';
+import { validateSignUpFields, isPasswordMatch } from '@/helpers/validateForm';
 
 export default {
   name: 'SignUpPage',
   components: {
     CustomButton,
-    CustomBeatLoader,
+    CustomLoader,
     IdentificationIcon,
     AuthenticationContainer,
     CustomInput,
@@ -106,13 +107,16 @@ export default {
   },
   methods: {
     async handleRegister() {
-      if (
-        this.email !== '' &&
-        this.password !== '' &&
-        this.confirmPassword !== ''
-      ) {
+      const validateForm = validateSignUpFields(
+        this.email,
+        this.password,
+        this.confirmPassword
+      );
+      if (validateForm) {
         this.isLoading = true;
-        if (this.password === this.confirmPassword) {
+
+        const isMatch = isPasswordMatch(this.password, this.confirmPassword);
+        if (isMatch) {
           try {
             await this.$store.dispatch('register', {
               email: this.email,

@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import NavHeader from '@/components/Navigation/NavHeader.vue';
+import NavHeader from '@/components/NavBar/NavHeader.vue';
 import NavBar from '@/components/NavBar/NavBar.vue';
 
 export default {

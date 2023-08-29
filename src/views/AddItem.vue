@@ -9,7 +9,7 @@
         for="image"
         class="block text-gray-200 text-xm font-bold text-start"
       >Image Upload</label>
-      <imageUpload />
+      <ImageUpload />
     </div>
 
     <div>
@@ -60,32 +60,22 @@
 <script>
 import CustomButton from '@/components/Button/CustomButton.vue';
 import CustomInput from '@/components/Form/CustomInput.vue';
-import imageUpload from '@/components/Form/imageUpload.vue';
+import ImageUpload from '@/components/Form/ImageUpload.vue';
 
 export default {
   name: 'AddItem',
-  components: { CustomInput, imageUpload, CustomButton },
+  components: { CustomInput, ImageUpload, CustomButton },
   data: function () {
     return {
-      buttonClick: false,
       title: '',
       description: '',
       pickUpTime: '',
     };
   },
   methods: {
-    submit() {
-      this.buttonClick = true;
-      setTimeout(() => {
-        this.buttonClick = false;
-      }, 1000);
-    },
     async handleSubmit() {
       return this.title, this.description, this.pickUpTime;
     },
-    // navigateError() {
-    //   this.$router.push('/asjdiadjiajai');
-    // },
   },
 };
 </script>

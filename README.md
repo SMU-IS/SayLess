@@ -66,7 +66,7 @@ CI/CD
 
 ## Contact
 
-Joshua / Chun Xiong - cxang.2022@scis.smu.edu.sg
+Joshua - cxang.2022@scis.smu.edu.sg  
 Project Link - https://sayless.netlify.app
 
 ## Acknowledgements

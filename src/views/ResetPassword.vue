@@ -17,7 +17,7 @@
           class="space-y-6"
           @submit.prevent
         >
-          <div>
+          <div class="flex flex-col gap-2">
             <label
               for="email"
               class="block text-sm font-medium leading-6 text-white"

@@ -25,7 +25,7 @@
           </button>
         </div>
 
-        <div class="flex items-center flex-wrap">
+        <div class="flex items-center flex-wrap mt-5 gap-3">
           <span
             v-for="(tag, index) in tags"
             :key="index"

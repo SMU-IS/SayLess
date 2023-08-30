@@ -1,5 +1,9 @@
 <template>
-  <div class="flex flex-col mt-2">
+  <DetailsHeader @header-click="goBack">
+    {{ foodListings.foodTitle }}
+  </DetailsHeader>
+
+  <div class="flex flex-col mt-16">
     <CardImage
       class="bg-white h-full"
       :card-image="foodListings.foodImage"
@@ -22,13 +26,6 @@
       >
         Request Item
       </CustomButton>
-
-      <CustomButton
-        button-color="btn--whiteAlpha"
-        @click="goBack"
-      >
-        Back
-      </CustomButton>
     </div>
   </div>
 </template>
@@ -36,10 +33,11 @@
 <script>
 import CardImage from '@/components/Card/CardImage.vue';
 import CustomButton from '@/components/Button/CustomButton.vue';
+import DetailsHeader from '@/components/NavBar/DetailsHeader.vue';
 
 export default {
   name: 'ListItemsDetails',
-  components: { CardImage, CustomButton },
+  components: { CardImage, CustomButton, DetailsHeader },
   data: function () {
     return {
       foodListings: [],

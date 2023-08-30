@@ -9,7 +9,7 @@ const navLinks = [
   },
   {
     id: 2,
-    path: '/add-food',
+    path: '/add-item',
     icon: PlusCircleIcon,
   },
   {

@@ -15,20 +15,11 @@
 </template>
 
 <script>
-import {
-  ClipboardDocumentListIcon,
-  HomeIcon,
-  PlusSmallIcon,
-} from '@heroicons/vue/24/outline';
 import { navLinks } from '@/data/navLinks.js';
 
 export default {
   name: 'NavBar',
-  components: {
-    HomeIcon,
-    ClipboardDocumentListIcon,
-    PlusSmallIcon,
-  },
+
   data: function () {
     return {
       navLinks,

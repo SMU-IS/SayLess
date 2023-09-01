@@ -95,7 +95,7 @@
             </div>
 
             <CustomButton
-              button-color="btn--lightGray"
+              button-color="btn--whiteAlpha"
               @click="loginViaGoogle"
             >
               <div class="flex flex-row gap-3">

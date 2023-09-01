@@ -27,15 +27,11 @@
     }
 
     &--whiteAlpha {
-      @apply btn__base bg-white text-gray-800 focus:ring-slate-400;
+      @apply btn__base bg-white text-gray-800 hover:bg-gray-50 focus:ring-slate-400;
     }
 
     &--purple {
       @apply btn__base bg-indigo-800 text-white focus:ring-slate-400;
-    }
-
-    &--lightGray {
-      @apply btn__base bg-slate-100 text-gray-600 hover:bg-slate-200 focus:ring-slate-400;
     }
   }
 }

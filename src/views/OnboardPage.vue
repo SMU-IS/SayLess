@@ -42,7 +42,7 @@
   </svg>
 
   <div class="flex flex-col justify-end h-screen px-6 gap-4 pb-12">
-    <h3 class="w-75 text-white font-extrabold text-5xl">
+    <h3 class="w-75 text-white font-extrabold text-5xl mb-5">
       <a class="underline decoration-indigo-500 italic">Say Less</a>
       to saving the earth
     </h3>

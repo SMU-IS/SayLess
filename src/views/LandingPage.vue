@@ -16,7 +16,7 @@
 
       <CustomButton
         button-color="btn--success"
-        width-size="w-1/3"
+        button-size="w-1/3"
       >
         Learn More
       </CustomButton>

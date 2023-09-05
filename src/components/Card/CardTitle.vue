@@ -1,6 +1,6 @@
 <template>
   <span
-    class="text-base text-start font-extrabold tracking-tight text-white dark:text-white"
+    class="text-base text-start font-semibold tracking-tight text-white dark:text-white"
   >
     <slot>{{ cardTitle }}</slot>
   </span>

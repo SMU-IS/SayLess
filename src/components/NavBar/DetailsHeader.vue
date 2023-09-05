@@ -7,9 +7,7 @@
       @click="emitHeaderClick"
     />
 
-    <h3
-      class="flex items-center justify-center flex-1 text-center font-black font-sans"
-    >
+    <h3 class="flex items-center justify-center flex-1 text-center font-sans font-semibold">
       <slot>{{ children }}</slot>
     </h3>
 

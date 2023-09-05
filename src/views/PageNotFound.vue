@@ -12,22 +12,23 @@
       Sorry, we couldn’t find the page you’re looking for.
     </p>
 
-    <GradientButton
-      size="w-1/2"
+    <CustomButton
+      class="btn--gradient"
+      button-size="w-1/3"
       @click="navigateHome"
     >
       Go Back Home
-    </GradientButton>
+    </CustomButton>
   </div>
 </template>
 
 <script>
-import GradientButton from '@/components/Button/GradientButton.vue';
+import CustomButton from '@/components/Button/CustomButton.vue';
 import { goHome } from '@/helpers/goHome';
 
 export default {
   name: 'PageNotFound',
-  components: { GradientButton },
+  components: { CustomButton },
   methods: {
     navigateHome() {
       goHome(this.$router);

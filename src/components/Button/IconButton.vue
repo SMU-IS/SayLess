@@ -1,20 +1,18 @@
 <template>
   <button
     type="button"
-    :class="`${buttonColor} ${textSize} ${buttonSize}`"
+    :class="`${buttonColor} w-fit h-fit`"
   >
-    <slot>{{ buttonText }}</slot>
+    <KeyIcon class="w-5 h-5" />
   </button>
 </template>
 
 <script>
+import { KeyIcon } from '@heroicons/vue/24/solid';
 export default {
-  name: 'CustomButton',
+  name: 'IconButton',
+  components: { KeyIcon },
   props: {
-    buttonText: {
-      type: String,
-      default: '',
-    },
     buttonColor: {
       type: String,
       default: 'btn--primary',

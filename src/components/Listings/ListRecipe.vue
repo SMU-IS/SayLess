@@ -5,7 +5,7 @@
       :key="item.id"
     >
       <CardContainer @click="seeDetails(item.id)">
-        <CardImage
+        <CardImg
           :card-image="item.img"
           :img-height="200"
         />
@@ -17,9 +17,7 @@
           </CardTitle>
         </div>
         <div class="flex flex-col justify-start items-start px-5 py-3">
-          <CardSubTitle>
-            Uses {{ item.uses.split(',').join(', ') }}
-          </CardSubTitle>
+          Uses {{ item.uses.split(',').join(', ') }}
         </div>
       </CardContainer>
     </div>
@@ -28,12 +26,11 @@
 
 <script>
 import CardContainer from '@/components/Card/CardContainer.vue';
-import CardImage from '@/components/Card/CardImage.vue';
-import CardSubTitle from '@/components/Card/CardSubTitle.vue';
+import CardImg from '@/components/Card/CardImg.vue';
 
 export default {
   name: 'ListRecipe',
-  components: { CardContainer, CardSubTitle, CardImage },
+  components: { CardContainer, CardImg },
   props: {
     ingredients: {
       type: Array,

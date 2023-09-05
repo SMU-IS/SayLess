@@ -1,7 +1,7 @@
 <template>
   <button
     type="button"
-    :class="`${buttonColor} ${textSize} ${buttonSize}`"
+    :class="`flex items-center ${buttonColor} ${textSize} ${buttonSize} h-11`"
   >
     <slot>{{ buttonText }}</slot>
   </button>

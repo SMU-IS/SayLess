@@ -3,15 +3,16 @@
     type="button"
     :class="`${buttonColor} w-fit h-fit`"
   >
-    <KeyIcon class="w-5 h-5" />
+    <MagnifyingGlassIcon class="w-5 h-5" />
   </button>
 </template>
 
 <script>
-import { KeyIcon } from '@heroicons/vue/24/solid';
+import { MagnifyingGlassIcon } from '@heroicons/vue/24/solid';
+
 export default {
   name: 'IconButton',
-  components: { KeyIcon },
+  components: { MagnifyingGlassIcon },
   props: {
     buttonColor: {
       type: String,

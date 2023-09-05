@@ -1,8 +1,7 @@
 <template>
-  <div class="flex flex-col mx-7">
-    <SearchBar />
+  <div class="flex flex-col mx-4">
     <CardContainer>
-      <CardHeader> Earn points when you throw less </CardHeader>
+      <CardHeader>Earn points when you throw less</CardHeader>
       <CardDescription> Save the earth together </CardDescription>
       <CardFooter>
         <CustomButton
@@ -13,6 +12,8 @@
         </CustomButton>
       </CardFooter>
     </CardContainer>
+
+    <SearchBar />
     <ListItems />
   </div>
 </template>

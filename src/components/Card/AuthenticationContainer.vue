@@ -1,13 +1,13 @@
 <template>
   <div :class="`card-container ${bgColor}`">
-    <slot>{{ cardChildren }}</slot>
+    <slot>{{ children }}</slot>
   </div>
 </template>
 <script>
 export default {
   name: 'AuthenticationContainer',
   props: {
-    cardChildren: {
+    children: {
       type: null,
       default: '',
     },

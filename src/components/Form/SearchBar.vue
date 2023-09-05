@@ -5,7 +5,7 @@
       placeholder="Search Item..."
     />
 
-    <IconButton />
+    <IconButton @click="emitBtnClick" />
   </form>
 </template>
 
@@ -22,6 +22,12 @@ export default {
     cardContent: {
       type: String,
       default: 'Whitehaven Beach',
+    },
+  },
+  emits: ['btn-click'],
+  methods: {
+    emitBtnClick() {
+      this.$emit('btn-click');
     },
   },
 };

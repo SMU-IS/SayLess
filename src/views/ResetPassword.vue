@@ -42,7 +42,7 @@
             <span v-else>Reset Password</span>
           </CustomButton>
 
-          <div class="flex justify-end">
+          <div class="flex justify-end pt-3">
             <router-link
               to="/login"
               class="flex flex-row items-center gap-2 w-fit"

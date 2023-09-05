@@ -1,17 +1,19 @@
 <template>
-  <div class="navBar">
-    <div
-      v-for="link in navLinks"
-      :key="link.id"
-    >
-      <router-link :to="link.path">
-        <component
-          :is="link.icon"
-          :class="{ 'icon-style': true, 'icon-large': link.id === 3 }"
-        />
-      </router-link>
+  <header class="flex justify-center">
+    <div class="navBar">
+      <div
+        v-for="link in navLinks"
+        :key="link.id"
+      >
+        <router-link :to="link.path">
+          <component
+            :is="link.icon"
+            :class="{ 'icon-style': true, 'icon-large': link.id === 3 }"
+          />
+        </router-link>
+      </div>
     </div>
-  </div>
+  </header>
 </template>
 
 <script>
@@ -31,8 +33,9 @@ export default {
 @tailwind components;
 @layer components {
   .navBar {
-    @apply flex flex-row items-center justify-between px-8 bg-gray-700 border-gray-600 border rounded-full bottom-4 left-1/2 fixed opacity-95 z-50 w-11/12 h-16 -translate-x-1/2;
+    @apply flex flex-row items-center justify-between lg:justify-evenly bg-gray-700 border rounded-full border-gray-600 px-8 fixed bottom-0 w-11/12 mb-4;
   }
+
   .icon-style {
     @apply w-7 h-7 mb-1 text-gray-300;
   }

@@ -1,9 +1,9 @@
 <template>
   <div class="flex justify-center items-center h-screen">
-    <AuthenticationContainer bg-color="gradientZ">
+    <AuthenticationContainer bg-color="bg-white">
       <div class="flex flex-col justify-center items-center">
         <IdentificationIcon class="w-10 h-10" />
-        <h3 class="mt-3 text-center text-white">
+        <h3 class="mt-3 text-center text-black">
           Get Started
         </h3>
       </div>
@@ -54,7 +54,7 @@
           </div>
 
           <CustomButton
-            button-color="btn--whiteAlpha"
+            button-color="btn--success"
             @click="handleRegister"
           >
             <span v-if="isLoading">
@@ -67,7 +67,7 @@
           </CustomButton>
         </form>
 
-        <p class="text-center text-white text-sm mt-12">
+        <p class="text-center text-black text-sm mt-12">
           Already have an account? Login
           <span class="underline">
             <router-link to="/login"> here </router-link>

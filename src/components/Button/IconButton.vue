@@ -1,20 +1,19 @@
 <template>
   <button
     type="button"
-    :class="`flex items-center ${buttonColor} ${textSize} ${buttonSize} h-11`"
+    :class="`${buttonColor} w-fit h-fit`"
   >
-    <slot>{{ buttonText }}</slot>
+    <MagnifyingGlassIcon class="w-5 h-5" />
   </button>
 </template>
 
 <script>
+import { MagnifyingGlassIcon } from '@heroicons/vue/24/solid';
+
 export default {
-  name: 'CustomButton',
+  name: 'IconButton',
+  components: { MagnifyingGlassIcon },
   props: {
-    buttonText: {
-      type: String,
-      default: '',
-    },
     buttonColor: {
       type: String,
       default: 'btn--primary',

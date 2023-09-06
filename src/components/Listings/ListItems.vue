@@ -1,20 +1,19 @@
 <template>
-  <div class="grid grid-cols-2 gap-3 min-w-full">
+  <div class="grid grid-cols-2 gap-4 min-w-full">
     <div
       v-for="item in foodListings"
       :key="item.id"
     >
       <CardContainer @click="seeDetails(item.id)">
-        <CardImage :card-image="item.cardImage" />
-        <div class="flex items-start px-5 pt-2">
-          <CardTitle>
-            {{ item.cardTitle }}
-          </CardTitle>
-        </div>
-        <div class="flex flex-col justify-start items-start px-5 py-3">
-          <CardSubTitle>{{ item.cardSubTitle }}</CardSubTitle>
-          <CardSubTitle> Within {{ item.distance }}</CardSubTitle>
-        </div>
+        <CardImg
+          :src="item.cardImage"
+          :alt="item.cardTitle"
+        />
+
+        <CardHeader> {{ item.cardTitle }} </CardHeader>
+        <CardDescription>
+          {{ item.details }}
+        </CardDescription>
       </CardContainer>
     </div>
   </div>
@@ -22,13 +21,13 @@
 
 <script>
 import CardContainer from '@/components/Card/CardContainer.vue';
-import CardImage from '@/components/Card/CardImage.vue';
-import CardSubTitle from '@/components/Card/CardSubTitle.vue';
-import CardTitle from '@/components/Card/CardTitle.vue';
+import CardDescription from '@/components/Card/CardDescription.vue';
+import CardHeader from '@/components/Card/CardHeader.vue';
+import CardImg from '@/components/Card/CardImg.vue';
 
 export default {
   name: 'ListItems',
-  components: { CardContainer, CardTitle, CardSubTitle, CardImage },
+  components: { CardContainer, CardImg, CardHeader, CardDescription },
   data: function () {
     return {
       foodListings: [],

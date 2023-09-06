@@ -1,10 +1,6 @@
 <template>
-  <div class="bg-gray-900 flex flex-col w-screen min-h-screen overflow-hidden">
-    <div v-if="isAuthenticated">
-      <NavHeader />
-    </div>
-
-    <div :class="{ 'mt-20 mb-28': isAuthenticated }">
+  <div class="bg-gray-900 flex flex-col min-h-screen w-screen overflow-hidden">
+    <div :class="{ 'mt-6 mb-28': isAuthenticated }">
       <router-view />
     </div>
 
@@ -15,11 +11,10 @@
 </template>
 
 <script>
-import NavHeader from '@/components/NavBar/NavHeader.vue';
 import NavBar from '@/components/NavBar/NavBar.vue';
 
 export default {
-  components: { NavHeader, NavBar },
+  components: { NavBar },
   computed: {
     isAuthenticated() {
       return this.$store.getters.getEmail;

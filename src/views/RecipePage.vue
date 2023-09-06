@@ -7,50 +7,47 @@
         What's in your fridge?
       </h3>
 
-      <div class="rounded w-full">
-        <div
-          class="flex justify-between border bg-gray-900 rounded align-middle mb-2 overflow-hidden"
-        >
-          <input
+      <div class="w-full">
+        <div class="flex items-center gap-3">
+          <CustomInput
             v-model="newTag"
-            class="bg-transparent flex w-full px-4 py-2"
+            type="text"
             placeholder="Enter Ingredients"
-            @keyup.enter="addTag"
-          >
-          <button
-            class="bg-teal-500 px-3"
-            @click="addTag"
-          >
-            Add
-          </button>
+            @enter-pressed="addTag"
+          />
+
+          <IconButton @click="addTag" />
         </div>
 
-        <div class="flex items-center flex-wrap">
-          <span
-            v-for="(tag, index) in tags"
-            :key="index"
-            class="bg-gray-700 px-3 py-1 mr-1 rounded-lg"
+        <div class="flex items-center flex-wrap mt-5 gap-3">
+          <div
+            v-for="(tag, i) in tags"
+            :key="i"
           >
-            <button
-              class="mr-2 bolded"
-              @click="deleteTag(tag)"
-            >x</button>{{ tag }}
-          </span>
+            <ChipLabel @close-click="deleteTag(tag)">
+              {{ tag }}
+            </ChipLabel>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="py-5 px-3">
-      <ListRecipe />
-    </div>
+    <ListRecipe />
   </div>
 </template>
+
 <script>
+import IconButton from '@/components/Button/IconButton.vue';
+import CustomInput from '@/components/Form/CustomInput.vue';
 import ListRecipe from '@/components/Listings/ListRecipe.vue';
+import ChipLabel from '@/components/Chip/ChipLabel.vue';
 
 export default {
   components: {
     ListRecipe,
+    CustomInput,
+    IconButton,
+    ChipLabel,
   },
   data() {
     return {

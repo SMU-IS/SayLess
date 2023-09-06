@@ -1,45 +1,51 @@
 <template>
-  <div class="flex flex-col mt-2">
-    <CardImage
-      class="bg-white h-full"
-      :card-image="foodListings.foodImage"
-    />
-    <div class="flex flex-col px-6 text-white gap-6">
-      <div class="flex flex-col px-4 gap-4 py-6 text-right">
-        <h2 class="font-bold">
-          {{ foodListings.foodTitle }}
-        </h2>
-        <p>{{ foodListings.foodDetails }}</p>
+  <div>
+    <DetailsHeader @header-click="goBack">
+      {{ foodListings.foodTitle }}
+    </DetailsHeader>
 
-        <h3>
-          Pick-up: <span class="italic">{{ foodListings.time }}</span>
-        </h3>
-      </div>
+    <div class="flex flex-col mt-8">
+      <CardContainer>
+        <CardImg :src="foodListings.foodImage" />
 
-      <CustomButton
-        button-color="btn--purple"
-        @click="requestItem(foodOwner)"
-      >
-        Request Item
-      </CustomButton>
+        <div class="flex flex-col px-6 text-white gap-6">
+          <div class="flex flex-col px-4 gap-4 py-6 text-right">
+            <h2 class="font-bold">
+              {{ foodListings.foodTitle }}
+            </h2>
+            <p>{{ foodListings.foodDetails }}</p>
 
-      <CustomButton
-        button-color="btn--whiteAlpha"
-        @click="goBack"
-      >
-        Back
-      </CustomButton>
+            <h3>
+              Pick-up: <span class="italic">{{ foodListings.time }}</span>
+            </h3>
+          </div>
+
+          <CustomButton
+            button-color="btn--purple"
+            @click="requestItem(foodOwner)"
+          >
+            Request Item
+          </CustomButton>
+        </div>
+      </CardContainer>
     </div>
   </div>
 </template>
 
 <script>
-import CardImage from '@/components/Card/CardImage.vue';
 import CustomButton from '@/components/Button/CustomButton.vue';
+import DetailsHeader from '@/components/NavBar/DetailsHeader.vue';
+import CardContainer from '@/components/Card/CardContainer.vue';
+import CardImg from '@/components/Card/CardImg.vue';
 
 export default {
   name: 'ListItemsDetails',
-  components: { CardImage, CustomButton },
+  components: {
+    CardContainer,
+    CardImg,
+    CustomButton,
+    DetailsHeader,
+  },
   data: function () {
     return {
       foodListings: [],

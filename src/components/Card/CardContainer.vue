@@ -1,5 +1,7 @@
 <template>
-  <div :class="cardProp">
+  <div
+    class="min-h-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 my-5"
+  >
     <slot> {{ children }}</slot>
   </div>
 </template>
@@ -8,11 +10,6 @@
 export default {
   name: 'CardContainer',
   props: {
-    cardProp: {
-      type: String,
-      default:
-        'w-full bg-gray-800 rounded-lg shadow dark:bg-gray-800 border-gray-300 min-h-full',
-    },
     children: {
       type: String,
       default: '',

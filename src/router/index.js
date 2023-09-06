@@ -9,6 +9,7 @@ import SignUpPage from '@/views/SignUpPage.vue';
 import ResetPasswordPage from '@/views/ResetPassword.vue';
 import ListItemDetails from '@/components/Listings/ListItemsDetails.vue';
 import RecipePage from '@/views/RecipePage.vue';
+import ProfilePage from '@/views/ProfilePage.vue';
 import store from '@/store';
 
 const routes = [
@@ -61,6 +62,11 @@ const routes = [
     path: '/get-recipe',
     name: 'RecipePage',
     component: RecipePage,
+  },
+  {
+    path: '/profile',
+    name: 'ProfilePage',
+    component: ProfilePage,
   },
 ];
 

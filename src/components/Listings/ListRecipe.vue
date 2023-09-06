@@ -1,26 +1,12 @@
 <template>
-  <div class="grid grid-cols-2 gap-3 min-w-full">
+  <div class="grid grid-cols-2 gap-3 min-w-full py-4 px-3">
     <div
       v-for="item in recipeListings"
       :key="item.id"
     >
       <CardContainer @click="seeDetails(item.id)">
-        <CardImage
-          :card-image="item.img"
-          :img-height="200"
-        />
-        <div class="flex items-start px-5 pt-2">
-          <CardTitle
-            class="text-base text-start font-extrabold tracking-tight text-white dark:text-white"
-          >
-            {{ item.title }}
-          </CardTitle>
-        </div>
-        <div class="flex flex-col justify-start items-start px-5 py-3">
-          <CardSubTitle>
-            Uses {{ item.uses.split(',').join(', ') }}
-          </CardSubTitle>
-        </div>
+        <CardImg :src="item.img" />
+        <CardHeader> {{ item.title }} </CardHeader>
       </CardContainer>
     </div>
   </div>
@@ -28,12 +14,12 @@
 
 <script>
 import CardContainer from '@/components/Card/CardContainer.vue';
-import CardImage from '@/components/Card/CardImage.vue';
-import CardSubTitle from '@/components/Card/CardSubTitle.vue';
+import CardImg from '@/components/Card/CardImg.vue';
+import CardHeader from '@/components/Card/CardHeader.vue';
 
 export default {
   name: 'ListRecipe',
-  components: { CardContainer, CardSubTitle, CardImage },
+  components: { CardContainer, CardImg, CardHeader },
   props: {
     ingredients: {
       type: Array,

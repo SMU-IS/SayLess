@@ -52,7 +52,7 @@
       />
     </div>
 
-    <CustomButton class="btn--purple">
+    <CustomButton button-color="btn--purple">
       Submit
     </CustomButton>
   </div>

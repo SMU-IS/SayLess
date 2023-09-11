@@ -11,10 +11,10 @@ module.exports = {
       'error',
       {
         singleline: {
-          max: null,
+          max: 1000,
         },
         multiline: {
-          max: null,
+          max: 1000,
         },
       },
     ],

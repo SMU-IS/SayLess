@@ -4,9 +4,10 @@
 
 @layer base {
   html {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, ui-sans-serif, system-ui, -apple-system, system-ui,
-      Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
-      Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji !important;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
+      sans-serif, ui-sans-serif, system-ui, -apple-system, system-ui, Segoe UI,
+      Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji,
+      Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji !important;
   }
 
   h1 {
@@ -44,7 +45,6 @@
       @apply btn__base bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white;
     }
 
-
     &--success {
       @apply btn__base bg-green-600 text-white hover:bg-green-700 focus:ring-green-400;
     }
@@ -62,23 +62,49 @@
     }
   }
 
+  .hide-scroll-bar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scroll-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .container-center {
+    @apply flex justify-center items-center w-screen h-screen;
+  }
+
   .bg-g-main {
     @apply bg-gradient-to-b from-main to-[#38344B];
-  }  
-  
+  }
+
   .bg-g-quest {
     @apply bg-gradient-to-bl from-[#FBC7D4] from-0% via-[#AFAFF1]/75 via-10% via-[#8AA4FF]/60 via-50% via-[#A9ADF3]/75 via-50% to-[#FBC7D4];
   }
 
-  .bg-g-quest2{
+  .bg-g-quest2 {
     @apply bg-gradient-to-bl from-indigo-300 to-purple-400;
-    /* @apply bg-[radial-gradient(ellipse_at_bottom, _var(--tw-gradient-stops))] from-amber-200 via-violet-600 to-sky-900; */
   }
-  
 
+  .navBar {
+    @apply flex flex-row items-center justify-between lg:justify-evenly bg-trans-dark border rounded-full border-none py-4 px-8 fixed bottom-0 w-11/12 mb-4;
+  }
 
-  .container-center {
-    @apply flex justify-center items-center w-screen h-screen;
+  .color-main {
+    @apply bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400;
+  }
+
+  .icon-style {
+    @apply w-7 h-7 mb-1 text-gray-300;
+  }
+
+  .icon-large {
+    @apply w-14 h-14 mb-1 text-green-600;
+  }
+
+  .card-description {
+    @apply mb-3 text-sm dark:text-gray-400;
   }
 
   .gradientX {
@@ -91,5 +117,10 @@
 
   .gradientZ {
     @apply bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:opacity-95;
+  }
+
+  .stars-container {
+    box-shadow: 0px 0px 10px 0px #ffe993;
+    border: 2px solid #ffe993;
   }
 }

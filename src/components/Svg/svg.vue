@@ -12,6 +12,6 @@ export default {
 
 <style scoped>
 .my-svg-component {
-    /* Scoped CSS here */
+  /* Scoped CSS here */
 }
 </style>

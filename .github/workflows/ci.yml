@@ -18,8 +18,11 @@ jobs:
         with:
           node-version: 20.x
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: npm ci
+
+      - name: Format code with prettier
+        run: npm run prettier
 
       - name: Check for linting error
         run: npm run lint

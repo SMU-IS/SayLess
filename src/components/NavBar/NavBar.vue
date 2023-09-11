@@ -1,15 +1,9 @@
 <template>
   <header class="flex justify-center">
     <div class="navBar">
-      <div
-        v-for="link in navLinks"
-        :key="link.id"
-      >
+      <div v-for="link in navLinks" :key="link.id">
         <router-link :to="link.path">
-          <component
-            :is="link.icon"
-            class="fill-[#fff] icon-style"
-          />
+          <component :is="link.icon" class="fill-[#fff] icon-style" />
         </router-link>
       </div>
     </div>

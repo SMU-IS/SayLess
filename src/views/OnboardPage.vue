@@ -47,10 +47,7 @@
       to saving the earth
     </h3>
 
-    <CustomButton
-      class="btn--success"
-      @click="navigate"
-    >
+    <CustomButton class="btn--success" @click="navigate">
       Get Started
     </CustomButton>
   </div>

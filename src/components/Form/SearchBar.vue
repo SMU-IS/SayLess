@@ -1,9 +1,6 @@
 <template>
   <form class="flex flex-row items-center gap-3 mb-3">
-    <CustomInput
-      type="text"
-      placeholder="Search Item..."
-    />
+    <CustomInput type="text" placeholder="Search Item..." />
 
     <IconButton @click="emitBtnClick" />
   </form>

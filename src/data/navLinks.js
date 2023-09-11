@@ -3,8 +3,7 @@ import {
   HomeIcon,
   UserIcon,
   ShoppingBagIcon,
-  ReceiptPercentIcon
-
+  ReceiptPercentIcon,
 } from '@heroicons/vue/24/solid';
 
 const navLinks = [

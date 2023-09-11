@@ -2,10 +2,7 @@
   <nav
     class="flex items-center grid grid-cols-3 rounded-b-lg fixed top-0 w-full bg-white border-gray-200 h-16"
   >
-    <ArrowLeftIcon
-      class="ml-3 h-7 w-7"
-      @click="emitHeaderClick"
-    />
+    <ArrowLeftIcon class="ml-3 h-7 w-7" @click="emitHeaderClick" />
 
     <h3 class="text-center font-sans font-semibold">
       <slot>{{ children }}</slot>

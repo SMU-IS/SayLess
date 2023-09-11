@@ -7,10 +7,7 @@
     </p>
 
     <div class="flex">
-      <button
-        type="button"
-        @click="emitClose"
-      >
+      <button type="button" @click="emitClose">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="100%"
@@ -23,18 +20,8 @@
           stroke-linejoin="round"
           class="feather feather-x cursor-pointer hover:text-yellow-400 rounded-full w-4 h-4 ml-2"
         >
-          <line
-            x1="18"
-            y1="6"
-            x2="6"
-            y2="18"
-          />
-          <line
-            x1="6"
-            y1="6"
-            x2="18"
-            y2="18"
-          />
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
         </svg>
       </button>
     </div>

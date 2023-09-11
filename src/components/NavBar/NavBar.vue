@@ -30,7 +30,7 @@ export default {
 </script>
 
 <style scoped>
-@tailwind components
+@tailwind components;
 
 @layer components {
   .navBar {
@@ -39,6 +39,10 @@ export default {
 
   .icon-style {
     @apply w-7 h-7 mb-1 text-gray-300;
+  }
+
+  .icon-large {
+    @apply w-14 h-14 mb-1 text-green-600;
   }
 }
 </style>

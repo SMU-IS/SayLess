@@ -28,3 +28,17 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+@tailwind components
+
+@layer components {
+  .navBar {
+    @apply flex flex-row items-center justify-between lg:justify-evenly bg-trans-dark border rounded-full border-none py-4 px-8 fixed bottom-0 w-11/12 mb-4;
+  }
+
+  .icon-style {
+    @apply w-7 h-7 mb-1 text-gray-300;
+  }
+}
+</style>

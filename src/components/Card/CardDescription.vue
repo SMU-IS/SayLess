@@ -25,3 +25,13 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+@tailwind components
+
+@layer components {
+  .card-description {
+    @apply mb-3 text-sm dark:text-gray-400;
+  }
+}
+</style>

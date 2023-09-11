@@ -136,3 +136,14 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+@tailwind components
+
+@layer components {
+  .stars-container {
+    box-shadow: 0px 0px 10px 0px #ffe993;
+    border: 2px solid #ffe993;
+  }
+}
+</style>

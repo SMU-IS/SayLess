@@ -87,24 +87,8 @@
     @apply bg-gradient-to-bl from-indigo-300 to-purple-400;
   }
 
-  .navBar {
-    @apply flex flex-row items-center justify-between lg:justify-evenly bg-trans-dark border rounded-full border-none py-4 px-8 fixed bottom-0 w-11/12 mb-4;
-  }
-
   .color-main {
     @apply bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400;
-  }
-
-  .icon-style {
-    @apply w-7 h-7 mb-1 text-gray-300;
-  }
-
-  .icon-large {
-    @apply w-14 h-14 mb-1 text-green-600;
-  }
-
-  .card-description {
-    @apply mb-3 text-sm dark:text-gray-400;
   }
 
   .gradientX {
@@ -117,10 +101,5 @@
 
   .gradientZ {
     @apply bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:opacity-95;
-  }
-
-  .stars-container {
-    box-shadow: 0px 0px 10px 0px #ffe993;
-    border: 2px solid #ffe993;
   }
 }

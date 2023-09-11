@@ -3,9 +3,7 @@
     <AuthenticationContainer bg-color="bg-white">
       <div class="flex flex-col justify-center items-center">
         <IdentificationIcon class="w-10 h-10" />
-        <h3 class="mt-3 text-center text-black">
-          Get Started
-        </h3>
+        <h3 class="mt-3 text-center text-black">Get Started</h3>
       </div>
 
       <div class="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -46,24 +44,18 @@
               type="checkbox"
               value=""
               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+            />
+            <label for="default-checkbox" class="ml-2 cursor-pointer text-sm"
+              >I agree with the <span>Terms & Conditions.</span></label
             >
-            <label
-              for="default-checkbox"
-              class="ml-2 cursor-pointer text-sm"
-            >I agree with the <span>Terms & Conditions.</span></label>
           </div>
 
-          <CustomButton
-            button-color="btn--success"
-            @click="handleRegister"
-          >
+          <CustomButton button-color="btn--success" @click="handleRegister">
             <span v-if="isLoading">
               <CustomLoader />
             </span>
 
-            <p v-else>
-              Register
-            </p>
+            <p v-else>Register</p>
           </CustomButton>
         </form>
 
@@ -110,7 +102,7 @@ export default {
       const validateForm = validateSignUpFields(
         this.email,
         this.password,
-        this.confirmPassword
+        this.confirmPassword,
       );
       if (validateForm) {
         this.isLoading = true;

@@ -1,8 +1,5 @@
 <template>
-  <button
-    type="button"
-    :class="`${buttonColor} w-fit h-fit`"
-  >
+  <button type="button" :class="`${buttonColor} w-fit h-fit`">
     <MagnifyingGlassIcon class="w-5 h-5" />
   </button>
 </template>

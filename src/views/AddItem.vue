@@ -8,7 +8,8 @@
       <label
         for="image"
         class="block text-gray-200 text-xm font-bold text-start"
-      >Image Upload</label>
+        >Image Upload</label
+      >
       <ImageUpload />
     </div>
 
@@ -16,7 +17,8 @@
       <label
         for="title"
         class="block mb-3 text-gray-200 text-xm font-bold text-start"
-      >Title</label>
+        >Title</label
+      >
       <CustomInput
         v-model="title"
         type="text"
@@ -29,7 +31,8 @@
       <label
         for="Description"
         class="block text-gray-200 text-xm font-bold text-start"
-      >Description</label>
+        >Description</label
+      >
       <textarea
         id="description"
         v-model="description"
@@ -43,7 +46,8 @@
       <label
         for="pickUpTime"
         class="block mb-3 text-gray-200 text-xm font-bold text-start"
-      >Pick-up time</label>
+        >Pick-up time</label
+      >
       <CustomInput
         v-model="pickUpTime"
         type="text"
@@ -52,15 +56,13 @@
       />
     </div>
 
-    <CustomButton button-color="btn--purple">
-      Submit
-    </CustomButton>
+    <CustomButton button-color="btn--purple"> Submit </CustomButton>
   </div>
 </template>
 <script>
 import CustomButton from '@/components/Button/CustomButton.vue';
 import CustomInput from '@/components/Form/CustomInput.vue';
-import ImageUpload from '@/components/Form/ImageUpload.vue';
+import ImageUpload from '@/components/Form/imageUpload.vue';
 
 export default {
   name: 'AddItem',

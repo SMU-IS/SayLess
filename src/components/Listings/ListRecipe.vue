@@ -1,9 +1,6 @@
 <template>
   <div class="grid grid-cols-2 gap-3 min-w-full py-4 px-3">
-    <div
-      v-for="item in recipeListings"
-      :key="item.id"
-    >
+    <div v-for="item in recipeListings" :key="item.id">
       <CardContainer @click="seeDetails(item.id)">
         <CardImg :src="item.img" />
         <CardHeader> {{ item.title }} </CardHeader>

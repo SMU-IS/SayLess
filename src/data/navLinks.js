@@ -2,8 +2,9 @@ import {
   ClipboardDocumentListIcon,
   HomeIcon,
   UserIcon,
-} from '@heroicons/vue/24/outline';
-import { PlusCircleIcon } from '@heroicons/vue/24/solid';
+  ShoppingBagIcon,
+  ReceiptPercentIcon,
+} from '@heroicons/vue/24/solid';
 
 const navLinks = [
   {
@@ -14,12 +15,12 @@ const navLinks = [
   {
     id: 2,
     path: '/profile',
-    icon: UserIcon,
+    icon: ShoppingBagIcon,
   },
   {
     id: 3,
     path: '/add-item',
-    icon: PlusCircleIcon,
+    icon: ReceiptPercentIcon,
   },
   {
     id: 4,

@@ -15,15 +15,9 @@
       </div>
 
       <div class="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form
-          class="space-y-5"
-          @submit.prevent
-        >
+        <form class="space-y-5" @submit.prevent>
           <div class="flex flex-col gap-2">
-            <label
-              class="font-semibold"
-              for="email"
-            >Email</label>
+            <label class="font-semibold" for="email">Email</label>
 
             <CustomInput
               v-model="email"
@@ -34,10 +28,7 @@
           </div>
 
           <div class="flex flex-col gap-2">
-            <label
-              for="password"
-              class="font-semibold"
-            >Password</label>
+            <label for="password" class="font-semibold">Password</label>
 
             <CustomInput
               v-model="password"
@@ -54,11 +45,12 @@
                 type="checkbox"
                 value=""
                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
-              >
+              />
               <label
                 for="default-checkbox"
                 class="ml-2 cursor-pointer font-medium text-slate-600"
-              >Remember me</label>
+                >Remember me</label
+              >
             </div>
 
             <div>
@@ -72,26 +64,22 @@
           </div>
 
           <div class="flex flex-col gap-4">
-            <CustomButton
-              class="btn--success"
-              @click="handleLogin"
-            >
+            <CustomButton class="btn--success" @click="handleLogin">
               <span v-if="isLoading">
                 <CustomLoader />
               </span>
 
-              <p v-else>
-                Sign in
-              </p>
+              <p v-else>Sign in</p>
             </CustomButton>
 
             <div class="flex justify-center items-center w-full">
               <hr
                 class="w-64 h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"
-              >
+              />
               <span
                 class="absolute px-3 font-medium text-gray-200 -translate-x-1/2 bg-white left-1/2"
-              >or</span>
+                >or</span
+              >
             </div>
 
             <CustomButton
@@ -99,11 +87,7 @@
               @click="loginViaGoogle"
             >
               <div class="flex flex-row gap-3">
-                <img
-                  class="h-5 w-auto"
-                  :src="GoogleIcon"
-                  alt="Google Icon"
-                >
+                <img class="h-5 w-auto" :src="GoogleIcon" alt="Google Icon" />
                 <span class="font-bold">Sign in With Google</span>
               </div>
             </CustomButton>

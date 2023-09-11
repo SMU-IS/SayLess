@@ -3,25 +3,19 @@
     <AuthenticationContainer bg-color="gradientY">
       <div class="flex flex-col justify-center items-center">
         <KeyIcon class="w-10 h-10" />
-        <h3 class="mt-3 mb-3 text-center">
-          Forgot password?
-        </h3>
+        <h3 class="mt-3 mb-3 text-center">Forgot password?</h3>
 
-        <h4 class="text-center">
-          We'll send you the instructions.
-        </h4>
+        <h4 class="text-center">We'll send you the instructions.</h4>
       </div>
 
       <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form
-          class="space-y-6"
-          @submit.prevent
-        >
+        <form class="space-y-6" @submit.prevent>
           <div class="flex flex-col gap-2">
             <label
               for="email"
               class="block text-sm font-medium leading-6 text-white"
-            >Email Address</label>
+              >Email Address</label
+            >
 
             <CustomInput
               v-model="email"
@@ -48,9 +42,7 @@
               class="flex flex-row items-center gap-2 w-fit"
             >
               <ArrowLeftIcon class="h-4 w-4" />
-              <p class="text-sm">
-                Back to Log In
-              </p>
+              <p class="text-sm">Back to Log In</p>
             </router-link>
           </div>
         </form>
@@ -94,7 +86,7 @@ export default {
           });
           getResponse(
             'success',
-            'Check your email for the link to reset password.'
+            'Check your email for the link to reset password.',
           );
           this.$router.push('/');
         } catch (err) {

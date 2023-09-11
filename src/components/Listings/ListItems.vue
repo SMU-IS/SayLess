@@ -1,14 +1,8 @@
 <template>
   <div class="grid grid-cols-2 gap-4 min-w-full">
-    <div
-      v-for="item in foodListings"
-      :key="item.id"
-    >
+    <div v-for="item in foodListings" :key="item.id">
       <CardContainer @click="seeDetails(item.id)">
-        <CardImg
-          :src="item.cardImage"
-          :alt="item.cardTitle"
-        />
+        <CardImg :src="item.cardImage" :alt="item.cardTitle" />
 
         <CardHeader> {{ item.cardTitle }} </CardHeader>
         <CardDescription>

@@ -4,12 +4,14 @@
   "diffEditor.ignoreTrimWhitespace": false,
   "javascript.updateImportsOnFileMove.enabled": "always",
   "typescript.updateImportsOnFileMove.enabled": "always",
-  "javascript.preferences.importModuleSpecifier": "non-relative",
-  "vue.updateImportsOnFileMove.enabled": true,
-  "eslint.validate": ["javascript"],
   "css.lint.unknownProperties": "ignore",
   "css.lint.unknownAtRules": "ignore",
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll": true
   }
 }

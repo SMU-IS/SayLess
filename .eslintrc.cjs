@@ -7,6 +7,17 @@ module.exports = {
     indent: ['warn', 2],
     quotes: ['error', 'single', { allowTemplateLiterals: true }],
     semi: ['error', 'always'],
+    'vue/max-attributes-per-line': [
+      'error',
+      {
+        singleline: {
+          max: 1000,
+        },
+        multiline: {
+          max: 1000,
+        },
+      },
+    ],
     'no-restricted-imports': [
       'error',
       {

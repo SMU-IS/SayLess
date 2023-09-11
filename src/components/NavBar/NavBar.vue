@@ -8,7 +8,7 @@
         <router-link :to="link.path">
           <component
             :is="link.icon"
-            :class="{ 'icon-style': true, 'icon-large': link.id === 3 }"
+            class="fill-[#fff] icon-style"
           />
         </router-link>
       </div>
@@ -31,9 +31,10 @@ export default {
 
 <style scoped>
 @tailwind components;
+
 @layer components {
   .navBar {
-    @apply flex flex-row items-center justify-between lg:justify-evenly bg-gray-700 border rounded-full border-gray-600 px-8 fixed bottom-0 w-11/12 mb-4;
+    @apply flex flex-row items-center justify-between lg:justify-evenly bg-trans-dark border rounded-full border-none py-4 px-8 fixed bottom-0 w-11/12 mb-4;
   }
 
   .icon-style {

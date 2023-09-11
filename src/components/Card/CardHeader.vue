@@ -1,7 +1,7 @@
 <template>
-  <div class="p-5">
+  <div :class="paddingHeader">
     <h5
-      :class="`font-bold tracking-tight  dark:text-white min-h-[20px] ${textColor}`"
+      :class="`font-bold tracking-tight dark:text-white min-h-[20px] ${textColor}`"
     >
       <slot>{{ children }}</slot>
     </h5>
@@ -16,15 +16,17 @@ export default {
       type: String,
       default: '',
     },
-    textColor:{
+    paddingHeader: {
+      type: String,
+      default: 'p-5',
+    },
+    textColor: {
       type: String,
       default: 'text-black',
-    }
-
+    },
   },
 };
 </script>
-
 
 <style scoped>
 @tailwind components;

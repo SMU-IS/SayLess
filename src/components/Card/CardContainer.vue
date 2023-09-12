@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="min-h-full bg-white border border-0 rounded-lg shadow  my-5"
-  >
+  <div class="min-h-full bg-white border border-0 rounded-lg shadow my-5">
     <slot> {{ children }}</slot>
   </div>
 </template>

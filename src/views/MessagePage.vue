@@ -1,7 +1,5 @@
 <template>
-  <div class="text-center">
-    Message
-  </div>
+  <div class="text-center">Message</div>
 </template>
 
 <script>

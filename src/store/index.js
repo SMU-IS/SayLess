@@ -57,7 +57,7 @@ const store = createStore({
       const response = await createUserWithEmailAndPassword(
         auth,
         email,
-        password
+        password,
       );
       if (response) {
         context.commit('SET_USER', response.user);

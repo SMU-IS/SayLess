@@ -3,9 +3,7 @@
     <div
       class="flex flex-col w-screen text-white p-5 justify-center items-center bg-gray-800 rounded-lg"
     >
-      <h3 class="mb-4">
-        What's in your fridge?
-      </h3>
+      <h3 class="mb-4">What's in your fridge?</h3>
 
       <div class="w-full">
         <div class="flex items-center gap-3">
@@ -20,10 +18,7 @@
         </div>
 
         <div class="flex items-center flex-wrap mt-5 gap-3">
-          <div
-            v-for="(tag, i) in tags"
-            :key="i"
-          >
+          <div v-for="(tag, i) in tags" :key="i">
             <ChipLabel @close-click="deleteTag(tag)">
               {{ tag }}
             </ChipLabel>

@@ -1,6 +1,8 @@
 <template>
   <div class="flex flex-col mx-4 justify-center items-center">
-    <CardContainer class="flex flex-col items-center text-center bg-g-quest2 w-3/4 border !rounded-3xl relative p-2">
+    <CardContainer
+      class="flex flex-col items-center text-center bg-g-quest2 w-3/4 border !rounded-3xl relative p-2"
+    >
       <CardHeader class="text-2xl !p-2 mt-2" text-color="text-white">
         Quest 1
       </CardHeader>
@@ -10,21 +12,23 @@
       </CardDescription>
 
       <CardFooter class="absolute !p-0 top-[-1rem]">
-
         <QuestStars />
       </CardFooter>
     </CardContainer>
 
     <div class="w-1/2">
       <div class="flex justify-between mb-1">
-        <span class="text-base font-medium text-blue-700 dark:text-white">Flowbite</span>
-        <span class="text-sm font-medium text-blue-700 dark:text-white">45%</span>
+        <span class="text-base font-medium text-blue-700 dark:text-white"
+          >Flowbite</span
+        >
+        <span class="text-sm font-medium text-blue-700 dark:text-white"
+          >45%</span
+        >
       </div>
       <div class="w-full bg-slate-700 rounded-full h-2 dark:bg-gray-700">
         <div class="bg-g-quest2 h-2 rounded-full" style="width: 45%" />
       </div>
     </div>
-
   </div>
   <ChallengesContainer />
 </template>
@@ -59,4 +63,3 @@ export default {
   },
 };
 </script>
-

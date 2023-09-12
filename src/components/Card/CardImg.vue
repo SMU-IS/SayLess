@@ -1,9 +1,5 @@
 <template>
-  <img
-    class="rounded-t-lg"
-    :src="src"
-    :alt="alt"
-  >
+  <img class="rounded-t-lg" :src="src" :alt="alt" />
 </template>
 
 <script>

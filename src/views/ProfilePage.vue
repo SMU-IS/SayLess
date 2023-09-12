@@ -26,7 +26,7 @@ export default {
       try {
         await this.$store.dispatch('logout');
         this.$router.push('/login');
-        getResponse('success', 'You\'ve logged out!');
+        getResponse('success', "You've logged out!");
       } catch (err) {
         throw err;
       }

@@ -28,7 +28,7 @@ export default {
 
 @layer components {
   .navBar {
-    @apply flex flex-row items-center justify-between lg:justify-evenly bg-trans-dark border rounded-full border-none py-4 px-8 fixed bottom-0 w-11/12 mb-4;
+    @apply flex flex-row items-center justify-between md:hidden bg-trans-dark border rounded-full border-none py-4 px-8 fixed bottom-0 w-11/12 mb-4;
   }
 
   .icon-style {

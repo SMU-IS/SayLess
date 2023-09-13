@@ -10,7 +10,6 @@ const questCards = [
       'Lorem 1 ipsum dolor sit amet consectetur. Vitae consequat ipsum sed pharetra dolor pellentesque risus. Nibh magna molestie leo est enim vulputate massa. ',
     status: 'Not Started',
   },
-
   {
     id: 2,
     questID: 1,
@@ -23,7 +22,7 @@ const questCards = [
   {
     id: 3,
     questID: 1,
-    checked: false,
+    checked: true,
     icon: CheckBadgeIcon,
     content:
       'Lorem 3 ipsum dolor sit amet consectetur. Vitae consequat ipsum sed pharetra dolor pellentesque risus. Nibh magna molestie leo est enim vulputate massa. ',

@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Format code with prettier
+      - name: Check for any formatting issues
         run: npm run prettier
 
       - name: Check for linting error

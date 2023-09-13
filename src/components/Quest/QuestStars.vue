@@ -1,10 +1,8 @@
 <template>
   <header class="flex justify-center">
-    <div
-      class="stars-container flex flex-row bg-gradient-to-r from-indigo-900 via-indigo-400 to-indigo-900 border rounded-3xl px-4 py-1"
-    >
+    <div class="stars-container">
       <div v-for="stars in sortedQuestCards" :key="stars.id">
-        {{ stars.checked }}
+        {{ stars.id }}
         <span v-if="stars.checked">
           <StarIcon class="w-5 mx-1 fill-[#FFE993]" />
         </span>
@@ -20,7 +18,7 @@
 <script>
 import { questCards } from '@/data/questCards.js';
 import { StarIcon } from '@heroicons/vue/24/solid';
-import { sortData } from '@/helpers/sortData';
+import { sortByState } from '@/helpers/Sort/sortByState';
 
 export default {
   name: 'QuestStars',
@@ -34,7 +32,7 @@ export default {
   },
   computed: {
     sortedQuestCards() {
-      return sortData(this.questCards);
+      return sortByState(this.questCards);
     },
   },
 };
@@ -45,8 +43,8 @@ export default {
 
 @layer components {
   .stars-container {
-    box-shadow: 0px 0px 10px 0px #ffe993;
-    border: 2px solid #ffe993;
+    @apply flex flex-row bg-gradient-to-r from-indigo-900 via-indigo-400 to-indigo-900 border shadow-2xl rounded-3xl px-4 py-1 border-2 border-yellow-300;
   }
 }
 </style>
+@/helpers/sortByState

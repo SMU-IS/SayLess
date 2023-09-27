@@ -22,7 +22,6 @@
       />
 
       <circle class="dot" r="15" fill="orange"></circle>
-      <!-- <circle class="dot2" r="15" cx="40" cy="0" fill="purple "></circle> -->
 
       <defs>
         <linearGradient
@@ -44,16 +43,11 @@
 <script>
 import { ref } from 'vue';
 
-// const screenWidth = ref(screen.width);
-// const screenHeight = ref(screen.height);
-// const wid = 363 / screenWidth.value;
-
 export default {
   name: 'MySVGComponent',
   data() {
     return {
       scales: ((ref(screen.width).value - 363) / 2 + 320) / 320, // took alot of math calc to get this HAHAHAHAHA based off true viewport
-      // point: path1.getTotalLength(),
     };
   },
 };

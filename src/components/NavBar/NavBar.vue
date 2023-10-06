@@ -3,7 +3,10 @@
     <div class="navBar">
       <div v-for="link in navLinks" :key="link.id">
         <router-link :to="link.path">
-          <component :is="link.icon" class="fill-[#fff] icon-style" />
+          <div class="flex flex-col items-center">
+            <img :src="link.icon" class="w-10" />
+            <span class="text-green-light">{{ link.title }}</span>
+          </div>
         </router-link>
       </div>
     </div>

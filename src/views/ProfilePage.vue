@@ -1,5 +1,8 @@
 <template>
-  <div class="flex justify-center items-center h-screen">
+  <div
+    class="flex flex-col text-white justify-center text-center items-center h-screen gap-4"
+  >
+    <h2>Hello, {{ email }}!</h2>
     <CustomButton
       button-color="btn--gradient"
       button-size="w-1/2"
@@ -18,6 +21,11 @@ import { getResponse } from '@/helpers/getResponse';
 export default {
   name: 'ProfilePage',
   components: { CustomButton },
+  data() {
+    return {
+      email: this.$store.getters.getEmail,
+    };
+  },
   methods: {
     navigateHome() {
       goHome(this.$router);

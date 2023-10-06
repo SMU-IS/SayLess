@@ -7,7 +7,7 @@
             <div class="w-7">
               <img :src="link.icon" />
             </div>
-            <span class="text-green-light">{{ link.title }}</span>
+            <span class="text-green-light text-sm">{{ link.title }}</span>
           </div>
         </router-link>
       </div>
@@ -33,7 +33,7 @@ export default {
 
 @layer components {
   .navBar {
-    @apply flex flex-row items-center justify-between md:hidden bg-primary py-4 px-8 fixed bottom-0 w-11/12 mb-4;
+    @apply flex flex-row items-center justify-between md:hidden bg-primary py-4 px-12 fixed bottom-0 w-screen;
   }
 
   .icon-style {

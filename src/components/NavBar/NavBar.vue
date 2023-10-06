@@ -4,7 +4,7 @@
       <div v-for="link in navLinks" :key="link.id">
         <router-link :to="link.path">
           <div class="flex flex-col items-center gap-1">
-            <div class="w-10">
+            <div class="w-7">
               <img :src="link.icon" />
             </div>
             <span class="text-green-light">{{ link.title }}</span>
@@ -33,7 +33,7 @@ export default {
 
 @layer components {
   .navBar {
-    @apply flex flex-row items-center justify-between md:hidden bg-trans-dark border rounded-full border-none py-4 px-8 fixed bottom-0 w-11/12 mb-4;
+    @apply flex flex-row items-center justify-between md:hidden bg-primary py-4 px-8 fixed bottom-0 w-11/12 mb-4;
   }
 
   .icon-style {

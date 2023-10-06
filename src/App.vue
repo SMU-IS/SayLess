@@ -1,6 +1,14 @@
 <template>
-  <div class="bg-gray-900 flex flex-col min-h-screen w-screen overflow-hidden">
-    <div :class="{ 'mt-6 mb-28': isAuthenticated }">
+  <div
+    class="relative bg-primary flex flex-col min-h-screen w-screen overflow-scroll"
+  >
+    <div
+      :class="{
+        'fixed top-0 left-0 right-0 navBarGradient bg-g-quest': isAuthenticated,
+      }"
+    ></div>
+
+    <div :class="{ 'ml-6 mr-6 mt-6 mb-28': isAuthenticated }">
       <router-view />
     </div>
 
@@ -29,3 +37,10 @@ export default {
   },
 };
 </script>
+
+<style>
+.navBarGradient {
+  width: w-screen;
+  height: 100px;
+}
+</style>

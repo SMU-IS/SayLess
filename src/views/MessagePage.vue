@@ -1,5 +1,5 @@
 <template>
-  <div class="container text-white text-center">
+  <div class="container text-white text-center mt-32">
     <h1>Welcome, Message</h1>
   </div>
 </template>

@@ -10,7 +10,7 @@
 
     <CustomButton
       class="btn--gradient"
-      button-size="w-1/3"
+      button-size="md:w-40 w-1/2"
       @click="navigateHome"
     >
       Go Back Home

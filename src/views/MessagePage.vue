@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center items-center h-screen text-white">
+  <div class="container text-white text-center">
     <h1>Welcome, Message</h1>
   </div>
 </template>

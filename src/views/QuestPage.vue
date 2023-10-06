@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col mx-4 justify-center items-center">
+  <div class="flex flex-col mx-4 justify-center items-center mt-32">
     <CardContainer
       class="flex flex-col items-center text-center bg-g-quest2 w-3/4 border !rounded-3xl relative p-2"
     >

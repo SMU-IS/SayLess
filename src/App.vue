@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative bg-primary flex flex-col min-h-screen w-screen overflow-scroll"
+    class="relative bg-primary flex flex-col min-h-screen w-screen overflow-auto"
   >
     <div
       :class="{
@@ -9,7 +9,7 @@
       }"
     ></div>
 
-    <div :class="{ 'ml-6 mr-6 mt-6 mb-28 z-0': isAuthenticated }">
+    <div :class="{ 'ml-6 mr-6 mb-28 z-0': isAuthenticated }">
       <router-view />
     </div>
 

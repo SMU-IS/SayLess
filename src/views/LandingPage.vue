@@ -28,62 +28,28 @@
 
   <div class="flex flex-col md:items-center mt-8">
     <h3>Community Sharing</h3>
-
-    <div class="card md:w-fit card-compact bg-base-100 shadow-xl mt-6">
-      <figure>
-        <img :src="StockPhoto" alt="Community Sharing" />
-      </figure>
-      <div class="flex flex-row justify-between card-body">
-        <h2 class="card-title">Apples</h2>
-        <div class="rating">
-          <input
-            type="radio"
-            name="rating-4"
-            class="mask mask-star-2 bg-green-500"
-          />
-          <input
-            type="radio"
-            name="rating-4"
-            class="mask mask-star-2 bg-green-500"
-            checked
-          />
-          <input
-            type="radio"
-            name="rating-4"
-            class="mask mask-star-2 bg-green-500"
-          />
-          <input
-            type="radio"
-            name="rating-4"
-            class="mask mask-star-2 bg-green-500"
-          />
-          <input
-            type="radio"
-            name="rating-4"
-            class="mask mask-star-2 bg-green-500"
-          />
-        </div>
-      </div>
-    </div>
+    <CardSlider :card-data="communitySharingData" />
   </div>
 </template>
 
 <script>
 import InventoryIcon from '@/assets/Icons/Inventory.png';
 import DiscountIcon from '@/assets/Icons/Discount.png';
-import StockPhoto from '@/assets/Community/StockOne.png';
 import CardContainerSecond from '@/components/Card/CardContainerSecond.vue';
+import CardSlider from '@/components/CardSlider/CardSlider.vue';
+import { communitySharingData } from '@/data/communitySharing';
 
 export default {
   name: 'LandingPage',
   components: {
     CardContainerSecond,
+    CardSlider,
   },
   data() {
     return {
       InventoryIcon,
       DiscountIcon,
-      StockPhoto,
+      communitySharingData,
     };
   },
 };

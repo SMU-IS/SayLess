@@ -39,9 +39,6 @@
         </div>
       </div>
     </div>
-    <div class="desktopchatContainer w-2/3 ml-10">
-      <!-- <p class="text-white">testing</p> -->
-    </div>
   </div>
 </template>
 

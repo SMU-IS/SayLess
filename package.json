@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
-    "prettier": "npx prettier --check ."
+    "prettier": "npx prettier --write ."
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.15",

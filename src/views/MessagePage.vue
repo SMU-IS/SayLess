@@ -1,12 +1,12 @@
 <template>
   <div class="container flex mt-28">
-    <div class="container w-1/3">
+    <div class="container w-screen md:w-1/3">
       <div class="tabs tabs-boxed p-2">
         <a
           class="tab w-1/2 h-full"
           :class="{ 'tab-active': currentTab === 'chat' }"
-          @click="changeTab('chat')"
           style="border-radius: 100px"
+          @click="changeTab('chat')"
         >
           <img
             src="@/assets/Icons/Chat.png"
@@ -18,8 +18,8 @@
         <a
           class="tab w-1/2 h-full"
           :class="{ 'tab-active': currentTab === 'notifications' }"
-          @click="changeTab('notifications')"
           style="border-radius: 100px"
+          @click="changeTab('notifications')"
         >
           <img
             src="@/assets/Icons/ring.png"

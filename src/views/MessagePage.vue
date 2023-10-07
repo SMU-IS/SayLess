@@ -44,11 +44,13 @@
 
 <script>
 import ChatsTab from '@/components/Messages/ChatsTab.vue';
+import NotificationsTab from '@/components/Messages/NotificationsTab.vue';
 
 export default {
   name: 'MessagePage',
   components: {
     ChatsTab,
+    NotificationsTab,
   },
   data() {
     return {

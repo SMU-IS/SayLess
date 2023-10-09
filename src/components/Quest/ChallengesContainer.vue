@@ -15,6 +15,7 @@
                   :class="{ 'icon-checked': content.checked }"
                 />
               </CardHeader>
+
               <CardDescription text-color="text-white" class="my-4">
                 {{ content.content }}
               </CardDescription>

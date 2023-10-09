@@ -26,6 +26,15 @@
       Noto Color Emoji;
   }
 
+  .hide-scroll-bar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scroll-bar::-webkit-scrollbar {
+    display: none;
+  }
+
   h1 {
     @apply text-4xl;
   }
@@ -40,15 +49,6 @@
 
   p {
     @apply text-base;
-  }
-
-  .hide-scroll-bar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-
-  .hide-scroll-bar::-webkit-scrollbar {
-    display: none;
   }
 }
 
@@ -85,15 +85,6 @@
     &--purple {
       @apply btn__base bg-indigo-800 text-white focus:ring-slate-400;
     }
-  }
-
-  .hide-scroll-bar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-
-  .hide-scroll-bar::-webkit-scrollbar {
-    display: none;
   }
 
   .container-center {

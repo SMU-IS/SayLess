@@ -3,6 +3,7 @@ import MessagePage from '@/views/MessagePage.vue';
 import AddItem from '@/views/AddItem.vue';
 import OnboardPage from '@/views/OnboardPage.vue';
 import PageNotFound from '@/views/PageNotFound.vue';
+import QuestPageVue from '@/views/QuestPage.vue';
 import LandingPageVue from '@/views/LandingPage.vue';
 import LoginPageVue from '@/views/LoginPage.vue';
 import SignUpPage from '@/views/SignUpPage.vue';
@@ -37,6 +38,11 @@ const routes = [
     path: '/',
     name: 'LandingPage',
     component: LandingPageVue,
+  },
+  {
+    path: '/quest',
+    name: 'QuestPage',
+    component: QuestPageVue,
   },
   {
     path: '/message',

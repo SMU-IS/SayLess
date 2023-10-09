@@ -8,6 +8,12 @@ export default {
       },
       colors: {
         midnight: '#000024',
+        primary: 'rgb(17 24 39)',
+        green: {
+          light: '#9E9E9E',
+          DEFAULT: '#006400',
+          dark: '#006400',
+        },
         purple: {
           light: '#A3B3ED',
           DEFAULT: '#6580E1',
@@ -31,16 +37,13 @@ export default {
         trans: {
           light: 'rgba(255,255,255,0.3)',
           DEFAULT: 'rgba(255,255,255,0.2)',
-          dark: 'rgba(255,255,255,0.1)',
+          dark: '#FFFFFF1A',
         },
       },
       fontFamily: {
         sen: ['Sen', 'sans-serif'],
       },
-      // fontFamily: {
-      //   sen: ['Sen', 'sans-serif'],
-      // },
     },
   },
-  plugins: [],
+  plugins: [require('daisyui')],
 };

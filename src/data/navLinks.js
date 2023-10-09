@@ -1,36 +1,32 @@
-import {
-  ClipboardDocumentListIcon,
-  HomeIcon,
-  UserIcon,
-  ShoppingBagIcon,
-  ReceiptPercentIcon,
-} from '@heroicons/vue/24/solid';
+import Home from '@/assets/Icons/Home.png';
+import Quest from '@/assets/Icons/Quest.png';
+import Message from '@/assets/Icons/Message.png';
+import Profile from '@/assets/Icons/Profile.png';
 
 const navLinks = [
   {
     id: 1,
     path: '/',
-    icon: HomeIcon,
+    icon: Home,
+    title: 'Home',
   },
   {
     id: 2,
-    path: '/profile',
-    icon: ShoppingBagIcon,
+    path: '/quest',
+    icon: Quest,
+    title: 'Quest',
   },
   {
     id: 3,
-    path: '/add-item',
-    icon: ReceiptPercentIcon,
+    path: '/message',
+    icon: Message,
+    title: 'Message',
   },
   {
     id: 4,
-    path: '/get-recipe',
-    icon: ClipboardDocumentListIcon,
-  },
-  {
-    id: 5,
     path: '/profile',
-    icon: UserIcon,
+    icon: Profile,
+    title: 'Profile',
   },
 ];
 

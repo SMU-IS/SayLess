@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col m-auto p-auto">
+  <div class="flex flex-col">
     <div class="flex hide-scroll-bar overflow-x-scroll pb-10">
       <div class="flex flex-nowrap lg:ml-40 md:ml-20 ml-10 pr-10">
         <div v-for="content in questCards" :key="content.id">

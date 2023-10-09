@@ -1,56 +1,56 @@
 <template>
-  <div class="flex flex-col mx-4 justify-center items-center">
-    <CardContainer
-      class="flex flex-col items-center text-center bg-g-quest2 w-3/4 border !rounded-3xl relative p-2"
-    >
-      <CardHeader class="text-2xl !p-2 mt-2" text-color="text-white">
-        Quest 1
-      </CardHeader>
+  <div class="flex flex-row justify-center gap-4 mt-28">
+    <CardContainerSecond
+      :icon="InventoryIcon"
+      alt-text="Inventory"
+      title="Inventory"
+      description="Track your kitchen inventory to prevent expiry"
+    />
 
-      <CardDescription text-color="text-gray-700">
-        COMPLETE CHALLENGES
-      </CardDescription>
-
-      <CardFooter class="absolute !p-0 top-[-1rem]">
-        <QuestStars />
-      </CardFooter>
-    </CardContainer>
+    <CardContainerSecond
+      :icon="DiscountIcon"
+      alt-text="Discount"
+      title="Discount"
+      description="Join or create group deals to save more."
+    />
   </div>
 
-  <MySVGComponent class="m-auto mt-5 -mb-5" />
+  <div class="flex flex-row justify-center mt-8">
+    <div class="card md:w-1/2 bg-base-100 shadow-xl image-full">
+      <div class="card-body">
+        <h2 class="card-title text-white">Complete quests to earn vouchers</h2>
+        <div class="card-actions justify-start mt-4">
+          <button class="btn btn-primary">Check it out</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <ChallengesContainer />
+  <div class="flex flex-col md:items-center mt-8">
+    <h3>Community Sharing</h3>
+    <CardSlider :card-data="communitySharingData" />
+  </div>
 </template>
 
 <script>
-import CardContainer from '@/components/Card/CardContainer.vue';
-import CardDescription from '@/components/Card/CardDescription.vue';
-import CardHeader from '@/components/Card/CardHeader.vue';
-import CardFooter from '@/components/Card/CardFooter.vue';
-import ChallengesContainer from '@/components/Quest/ChallengesContainer.vue';
-import QuestStars from '@/components/Quest/QuestStars.vue';
-import MySVGComponent from '@/components/Svg/svgPath.vue';
+import InventoryIcon from '@/assets/Icons/Inventory.png';
+import DiscountIcon from '@/assets/Icons/Discount.png';
+import CardContainerSecond from '@/components/Card/CardContainerSecond.vue';
+import CardSlider from '@/components/CardSlider/CardSlider.vue';
+import { communitySharingData } from '@/data/communitySharing';
 
 export default {
   name: 'LandingPage',
   components: {
-    CardContainer,
-    CardDescription,
-    CardHeader,
-    ChallengesContainer,
-    CardFooter,
-    QuestStars,
-    MySVGComponent,
+    CardContainerSecond,
+    CardSlider,
   },
-  data: function () {
+  data() {
     return {
-      email: this.$store.getters.getEmail,
+      InventoryIcon,
+      DiscountIcon,
+      communitySharingData,
     };
-  },
-  methods: {
-    navigateToForm() {
-      this.$router.push('/form');
-    },
   },
 };
 </script>

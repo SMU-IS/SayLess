@@ -1,8 +1,6 @@
 <template>
   <div :class="paddingHeader">
-    <h5
-      :class="`font-bold tracking-tight dark:text-white min-h-[20px] ${textColor}`"
-    >
+    <h5 :class="`font-bold tracking-tight min-h-[20px] ${textColor}`">
       <slot>{{ children }}</slot>
     </h5>
   </div>

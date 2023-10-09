@@ -62,12 +62,12 @@
 <script>
 import CustomButton from '@/components/Button/CustomButton.vue';
 import CustomInput from '@/components/Form/CustomInput.vue';
-import ImageUpload from '@/components/Form/imageUpload.vue';
+import ImageUpload from '@/components/Form/ImageUpload.vue';
 
 export default {
   name: 'AddItem',
   components: { CustomInput, ImageUpload, CustomButton },
-  data: function () {
+  data() {
     return {
       title: '',
       description: '',

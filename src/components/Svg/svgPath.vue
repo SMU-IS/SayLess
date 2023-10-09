@@ -47,7 +47,7 @@ export default {
   name: 'MySVGComponent',
   data() {
     return {
-      scales: ((ref(screen.width).value - 363) / 2 + 320) / 320, // took alot of math calc to get this HAHAHAHAHA based off true viewport
+      scales: ((ref(screen.width).value - 363) / 2 + 320) / 320,
     };
   },
 };
@@ -108,7 +108,6 @@ export default {
   }
 }
 .specialPath {
-  /* original width is 320px, viewport is ref, ((viewport - 363) / 2 + 320) / 320 */
   transform-origin: 319px;
   transform: scaleX(v-bind(scales));
 }

@@ -1,5 +1,5 @@
 <template>
-  <svg
+  <!-- <svg
     xmlns="http://www.w3.org/2000/svg"
     width="196"
     height="132"
@@ -39,17 +39,29 @@
       d="M460.16 78.6812L407.255 0.726436L363.992 14.1472L185.632 148.062L123.468 23.5348L69.9311 58.0968L0.417398 213.905L114.063 143.984L182.808 301.969L460.16 78.6812Z"
       fill="#057A55"
     />
-  </svg>
+  </svg> -->
 
-  <div class="flex flex-col justify-end h-screen px-6 gap-4 pb-12">
-    <h3 class="w-75 text-white font-extrabold text-5xl mb-5">
-      <a class="underline decoration-indigo-500 italic">Say Less</a>
-      to saving the earth
-    </h3>
+  <div class="flex md:flex-row flex-col md:gap-12 justify-between h-screen">
+    <img src="../assets/Onboard.png" />
 
-    <CustomButton class="btn--success" @click="navigate">
-      Get Started
-    </CustomButton>
+    <div class="flex flex-col mx-5 mb-5 md:justify-evenly">
+      <h3 class="w-75 text-white font-extrabold text-5xl mb-5 mt-12">
+        <a class="underline decoration-indigo-500 italic">Wasteless Kitchen</a>
+        to saving the earth
+      </h3>
+
+      <div class="flex flex-col items-center">
+        <CustomButton width="full" intent="white" @click="navigate">
+          Join Now
+        </CustomButton>
+        <p class="md:text-left text-center text-white text-md my-4">
+          Already have an account? Login
+          <span class="underline text-green-50">
+            <router-link to="/login"> here </router-link>
+          </span>
+        </p>
+      </div>
+    </div>
   </div>
 </template>
 

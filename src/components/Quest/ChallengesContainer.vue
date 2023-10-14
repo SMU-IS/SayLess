@@ -19,11 +19,22 @@
               <CardDescription text-color="text-white" class="my-4">
                 {{ content.content }}
               </CardDescription>
-              <p
-                class="absolute right-0 py-1 bottom-4 text-xs font-bold mx-5 px-4 bg-trans rounded-full text-pink bg-trans-dark"
-              >
-                {{ content.status }}
-              </p>
+
+              <div class="flex justify-end mr-5">
+                <CustomButton
+                  size="small"
+                  roundness="full"
+                  :intent="
+                    content.status === 'In Progress'
+                      ? 'primary'
+                      : content.status === 'Not Started'
+                      ? 'danger'
+                      : 'success'
+                  "
+                  @click="changeTab('chat')"
+                  >{{ content.status }}</CustomButton
+                >
+              </div>
             </CardContainer>
           </div>
         </div>
@@ -37,6 +48,7 @@ import { questCards } from '@/data/questCards.js';
 import CardContainer from '@/components/Card/CardContainer.vue';
 import CardDescription from '@/components/Card/CardDescription.vue';
 import CardHeader from '@/components/Card/CardHeader.vue';
+import CustomButton from '@/components/Button/CustomButton.vue';
 
 export default {
   name: 'ChallengesContainer',
@@ -44,6 +56,7 @@ export default {
     CardContainer,
     CardDescription,
     CardHeader,
+    CustomButton,
   },
   data: function () {
     return {

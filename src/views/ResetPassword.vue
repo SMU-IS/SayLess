@@ -25,7 +25,7 @@
 
           <CustomButton
             width="full"
-            intent="primary"
+            color="primary"
             @click="handleResetPassword"
           >
             <span v-if="isLoading">

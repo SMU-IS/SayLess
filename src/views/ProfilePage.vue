@@ -3,7 +3,7 @@
     class="flex flex-col text-white justify-center text-center items-center h-screen gap-4"
   >
     <h2>Hello, {{ email }}!</h2>
-    <CustomButton intent="primary" @click="logout">Sign Out</CustomButton>
+    <CustomButton color="primary" @click="logout">Sign Out</CustomButton>
   </div>
 </template>
 
@@ -27,7 +27,7 @@ export default {
     async logout() {
       try {
         await this.$store.dispatch('logout');
-        this.$router.push('/login');
+        this.$router.push('/onboard');
         getResponse('success', "You've logged out!");
       } catch (err) {
         throw err;

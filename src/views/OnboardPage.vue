@@ -51,7 +51,7 @@
       </h3>
 
       <div class="flex flex-col items-center">
-        <CustomButton width="full" intent="white" @click="navigate">
+        <CustomButton width="full" color="white" @click="navigate">
           Join Now
         </CustomButton>
         <p class="md:text-left text-center text-white text-md my-4">

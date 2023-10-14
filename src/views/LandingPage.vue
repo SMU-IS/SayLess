@@ -30,7 +30,7 @@
         <h2 class="card-title text-white">Complete quests to earn vouchers</h2>
         <div class="flex card-actions justify-start mt-4">
           <router-link to="/quest">
-            <CustomButton intent="midnight" roundness="full">
+            <CustomButton color="midnight" roundness="full">
               <div class="flex items-center gap-2">
                 Check It Out
                 <ArrowRightIcon class="h-4 w-4" />

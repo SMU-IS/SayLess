@@ -63,9 +63,12 @@
               <p v-else>Sign in</p>
             </CustomButton>
             <div class="divider">or</div>
-            <CustomButton intent="black" width="full" @click="loginViaGoogle"
-              >Sign In With Google</CustomButton
-            >
+            <CustomButton color="black" width="full" @click="loginViaGoogle">
+              <div class="flex items-center justify-center gap-5">
+                <img src="../assets/GoogleIcon.png" class="w-5 h-5" />
+                <p>Sign In With Google</p>
+              </div>
+            </CustomButton>
           </div>
         </form>
       </div>

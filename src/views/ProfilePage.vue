@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { goHome } from '@/helpers/goHome';
+import { goHome } from '@/helpers/common';
 import CustomButton from '@/components/Button/CustomButton.vue';
 import { getResponse } from '@/helpers/getResponse';
 
@@ -36,3 +36,4 @@ export default {
   },
 };
 </script>
+@/helpers/common

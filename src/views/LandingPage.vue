@@ -1,6 +1,6 @@
 <template>
   <ParentHeader> Wasteless Kitchen </ParentHeader>
-  <div class="flex flex-row justify-center gap-4 mt-36">
+  <div class="flex flex-row justify-center gap-4 md:mt-12 mt-36">
     <CardContainerSecond background="white" size="small">
       <div class="card-body items-left text-left">
         <div class="bg-white min-h-[60px] sm:min-h-[150px]">
@@ -25,8 +25,8 @@
   </div>
 
   <div class="flex flex-row justify-center mt-8">
-    <CardContainerSecond background="gradient" size="small">
-      <div class="card-body">
+    <CardContainerSecond background="gradient" size="small" width="full">
+      <div class="p-5">
         <h2 class="card-title text-white">Complete quests to earn vouchers</h2>
         <div class="flex card-actions justify-start mt-4">
           <router-link to="/quest">
@@ -45,28 +45,50 @@
   <div class="flex flex-col md:items-center mt-8">
     <h3>Community Sharing</h3>
 
-    <div class="flex flex-row justify-center mt-8">
+    <div class="grid md:grid-cols-3 justify-center mt-8 gap-5 md:mx-32">
       <div
-        class="card card-side bg-white shadow-xl md:w-1/3 md:flex-col md:justify-center md:items-center md:py-10"
+        class="card card-side bg-white shadow-xl md:flex-col md:justify-center md:pb-10 gap-12 items-center md:p-0 md:gap-5 pr-7"
       >
         <figure>
-          <img src="../assets/Food/Sourdough.jpg" class="md:w-1/3" />
+          <img src="../assets/Food/Sourdough.jpg" class="md:w-full" />
         </figure>
-        <div class="card-body">
+        <div class="">
           <h2 class="card-title text-black">Sourdough</h2>
           <p>Expiry Date 10/10/2023</p>
         </div>
       </div>
-    </div>
 
-    <div class="flex flex-row justify-center mt-8">
       <div
-        class="card card-side bg-white shadow-xl md:w-1/3 md:flex-col md:justify-center md:items-center md:py-10"
+        class="card card-side bg-white shadow-xl md:flex-col md:justify-center md:pb-10 gap-12 items-center md:p-0 md:gap-5 pr-7"
       >
         <figure>
-          <img src="../assets/Food/Sourdough.jpg" class="md:w-1/3" />
+          <img src="../assets/Food/Sourdough.jpg" class="md:w-full" />
         </figure>
-        <div class="card-body">
+        <div class="">
+          <h2 class="card-title text-black">Sourdough</h2>
+          <p>Expiry Date 10/10/2023</p>
+        </div>
+      </div>
+
+      <div
+        class="card card-side bg-white shadow-xl md:flex-col md:justify-center md:pb-10 gap-12 items-center md:p-0 md:gap-5 pr-7"
+      >
+        <figure>
+          <img src="../assets/Food/Sourdough.jpg" class="md:w-full" />
+        </figure>
+        <div class="">
+          <h2 class="card-title text-black">Sourdough</h2>
+          <p>Expiry Date 10/10/2023</p>
+        </div>
+      </div>
+
+      <div
+        class="card card-side bg-white shadow-xl md:flex-col md:justify-center md:pb-10 gap-12 items-center md:p-0 md:gap-5 pr-7"
+      >
+        <figure>
+          <img src="../assets/Food/Sourdough.jpg" class="md:w-full" />
+        </figure>
+        <div>
           <h2 class="card-title text-black">Sourdough</h2>
           <p>Expiry Date 10/10/2023</p>
         </div>

@@ -1,8 +1,8 @@
 <template>
-  <div class="relative">
+  <div class="relative lg:w-1/3">
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="100%"
+      width="90%"
       viewBox="0 0 365 259"
       fill="none"
       class="overflow-visible"

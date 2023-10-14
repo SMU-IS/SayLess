@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col">
-    <div class="flex hide-scroll-bar overflow-x-scroll pb-10">
+    <div class="flex hide-scroll-bar overflow-x-scroll">
       <div class="flex flex-nowrap">
         <div v-for="content in questCards" :key="content.id">
           <div class="inline-block px-3">

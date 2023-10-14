@@ -2,7 +2,7 @@
   <div class="flex flex-row overflow-x-auto gap-6 hide-scroll-bar">
     <div v-for="item in cardData" :key="item.id">
       <div
-        class="card md:w-fit card-compact bg-base-100 shadow-xl mt-6 min-h-[250px] bg-white"
+        class="card md:w-fit card-compact bg-base-100 shadow-xl mt-6 min-h-[250px] bg-white rounded-3xl"
       >
         <figure>
           <img :src="item.image" alt="Community Sharing" />

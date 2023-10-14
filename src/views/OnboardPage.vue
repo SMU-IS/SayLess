@@ -52,7 +52,7 @@
 
       <div class="flex flex-col items-center">
         <CustomButton width="full" color="white" @click="navigate">
-          Join Now
+          Get Started
         </CustomButton>
         <p class="md:text-left text-center text-white text-md my-4">
           Already have an account? Login

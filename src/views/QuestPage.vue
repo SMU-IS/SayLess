@@ -11,22 +11,21 @@
     </div>
   </div>
 
-  <MySVGComponent class="m-auto mt-5 -mb-5" />
-
+  <GraphicComponent class="m-auto mt-5 -mb-5" />
   <ChallengesContainer />
 </template>
 
 <script>
 import ChallengesContainer from '@/components/Quest/ChallengesContainer.vue';
 import QuestStars from '@/components/Quest/QuestStars.vue';
-import MySVGComponent from '@/components/Svg/svgPath.vue';
+import GraphicComponent from '@/components/GraphicComponent/GraphicComponent.vue';
 
 export default {
   name: 'QuestPage',
   components: {
     ChallengesContainer,
     QuestStars,
-    MySVGComponent,
+    GraphicComponent,
   },
   data: function () {
     return {

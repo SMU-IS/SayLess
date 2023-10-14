@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="flex items-center grid grid-cols-3 rounded-b-lg fixed top-0 w-full bg-white border-gray-200 h-16"
+    class="grid grid-cols-3 items-center rounded-b-lg fixed top-0 w-full bg-white border-gray-200 h-16"
   >
     <ArrowLeftIcon class="ml-3 h-7 w-7" @click="emitHeaderClick" />
 

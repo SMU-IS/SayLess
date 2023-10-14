@@ -44,9 +44,6 @@ export default {
           dark: '#FFFFFF1A',
         },
       },
-      fontFamily: {
-        sen: ['Sen', 'sans-serif'],
-      },
     },
   },
   plugins: [require('daisyui')],

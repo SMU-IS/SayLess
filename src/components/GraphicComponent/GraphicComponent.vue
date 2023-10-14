@@ -44,7 +44,7 @@
 import { ref } from 'vue';
 
 export default {
-  name: 'MySVGComponent',
+  name: 'GraphicComponent',
   data() {
     return {
       scales: ((ref(screen.width).value - 363) / 2 + 320) / 320,

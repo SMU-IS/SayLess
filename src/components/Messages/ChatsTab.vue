@@ -16,14 +16,9 @@
         />
         <div class="chat-details flex-1">
           <p class="text-gray-400">{{ chat.personId }}</p>
-          <h4 class="text-white font-bold">{{ chat.listingTitle }}</h4>
+          <h4 class="text-white">{{ chat.listingTitle }}</h4>
           <p class="text-white">{{ chat.latestMessage }}</p>
         </div>
-        <img
-          :src="chat.listingImage"
-          alt="Listing Image"
-          class="listing-image w-10 h-10"
-        />
       </div>
     </div>
   </div>

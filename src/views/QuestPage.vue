@@ -1,20 +1,14 @@
 <template>
-  <div class="flex flex-col mx-4 justify-center items-center mt-28">
-    <CardContainer
-      class="flex flex-col items-center text-center bg-g-quest2 w-3/4 border !rounded-3xl relative p-2"
-    >
-      <CardHeader class="text-2xl !p-2 mt-2" text-color="text-white">
-        Quest 1
-      </CardHeader>
-
-      <CardDescription text-color="text-gray-700">
-        COMPLETE CHALLENGES
-      </CardDescription>
-
-      <CardFooter class="absolute !p-0 top-[-1rem]">
-        <QuestStars />
-      </CardFooter>
-    </CardContainer>
+  <div class="flex mx-4 justify-center items-center mt-20 mb-12">
+    <div class="relative card w-64 bg-white text-black shadow-xl">
+      <div class="card-body items-center text-center">
+        <h1 class="card-title">Quest 1</h1>
+        <p>Complete Challenges</p>
+        <div class="absolute -top-8">
+          <QuestStars />
+        </div>
+      </div>
+    </div>
   </div>
 
   <MySVGComponent class="m-auto mt-5 -mb-5" />
@@ -23,8 +17,6 @@
 </template>
 
 <script>
-import CardContainer from '@/components/Card/CardContainer.vue';
-import CardFooter from '@/components/Card/CardFooter.vue';
 import ChallengesContainer from '@/components/Quest/ChallengesContainer.vue';
 import QuestStars from '@/components/Quest/QuestStars.vue';
 import MySVGComponent from '@/components/Svg/svgPath.vue';
@@ -33,9 +25,7 @@ export default {
   name: 'QuestPage',
   components: {
     ChallengesContainer,
-    CardFooter,
     QuestStars,
-    CardContainer,
     MySVGComponent,
   },
   data: function () {

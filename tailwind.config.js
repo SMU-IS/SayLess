@@ -4,7 +4,12 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-header': "url('./assets/Reusable/GradientHeader.png')",
+      },
+      backgroundSize: {
+        auto: 'auto',
+        cover: 'cover',
+        contain: 'contain',
       },
       colors: {
         midnight: '#000024',

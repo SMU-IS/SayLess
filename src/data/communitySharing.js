@@ -1,3 +1,5 @@
+import Garlic from '@/assets/Food/Garlic.png';
+
 const communitySharingData = [
   {
     id: 1,

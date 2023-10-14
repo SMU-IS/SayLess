@@ -16,7 +16,7 @@
 
 <script>
 import CustomButton from '@/components/Button/CustomButton.vue';
-import { goHome } from '@/helpers/goHome';
+import { goHome } from '@/helpers/common.js';
 
 export default {
   name: 'PageNotFound',
@@ -28,3 +28,4 @@ export default {
   },
 };
 </script>
+@/helpers/common

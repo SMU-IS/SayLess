@@ -14,6 +14,8 @@ const store = createStore({
   state: {
     user: {
       email: localStorage.getItem('email'),
+      name: localStorage.getItem('name'),
+      profilePicture: localStorage.getItem('profilePicture'),
       foodListings: [],
       recipeListings: [],
       recipeIngredients: [],
@@ -23,6 +25,12 @@ const store = createStore({
     getEmail(state) {
       return state.user.email;
     },
+    getName(state) {
+      return state.user.name;
+    },
+    getProfilePicture(state) {
+      return state.user.profilePicture;
+    },
     getFood(state) {
       return state.user.foodListings;
     },
@@ -31,16 +39,19 @@ const store = createStore({
     },
   },
   mutations: {
-    SET_LOGGED_IN(state, payload) {
-      state.user.isLoggedIn = payload;
-    },
     SET_USER(state, payload) {
       state.user.email = payload.email;
+      state.user.name = payload.displayName;
+      state.user.profilePicture = payload.photoURL;
       localStorage.setItem('email', payload.email);
+      localStorage.setItem('name', payload.displayName);
+      localStorage.setItem('profilePicture', payload.photoURL);
     },
     SET_LOGGED_OUT(state, payload) {
       state.user.email = payload;
       localStorage.removeItem('email');
+      localStorage.removeItem('name');
+      localStorage.removeItem('profilePicture');
     },
     SET_FOOD_LISTINGS(state, payload) {
       state.user.foodListings = payload;

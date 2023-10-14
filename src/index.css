@@ -4,35 +4,7 @@
 
 @layer base {
   html {
-    font-family:
-      'Gill Sans',
-      'Gill Sans MT',
-      Calibri,
-      'Trebuchet MS',
-      sans-serif,
-      ui-sans-serif,
-      system-ui,
-      -apple-system,
-      system-ui,
-      Segoe UI,
-      Roboto,
-      Helvetica Neue,
-      Arial,
-      Noto Sans,
-      sans-serif,
-      Apple Color Emoji,
-      Segoe UI Emoji,
-      Segoe UI Symbol,
-      Noto Color Emoji;
-  }
-
-  .hide-scroll-bar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-
-  .hide-scroll-bar::-webkit-scrollbar {
-    display: none;
+    font-family: 'Gill Sans';
   }
 
   h1 {
@@ -50,25 +22,18 @@
   p {
     @apply text-base;
   }
+
+  .hide-scroll-bar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scroll-bar::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @layer components {
-  .container-center {
-    @apply flex justify-center items-center w-screen h-screen;
-  }
-
-  .gradientX {
-    @apply bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500 text-white hover:opacity-95;
-  }
-
-  .gradientY {
-    @apply bg-gradient-to-r from-purple-600 to-purple-700 text-white hover:opacity-95;
-  }
-
-  .gradientZ {
-    @apply bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:opacity-95;
-  }
-
   .gradientQuest {
     @apply bg-gradient-to-r from-indigo-900 via-indigo-400 to-indigo-900 p-4 rounded-3xl shadow-2xl border-2 border-yellow-50;
   }

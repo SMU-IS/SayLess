@@ -6,7 +6,7 @@
         <CustomButton
           size="small"
           roundness="full"
-          :intent="currentTab === 'chat' ? 'primary' : null"
+          :color="currentTab === 'chat' ? 'primary' : null"
           @click="changeTab('chat')"
         >
           <div class="flex items-center gap-3 px-5">
@@ -22,7 +22,7 @@
         <CustomButton
           size="small"
           roundness="full"
-          :intent="currentTab === 'notifications' ? 'primary' : null"
+          :color="currentTab === 'notifications' ? 'primary' : null"
           @click="changeTab('notifications')"
         >
           <div class="flex items-center gap-3 px-5">

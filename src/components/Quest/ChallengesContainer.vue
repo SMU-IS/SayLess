@@ -24,7 +24,7 @@
                 <CustomButton
                   size="small"
                   roundness="full"
-                  :intent="
+                  :color="
                     content.status === 'In Progress'
                       ? 'primary'
                       : content.status === 'Not Started'

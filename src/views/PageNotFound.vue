@@ -8,7 +8,7 @@
       Sorry, we couldn’t find the page you’re looking for.
     </p>
 
-    <CustomButton intent="warning" @click="navigateHome"
+    <CustomButton color="warning" @click="navigateHome"
       >Go Back Home</CustomButton
     >
   </div>

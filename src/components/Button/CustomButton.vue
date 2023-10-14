@@ -8,11 +8,11 @@ import { cva } from 'class-variance-authority';
 
 const ButtonVariants = cva(
   /* button base style */
-  'h-fit  transition-colors duration-150',
+  'h-fit transition-colors duration-150',
   {
     variants: {
       /* button colors */
-      intent: {
+      color: {
         primary: 'bg-blue-500 text-white hover:bg-blue-700 focus:ring-blue-400',
         danger: 'bg-red-500 text-white  hover:bg-red-700 focus:ring-red-400',
         success:
@@ -51,7 +51,7 @@ export default {
       type: String,
       default: '',
     },
-    intent: {
+    color: {
       type: String,
       default: 'primary',
     },
@@ -71,7 +71,7 @@ export default {
   computed: {
     computedClasses() {
       return ButtonVariants({
-        intent: this.intent,
+        color: this.color,
         size: this.size,
         roundness: this.roundness,
         width: this.width,

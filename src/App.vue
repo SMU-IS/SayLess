@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative bg-primary flex flex-col min-h-screen w-screen overflow-auto"
+    class="relative bg-midnight flex flex-col min-h-screen w-screen overflow-auto"
   >
     <div :class="{ 'mx-6 mb-28 z-0': isAuthenticated }">
       <router-view />

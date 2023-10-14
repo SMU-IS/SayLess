@@ -1,6 +1,6 @@
 <template>
-  <div class="flex justify-center items-center h-screen">
-    <AuthenticationContainer bg-color="gradientY">
+  <div class="flex justify-center items-center h-screen mx-5 text-black">
+    <CardContainerSecond background="white" width="full">
       <div class="flex flex-col justify-center items-center">
         <KeyIcon class="w-10 h-10" />
         <h3 class="mt-3 mb-3 text-center">Forgot password?</h3>
@@ -11,9 +11,7 @@
       <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form class="space-y-6" @submit.prevent>
           <div class="flex flex-col gap-2">
-            <label
-              for="email"
-              class="block text-sm font-medium leading-6 text-white"
+            <label for="email" class="block text-sm font-medium leading-6"
               >Email Address</label
             >
 
@@ -26,7 +24,8 @@
           </div>
 
           <CustomButton
-            button-color="btn--whiteAlpha"
+            width="full"
+            intent="primary"
             @click="handleResetPassword"
           >
             <span v-if="isLoading">
@@ -42,12 +41,12 @@
               class="flex flex-row items-center gap-2 w-fit"
             >
               <ArrowLeftIcon class="h-4 w-4" />
-              <p class="text-sm">Back to Log In</p>
+              <p class="text-sm text-black">Back to Log In</p>
             </router-link>
           </div>
         </form>
       </div>
-    </AuthenticationContainer>
+    </CardContainerSecond>
   </div>
 </template>
 
@@ -57,7 +56,7 @@ import { getErrorMessage } from '@/helpers/getErrorMessage';
 import { getResponse } from '@/helpers/getResponse';
 import CustomLoader from '@/components/Loader/CustomLoader.vue';
 import { ArrowLeftIcon, KeyIcon } from '@heroicons/vue/24/solid';
-import AuthenticationContainer from '@/components/Card/AuthenticationContainer.vue';
+import CardContainerSecond from '@/components/Card/CardContainerSecond.vue';
 import CustomInput from '@/components/Form/CustomInput.vue';
 
 export default {
@@ -67,7 +66,7 @@ export default {
     CustomLoader,
     ArrowLeftIcon,
     KeyIcon,
-    AuthenticationContainer,
+    CardContainerSecond,
     CustomInput,
   },
   data: function () {

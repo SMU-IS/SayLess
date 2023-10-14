@@ -8,13 +8,9 @@
       Sorry, we couldn’t find the page you’re looking for.
     </p>
 
-    <CustomButton
-      class="btn--gradient"
-      button-size="md:w-40 w-1/2"
-      @click="navigateHome"
+    <CustomButton intent="warning" @click="navigateHome"
+      >Go Back Home</CustomButton
     >
-      Go Back Home
-    </CustomButton>
   </div>
 </template>
 

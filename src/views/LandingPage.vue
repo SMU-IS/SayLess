@@ -1,30 +1,45 @@
 <template>
   <ParentHeader> Wasteless Kitchen </ParentHeader>
   <div class="flex flex-row justify-center gap-4 mt-36">
-    <CardContainerSecond
-      :icon="InventoryIcon"
-      alt-text="Inventory"
-      title="Inventory"
-      description="Track your kitchen inventory to prevent expiry"
-    />
+    <CardContainerSecond background="white" size="small">
+      <div class="card-body items-left text-left">
+        <div class="bg-white min-h-[60px] sm:min-h-[150px]">
+          <img :src="InventoryIcon" :alt="Inventory" class="w-1/2" />
+        </div>
 
-    <CardContainerSecond
-      :icon="GroupBuyIcon"
-      alt-text="Group Buy"
-      title="Group Buy"
-      description="Join group deals to save more."
-    />
+        <h2 class="card-title text-black">Inventory</h2>
+        <p class="text-sm">Track your kitchen inventory to prevent expiry</p>
+      </div>
+    </CardContainerSecond>
+
+    <CardContainerSecond background="white" size="small">
+      <div class="card-body items-left text-left">
+        <div class="bg-white min-h-[60px] sm:min-h-[150px]">
+          <img :src="InventoryIcon" :alt="Inventory" class="w-1/2" />
+        </div>
+
+        <h2 class="card-title text-black">Inventory</h2>
+        <p class="text-sm">Track your kitchen inventory to prevent expiry</p>
+      </div>
+    </CardContainerSecond>
   </div>
 
   <div class="flex flex-row justify-center mt-8">
-    <div class="card md:w-1/2 bg-gradient-header bg-cover shadow-xl">
+    <CardContainerSecond background="gradient" size="small">
       <div class="card-body">
         <h2 class="card-title text-white">Complete quests to earn vouchers</h2>
-        <div class="card-actions justify-start mt-4">
-          <button class="btn btn-primary">Check it out</button>
+        <div class="flex card-actions justify-start mt-4">
+          <router-link to="/quest">
+            <CustomButton intent="midnight" roundness="full">
+              <div class="flex items-center gap-2">
+                Check It Out
+                <ArrowRightIcon class="h-4 w-4" />
+              </div>
+            </CustomButton>
+          </router-link>
         </div>
       </div>
-    </div>
+    </CardContainerSecond>
   </div>
 
   <div class="flex flex-col md:items-center mt-8">
@@ -66,12 +81,16 @@ import GroupBuyIcon from '@/assets/Icons/GroupBuy.png';
 import CardContainerSecond from '@/components/Card/CardContainerSecond.vue';
 import { communitySharingData } from '@/data/communitySharing';
 import ParentHeader from '@/components/NavBar/ParentHeader.vue';
+import CustomButton from '@/components/Button/CustomButton.vue';
+import { ArrowRightIcon } from '@heroicons/vue/24/solid';
 
 export default {
   name: 'LandingPage',
   components: {
     CardContainerSecond,
     ParentHeader,
+    CustomButton,
+    ArrowRightIcon,
   },
   data() {
     return {

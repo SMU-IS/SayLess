@@ -1,6 +1,6 @@
 <template>
-  <div class="flex justify-center items-center h-screen">
-    <AuthenticationContainer bg-color="bg-white">
+  <div class="flex justify-center items-center h-screen mx-5 text-black">
+    <CardContainerSecond background="white" size="large" width="full">
       <div class="flex flex-col justify-center items-center">
         <FingerPrintIcon class="h-10 w-10" />
         <h3 class="mt-3 text-black tracking-tight font-extrabold text-2xl">
@@ -14,7 +14,7 @@
         </p>
       </div>
 
-      <div class="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
+      <div class="sm:mx-auto sm:w-full sm:max-w-sm">
         <form class="space-y-5" @submit.prevent>
           <div class="flex flex-col gap-2">
             <label class="font-semibold" for="email">Email</label>
@@ -40,15 +40,7 @@
 
           <div class="flex justify-between text-xs lg:text-sm">
             <div class="flex flex-row items-center mb-4">
-              <input
-                id="default-checkbox"
-                type="checkbox"
-                value=""
-                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
-              />
-              <label
-                for="default-checkbox"
-                class="ml-2 cursor-pointer font-medium text-slate-600"
+              <label for="default-checkbox" class="ml-2 cursor-pointer"
                 >Remember me</label
               >
             </div>
@@ -63,38 +55,21 @@
             </div>
           </div>
 
-          <div class="flex flex-col gap-4">
-            <CustomButton class="btn--success" @click="handleLogin">
+          <div class="flex flex-col w-full border-opacity-50">
+            <CustomButton width="full" @click="handleLogin">
               <span v-if="isLoading">
                 <CustomLoader />
               </span>
-
               <p v-else>Sign in</p>
             </CustomButton>
-
-            <div class="flex justify-center items-center w-full">
-              <hr
-                class="w-64 h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"
-              />
-              <span
-                class="absolute px-3 font-medium text-gray-200 -translate-x-1/2 bg-white left-1/2"
-                >or</span
-              >
-            </div>
-
-            <CustomButton
-              button-color="btn--whiteAlpha"
-              @click="loginViaGoogle"
+            <div class="divider">or</div>
+            <CustomButton intent="black" width="full" @click="loginViaGoogle"
+              >Sign In With Google</CustomButton
             >
-              <div class="flex flex-row gap-3">
-                <img class="h-5 w-auto" :src="GoogleIcon" alt="Google Icon" />
-                <span class="font-bold">Sign in With Google</span>
-              </div>
-            </CustomButton>
           </div>
         </form>
       </div>
-    </AuthenticationContainer>
+    </CardContainerSecond>
   </div>
 </template>
 
@@ -105,9 +80,9 @@ import { getResponse } from '@/helpers/getResponse';
 import CustomLoader from '@/components/Loader/CustomLoader.vue';
 import GoogleIcon from '@/assets/GoogleIcon.png';
 import { FingerPrintIcon } from '@heroicons/vue/24/solid';
-import AuthenticationContainer from '@/components/Card/AuthenticationContainer.vue';
 import CustomInput from '@/components/Form/CustomInput.vue';
 import { validateLoginFields } from '@/helpers/validateForm';
+import CardContainerSecond from '@/components/Card/CardContainerSecond.vue';
 
 export default {
   name: 'LoginPage',
@@ -115,8 +90,8 @@ export default {
     CustomButton,
     CustomLoader,
     FingerPrintIcon,
-    AuthenticationContainer,
     CustomInput,
+    CardContainerSecond,
   },
   data() {
     return {

@@ -3,13 +3,7 @@
     class="flex flex-col text-white justify-center text-center items-center h-screen gap-4"
   >
     <h2>Hello, {{ email }}!</h2>
-    <CustomButton
-      button-color="btn--gradient"
-      button-size="w-1/2"
-      @click="logout"
-    >
-      Sign Out
-    </CustomButton>
+    <CustomButton intent="primary" @click="logout">Sign Out</CustomButton>
   </div>
 </template>
 

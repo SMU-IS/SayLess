@@ -12,8 +12,7 @@ export default {
         contain: 'contain',
       },
       colors: {
-        midnight: '#000024',
-        primary: 'rgb(17 24 39)',
+        midnight: '#111827',
         green: {
           light: '#9E9E9E',
           DEFAULT: '#006400',

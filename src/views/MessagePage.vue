@@ -1,5 +1,6 @@
 <template>
-  <div class="container flex mt-28">
+  <ParentHeader> Messages </ParentHeader>
+  <div class="container flex mt-32">
     <div class="container w-screen md:w-1/3">
       <div class="tabs tabs-boxed p-2">
         <a
@@ -45,12 +46,14 @@
 <script>
 import ChatsTab from '@/components/Messages/ChatsTab.vue';
 import NotificationsTab from '@/components/Messages/NotificationsTab.vue';
+import ParentHeader from '@/components/NavBar/ParentHeader.vue';
 
 export default {
   name: 'MessagePage',
   components: {
     ChatsTab,
     NotificationsTab,
+    ParentHeader,
   },
   data() {
     return {

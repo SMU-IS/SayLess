@@ -1,9 +1,12 @@
 <template>
-  <div :class="['card', 'bg-base-100 shadow-xl', customClass]">
-    <div class="card-body items-center text-center">
-      <img :src="icon" :alt="altText" class="rounded-xl" />
+  <div :class="['card', 'bg-white shadow-xl text-black', customClass]">
+    <div class="card-body items-left text-left">
+      <div class="bg-white min-h-[60px] sm:min-h-[150px]">
+        <img :src="icon" :alt="altText" class="w-1/2" />
+      </div>
+
       <h2 class="card-title">{{ title }}</h2>
-      <p>{{ description }}</p>
+      <p class="text-sm">{{ description }}</p>
     </div>
   </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <div class="flex justify-center items-center h-screen mx-5 text-black">
     <CardContainerSecond background="white" width="full">
-      <div class="flex flex-col justify-center items-center">
+      <div class="flex flex-col justify-center items-center mt-5">
         <KeyIcon class="w-10 h-10" />
         <h3 class="mt-3 mb-3 text-center">Forgot password?</h3>
 
@@ -35,7 +35,7 @@
             <span v-else>Reset Password</span>
           </CustomButton>
 
-          <div class="flex justify-end pt-3">
+          <div class="flex justify-end py-3">
             <router-link
               to="/login"
               class="flex flex-row items-center gap-2 w-fit"

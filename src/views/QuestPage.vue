@@ -11,7 +11,7 @@
     </div>
   </div>
 
-  <GraphicComponent class="m-auto mt-5 -mb-5" />
+  <GraphicComponent class="m-auto mt-12 -mb-5" />
   <ChallengesContainer />
 </template>
 

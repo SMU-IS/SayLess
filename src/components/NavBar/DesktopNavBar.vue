@@ -20,7 +20,12 @@
             <li>
               <router-link to="/profile"> Profile </router-link>
             </li>
-
+            <li>
+              <router-link to="/quest"> Quest </router-link>
+            </li>
+            <li>
+              <router-link to="/message"> Message </router-link>
+            </li>
             <li><span @click="logout">Logout</span></li>
           </ul>
         </div>

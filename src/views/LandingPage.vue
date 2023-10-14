@@ -1,6 +1,6 @@
 <template>
   <ParentHeader> Wasteless Kitchen </ParentHeader>
-  <div class="flex flex-row justify-center gap-4 mt-36">
+  <div class="flex flex-row justify-center gap-4 md:mt-12 mt-36">
     <CardContainerSecond background="white" size="small">
       <div class="card-body items-left text-left">
         <div class="bg-white min-h-[60px] sm:min-h-[150px]">
@@ -88,7 +88,7 @@
         <figure>
           <img src="../assets/Food/Sourdough.jpg" class="md:w-full" />
         </figure>
-        <div class="">
+        <div>
           <h2 class="card-title text-black">Sourdough</h2>
           <p>Expiry Date 10/10/2023</p>
         </div>

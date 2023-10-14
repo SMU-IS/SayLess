@@ -15,11 +15,11 @@
         <img
           :src="notification.notificationImage"
           alt="Notification Pic"
-          class="notification-pic w-10 h-10 mr-5"
+          class="w-20"
         />
         <div class="notification-details flex-1">
           <p class="text-gray-400">{{ notification.category }}</p>
-          <h4 class="text-white font-bold">{{ notification.subject }}</h4>
+          <h4 class="text-white">{{ notification.subject }}</h4>
           <p class="text-gray-400">{{ notification.notificationMessage }}</p>
         </div>
       </div>

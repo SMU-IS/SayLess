@@ -1,27 +1,23 @@
 <template>
   <div class="grid grid-cols-2 gap-4 min-w-full">
     <div v-for="item in foodListings" :key="item.id">
-      <CardContainer @click="seeDetails(item.id)">
-        <CardImg :src="item.cardImage" :alt="item.cardTitle" />
-
-        <CardHeader> {{ item.cardTitle }} </CardHeader>
-        <CardDescription>
-          {{ item.details }}
-        </CardDescription>
-      </CardContainer>
+      <CardContainerSecond
+        :icon="item.cardImage"
+        :alt-text="item.cardTitle"
+        :title="item.cardTitle"
+        :description="item.details"
+        @click="seeDetails(item.id)"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import CardContainer from '@/components/Card/CardContainer.vue';
-import CardDescription from '@/components/Card/CardDescription.vue';
-import CardHeader from '@/components/Card/CardHeader.vue';
-import CardImg from '@/components/Card/CardImg.vue';
+import CardContainerSecond from '@/components/Card/CardContainerSecond.vue';
 
 export default {
   name: 'ListItems',
-  components: { CardContainer, CardImg, CardHeader, CardDescription },
+  components: { CardContainerSecond },
   data: function () {
     return {
       foodListings: [],

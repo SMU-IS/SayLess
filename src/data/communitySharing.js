@@ -1,6 +1,3 @@
-import StockPhoto from '@/assets/Community/StockOne.png';
-import Garlic from '@/assets/Community/Garlic.jpg';
-
 const communitySharingData = [
   {
     id: 1,
@@ -9,7 +6,7 @@ const communitySharingData = [
   },
   {
     id: 2,
-    image: StockPhoto,
+    image: Garlic,
     cardTitle: 'Orange',
   },
   {

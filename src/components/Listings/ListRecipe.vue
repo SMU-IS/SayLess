@@ -1,22 +1,22 @@
 <template>
   <div class="grid grid-cols-2 gap-3 min-w-full py-4 px-3">
     <div v-for="item in recipeListings" :key="item.id">
-      <CardContainer @click="seeDetails(item.id)">
-        <CardImg :src="item.img" />
-        <CardHeader> {{ item.title }} </CardHeader>
-      </CardContainer>
+      <CardContainerSecond
+        :icon="item.img"
+        :alt-text="item.title"
+        :title="item.title"
+        @click="seeDetails(item.id)"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import CardContainer from '@/components/Card/CardContainer.vue';
-import CardImg from '@/components/Card/CardImg.vue';
-import CardHeader from '@/components/Card/CardHeader.vue';
+import CardContainerSecond from '@/components/Card/CardContainerSecond.vue';
 
 export default {
   name: 'ListRecipe',
-  components: { CardContainer, CardImg, CardHeader },
+  components: { CardContainerSecond },
   props: {
     ingredients: {
       type: Array,

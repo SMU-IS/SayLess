@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar bg-base-100 hidden md:block py-3">
+  <div class="navbar bg-base-100 hidden md:block py-3 fixed z-50">
     <div class="flex flex-row justify-between">
       <router-link to="/">
         <CustomButton color="ghost">Wasteless Kitchen</CustomButton>

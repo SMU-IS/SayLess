@@ -13,15 +13,20 @@
     <div v-if="isAuthenticated">
       <NavBar />
     </div>
+
+    <div v-if="isAuthenticated">
+      <CustomFooter />
+    </div>
   </div>
 </template>
 
 <script>
 import NavBar from '@/components/NavBar/NavBar.vue';
 import DesktopNavBar from '@/components/NavBar/DesktopNavBar.vue';
+import CustomFooter from '@/components/Footer/CustomFooter.vue';
 
 export default {
-  components: { NavBar, DesktopNavBar },
+  components: { NavBar, DesktopNavBar, CustomFooter },
   computed: {
     isAuthenticated() {
       return this.$store.getters.getEmail;

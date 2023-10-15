@@ -17,16 +17,15 @@
             tabindex="0"
             class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
           >
-            <li>
-              <router-link to="/profile"> Profile </router-link>
+            <li
+              v-for="links in navLinks"
+              :key="links.title"
+              @click="handleClick(links.path)"
+            >
+              <p>{{ links.title }}</p>
             </li>
-            <li>
-              <router-link to="/quest"> Quest </router-link>
-            </li>
-            <li>
-              <router-link to="/message"> Message </router-link>
-            </li>
-            <li><span @click="logout">Logout</span></li>
+
+            <li @click="logout"><p>Logout</p></li>
           </ul>
         </div>
       </div>
@@ -36,6 +35,8 @@
 
 <script>
 import CustomButton from '@/components/Button/CustomButton.vue';
+import { navLinks } from '@/data/navLinks';
+
 export default {
   name: 'DesktopNavBar',
   components: { CustomButton },
@@ -43,6 +44,7 @@ export default {
     return {
       name: this.$store.getters.getName,
       profilePic: this.$store.getters.getProfilePicture,
+      navLinks,
     };
   },
   methods: {
@@ -53,6 +55,13 @@ export default {
         getResponse('success', "You've logged out!");
       } catch (err) {
         throw err;
+      }
+    },
+    handleClick(path) {
+      this.$router.push(`${path}`);
+      const elem = document.activeElement;
+      if (elem) {
+        elem?.blur();
       }
     },
   },

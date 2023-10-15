@@ -6,13 +6,16 @@
     <CustomCard background="black" width="full">
       <div class="flex flex-row items-center gap-5 p-5 text-white">
         <img
+          v-if="profilePic !== 'null'"
           :src="profilePic"
           :alt="Inventory"
           class="w-20 h-20 rounded-full"
         />
 
+        <UserIcon v-else class="w-8 h-8 rounded-full" />
+
         <div class="flex flex-col justify-center gap-1">
-          <h2 class="card-title">{{ name }}</h2>
+          <h2 v-if="name !== 'null'" class="card-title">{{ name }}</h2>
           <p class="text-sm">{{ email }}</p>
         </div>
       </div>
@@ -41,6 +44,7 @@ import CustomCard from '@/components/Card/CustomCard.vue';
 import ParentHeader from '@/components/NavBar/ParentHeader.vue';
 import { ArrowRightOnRectangleIcon } from '@heroicons/vue/24/solid';
 import { profileData } from '@/data/profileData';
+import { UserIcon } from '@heroicons/vue/24/outline';
 
 export default {
   name: 'ProfilePage',
@@ -48,6 +52,7 @@ export default {
     CustomCard,
     ParentHeader,
     ArrowRightOnRectangleIcon,
+    UserIcon,
   },
   data() {
     return {
@@ -57,6 +62,7 @@ export default {
       profileData,
     };
   },
+
   methods: {
     async logout() {
       try {

@@ -1,7 +1,7 @@
 <template>
   <div class="navbar bg-base-100 hidden md:block py-3 fixed z-50">
     <div class="flex flex-row justify-between">
-      <CustomButton color="ghost" @click="scrollToTop">
+      <CustomButton color="ghost" @click="navigateHome">
         <div class="flex items-center gap-3">
           <img :src="Avocado" class="w-10" />
           Wasteless Kitchen
@@ -41,7 +41,7 @@
 <script>
 import CustomButton from '@/components/Button/CustomButton.vue';
 import { navLinks } from '@/data/navLinks';
-import { scrollToTop } from '@/helpers/common';
+import { goHome, scrollToTop } from '@/helpers/common';
 import { UserIcon } from '@heroicons/vue/24/outline';
 import Avocado from '@/assets/Icons/Avocado.png';
 
@@ -67,7 +67,10 @@ export default {
         throw err;
       }
     },
-    scrollToTop,
+    navigateHome() {
+      goHome(this.$router);
+      scrollToTop();
+    },
     handleClick(path) {
       this.$router.push(`${path}`);
       scrollToTop();

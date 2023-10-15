@@ -1,13 +1,5 @@
 <template>
-<<<<<<< HEAD:src/components/Svg/svgPath.vue
-  <div class="relative">
-    <button class="bg-primary text-white" @click="doesMove = true">
-      Start
-    </button>
-
-=======
   <div class="relative lg:w-1/3">
->>>>>>> 20043c30083934d610fd7b445fedf868cf5bcc63:src/components/GraphicComponent/GraphicComponent.vue
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="90%"
@@ -57,12 +49,7 @@ export default {
   name: 'GraphicComponent',
   data() {
     return {
-<<<<<<< HEAD:src/components/Svg/svgPath.vue
-      doesMove: false,
-      scales: ((ref(screen.width).value - 363) / 2 + 320) / 320, // took alot of math calc to get this HAHAHAHAHA based off true viewport
-=======
       scales: ((ref(screen.width).value - 363) / 2 + 320) / 320,
->>>>>>> 20043c30083934d610fd7b445fedf868cf5bcc63:src/components/GraphicComponent/GraphicComponent.vue
     };
   },
 };

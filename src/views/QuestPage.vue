@@ -1,5 +1,5 @@
 <template>
-  <div class="flex mx-4 justify-center items-center mt-20">
+  <div class="flex mx-4 justify-center items-center mt-20 md:mt-40">
     <div class="relative card w-64 bg-white text-black shadow-xl">
       <div class="card-body items-center text-center">
         <h1 class="card-title">Quest 1</h1>

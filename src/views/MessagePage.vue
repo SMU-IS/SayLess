@@ -1,6 +1,6 @@
 <template>
   <ParentHeader> Messages </ParentHeader>
-  <div class="flex justify-center md:mt-12 mt-32">
+  <div class="flex justify-center mt-32">
     <div class="w-screen md:w-1/3">
       <div class="flex justify-center">
         <CustomButton

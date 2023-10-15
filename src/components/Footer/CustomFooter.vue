@@ -11,7 +11,7 @@
         </p>
       </aside>
 
-      <div class="flex flex-row">
+      <div class="flex flex-row tooltip" data-tip="Scroll To Top">
         <svg class="animate-bounce w-6 h-6 cursor-pointer" @click="scrollToTop">
           <ChevronDoubleUpIcon class="w-10 h-10" />
         </svg>

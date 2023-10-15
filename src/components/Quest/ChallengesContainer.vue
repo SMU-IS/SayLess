@@ -1,13 +1,7 @@
 <template>
-<<<<<<< HEAD
-  <div class="flex flex-col">
-    <div class="flex hide-scroll-bar overflow-x-scroll pb-10">
-      <div class="flex flex-nowrap lg:ml-40 md:ml-20 ml-10 pr-10">
-=======
   <div class="flex flex-col md:items-center">
     <div class="flex hide-scroll-bar overflow-x-scroll">
       <div class="flex flex-nowrap">
->>>>>>> 20043c30083934d610fd7b445fedf868cf5bcc63
         <div v-for="content in questCards" :key="content.id">
           <div class="inline-block px-3">
             <div

@@ -108,28 +108,20 @@ import InventoryIcon from '@/assets/Icons/GroupBuy.png';
 import GroupBuyIcon from '@/assets/Icons/GroupBuy.png';
 import CustomCard from '@/components/Card/CustomCard.vue';
 import { communitySharingData } from '@/data/communitySharing';
-<<<<<<< HEAD
-=======
 import ParentHeader from '@/components/NavBar/ParentHeader.vue';
 import CustomButton from '@/components/Button/CustomButton.vue';
 import { ArrowRightIcon } from '@heroicons/vue/24/solid';
 import { openModal } from '@/helpers/common';
 import CustomModal from '@/components/Modal/CustomModal.vue';
->>>>>>> 20043c30083934d610fd7b445fedf868cf5bcc63
 
 export default {
   name: 'LandingPage',
   components: {
-<<<<<<< HEAD
-    CardContainerSecond,
-    CardSlider,
-=======
     CustomCard,
     ParentHeader,
     CustomButton,
     ArrowRightIcon,
     CustomModal,
->>>>>>> 20043c30083934d610fd7b445fedf868cf5bcc63
   },
   data() {
     return {

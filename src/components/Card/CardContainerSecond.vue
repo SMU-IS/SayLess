@@ -19,6 +19,7 @@ const CardVariants = cva(
         red: 'bg-red-200',
         green: 'bg-green-200',
         yellow: 'bg-yellow-200',
+        black: 'bg-base-200',
         gradient: 'bg-gradient-header bg-cover',
       },
       /* card sizes */

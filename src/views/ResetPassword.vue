@@ -29,9 +29,8 @@
             @click="handleResetPassword"
           >
             <span v-if="isLoading">
-              <CustomLoader />
+              <CustomLoader loading="isLoading" />
             </span>
-
             <span v-else>Reset Password</span>
           </CustomButton>
 

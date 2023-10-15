@@ -46,9 +46,8 @@
 
           <CustomButton width="full" @click="handleRegister">
             <span v-if="isLoading">
-              <CustomLoader />
+              <CustomLoader loading="isLoading" />
             </span>
-
             <p v-else>Register</p>
           </CustomButton>
         </form>

@@ -3,7 +3,7 @@
   <div
     class="flex flex-col text-white text-center items-center md:h-screen gap-4 mt-32"
   >
-    <CardContainerSecond background="black" width="full">
+    <CustomCard background="black" width="full">
       <div class="flex flex-row items-center gap-5 p-5 text-white">
         <img
           :src="profilePic"
@@ -16,7 +16,7 @@
           <p class="text-sm">{{ email }}</p>
         </div>
       </div>
-    </CardContainerSecond>
+    </CustomCard>
 
     <ul class="menu bg-base-200 w-full md:w-1/2 rounded-box text-lg">
       <li v-for="data in profileData" :key="data.title">
@@ -37,7 +37,7 @@
 
 <script>
 import { getResponse } from '@/helpers/getResponse';
-import CardContainerSecond from '@/components/Card/CardContainerSecond.vue';
+import CustomCard from '@/components/Card/CustomCard.vue';
 import ParentHeader from '@/components/NavBar/ParentHeader.vue';
 import { ArrowRightOnRectangleIcon } from '@heroicons/vue/24/solid';
 import { profileData } from '@/data/profileData';
@@ -45,7 +45,7 @@ import { profileData } from '@/data/profileData';
 export default {
   name: 'ProfilePage',
   components: {
-    CardContainerSecond,
+    CustomCard,
     ParentHeader,
     ArrowRightOnRectangleIcon,
   },
@@ -70,4 +70,3 @@ export default {
   },
 };
 </script>
-@/helpers/common

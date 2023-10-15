@@ -1,7 +1,7 @@
 <template>
   <div class="grid grid-cols-2 gap-3 min-w-full py-4 px-3">
     <div v-for="item in recipeListings" :key="item.id">
-      <CardContainerSecond
+      <CustomCard
         :icon="item.img"
         :alt-text="item.title"
         :title="item.title"
@@ -12,11 +12,11 @@
 </template>
 
 <script>
-import CardContainerSecond from '@/components/Card/CardContainerSecond.vue';
+import CustomCard from '@/components/Card/CustomCard.vue';
 
 export default {
   name: 'ListRecipe',
-  components: { CardContainerSecond },
+  components: { CustomCard },
   props: {
     ingredients: {
       type: Array,

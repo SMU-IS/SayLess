@@ -38,6 +38,7 @@ import ListRecipe from '@/components/Listings/ListRecipe.vue';
 import ChipLabel from '@/components/Chip/ChipLabel.vue';
 
 export default {
+  name: 'RecipePage',
   components: {
     ListRecipe,
     CustomInput,

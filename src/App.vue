@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative bg-midnight flex flex-col min-h-screen w-screen overflow-auto"
+    class="relative bg-main flex flex-col min-h-screen w-screen overflow-auto"
   >
     <div v-if="isAuthenticated">
       <DesktopNavBar />

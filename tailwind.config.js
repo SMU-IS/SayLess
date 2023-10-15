@@ -12,7 +12,7 @@ export default {
         contain: 'contain',
       },
       colors: {
-        midnight: '#111827',
+        midnight: '#221E2F',
         green: {
           light: '#9E9E9E',
           DEFAULT: '#006400',
@@ -30,8 +30,8 @@ export default {
         },
         main: {
           light: '#2D1577',
-          DEFAULT: '#140935',
-          dark: '#0C0520',
+          DEFAULT: '#242343',
+          dark: '#191835',
         },
         card: {
           light: '#332E46',

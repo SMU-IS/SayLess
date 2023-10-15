@@ -47,7 +47,8 @@
 
     <div class="grid md:grid-cols-3 justify-center mt-8 gap-5 md:mx-32">
       <div
-        class="card card-side bg-white shadow-xl md:flex-col md:justify-center md:pb-10 gap-12 items-center md:p-0 md:gap-5 pr-7"
+        class="cursor-pointer card card-side bg-white shadow-xl md:flex-col md:justify-center md:pb-10 gap-12 items-center md:p-0 md:gap-5 pr-7"
+        @click="showModal"
       >
         <figure>
           <img src="../assets/Food/Sourdough.jpg" class="md:w-full" />
@@ -95,6 +96,11 @@
       </div>
     </div>
   </div>
+
+  <CustomModal modal-title="Hello World">
+    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim maiores ipsam
+    neque.
+  </CustomModal>
 </template>
 
 <script>
@@ -105,6 +111,8 @@ import { communitySharingData } from '@/data/communitySharing';
 import ParentHeader from '@/components/NavBar/ParentHeader.vue';
 import CustomButton from '@/components/Button/CustomButton.vue';
 import { ArrowRightIcon } from '@heroicons/vue/24/solid';
+import { openModal } from '@/helpers/common';
+import CustomModal from '@/components/Modal/CustomModal.vue';
 
 export default {
   name: 'LandingPage',
@@ -113,6 +121,7 @@ export default {
     ParentHeader,
     CustomButton,
     ArrowRightIcon,
+    CustomModal,
   },
   data() {
     return {
@@ -120,6 +129,11 @@ export default {
       GroupBuyIcon,
       communitySharingData,
     };
+  },
+  methods: {
+    showModal() {
+      openModal();
+    },
   },
 };
 </script>

@@ -1,9 +1,12 @@
 <template>
   <div class="navbar bg-base-100 hidden md:block py-3 fixed z-50">
     <div class="flex flex-row justify-between">
-      <router-link to="/">
-        <CustomButton color="ghost">Wasteless Kitchen</CustomButton>
-      </router-link>
+      <CustomButton color="ghost" @click="scrollToTop">
+        <div class="flex items-center gap-3">
+          <img :src="Avocado" class="w-10" />
+          Wasteless Kitchen
+        </div>
+      </CustomButton>
 
       <div class="flex items-center gap-2">
         <p v-if="name !== 'null'">{{ name }}</p>
@@ -38,7 +41,9 @@
 <script>
 import CustomButton from '@/components/Button/CustomButton.vue';
 import { navLinks } from '@/data/navLinks';
+import { scrollToTop } from '@/helpers/common';
 import { UserIcon } from '@heroicons/vue/24/outline';
+import Avocado from '@/assets/Icons/Avocado.png';
 
 export default {
   name: 'DesktopNavBar',
@@ -49,6 +54,7 @@ export default {
       name: this.$store.getters.getName,
       profilePic: this.$store.getters.getProfilePicture,
       navLinks,
+      Avocado,
     };
   },
   methods: {
@@ -61,8 +67,10 @@ export default {
         throw err;
       }
     },
+    scrollToTop,
     handleClick(path) {
       this.$router.push(`${path}`);
+      scrollToTop();
       const elem = document.activeElement;
       if (elem) {
         elem?.blur();

@@ -23,10 +23,10 @@
 
     <ul class="menu bg-base-200 w-full md:w-1/2 rounded-box text-lg">
       <li v-for="data in profileData" :key="data.title">
-        <router-link :to="data.path">
+        <span @click="handleLink(data.title)">
           <component :is="data.icon" class="h-5 w-5" />
           {{ data.title }}
-        </router-link>
+        </span>
       </li>
       <li @click="logout">
         <span class="text-red-400">
@@ -72,6 +72,9 @@ export default {
       } catch (err) {
         throw err;
       }
+    },
+    handleLink(name) {
+      alert(name);
     },
   },
 };

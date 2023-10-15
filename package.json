@@ -14,12 +14,13 @@
     "@headlessui/vue": "^1.7.15",
     "@heroicons/vue": "^2.0.18",
     "axios": "^1.4.0",
-    "epic-spinners": "^2.0.0",
+    "class-variance-authority": "^0.7.0",
     "firebase": "^10.2.0",
     "sweetalert2": "^11.7.27",
     "vue": "^3.3.4",
     "vue-media-upload": "^2.1.2",
     "vue-router": "^4.2.4",
+    "vue-spinner": "^1.0.4",
     "vuex": "^4.0.2"
   },
   "devDependencies": {
@@ -29,8 +30,6 @@
     "eslint": "^8.47.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-vue": "^9.17.0",
-    "postcss": "^8.4.31",
-    "postcss-import": "^15.1.0",
     "prettier": "3.0.3",
     "tailwindcss": "^3.3.3",
     "vite": "^4.4.5",

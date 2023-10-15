@@ -4,11 +4,15 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-header': "url('./assets/Reusable/GradientHeader.png')",
+      },
+      backgroundSize: {
+        auto: 'auto',
+        cover: 'cover',
+        contain: 'contain',
       },
       colors: {
-        midnight: '#000024',
-        primary: 'rgb(17 24 39)',
+        midnight: '#111827',
         green: {
           light: '#9E9E9E',
           DEFAULT: '#006400',
@@ -39,9 +43,6 @@ export default {
           DEFAULT: 'rgba(255,255,255,0.2)',
           dark: '#FFFFFF1A',
         },
-      },
-      fontFamily: {
-        sen: ['Sen', 'sans-serif'],
       },
     },
   },

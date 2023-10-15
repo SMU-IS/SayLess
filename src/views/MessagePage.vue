@@ -1,33 +1,39 @@
 <template>
-  <div class="container flex mt-28">
-    <div class="container w-screen md:w-1/3">
-      <div class="tabs tabs-boxed p-2">
-        <a
-          class="tab w-1/2 h-full"
-          :class="{ 'tab-active': currentTab === 'chat' }"
-          style="border-radius: 100px"
+  <ParentHeader> Messages </ParentHeader>
+  <div class="flex justify-center mt-32 md:h-screen">
+    <div class="w-screen md:w-1/3">
+      <div class="flex justify-center">
+        <CustomButton
+          size="small"
+          roundness="full"
+          :color="currentTab === 'chat' ? 'primary' : null"
           @click="changeTab('chat')"
         >
-          <img
-            src="@/assets/Icons/Chat.png"
-            alt="Custom Icon"
-            class="pr-1 py-2"
-          />
-          Chat
-        </a>
-        <a
-          class="tab w-1/2 h-full"
-          :class="{ 'tab-active': currentTab === 'notifications' }"
-          style="border-radius: 100px"
+          <div class="flex items-center gap-3 px-5">
+            <img
+              src="@/assets/Icons/Chat.png"
+              alt="Custom Icon"
+              class="pr-1 py-2"
+            />
+            Chat
+          </div>
+        </CustomButton>
+
+        <CustomButton
+          size="small"
+          roundness="full"
+          :color="currentTab === 'notifications' ? 'primary' : null"
           @click="changeTab('notifications')"
         >
-          <img
-            src="@/assets/Icons/ring.png"
-            alt="Custom Icon"
-            class="pr-1 py-2"
-          />
-          Notifications
-        </a>
+          <div class="flex items-center gap-3 px-5">
+            <img
+              src="@/assets/Icons/ring.png"
+              alt="Custom Icon"
+              class="pr-1 py-2"
+            />
+            Notifications
+          </div>
+        </CustomButton>
       </div>
 
       <div class="content mt-4">
@@ -43,14 +49,18 @@
 </template>
 
 <script>
+import CustomButton from '@/components/Button/CustomButton.vue';
 import ChatsTab from '@/components/Messages/ChatsTab.vue';
 import NotificationsTab from '@/components/Messages/NotificationsTab.vue';
+import ParentHeader from '@/components/NavBar/ParentHeader.vue';
 
 export default {
   name: 'MessagePage',
   components: {
     ChatsTab,
     NotificationsTab,
+    ParentHeader,
+    CustomButton,
   },
   data() {
     return {

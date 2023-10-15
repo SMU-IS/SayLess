@@ -1,7 +1,7 @@
 <template>
-  <div class="flex justify-center items-center h-screen">
-    <AuthenticationContainer bg-color="gradientY">
-      <div class="flex flex-col justify-center items-center">
+  <div class="flex justify-center items-center h-screen mx-5 text-black">
+    <CustomCard background="white" width="full">
+      <div class="flex flex-col justify-center items-center mt-5">
         <KeyIcon class="w-10 h-10" />
         <h3 class="mt-3 mb-3 text-center">Forgot password?</h3>
 
@@ -11,9 +11,7 @@
       <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form class="space-y-6" @submit.prevent>
           <div class="flex flex-col gap-2">
-            <label
-              for="email"
-              class="block text-sm font-medium leading-6 text-white"
+            <label for="email" class="block text-sm font-medium leading-6"
               >Email Address</label
             >
 
@@ -26,28 +24,28 @@
           </div>
 
           <CustomButton
-            button-color="btn--whiteAlpha"
+            width="full"
+            color="primary"
             @click="handleResetPassword"
           >
             <span v-if="isLoading">
-              <CustomLoader />
+              <CustomLoader loading="isLoading" />
             </span>
-
             <span v-else>Reset Password</span>
           </CustomButton>
 
-          <div class="flex justify-end pt-3">
+          <div class="flex justify-end py-3">
             <router-link
               to="/login"
               class="flex flex-row items-center gap-2 w-fit"
             >
               <ArrowLeftIcon class="h-4 w-4" />
-              <p class="text-sm">Back to Log In</p>
+              <p class="text-sm text-black">Back to Log In</p>
             </router-link>
           </div>
         </form>
       </div>
-    </AuthenticationContainer>
+    </CustomCard>
   </div>
 </template>
 
@@ -57,7 +55,7 @@ import { getErrorMessage } from '@/helpers/getErrorMessage';
 import { getResponse } from '@/helpers/getResponse';
 import CustomLoader from '@/components/Loader/CustomLoader.vue';
 import { ArrowLeftIcon, KeyIcon } from '@heroicons/vue/24/solid';
-import AuthenticationContainer from '@/components/Card/AuthenticationContainer.vue';
+import CustomCard from '@/components/Card/CustomCard.vue';
 import CustomInput from '@/components/Form/CustomInput.vue';
 
 export default {
@@ -67,7 +65,7 @@ export default {
     CustomLoader,
     ArrowLeftIcon,
     KeyIcon,
-    AuthenticationContainer,
+    CustomCard,
     CustomInput,
   },
   data: function () {

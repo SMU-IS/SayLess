@@ -1,12 +1,10 @@
 <template>
   <header class="flex justify-center">
-    <div class="stars-container">
+    <div class="flex gradientQuest">
       <div v-for="stars in sortedQuestCards" :key="stars.id">
-        {{ stars.id }}
         <span v-if="stars.checked">
           <StarIcon class="w-5 mx-1 fill-[#FFE993]" />
         </span>
-
         <p v-else>
           <StarIcon class="w-5 mx-1 fill-gray" />
         </p>
@@ -37,14 +35,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-@tailwind components;
-
-@layer components {
-  .stars-container {
-    @apply flex flex-row bg-gradient-to-r from-indigo-900 via-indigo-400 to-indigo-900 border shadow-2xl rounded-3xl px-4 py-1 border-2 border-yellow-300;
-  }
-}
-</style>
-@/helpers/sortByState

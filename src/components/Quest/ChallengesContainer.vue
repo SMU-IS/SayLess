@@ -1,30 +1,47 @@
 <template>
+<<<<<<< HEAD
   <div class="flex flex-col">
     <div class="flex hide-scroll-bar overflow-x-scroll pb-10">
       <div class="flex flex-nowrap lg:ml-40 md:ml-20 ml-10 pr-10">
+=======
+  <div class="flex flex-col md:items-center">
+    <div class="flex hide-scroll-bar overflow-x-scroll">
+      <div class="flex flex-nowrap">
+>>>>>>> 20043c30083934d610fd7b445fedf868cf5bcc63
         <div v-for="content in questCards" :key="content.id">
           <div class="inline-block px-3">
-            <CardContainer
+            <div
               class="relative w-72 h-64 max-w-xs overflow-hidden rounded-lg shadow-md !bg-card-light hover:shadow-xl transition-shadow duration-300 ease-in-out"
             >
-              <CardHeader class="bg-[#221E2F] w-full" text-color="text-pink">
+              <div
+                class="p-4 font-bold tracking-tight min-h-[20px] bg-[#221E2F] w-full text-pink"
+              >
                 Challenge {{ content.id }}
                 <component
                   :is="content.icon"
                   class="checkedIcon w-5 float-right"
                   :class="{ 'icon-checked': content.checked }"
                 />
-              </CardHeader>
+              </div>
 
-              <CardDescription text-color="text-white" class="my-4">
-                {{ content.content }}
-              </CardDescription>
-              <p
-                class="absolute right-0 py-1 bottom-4 text-xs font-bold mx-5 px-4 bg-trans rounded-full text-pink bg-trans-dark"
-              >
-                {{ content.status }}
-              </p>
-            </CardContainer>
+              <div class="text-white p-4">{{ content.content }}</div>
+
+              <div class="flex justify-end mr-5">
+                <CustomButton
+                  size="small"
+                  roundness="full"
+                  :color="
+                    content.status === 'In Progress'
+                      ? 'primary'
+                      : content.status === 'Not Started'
+                      ? 'danger'
+                      : 'success'
+                  "
+                  @click="changeTab('chat')"
+                  >{{ content.status }}</CustomButton
+                >
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -34,16 +51,12 @@
 
 <script>
 import { questCards } from '@/data/questCards.js';
-import CardContainer from '@/components/Card/CardContainer.vue';
-import CardDescription from '@/components/Card/CardDescription.vue';
-import CardHeader from '@/components/Card/CardHeader.vue';
+import CustomButton from '@/components/Button/CustomButton.vue';
 
 export default {
   name: 'ChallengesContainer',
   components: {
-    CardContainer,
-    CardDescription,
-    CardHeader,
+    CustomButton,
   },
   data: function () {
     return {

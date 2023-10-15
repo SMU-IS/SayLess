@@ -33,7 +33,7 @@ export default {
 
 @layer components {
   .navBar {
-    @apply flex flex-row items-center justify-between md:hidden bg-primary py-4 px-12 fixed bottom-0 w-screen;
+    @apply flex flex-row items-center justify-between md:hidden bg-midnight py-4 px-12 fixed bottom-0 w-screen;
   }
 
   .icon-style {

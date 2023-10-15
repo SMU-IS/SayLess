@@ -1,6 +1,6 @@
 <template>
-  <div class="flex justify-center items-center h-screen">
-    <AuthenticationContainer bg-color="bg-white">
+  <div class="flex justify-center items-center h-screen mx-5 text-black">
+    <CustomCard background="white" size="large" width="full">
       <div class="flex flex-col justify-center items-center">
         <IdentificationIcon class="w-10 h-10" />
         <h3 class="mt-3 text-center text-black">Get Started</h3>
@@ -39,22 +39,15 @@
           </div>
 
           <div class="flex flex-row items-center mb-4">
-            <input
-              id="default-checkbox"
-              type="checkbox"
-              value=""
-              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
-            />
             <label for="default-checkbox" class="ml-2 cursor-pointer text-sm"
               >I agree with the <span>Terms & Conditions.</span></label
             >
           </div>
 
-          <CustomButton button-color="btn--success" @click="handleRegister">
+          <CustomButton width="full" @click="handleRegister">
             <span v-if="isLoading">
-              <CustomLoader />
+              <CustomLoader loading="isLoading" />
             </span>
-
             <p v-else>Register</p>
           </CustomButton>
         </form>
@@ -66,7 +59,7 @@
           </span>
         </p>
       </div>
-    </AuthenticationContainer>
+    </CustomCard>
   </div>
 </template>
 
@@ -76,7 +69,7 @@ import { getErrorMessage } from '@/helpers/getErrorMessage';
 import { getResponse } from '@/helpers/getResponse';
 import CustomLoader from '@/components/Loader/CustomLoader.vue';
 import { IdentificationIcon } from '@heroicons/vue/24/solid';
-import AuthenticationContainer from '@/components/Card/AuthenticationContainer.vue';
+import CustomCard from '@/components/Card/CustomCard.vue';
 import CustomInput from '@/components/Form/CustomInput.vue';
 import { validateSignUpFields, isPasswordMatch } from '@/helpers/validateForm';
 
@@ -86,7 +79,7 @@ export default {
     CustomButton,
     CustomLoader,
     IdentificationIcon,
-    AuthenticationContainer,
+    CustomCard,
     CustomInput,
   },
   data() {

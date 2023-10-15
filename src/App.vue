@@ -1,47 +1,36 @@
 <template>
   <div
-    class="relative bg-primary flex flex-col min-h-screen w-screen overflow-auto"
+    class="relative bg-midnight flex flex-col min-h-screen w-screen overflow-auto"
   >
-    <div
-      :class="{
-        'fixed top-0 left-0 right-0 navBarGradient bg-g-quest z-10':
-          isAuthenticated,
-      }"
-    ></div>
+    <div v-if="isAuthenticated">
+      <DesktopNavBar />
+    </div>
 
-    <div :class="{ 'ml-6 mr-6 mb-28 z-0': isAuthenticated }">
+    <div :class="{ 'mx-6 mb-28 z-0': isAuthenticated }">
       <router-view />
     </div>
 
     <div v-if="isAuthenticated">
       <NavBar />
     </div>
+
+    <div v-if="isAuthenticated">
+      <CustomFooter />
+    </div>
   </div>
 </template>
 
 <script>
 import NavBar from '@/components/NavBar/NavBar.vue';
+import DesktopNavBar from '@/components/NavBar/DesktopNavBar.vue';
+import CustomFooter from '@/components/Footer/CustomFooter.vue';
 
 export default {
-  components: { NavBar },
+  components: { NavBar, DesktopNavBar, CustomFooter },
   computed: {
     isAuthenticated() {
       return this.$store.getters.getEmail;
     },
-    authenticateRoute() {
-      return (
-        this.$route.name === 'LoginPage' ||
-        this.$route.name === 'SignUpPage' ||
-        this.$route.name === 'ResetPasswordPage'
-      );
-    },
   },
 };
 </script>
-
-<style>
-.navBarGradient {
-  width: w-screen;
-  height: 100px;
-}
-</style>

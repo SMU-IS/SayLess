@@ -8,19 +8,15 @@
       Sorry, we couldn’t find the page you’re looking for.
     </p>
 
-    <CustomButton
-      class="btn--gradient"
-      button-size="md:w-40 w-1/2"
-      @click="navigateHome"
+    <CustomButton color="warning" @click="navigateHome"
+      >Go Back Home</CustomButton
     >
-      Go Back Home
-    </CustomButton>
   </div>
 </template>
 
 <script>
 import CustomButton from '@/components/Button/CustomButton.vue';
-import { goHome } from '@/helpers/goHome';
+import { goHome } from '@/helpers/common.js';
 
 export default {
   name: 'PageNotFound',
@@ -32,3 +28,4 @@ export default {
   },
 };
 </script>
+@/helpers/common

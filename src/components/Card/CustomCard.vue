@@ -44,7 +44,7 @@ const CardVariants = cva(
 );
 
 export default {
-  name: 'CardContainerSecond',
+  name: 'CustomCard',
   props: {
     background: {
       type: String,

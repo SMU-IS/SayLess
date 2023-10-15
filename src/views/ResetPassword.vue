@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-center items-center h-screen mx-5 text-black">
-    <CardContainerSecond background="white" width="full">
+    <CustomCard background="white" width="full">
       <div class="flex flex-col justify-center items-center mt-5">
         <KeyIcon class="w-10 h-10" />
         <h3 class="mt-3 mb-3 text-center">Forgot password?</h3>
@@ -46,7 +46,7 @@
           </div>
         </form>
       </div>
-    </CardContainerSecond>
+    </CustomCard>
   </div>
 </template>
 
@@ -56,7 +56,7 @@ import { getErrorMessage } from '@/helpers/getErrorMessage';
 import { getResponse } from '@/helpers/getResponse';
 import CustomLoader from '@/components/Loader/CustomLoader.vue';
 import { ArrowLeftIcon, KeyIcon } from '@heroicons/vue/24/solid';
-import CardContainerSecond from '@/components/Card/CardContainerSecond.vue';
+import CustomCard from '@/components/Card/CustomCard.vue';
 import CustomInput from '@/components/Form/CustomInput.vue';
 
 export default {
@@ -66,7 +66,7 @@ export default {
     CustomLoader,
     ArrowLeftIcon,
     KeyIcon,
-    CardContainerSecond,
+    CustomCard,
     CustomInput,
   },
   data: function () {

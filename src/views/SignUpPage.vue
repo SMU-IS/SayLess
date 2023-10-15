@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-center items-center h-screen mx-5 text-black">
-    <CardContainerSecond background="white" size="large" width="full">
+    <CustomCard background="white" size="large" width="full">
       <div class="flex flex-col justify-center items-center">
         <IdentificationIcon class="w-10 h-10" />
         <h3 class="mt-3 text-center text-black">Get Started</h3>
@@ -60,7 +60,7 @@
           </span>
         </p>
       </div>
-    </CardContainerSecond>
+    </CustomCard>
   </div>
 </template>
 
@@ -70,7 +70,7 @@ import { getErrorMessage } from '@/helpers/getErrorMessage';
 import { getResponse } from '@/helpers/getResponse';
 import CustomLoader from '@/components/Loader/CustomLoader.vue';
 import { IdentificationIcon } from '@heroicons/vue/24/solid';
-import CardContainerSecond from '@/components/Card/CardContainerSecond.vue';
+import CustomCard from '@/components/Card/CustomCard.vue';
 import CustomInput from '@/components/Form/CustomInput.vue';
 import { validateSignUpFields, isPasswordMatch } from '@/helpers/validateForm';
 
@@ -80,7 +80,7 @@ export default {
     CustomButton,
     CustomLoader,
     IdentificationIcon,
-    CardContainerSecond,
+    CustomCard,
     CustomInput,
   },
   data() {

@@ -5,8 +5,8 @@
     </DetailsHeader>
 
     <div class="flex flex-col mt-8">
-      <CardContainer>
-        <CardImg :src="foodListings.foodImage" />
+      <div>
+        <img :src="foodListings.foodImage" />
 
         <div class="flex flex-col px-6 text-white gap-6">
           <div class="flex flex-col px-4 gap-4 py-6 text-right">
@@ -27,7 +27,7 @@
             Request Item
           </CustomButton>
         </div>
-      </CardContainer>
+      </div>
     </div>
   </div>
 </template>
@@ -35,14 +35,10 @@
 <script>
 import CustomButton from '@/components/Button/CustomButton.vue';
 import DetailsHeader from '@/components/NavBar/DetailsHeader.vue';
-import CardContainer from '@/components/Card/CardContainer.vue';
-import CardImg from '@/components/Card/CardImg.vue';
 
 export default {
   name: 'ListItemsDetails',
   components: {
-    CardContainer,
-    CardImg,
     CustomButton,
     DetailsHeader,
   },

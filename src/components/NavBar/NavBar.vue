@@ -1,13 +1,15 @@
 <template>
   <header class="flex justify-center">
-    <div class="navBar">
+    <div class="navBar bg-main-dark">
       <div v-for="link in navLinks" :key="link.id">
         <router-link :to="link.path">
-          <div class="flex flex-col items-center gap-1">
-            <div class="w-7">
-              <img :src="link.icon" />
+          <div class="flex flex-col items-center gap-1 content-end">
+            <div>
+              <img class="w-auto h-7" :src="link.icon" />
             </div>
-            <span class="text-green-light text-sm">{{ link.title }}</span>
+            <span class="text-green-light text-sm self-end">{{
+              link.title
+            }}</span>
           </div>
         </router-link>
       </div>
@@ -33,7 +35,7 @@ export default {
 
 @layer components {
   .navBar {
-    @apply flex flex-row items-center justify-between md:hidden bg-midnight py-4 px-12 fixed bottom-0 w-screen;
+    @apply flex flex-row items-end justify-between md:hidden bg-main-dark py-4 px-12 pb-6 fixed bottom-0 w-screen;
   }
 
   .icon-style {

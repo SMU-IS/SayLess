@@ -18,7 +18,7 @@ import CustomCard from '@/components/Card/CustomCard.vue';
 export default {
   name: 'ListItems',
   components: { CustomCard },
-  data: function () {
+  data() {
     return {
       foodListings: [],
     };

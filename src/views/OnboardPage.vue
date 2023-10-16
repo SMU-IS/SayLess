@@ -27,16 +27,10 @@
 
 <script>
 import CustomButton from '@/components/Button/CustomButton.vue';
-import PatternOne from '@/assets/PatternOne.svg';
 
 export default {
   name: 'OnboardPage',
   components: { CustomButton },
-  data: function () {
-    return {
-      PatternOne,
-    };
-  },
   methods: {
     navigate() {
       this.$router.push('/signup');

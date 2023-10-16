@@ -52,7 +52,7 @@ export default {
   components: {
     CustomButton,
   },
-  data: function () {
+  data() {
     return {
       questCards,
     };

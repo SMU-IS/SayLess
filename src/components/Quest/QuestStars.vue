@@ -23,7 +23,7 @@ export default {
   components: {
     StarIcon,
   },
-  data: function () {
+  data() {
     return {
       questCards,
     };

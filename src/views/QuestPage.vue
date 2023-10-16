@@ -27,7 +27,7 @@ export default {
     QuestStars,
     GraphicComponent,
   },
-  data: function () {
+  data() {
     return {
       email: this.$store.getters.getEmail,
     };

@@ -22,7 +22,7 @@ import { navLinks } from '@/data/navLinks.js';
 
 export default {
   name: 'NavBar',
-  data: function () {
+  data() {
     return {
       navLinks,
     };

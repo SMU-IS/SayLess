@@ -68,7 +68,7 @@ export default {
     CustomCard,
     CustomInput,
   },
-  data: function () {
+  data() {
     return {
       email: '',
       isLoading: false,

@@ -42,7 +42,7 @@ export default {
     CustomButton,
     DetailsHeader,
   },
-  data: function () {
+  data() {
     return {
       foodListings: [],
     };

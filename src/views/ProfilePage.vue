@@ -6,17 +6,17 @@
     <CustomCard background="black" width="full">
       <div class="flex flex-row items-center gap-5 p-5 text-white">
         <img
-          v-if="profilePic !== 'null'"
+          v-if="profilePic"
           :src="profilePic"
           :alt="Inventory"
           class="w-20 h-20 rounded-full"
         />
 
-        <UserIcon v-else class="w-8 h-8 rounded-full" />
+        <UserIcon v-else class="w-9 h-9 rounded-full" />
 
         <div class="flex flex-col justify-center gap-1">
-          <h2 v-if="name !== 'null'" class="card-title">{{ name }}</h2>
-          <p class="text-sm">{{ email }}</p>
+          <h2 v-if="name" class="card-title">{{ name }}</h2>
+          <p class="text-md text-left">{{ email }}</p>
         </div>
       </div>
     </CustomCard>

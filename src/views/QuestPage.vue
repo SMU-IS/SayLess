@@ -1,10 +1,10 @@
 <template>
-  <div class="flex justify-center items-center mt-20 md:mt-40">
-    <div class="relative card w-64 bg-white text-black shadow-xl">
-      <div class="card-body items-center text-center">
-        <h1 class="card-title">Quest 1</h1>
-        <p>Complete Challenges</p>
-        <div class="absolute -top-8">
+  <div class="flex justify-center items-center mt-16 md:mt-40">
+    <div class="relative card w-7/12 bg-trans-dark shadow-xl">
+      <div class="card-body gap-0 p-4 pt-6 items-center text-center">
+        <h1 class="card-title text-pink">Quest 1</h1>
+        <p class="text-gray-400">complete challenges</p>
+        <div class="absolute -top-3.5">
           <QuestStars />
         </div>
       </div>

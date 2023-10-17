@@ -35,6 +35,6 @@
 
 @layer components {
   .gradientQuest {
-    @apply bg-gradient-to-r from-indigo-900 via-indigo-400 to-indigo-900 p-4 rounded-3xl shadow-2xl border-2 border-yellow-50;
+    @apply bg-gradient-to-r from-trans-light via-trans to-trans-dark px-3 py-1 rounded-3xl  border border-yellow-100;
   }
 }

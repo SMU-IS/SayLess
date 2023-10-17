@@ -9,12 +9,12 @@
       </CustomButton>
 
       <div class="flex items-center gap-2">
-        <p v-if="name !== 'null'">{{ name }}</p>
+        <p v-if="name">{{ name }}</p>
         <p v-else>{{ email }}</p>
         <div class="dropdown dropdown-left flex pr-5 gap-5">
           <label tabindex="0" class="btn btn-ghost btn-circle avatar">
             <div class="w-7 h-7 rounded-full">
-              <img v-if="profilePic !== 'null'" :src="profilePic" />
+              <img v-if="profilePic" :src="profilePic" />
               <UserIcon v-else class="rounded-full" />
             </div>
           </label>

@@ -6,7 +6,7 @@
       <DesktopNavBar />
     </div>
 
-    <div :class="{ 'mx-6 mb-28 z-0': isAuthenticated }">
+    <div :class="childrenStyle">
       <router-view />
     </div>
 
@@ -30,6 +30,15 @@ export default {
   computed: {
     isAuthenticated() {
       return this.$store.getters.getEmail;
+    },
+    getRouteName() {
+      return this.$route.name;
+    },
+    childrenStyle() {
+      return {
+        'mx-6 mb-28 z-0':
+          this.isAuthenticated && this.getRouteName !== 'QuestPage',
+      };
     },
   },
 };

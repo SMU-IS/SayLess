@@ -48,7 +48,7 @@
     <div class="grid md:grid-cols-3 justify-center mt-8 gap-5 md:mx-32">
       <div
         class="cursor-pointer card card-side bg-white shadow-xl md:flex-col md:justify-center md:pb-10 gap-12 items-center md:p-0 md:gap-5 pr-7"
-        @click="showModal"
+        @click="showDrawer"
       >
         <figure>
           <img src="../assets/Food/Sourdough.jpg" class="md:w-full" />
@@ -101,6 +101,15 @@
     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim maiores ipsam
     neque.
   </CustomModal>
+
+  <CustomDrawer
+    drawer-title="You joined Challenge 1!"
+    drawer-subtitle="Do you want to complete the challenge now?"
+    button-false="Not now"
+    button-true="Yes, take me there!"
+  >
+    Get an item for free from the Community Sharing page
+  </CustomDrawer>
 </template>
 
 <script>
@@ -112,7 +121,9 @@ import ParentHeader from '@/components/NavBar/ParentHeader.vue';
 import CustomButton from '@/components/Button/CustomButton.vue';
 import { ArrowRightIcon } from '@heroicons/vue/24/solid';
 import { openModal } from '@/helpers/common';
+import { openDrawer } from '@/helpers/common';
 import CustomModal from '@/components/Modal/CustomModal.vue';
+import CustomDrawer from '@/components/Modal/CustomDrawer.vue';
 
 export default {
   name: 'LandingPage',
@@ -122,6 +133,7 @@ export default {
     CustomButton,
     ArrowRightIcon,
     CustomModal,
+    CustomDrawer,
   },
   data() {
     return {
@@ -133,6 +145,9 @@ export default {
   methods: {
     showModal() {
       openModal();
+    },
+    showDrawer() {
+      openDrawer();
     },
   },
 };

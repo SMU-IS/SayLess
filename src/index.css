@@ -37,4 +37,8 @@
   .gradientQuest {
     @apply bg-gradient-to-r from-indigo-900 via-indigo-400 to-indigo-900 p-4 rounded-3xl shadow-2xl border-2 border-yellow-50;
   }
+
+  .bottomDrawer {
+    @apply bg-white absolute bottom-0 shadow-2xl rounded-t-lg w-full p-6;
+  }
 }

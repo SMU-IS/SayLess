@@ -12,12 +12,17 @@
         </p>
       </div>
       <form method="dialog" class="flex flex-col justify-around gap-2">
-        <button class="btn btn-md bg-purple text-white border-none">
+        <CustomButton
+          width="full"
+          roundness="round"
+          size="large"
+          color="success"
+        >
           {{ buttonTrue }}
-        </button>
-        <button class="btn btn-md bg-transparent border-none text-gray-400">
+        </CustomButton>
+        <CustomButton width="full" roundness="round" size="large" color="ghost">
           {{ buttonFalse }}
-        </button>
+        </CustomButton>
       </form>
     </div>
 
@@ -28,8 +33,13 @@
 </template>
 
 <script>
+import CustomButton from '@/components/Button/CustomButton.vue';
+
 export default {
   name: 'CustomDrawer',
+  components: {
+    CustomButton,
+  },
   props: {
     drawerTitle: {
       type: String,

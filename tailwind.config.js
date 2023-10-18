@@ -33,12 +33,17 @@ export default {
           DEFAULT: '#242343',
           dark: '#191835',
         },
+        white: {
+          light: '#94A3B8',
+          DEFAULT: '#ffffff',
+          dark: '#E2E8F0',
+        },
         card: {
           light: '#332E46',
           DEFAULT: '#221E2F',
           dark: '#1B1826',
         },
-        trans: {
+        transparent: {
           light: 'rgba(255,255,255,0.3)',
           DEFAULT: 'rgba(255,255,255,0.2)',
           dark: '#FFFFFF1A',

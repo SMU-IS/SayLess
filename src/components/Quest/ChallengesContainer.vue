@@ -65,7 +65,7 @@ export default {
 
 @layer components {
   .checkedIcon {
-    @apply text-trans-dark;
+    @apply text-transparent-dark;
   }
 
   .icon-checked {

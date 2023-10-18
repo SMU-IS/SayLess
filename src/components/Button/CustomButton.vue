@@ -13,16 +13,12 @@ const ButtonVariants = cva(
     variants: {
       /* button colors */
       color: {
-        primary: 'bg-blue-500 text-white hover:bg-blue-700 focus:ring-blue-400',
-        danger: 'bg-red-500 text-white  hover:bg-red-700 focus:ring-red-400',
-        success:
-          'bg-green-600 text-white hover:bg-green-700 focus:ring-green-400',
-        warning:
-          'bg-yellow-500 text-gray-800 hover:bg-yellow-400 focus:ring-orange-400',
-        white: 'bg-white text-gray-800  hover:bg-gray-100 focus:ring-white',
         black: 'bg-black text-white hover:bg-gray-800',
-        midnight: 'bg-midnight text-white hover:bg-graty-800',
-        ghost: 'bg-none hover:bg-gray-800 text-white-light ',
+        white: 'bg-white text-black  hover:bg-gray-100',
+        red: 'bg-red-500 text-white  hover:bg-red-700',
+        blue: 'bg-blue-dark text-white hover:bg-blue',
+        success: 'bg-green-dark text-white hover:bg-green',
+        ghost: 'bg-none hover:bg-gray-800 text-white-light',
       },
       /* button sizes */
       size: {
@@ -54,7 +50,7 @@ export default {
     },
     color: {
       type: String,
-      default: 'primary',
+      default: 'black',
     },
     size: {
       type: String,

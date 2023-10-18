@@ -31,13 +31,22 @@
           {{ data.title }}
         </span>
       </li>
-      <li @click="logout">
+      <li @click="showModal">
         <span class="text-red-400">
           <ArrowRightOnRectangleIcon class="h-5 w-5" />
           Logout
         </span>
       </li>
     </ul>
+
+    <CustomModal
+      modal-id="my_modal_3"
+      modal-title="Are you sure you want to log out?"
+      confirmation-text="Log Out"
+      :click-handler="logout"
+    >
+      <p>You will need to log in again.</p>
+    </CustomModal>
   </div>
 </template>
 
@@ -48,7 +57,10 @@ import ParentHeader from '@/components/NavBar/ParentHeader.vue';
 import { ArrowRightOnRectangleIcon } from '@heroicons/vue/24/solid';
 import { profileData } from '@/data/profileData';
 import { UserIcon } from '@heroicons/vue/24/outline';
-import { pageLoadAnimation } from '@/helpers/pageLoader';
+import { pageLoadAnimation } from '@/helpers/common';
+import CustomModal from '@/components/Modal/CustomModal.vue';
+import { openModal } from '@/helpers/common';
+import CustomButton from '@/components/Button/CustomButton.vue';
 
 export default {
   name: 'ProfilePage',
@@ -57,6 +69,8 @@ export default {
     ParentHeader,
     ArrowRightOnRectangleIcon,
     UserIcon,
+    CustomModal,
+    CustomButton,
   },
   data() {
     return {
@@ -71,6 +85,9 @@ export default {
     pageLoadAnimation(divIds);
   },
   methods: {
+    showModal() {
+      openModal('my_modal_3');
+    },
     async logout() {
       try {
         await this.$store.dispatch('logout');

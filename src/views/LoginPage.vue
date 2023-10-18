@@ -56,7 +56,7 @@
           </div>
 
           <div class="flex flex-col w-full border-opacity-50 pb-8">
-            <CustomButton width="full" @click="handleLogin">
+            <CustomButton color="black" width="full" @click="handleLogin">
               <span v-if="isLoading">
                 <CustomLoader loading="isLoading" />
               </span>

@@ -30,7 +30,7 @@
         <h2 class="card-title text-white">Complete quests to earn vouchers</h2>
         <div class="flex card-actions justify-start mt-4">
           <router-link to="/quest">
-            <CustomButton color="midnight" roundness="full">
+            <CustomButton color="black" roundness="full">
               <div class="flex items-center gap-2">
                 Check It Out
                 <ArrowRightIcon class="h-4 w-4" />
@@ -97,11 +97,6 @@
     </div>
   </div>
 
-  <CustomModal modal-title="Hello World">
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim maiores ipsam
-    neque.
-  </CustomModal>
-
   <CustomDrawer
     drawer-title="You joined Challenge 1!"
     drawer-subtitle="Do you want to complete the challenge now?"
@@ -120,11 +115,9 @@ import { communitySharingData } from '@/data/communitySharing';
 import ParentHeader from '@/components/NavBar/ParentHeader.vue';
 import CustomButton from '@/components/Button/CustomButton.vue';
 import { ArrowRightIcon } from '@heroicons/vue/24/solid';
-import { openModal } from '@/helpers/common';
 import { openDrawer } from '@/helpers/common';
-import CustomModal from '@/components/Modal/CustomModal.vue';
 import CustomDrawer from '@/components/Modal/CustomDrawer.vue';
-import { pageLoadAnimation } from '@/helpers/pageLoader';
+import { pageLoadAnimation } from '@/helpers/common';
 
 export default {
   name: 'LandingPage',
@@ -133,7 +126,6 @@ export default {
     ParentHeader,
     CustomButton,
     ArrowRightIcon,
-    CustomModal,
     CustomDrawer,
   },
   data() {
@@ -148,9 +140,6 @@ export default {
     pageLoadAnimation(divIds);
   },
   methods: {
-    showModal() {
-      openModal();
-    },
     showDrawer() {
       openDrawer();
     },

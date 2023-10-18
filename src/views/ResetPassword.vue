@@ -23,11 +23,7 @@
             />
           </div>
 
-          <CustomButton
-            width="full"
-            color="primary"
-            @click="handleResetPassword"
-          >
+          <CustomButton width="full" color="black" @click="handleResetPassword">
             <span v-if="isLoading">
               <CustomLoader loading="isLoading" />
             </span>

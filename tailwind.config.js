@@ -13,10 +13,20 @@ export default {
       },
       colors: {
         midnight: '#221E2F',
+        red: {
+          light: '#FF0000',
+          DEFAULT: '#FF0000',
+          dark: '#8B0000',
+        },
         green: {
           light: '#9E9E9E',
           DEFAULT: '#006400',
           dark: '#006400',
+        },
+        blue: {
+          light: '#ADD8E6',
+          DEFAULT: '#0000FF',
+          dark: '#00008B',
         },
         purple: {
           light: '#A3B3ED',

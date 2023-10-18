@@ -22,7 +22,7 @@ const ButtonVariants = cva(
         white: 'bg-white text-gray-800  hover:bg-gray-100 focus:ring-white',
         black: 'bg-black text-white hover:bg-gray-800',
         midnight: 'bg-midnight text-white hover:bg-graty-800',
-        ghost: 'bg-none hover:bg-gray-800',
+        ghost: 'bg-none hover:bg-gray-800 text-white-light ',
       },
       /* button sizes */
       size: {

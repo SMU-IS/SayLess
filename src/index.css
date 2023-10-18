@@ -37,4 +37,8 @@
   .gradientQuest {
     @apply bg-gradient-to-r from-trans-light via-trans to-trans-dark px-3 py-1 rounded-3xl  border border-yellow-100;
   }
+
+  .bottomDrawer {
+    @apply bg-white absolute bottom-0 shadow-2xl rounded-t-lg w-full p-6;
+  }
 }

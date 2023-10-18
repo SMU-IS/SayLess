@@ -26,9 +26,9 @@
                   roundness="full"
                   :color="
                     content.status === 'In Progress'
-                      ? 'primary'
+                      ? 'blue'
                       : content.status === 'Not Started'
-                      ? 'danger'
+                      ? 'red'
                       : 'success'
                   "
                   @click="changeTab('chat')"

@@ -45,9 +45,7 @@
 
 <script>
 import { ref, onMounted } from 'vue';
-
 import { gsap } from 'gsap';
-
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 
 gsap.registerPlugin(MotionPathPlugin);

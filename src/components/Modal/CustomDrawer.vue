@@ -20,7 +20,7 @@
         >
           {{ buttonTrue }}
         </CustomButton>
-        <CustomButton width="full" roundness="round" size="large" color="ghost">
+        <CustomButton width="full" roundness="round" size="large" color="ghost"  >
           {{ buttonFalse }}
         </CustomButton>
       </form>

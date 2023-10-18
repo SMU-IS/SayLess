@@ -20,7 +20,13 @@
         >
           {{ buttonTrue }}
         </CustomButton>
-        <CustomButton width="full" roundness="round" size="large" color="ghost">
+        <CustomButton
+          width="full"
+          roundness="round"
+          size="large"
+          color="ghost"
+          @click="onDrawerClose"
+        >
           {{ buttonFalse }}
         </CustomButton>
       </form>
@@ -34,6 +40,7 @@
 
 <script>
 import CustomButton from '@/components/Button/CustomButton.vue';
+import { closeDrawer } from '@/helpers/common';
 
 export default {
   name: 'CustomDrawer',
@@ -60,6 +67,11 @@ export default {
     buttonTrue: {
       type: String,
       default: '',
+    },
+  },
+  methods: {
+    onDrawerClose() {
+      closeDrawer();
     },
   },
 };

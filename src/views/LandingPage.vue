@@ -1,7 +1,7 @@
 <template>
   <ParentHeader> Wasteless Kitchen </ParentHeader>
-  <div class="flex flex-row justify-center gap-4 mt-32">
-    <CustomCard background="white" size="small">
+  <div id="tl1" class="flex flex-row justify-center gap-4 mt-32">
+    <CustomCard background="white" size="small" @click="tween">
       <div class="card-body items-left text-left">
         <div class="bg-white min-h-[60px] sm:min-h-[150px]">
           <img :src="InventoryIcon" :alt="Inventory" class="w-1/2" />
@@ -24,7 +24,7 @@
     </CustomCard>
   </div>
 
-  <div class="flex flex-row justify-center mt-8">
+  <div id="tl2" class="flex flex-row justify-center mt-8">
     <CustomCard background="gradient" size="small" width="full">
       <div class="p-5">
         <h2 class="card-title text-white">Complete quests to earn vouchers</h2>
@@ -42,7 +42,7 @@
     </CustomCard>
   </div>
 
-  <div class="flex flex-col md:items-center mt-8">
+  <div id="tl3" class="flex flex-col md:items-center mt-8">
     <h3>Community Sharing</h3>
 
     <div class="grid md:grid-cols-3 justify-center mt-8 gap-5 md:mx-32">
@@ -124,6 +124,7 @@ import { openModal } from '@/helpers/common';
 import { openDrawer } from '@/helpers/common';
 import CustomModal from '@/components/Modal/CustomModal.vue';
 import CustomDrawer from '@/components/Modal/CustomDrawer.vue';
+import { gsap } from 'gsap';
 
 export default {
   name: 'LandingPage',
@@ -141,6 +142,14 @@ export default {
       GroupBuyIcon,
       communitySharingData,
     };
+  },
+  mounted() {
+    let tl = gsap.timeline();
+    let tween = tl
+      .from('#tl1', { y: 0, opacity: 0, ease: 'power1.out' })
+      .from('#tl2', { y: 50, opacity: 0, ease: 'power1.out' }, '>-0.2')
+      .from('#tl3', { y: 50, opacity: 0, ease: 'power1.out' }, '>-0.2');
+    tween.play();
   },
   methods: {
     showModal() {

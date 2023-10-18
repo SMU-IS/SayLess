@@ -3,10 +3,10 @@
     <div class="flex gradientQuest">
       <div v-for="stars in sortedQuestCards" :key="stars.id">
         <span v-if="stars.checked">
-          <StarIcon class="w-5 mx-1 fill-[#FFE993]" />
+          <StarIcon class="w-4 mx-1 fill-[#FFE993]" />
         </span>
         <p v-else>
-          <StarIcon class="w-5 mx-1 fill-gray" />
+          <StarIcon class="w-4 mx-1 fill-gray" />
         </p>
       </div>
     </div>

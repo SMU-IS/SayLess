@@ -35,7 +35,7 @@
 
 @layer components {
   .gradientQuest {
-    @apply bg-gradient-to-r from-trans-light via-trans to-trans-dark px-3 py-1 rounded-3xl  border border-yellow-100;
+    @apply bg-gradient-to-r from-transparent-light via-transparent to-transparent-dark px-3 py-1 rounded-3xl  border border-yellow-100;
   }
 
   .bottomDrawer {

@@ -51,7 +51,6 @@
 import InventoryIcon from '@/assets/Icons/GroupBuy.png';
 import GroupBuyIcon from '@/assets/Icons/GroupBuy.png';
 import CustomCard from '@/components/Card/CustomCard.vue';
-import { communitySharingData } from '@/data/communitySharing';
 import ParentHeader from '@/components/NavBar/ParentHeader.vue';
 import CustomButton from '@/components/Button/CustomButton.vue';
 import { ArrowRightIcon } from '@heroicons/vue/24/solid';
@@ -71,7 +70,6 @@ export default {
     return {
       InventoryIcon,
       GroupBuyIcon,
-      communitySharingData,
     };
   },
   mounted() {

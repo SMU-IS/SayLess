@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar bg-base-100 hidden md:block py-3 fixed z-50">
+  <div class="navbar bg-base-100 hidden md:block py-4 fixed z-50">
     <div class="flex flex-row justify-between">
       <CustomButton color="ghost" @click="navigateHome">
         <div class="flex items-center gap-3">
@@ -9,12 +9,12 @@
       </CustomButton>
 
       <div class="flex items-center gap-2">
-        <p v-if="name !== 'null'">{{ name }}</p>
+        <p v-if="name">{{ name }}</p>
         <p v-else>{{ email }}</p>
         <div class="dropdown dropdown-left flex pr-5 gap-5">
           <label tabindex="0" class="btn btn-ghost btn-circle avatar">
             <div class="w-7 h-7 rounded-full">
-              <img v-if="profilePic !== 'null'" :src="profilePic" />
+              <img v-if="profilePic" :src="profilePic" />
               <UserIcon v-else class="rounded-full" />
             </div>
           </label>
@@ -27,14 +27,23 @@
               :key="links.title"
               @click="handleClick(links.path)"
             >
-              <p>{{ links.title }}</p>
+              <p class="text-md">{{ links.title }}</p>
             </li>
 
-            <li @click="logout"><p>Logout</p></li>
+            <li @click="showModal"><p>Logout</p></li>
           </ul>
         </div>
       </div>
     </div>
+
+    <CustomModal
+      modal-id="my_modal_2"
+      modal-title="Are you sure you want to log out?"
+      confirmation-text="Log Out"
+      :click-handler="logout"
+    >
+      <p>You will need to log in again.</p>
+    </CustomModal>
   </div>
 </template>
 
@@ -44,10 +53,13 @@ import { navLinks } from '@/data/navLinks';
 import { goHome, scrollToTop } from '@/helpers/common';
 import { UserIcon } from '@heroicons/vue/24/outline';
 import Avocado from '@/assets/Icons/Avocado.png';
+import CustomModal from '@/components/Modal/CustomModal.vue';
+import { openModal } from '@/helpers/common';
+import { getResponse } from '@/helpers/getResponse';
 
 export default {
   name: 'DesktopNavBar',
-  components: { CustomButton, UserIcon },
+  components: { CustomButton, UserIcon, CustomModal },
   data() {
     return {
       email: this.$store.getters.getEmail,
@@ -58,6 +70,9 @@ export default {
     };
   },
   methods: {
+    showModal() {
+      openModal('my_modal_2');
+    },
     async logout() {
       try {
         await this.$store.dispatch('logout');

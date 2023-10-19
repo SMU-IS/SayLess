@@ -1,11 +1,11 @@
 <template>
-  <div class="flex flex-col md:items-center">
+  <div class="flex flex-col md:items-center ml-6 mb-28">
     <div class="flex hide-scroll-bar overflow-x-scroll">
       <div class="flex flex-nowrap">
         <div v-for="content in questCards" :key="content.id">
           <div class="inline-block px-3">
             <div
-              class="relative w-72 h-64 max-w-xs overflow-hidden rounded-lg shadow-md !bg-card-light hover:shadow-xl transition-shadow duration-300 ease-in-out"
+              class="relative w-72 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-card-light hover:shadow-xl transition-shadow duration-300 ease-in-out"
             >
               <div
                 class="p-4 font-bold tracking-tight min-h-[20px] bg-[#221E2F] w-full text-pink"
@@ -26,10 +26,10 @@
                   roundness="full"
                   :color="
                     content.status === 'In Progress'
-                      ? 'primary'
+                      ? 'blue'
                       : content.status === 'Not Started'
-                      ? 'danger'
-                      : 'success'
+                      ? 'red'
+                      : 'green'
                   "
                   @click="changeTab('chat')"
                   >{{ content.status }}</CustomButton
@@ -65,7 +65,7 @@ export default {
 
 @layer components {
   .checkedIcon {
-    @apply text-trans-dark;
+    @apply text-transparent-dark;
   }
 
   .icon-checked {

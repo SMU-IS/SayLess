@@ -12,11 +12,21 @@ export default {
         contain: 'contain',
       },
       colors: {
-        midnight: '#111827',
+        midnight: '#221E2F',
+        red: {
+          light: '#EE4B2B',
+          DEFAULT: '#CC5500',
+          dark: '#D22B2B',
+        },
         green: {
-          light: '#9E9E9E',
-          DEFAULT: '#006400',
+          light: '#228B22',
+          DEFAULT: '#9E9E9E',
           dark: '#006400',
+        },
+        blue: {
+          light: '#ADD8E6',
+          DEFAULT: '#0047AB',
+          dark: '#00008B',
         },
         purple: {
           light: '#A3B3ED',
@@ -30,15 +40,25 @@ export default {
         },
         main: {
           light: '#2D1577',
-          DEFAULT: '#140935',
-          dark: '#0C0520',
+          DEFAULT: '#242343',
+          dark: '#191835',
+        },
+        white: {
+          light: '#94A3B8',
+          DEFAULT: '#FFFFFF',
+          dark: '#E2E8F0',
+        },
+        black: {
+          light: '#343434',
+          DEFAULT: '#000000',
+          dark: '#28282B',
         },
         card: {
           light: '#332E46',
           DEFAULT: '#221E2F',
           dark: '#1B1826',
         },
-        trans: {
+        transparent: {
           light: 'rgba(255,255,255,0.3)',
           DEFAULT: 'rgba(255,255,255,0.2)',
           dark: '#FFFFFF1A',

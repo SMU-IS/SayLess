@@ -1,12 +1,12 @@
 <template>
   <div
-    class="relative bg-midnight flex flex-col min-h-screen w-screen overflow-auto"
+    class="relative bg-main flex flex-col min-h-screen w-screen overflow-auto"
   >
     <div v-if="isAuthenticated">
       <DesktopNavBar />
     </div>
 
-    <div :class="{ 'mx-6 mb-28 z-0': isAuthenticated }">
+    <div :class="childrenStyle">
       <router-view />
     </div>
 
@@ -30,6 +30,15 @@ export default {
   computed: {
     isAuthenticated() {
       return this.$store.getters.getEmail;
+    },
+    getRouteName() {
+      return this.$route.name;
+    },
+    childrenStyle() {
+      return {
+        'mx-6 mb-28 z-0':
+          this.isAuthenticated && this.getRouteName !== 'QuestPage',
+      };
     },
   },
 };

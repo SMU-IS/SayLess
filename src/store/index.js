@@ -26,10 +26,12 @@ const store = createStore({
       return state.user.email;
     },
     getName(state) {
-      return state.user.name;
+      return state.user.name !== 'null' ? state.user.name : null;
     },
     getProfilePicture(state) {
-      return state.user.profilePicture;
+      return state.user.profilePicture !== 'null'
+        ? state.user.profilePicture
+        : null;
     },
     getFood(state) {
       return state.user.foodListings;

@@ -2,8 +2,8 @@
   <div class="flex justify-center items-center h-screen mx-5 text-black">
     <CustomCard background="white" size="large" width="full">
       <div class="flex flex-col justify-center items-center">
-        <IdentificationIcon class="w-10 h-10" />
-        <h3 class="mt-3 text-center text-black">Get Started</h3>
+        <img :src="Avocado" class="w-20 h-auto" />
+        <h3 class="font-bold text-center mt-3">Get Started</h3>
       </div>
 
       <div class="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -39,9 +39,10 @@
           </div>
 
           <div class="flex flex-row items-center mb-4">
-            <label for="default-checkbox" class="ml-2 cursor-pointer text-sm"
-              >I agree with the <span>Terms & Conditions.</span></label
-            >
+            <input id="rmb" type="checkbox" class="checkbox checkbox-sm" />
+            <label for="rmb" class="ml-2 cursor-pointer"
+              >I agree with the <span>Terms & Conditions. </span>
+            </label>
           </div>
 
           <CustomButton width="full" @click="handleRegister">
@@ -54,7 +55,7 @@
 
         <p class="text-center text-black text-sm mt-12">
           Already have an account? Login
-          <span class="underline">
+          <span class="underline text-midnight font-bold">
             <router-link to="/login"> here </router-link>
           </span>
         </p>
@@ -68,17 +69,16 @@ import CustomButton from '@/components/Button/CustomButton.vue';
 import { getErrorMessage } from '@/helpers/getErrorMessage';
 import { getResponse } from '@/helpers/getResponse';
 import CustomLoader from '@/components/Loader/CustomLoader.vue';
-import { IdentificationIcon } from '@heroicons/vue/24/solid';
 import CustomCard from '@/components/Card/CustomCard.vue';
 import CustomInput from '@/components/Form/CustomInput.vue';
 import { validateSignUpFields, isPasswordMatch } from '@/helpers/validateForm';
+import Avocado from '@/assets/Icons/Avocado.png';
 
 export default {
   name: 'SignUpPage',
   components: {
     CustomButton,
     CustomLoader,
-    IdentificationIcon,
     CustomCard,
     CustomInput,
   },
@@ -88,6 +88,7 @@ export default {
       password: '',
       confirmPassword: '',
       isLoading: false,
+      Avocado,
     };
   },
   methods: {

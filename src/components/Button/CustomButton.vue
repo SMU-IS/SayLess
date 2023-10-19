@@ -13,21 +13,18 @@ const ButtonVariants = cva(
     variants: {
       /* button colors */
       color: {
-        primary: 'bg-blue-500 text-white hover:bg-blue-700 focus:ring-blue-400',
-        danger: 'bg-red-500 text-white  hover:bg-red-700 focus:ring-red-400',
-        success:
-          'bg-green-600 text-white hover:bg-green-700 focus:ring-green-400',
-        warning:
-          'bg-yellow-500 text-gray-800 hover:bg-yellow-400 focus:ring-orange-400',
-        white: 'bg-white text-gray-800  hover:bg-gray-100 focus:ring-white',
-        black: 'bg-black text-white hover:bg-gray-800',
-        midnight: 'bg-midnight text-white hover:bg-graty-800',
-        ghost: 'bg-none hover:bg-gray-800',
+        black: 'bg-black text-white hover:bg-black-dark',
+        white: 'bg-white text-black  hover:bg-white-dark',
+        red: 'bg-red-dark text-white  hover:bg-red',
+        blue: 'bg-blue-dark text-white hover:bg-blue',
+        green: 'bg-green-dark text-white hover:bg-green-light',
+        ghost: 'bg-none text-white-light hover:bg-gray-800 ',
+        gradient: 'bg-gradient-header text-white',
       },
       /* button sizes */
       size: {
-        small: ['text-sm', 'py-1', 'px-2'],
-        medium: ['text-base', 'py-2', 'px-4'],
+        small: ['text-sm', 'py-2', 'px-3'],
+        medium: ['text-base', 'py-3', 'px-4'],
         large: ['text-lg', 'py-4', 'px-8'],
       },
       /* button roundness */
@@ -54,7 +51,7 @@ export default {
     },
     color: {
       type: String,
-      default: 'primary',
+      default: 'black',
     },
     size: {
       type: String,

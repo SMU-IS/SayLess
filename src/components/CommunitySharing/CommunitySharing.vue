@@ -1,10 +1,10 @@
 <template>
-  <div class="flex justify-between items-center md:mx-36">
-    <h3>Community Sharing</h3>
-    <h4>View All</h4>
+  <div class="flex justify-between items-center">
+    <h4 class="text-xl">Community Sharing</h4>
+    <h4 class="text-xl">View All</h4>
   </div>
 
-  <div class="grid md:grid-cols-3 justify-center mt-4 gap-5 md:mx-32">
+  <div class="grid md:grid-cols-3 justify-center mt-4 gap-5">
     <div
       v-for="item in foodList"
       :key="item.id"
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import { scrollToTop } from '@/helpers/common';
 import { mapActions, mapGetters } from 'vuex';
 
 export default {
@@ -39,8 +40,9 @@ export default {
   },
   methods: {
     ...mapActions(['getFoodListings']),
-    getItemDetails() {
-      // console.log(id);
+    getItemDetails(id) {
+      this.$router.push(`/item/${id}`);
+      scrollToTop();
     },
   },
 };

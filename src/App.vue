@@ -10,7 +10,7 @@
       <router-view />
     </div>
 
-    <div v-if="isAuthenticated">
+    <div v-if="isAuthenticated && getRouteName !== 'CommunitySharingDetails'">
       <NavBar />
     </div>
 

@@ -104,7 +104,16 @@ const store = createStore({
     },
     async getFoodListings(context) {
       const apiURL = import.meta.env.VITE_GET_LISTING;
-      const response = await axios.get(apiURL);
+      const config = {
+        headers: {
+          'x-access-token':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5hbWUiLCJpYXQiOjE2OTc1MzM2OTR9.61Sb5M-ZYL74WZbkBKvBMBYfnylTOxtY3FhnS8k518Q',
+        },
+      };
+
+      const { headers } = config;
+      const response = await axios.get(apiURL, { headers });
+      // console.log(response.data);
       if (response) {
         context.commit('SET_FOOD_LISTINGS', response.data);
       }

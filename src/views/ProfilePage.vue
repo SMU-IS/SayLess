@@ -32,7 +32,7 @@
         </span>
       </li>
       <li @click="showModal">
-        <span class="text-red-400">
+        <span class="text-red-light">
           <ArrowRightOnRectangleIcon class="h-5 w-5" />
           Logout
         </span>

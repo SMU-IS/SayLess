@@ -9,11 +9,11 @@
           :color="currentTab === 'chat' ? 'gradient' : null"
           @click="changeTab('chat')"
         >
-          <div class="flex items-center gap-3 px-5">
+          <div class="flex items-center gap-3 px-5 text-white">
             <img
               src="@/assets/Icons/Chat.png"
               alt="Custom Icon"
-              class="pr-1 py-2"
+              class="pr-1 py-2 w-6"
             />
             Chat
           </div>
@@ -25,11 +25,11 @@
           :color="currentTab === 'notifications' ? 'gradient' : null"
           @click="changeTab('notifications')"
         >
-          <div class="flex items-center gap-3 px-5">
+          <div class="flex items-center gap-3 px-5 text-white">
             <img
-              src="@/assets/Icons/ring.png"
+              src="@/assets/Icons/Ring.png"
               alt="Custom Icon"
-              class="pr-1 py-2"
+              class="pr-1 py-2 w-6"
             />
             Notifications
           </div>

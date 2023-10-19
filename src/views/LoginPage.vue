@@ -54,7 +54,7 @@
           <div class="flex flex-col w-full border-opacity-50 pb-8">
             <CustomButton color="black" width="full" @click="handleLogin">
               <span v-if="isLoading">
-                <CustomLoader loading="isLoading" />
+                <CustomLoader :loading="isLoading" />
               </span>
               <p v-else>Sign in</p>
             </CustomButton>
@@ -82,6 +82,7 @@ import CustomInput from '@/components/Form/CustomInput.vue';
 import { validateLoginFields } from '@/helpers/validateForm';
 import CustomCard from '@/components/Card/CustomCard.vue';
 import Avocado from '@/assets/Icons/Avocado.png';
+import { getTokenId } from '@/helpers/getTokenId';
 
 export default {
   name: 'LoginPage',
@@ -112,6 +113,12 @@ export default {
           });
           this.$router.push('/');
           getResponse('success', `Welcome, ${this.email}!`);
+
+          const tokenId = getTokenId();
+          tokenId.then(() => {
+            // console.log(id);
+            // send to backend
+          });
         } catch (err) {
           this.isLoading = false;
           getResponse('error', getErrorMessage(err.message));
@@ -127,6 +134,12 @@ export default {
         this.$router.push('/');
         const getEmail = this.$store.getters.getEmail;
         getResponse('success', `Welcome, ${getEmail}!`);
+
+        const tokenId = getTokenId();
+        tokenId.then(() => {
+          // console.log(id);
+          // send to backend
+        });
       } catch (err) {
         getResponse('error', getErrorMessage(err.message));
       }

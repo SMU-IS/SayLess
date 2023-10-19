@@ -34,7 +34,6 @@
       <circle class="c3 fill-current text-pink" r="12"></circle>
 
       <circle
-        :class="{ dot1: doesMove }"
         class="dot fill-current text-white"
         r="15"
         @click="enter"
@@ -109,7 +108,6 @@ export default {
   data() {
     return {
       scales: ((ref(screen.width).value - 363) / 2 + 320) / 320,
-      doesMove: true,
     };
   },
   methods: {

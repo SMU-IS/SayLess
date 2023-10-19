@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <dialog id="my_drawer" class="modal">
     <div class="bottomDrawer bg-zinc-900">
       <form method="dialog"></form>
@@ -30,16 +30,39 @@
       <button>close</button>
     </form>
   </dialog>
+</template> -->
+
+<template>
+  <div class="drawer drawer_bottom">
+    <input id="my_drawer_4" type="checkbox" class="drawer-toggle" />
+    <div class="drawer-content">
+      <!-- <label for="my-drawer-4" class="drawer-button btn btn-primary"
+        >Open drawer</label
+      > -->
+    </div>
+    <div class="drawer-side">
+      <label
+        for="my_drawer_4"
+        aria-label="close sidebar"
+        class="drawer-overlay"
+      ></label>
+      <ul class="menu p-4 w-full min-h-full bg-base-200 text-base-content">
+        <!-- Sidebar content here -->
+        <li><a>Sidebar Item 1</a></li>
+        <li><a>Sidebar Item 2</a></li>
+      </ul>
+    </div>
+  </div>
 </template>
 
 <script>
-import CustomButton from '@/components/Button/CustomButton.vue';
+// import CustomButton from '@/components/Button/CustomButton.vue';
 
 export default {
   name: 'CustomDrawer',
-  components: {
-    CustomButton,
-  },
+  // components: {
+  //   CustomButton,
+  // },
   props: {
     drawerTitle: {
       type: String,
@@ -64,3 +87,13 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.drawer_bottom .drawer-toggle:checked ~ .drawer-side > *:not(.drawer-overlay) {
+  transform: translateY(60%);
+}
+
+.drawer_bottom .drawer-toggle ~ .drawer-side > *:not(.drawer-overlay) {
+  transform: translateY(100%);
+}
+</style>

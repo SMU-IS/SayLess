@@ -43,21 +43,22 @@
   </div>
 
   <div id="tl3" class="flex flex-col md:items-center mt-8">
-    <h3>Community Sharing</h3>
+    <h3 class="text-white">Community Sharing</h3>
 
     <div class="grid md:grid-cols-3 justify-center mt-8 gap-5 md:mx-32">
-      <div
-        class="cursor-pointer card card-side bg-white shadow-xl md:flex-col md:justify-center md:pb-10 gap-12 items-center md:p-0 md:gap-5 pr-7"
-        @click="showDrawer"
-      >
-        <figure>
-          <img src="../assets/Food/Sourdough.jpg" class="md:w-full" />
-        </figure>
-        <div class="">
-          <h2 class="card-title text-black">Sourdough</h2>
-          <p>Expiry Date 10/10/2023</p>
+      <label for="my_drawer_4" class="drawer-button">
+        <div
+          class="cursor-pointer card card-side bg-white shadow-xl md:flex-col md:justify-center md:pb-10 gap-12 items-center md:p-0 md:gap-5 pr-7"
+        >
+          <figure>
+            <img src="../assets/Food/Sourdough.jpg" class="md:w-full" />
+          </figure>
+          <div class="">
+            <h2 class="card-title text-black">Sourdough</h2>
+            <p>Expiry Date 10/10/2023</p>
+          </div>
         </div>
-      </div>
+      </label>
 
       <div
         class="card card-side bg-white shadow-xl md:flex-col md:justify-center md:pb-10 gap-12 items-center md:p-0 md:gap-5 pr-7"
@@ -121,7 +122,7 @@ import ParentHeader from '@/components/NavBar/ParentHeader.vue';
 import CustomButton from '@/components/Button/CustomButton.vue';
 import { ArrowRightIcon } from '@heroicons/vue/24/solid';
 import { openModal } from '@/helpers/common';
-import { openDrawer } from '@/helpers/common';
+// import { openDrawer } from '@/helpers/common';
 import CustomModal from '@/components/Modal/CustomModal.vue';
 import CustomDrawer from '@/components/Modal/CustomDrawer.vue';
 import { gsap } from 'gsap';
@@ -155,9 +156,9 @@ export default {
     showModal() {
       openModal();
     },
-    showDrawer() {
-      openDrawer();
-    },
+    // showDrawer() {
+    //   openDrawer();
+    // },
   },
 };
 </script>

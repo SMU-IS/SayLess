@@ -14,8 +14,8 @@ const openModal = () => {
   document.getElementById('my_modal_2').showModal();
 };
 
-const openDrawer = () => {
-  document.getElementById('my_drawer').showModal();
-};
+// const openDrawer = () => {
+//   document.getElementById('my_drawer_4').showModal();
+// };
 
-export { goHome, scrollToTop, openModal, openDrawer };
+export { goHome, scrollToTop, openModal };

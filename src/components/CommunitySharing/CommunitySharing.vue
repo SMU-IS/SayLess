@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-between">
-    <h3>Community Sharing</h3>
+    <h4 class="text-white">Community sharing</h4>
   </div>
 
   <div class="grid md:grid-cols-3 justify-center mt-4 gap-5 md:mx-32">

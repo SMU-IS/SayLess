@@ -1,8 +1,8 @@
 <template>
   <div class="w-full">
-    <div class="flex justify-between">
+    <div class="flex justify-between items-baseline">
       <h4 class="text-white">Community sharing</h4>
-      <h4 class="text-sm">View All</h4>
+      <h4 class="text-sm text-green">View All</h4>
     </div>
 
     <div class="grid md:grid-cols-3 mt-4 gap-5">

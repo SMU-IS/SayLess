@@ -1,7 +1,7 @@
-<template>
+<!-- <template>
   <div class="grid grid-cols-2 gap-4 min-w-full">
     <div v-for="item in foodListings" :key="item.id">
-      <CardContainerSecond
+      <CustomCard
         :icon="item.cardImage"
         :alt-text="item.cardTitle"
         :title="item.cardTitle"
@@ -13,12 +13,12 @@
 </template>
 
 <script>
-import CardContainerSecond from '@/components/Card/CardContainerSecond.vue';
+import CustomCard from '@/components/Card/CustomCard.vue';
 
 export default {
   name: 'ListItems',
-  components: { CardContainerSecond },
-  data: function () {
+  components: { CustomCard },
+  data() {
     return {
       foodListings: [],
     };
@@ -40,4 +40,4 @@ export default {
     },
   },
 };
-</script>
+</script> -->

@@ -10,6 +10,7 @@ const chatList = [
     listingImage: Inventory,
     latestMessage: 'Yeah sure! Please click on the request button!',
   },
+
   {
     id: 2,
     profilePic: Profile,
@@ -20,6 +21,30 @@ const chatList = [
   },
   {
     id: 3,
+    profilePic: Profile,
+    personId: 'johndoe72',
+    listingTitle: 'Freshly harvested vegetables',
+    listingImage: Inventory,
+    latestMessage: 'Good morning!',
+  },
+  {
+    id: 4,
+    profilePic: Profile,
+    personId: 'johndoe72',
+    listingTitle: 'Freshly harvested vegetables',
+    listingImage: Inventory,
+    latestMessage: 'Good morning!',
+  },
+  {
+    id: 5,
+    profilePic: Profile,
+    personId: 'johndoe72',
+    listingTitle: 'Freshly harvested vegetables',
+    listingImage: Inventory,
+    latestMessage: 'Good morning!',
+  },
+  {
+    id: 6,
     profilePic: Profile,
     personId: 'johndoe72',
     listingTitle: 'Freshly harvested vegetables',

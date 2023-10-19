@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-center items-center h-screen mx-5 text-black">
-    <CardContainerSecond background="white" size="large" width="full">
+    <CustomCard background="white" size="large" width="full">
       <div class="flex flex-col justify-center items-center">
         <FingerPrintIcon class="h-10 w-10" />
         <h3 class="mt-3 text-black tracking-tight font-extrabold text-2xl">
@@ -58,7 +58,7 @@
           <div class="flex flex-col w-full border-opacity-50 pb-8">
             <CustomButton width="full" @click="handleLogin">
               <span v-if="isLoading">
-                <CustomLoader />
+                <CustomLoader loading="isLoading" />
               </span>
               <p v-else>Sign in</p>
             </CustomButton>
@@ -72,7 +72,7 @@
           </div>
         </form>
       </div>
-    </CardContainerSecond>
+    </CustomCard>
   </div>
 </template>
 
@@ -85,7 +85,7 @@ import GoogleIcon from '@/assets/GoogleIcon.png';
 import { FingerPrintIcon } from '@heroicons/vue/24/solid';
 import CustomInput from '@/components/Form/CustomInput.vue';
 import { validateLoginFields } from '@/helpers/validateForm';
-import CardContainerSecond from '@/components/Card/CardContainerSecond.vue';
+import CustomCard from '@/components/Card/CustomCard.vue';
 
 export default {
   name: 'LoginPage',
@@ -94,7 +94,7 @@ export default {
     CustomLoader,
     FingerPrintIcon,
     CustomInput,
-    CardContainerSecond,
+    CustomCard,
   },
   data() {
     return {

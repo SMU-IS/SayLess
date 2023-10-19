@@ -1,18 +1,26 @@
 <template>
-  <div>
-    <CirclesToRhombusesSpinner
-      :animation-duration="1000"
-      :circles-num="3"
-      :circle-size="10"
-      color="#ffffff"
-    />
-  </div>
+  <beat-loader :loading="loading" :color="color" :size="size" />
 </template>
+
 <script>
-import { CirclesToRhombusesSpinner } from 'epic-spinners';
+import BeatLoader from 'vue-spinner/src/BeatLoader.vue';
 
 export default {
   name: 'CustomLoader',
-  components: { CirclesToRhombusesSpinner },
+  components: { BeatLoader },
+  props: {
+    loading: {
+      type: Boolean,
+      default: true,
+    },
+    color: {
+      type: String,
+      default: '#fff',
+    },
+    size: {
+      type: String,
+      default: '10px',
+    },
+  },
 };
 </script>

@@ -14,9 +14,9 @@ export default {
       colors: {
         midnight: '#221E2F',
         red: {
-          light: '#FF0000',
-          DEFAULT: '#FF0000',
-          dark: '#8B0000',
+          light: '#EE4B2B',
+          DEFAULT: '#CC5500',
+          dark: '#D22B2B',
         },
         green: {
           light: '#228B22',
@@ -45,8 +45,13 @@ export default {
         },
         white: {
           light: '#94A3B8',
-          DEFAULT: '#ffffff',
+          DEFAULT: '#FFFFFF',
           dark: '#E2E8F0',
+        },
+        black: {
+          light: '#343434',
+          DEFAULT: '#000000',
+          dark: '#28282B',
         },
         card: {
           light: '#332E46',

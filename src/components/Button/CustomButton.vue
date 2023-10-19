@@ -13,12 +13,12 @@ const ButtonVariants = cva(
     variants: {
       /* button colors */
       color: {
-        black: 'bg-black text-white hover:bg-gray-800',
-        white: 'bg-white text-black  hover:bg-gray-100',
-        red: 'bg-red-500 text-white  hover:bg-red-700',
+        black: 'bg-black text-white hover:bg-black-dark',
+        white: 'bg-white text-black  hover:bg-white-dark',
+        red: 'bg-red-dark text-white  hover:bg-red',
         blue: 'bg-blue-dark text-white hover:bg-blue',
         green: 'bg-green-dark text-white hover:bg-green-light',
-        ghost: 'bg-none hover:bg-gray-800 text-white-light',
+        ghost: 'bg-none text-white-light hover:bg-gray-800 ',
         gradient: 'bg-gradient-header text-white',
       },
       /* button sizes */

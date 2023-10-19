@@ -55,6 +55,7 @@ import { UserIcon } from '@heroicons/vue/24/outline';
 import Avocado from '@/assets/Icons/Avocado.png';
 import CustomModal from '@/components/Modal/CustomModal.vue';
 import { openModal } from '@/helpers/common';
+import { getResponse } from '@/helpers/getResponse';
 
 export default {
   name: 'DesktopNavBar',

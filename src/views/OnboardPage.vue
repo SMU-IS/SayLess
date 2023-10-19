@@ -16,7 +16,7 @@
         </div>
         <p class="text-center text-white text-md my-4">
           Already have an account? Login
-          <span class="underline text-green-50">
+          <span class="underline">
             <router-link to="/login"> here </router-link>
           </span>
         </p>

@@ -12,18 +12,12 @@
         </p>
       </div>
       <form method="dialog" class="flex flex-col justify-around gap-2">
-        <CustomButton
-          width="full"
-          roundness="round"
-          size="large"
-          color="success"
-        >
+        <CustomButton width="full" roundness="round" color="green">
           {{ buttonTrue }}
         </CustomButton>
         <CustomButton
           width="full"
           roundness="round"
-          size="large"
           color="ghost"
           @click="onDrawerClose"
         >

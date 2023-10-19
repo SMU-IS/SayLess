@@ -48,15 +48,6 @@
   <div id="divThree" class="flex flex-col md:items-center mt-8">
     <CommunitySharing />
   </div>
-
-  <CustomDrawer
-    drawer-title="You joined Challenge 1!"
-    drawer-subtitle="Do you want to complete the challenge now?"
-    button-false="Not now"
-    button-true="Yes, take me there!"
-  >
-    Get an item for free from the Community Sharing page
-  </CustomDrawer>
 </template>
 
 <script>
@@ -66,7 +57,6 @@ import CustomCard from '@/components/Card/CustomCard.vue';
 import ParentHeader from '@/components/NavBar/ParentHeader.vue';
 import CustomButton from '@/components/Button/CustomButton.vue';
 import { ArrowRightIcon } from '@heroicons/vue/24/solid';
-import CustomDrawer from '@/components/Modal/CustomDrawer.vue';
 import { pageLoadAnimation } from '@/helpers/common';
 import CommunitySharing from '@/components/CommunitySharing/CommunitySharing.vue';
 
@@ -77,7 +67,6 @@ export default {
     ParentHeader,
     CustomButton,
     ArrowRightIcon,
-    CustomDrawer,
     CommunitySharing,
   },
   data() {

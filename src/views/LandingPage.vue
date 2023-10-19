@@ -99,16 +99,8 @@
         </div>
       </div>
     </div>
+    <CommunitySharing />
   </div>
-
-  <CustomDrawer
-    drawer-title="You joined Challenge 1!"
-    drawer-subtitle="Do you want to complete the challenge now?"
-    button-false="Not now"
-    button-true="Yes, take me there!"
-  >
-    Get an item for free from the Community Sharing page
-  </CustomDrawer>
 </template>
 
 <script>
@@ -121,6 +113,7 @@ import CustomButton from '@/components/Button/CustomButton.vue';
 import { ArrowRightIcon } from '@heroicons/vue/24/solid';
 import CustomDrawer from '@/components/Modal/CustomDrawer.vue';
 import { pageLoadAnimation } from '@/helpers/common';
+import CommunitySharing from '@/components/CommunitySharing/CommunitySharing.vue';
 
 export default {
   name: 'LandingPage',
@@ -129,7 +122,7 @@ export default {
     ParentHeader,
     CustomButton,
     ArrowRightIcon,
-    CustomDrawer,
+    CommunitySharing,
   },
   data() {
     return {

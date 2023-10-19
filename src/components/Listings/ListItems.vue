@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
   <div class="grid grid-cols-2 gap-4 min-w-full">
     <div v-for="item in foodListings" :key="item.id">
       <CustomCard
@@ -40,4 +40,4 @@ export default {
     },
   },
 };
-</script> -->
+</script>

@@ -46,59 +46,7 @@
   </div>
 
   <div id="divThree" class="flex flex-col md:items-center mt-8">
-    <h4 class="text-white">Community sharing</h4>
-
-    <div class="grid md:grid-cols-3 justify-center mt-4 gap-5 md:mx-32">
-      <label for="my_drawer_4" class="drawer-button">
-        <div
-          class="cursor-pointer card card-side bg-white shadow-xl md:flex-col md:justify-center md:pb-10 gap-12 items-center md:p-0 md:gap-5 pr-7"
-        >
-          <figure>
-            <img src="../assets/Food/Sourdough.jpg" class="md:w-full" />
-          </figure>
-          <div class="">
-            <h2 class="card-title text-black">Sourdough</h2>
-            <p>Expiry Date 10/10/2023</p>
-          </div>
-        </div>
-      </label>
-
-      <div
-        class="card card-side bg-white shadow-xl md:flex-col md:justify-center md:pb-10 gap-12 items-center md:p-0 md:gap-5 pr-7"
-      >
-        <figure>
-          <img src="../assets/Food/Sourdough.jpg" class="md:w-full" />
-        </figure>
-        <div class="">
-          <h2 class="card-title text-black">Sourdough</h2>
-          <p>Expiry Date 10/10/2023</p>
-        </div>
-      </div>
-
-      <div
-        class="card card-side bg-white shadow-xl md:flex-col md:justify-center md:pb-10 gap-12 items-center md:p-0 md:gap-5 pr-7"
-      >
-        <figure>
-          <img src="../assets/Food/Sourdough.jpg" class="md:w-full" />
-        </figure>
-        <div class="">
-          <h2 class="card-title text-black">Sourdough</h2>
-          <p>Expiry Date 10/10/2023</p>
-        </div>
-      </div>
-
-      <div
-        class="card card-side bg-white shadow-xl md:flex-col md:justify-center md:pb-10 gap-12 items-center md:p-0 md:gap-5 pr-7"
-      >
-        <figure>
-          <img src="../assets/Food/Sourdough.jpg" class="md:w-full" />
-        </figure>
-        <div>
-          <h2 class="card-title text-black">Sourdough</h2>
-          <p>Expiry Date 10/10/2023</p>
-        </div>
-      </div>
-    </div>
+    <CommunitySharing />
   </div>
 
   <CustomDrawer
@@ -120,6 +68,7 @@ import CustomButton from '@/components/Button/CustomButton.vue';
 import { ArrowRightIcon } from '@heroicons/vue/24/solid';
 import CustomDrawer from '@/components/Modal/CustomDrawer.vue';
 import { pageLoadAnimation } from '@/helpers/common';
+import CommunitySharing from '@/components/CommunitySharing/CommunitySharing.vue';
 
 export default {
   name: 'LandingPage',
@@ -129,6 +78,7 @@ export default {
     CustomButton,
     ArrowRightIcon,
     CustomDrawer,
+    CommunitySharing,
   },
   data() {
     return {

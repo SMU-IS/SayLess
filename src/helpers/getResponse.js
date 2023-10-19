@@ -5,9 +5,10 @@ const getResponse = (icon, text) => {
     icon: icon,
     text: text,
     position: 'center',
-    timer: 1000,
+    padding: '0 0 3rem 0',
+    timer: 1500,
     showConfirmButton: false,
-    color: '#716add',
+    color: '#221E2F',
   });
 };
 

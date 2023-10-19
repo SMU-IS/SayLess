@@ -29,7 +29,7 @@
                       ? 'blue'
                       : content.status === 'Not Started'
                       ? 'red'
-                      : 'success'
+                      : 'green'
                   "
                   @click="changeTab('chat')"
                   >{{ content.status }}</CustomButton

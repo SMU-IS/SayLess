@@ -6,7 +6,7 @@
         <CustomButton
           size="small"
           roundness="full"
-          :color="currentTab === 'chat' ? 'success' : null"
+          :color="currentTab === 'chat' ? 'gradient' : null"
           @click="changeTab('chat')"
         >
           <div class="flex items-center gap-3 px-5">
@@ -22,7 +22,7 @@
         <CustomButton
           size="small"
           roundness="full"
-          :color="currentTab === 'notifications' ? 'success' : null"
+          :color="currentTab === 'notifications' ? 'gradient' : null"
           @click="changeTab('notifications')"
         >
           <div class="flex items-center gap-3 px-5">

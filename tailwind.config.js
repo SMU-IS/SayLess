@@ -19,13 +19,13 @@ export default {
           dark: '#8B0000',
         },
         green: {
-          light: '#9E9E9E',
-          DEFAULT: '#006400',
+          light: '#228B22',
+          DEFAULT: '#9E9E9E',
           dark: '#006400',
         },
         blue: {
           light: '#ADD8E6',
-          DEFAULT: '#0000FF',
+          DEFAULT: '#0047AB',
           dark: '#00008B',
         },
         purple: {

@@ -8,9 +8,10 @@ import LandingPageVue from '@/views/LandingPage.vue';
 import LoginPageVue from '@/views/LoginPage.vue';
 import SignUpPage from '@/views/SignUpPage.vue';
 import ResetPasswordPage from '@/views/ResetPassword.vue';
-import ListItemDetails from '@/components/Listings/ListItemsDetails.vue';
 import RecipePage from '@/views/RecipePage.vue';
 import ProfilePage from '@/views/ProfilePage.vue';
+import ChatDetails from '@/views/ChatDetails.vue';
+import CommunitySharingDetails from '@/components/CommunitySharing/CommunitySharingDetails.vue';
 import store from '@/store';
 
 const routes = [
@@ -40,6 +41,11 @@ const routes = [
     component: LandingPageVue,
   },
   {
+    path: '/item/:id',
+    name: 'CommunitySharingDetails',
+    component: CommunitySharingDetails,
+  },
+  {
     path: '/quest',
     name: 'QuestPage',
     component: QuestPageVue,
@@ -60,11 +66,6 @@ const routes = [
     component: PageNotFound,
   },
   {
-    path: '/item/:id',
-    name: 'ListItemDetails',
-    component: ListItemDetails,
-  },
-  {
     path: '/get-recipe',
     name: 'RecipePage',
     component: RecipePage,
@@ -73,6 +74,16 @@ const routes = [
     path: '/profile',
     name: 'ProfilePage',
     component: ProfilePage,
+  },
+  {
+    path: '/chat',
+    name: 'ChatDetails',
+    component: ChatDetails,
+  },
+  {
+    path: '/message/:chatId',
+    name: 'chat-details',
+    component: ChatDetails,
   },
 ];
 

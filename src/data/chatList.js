@@ -5,19 +5,19 @@ const chatList = [
   {
     id: 1,
     profilePic: Profile,
-    personId: 'bryanchua1122',
+    personId: 'joshua55',
     listingTitle: 'Free Onions',
     listingImage: Inventory,
-    latestMessage: 'Hello there!',
+    latestMessage: 'Yeah sure! Please click on the request button!',
   },
 
   {
     id: 2,
     profilePic: Profile,
     personId: 'abigailchua12',
-    listingTitle: 'Dozen of Eggs Available',
+    listingTitle: 'Free Sourdough',
     listingImage: Inventory,
-    latestMessage: 'How are you?',
+    latestMessage: 'Yeah sure! Please click on the request button!',
   },
   {
     id: 3,

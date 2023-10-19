@@ -2,6 +2,7 @@
   <div class="w-full">
     <div class="flex justify-between">
       <h4 class="text-white">Community sharing</h4>
+      <h4 class="text-sm">View All</h4>
     </div>
 
     <div class="grid md:grid-cols-3 mt-4 gap-5">
@@ -9,6 +10,7 @@
         v-for="item in foodList"
         :key="item.id"
         class="md:max-w-sm w-full max-w-full flex md:block rounded"
+        @click="getItemDetails(item.id)"
       >
         <div
           class="h-full w-32 md:h-48 md:w-full flex-none bg-cover rounded-l md:rounded-l-none md:rounded-t text-center overflow-hidden"
@@ -44,6 +46,7 @@
 </template>
 
 <script>
+import { scrollToTop } from '@/helpers/common';
 import { mapActions, mapGetters } from 'vuex';
 
 export default {
@@ -61,6 +64,10 @@ export default {
   },
   methods: {
     ...mapActions(['getFoodListings']),
+    getItemDetails(id) {
+      this.$router.push(`/item/${id}`);
+      scrollToTop();
+    },
   },
 };
 </script>

@@ -45,7 +45,7 @@
     </div>
   </div>
 
-  <div id="divThree" class="flex flex-col md:items-center mt-8">
+  <div id="divThree" class="flex flex-col mt-8">
     <CommunitySharing />
   </div>
 </template>

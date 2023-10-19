@@ -36,7 +36,7 @@ export default {
     },
     childrenStyle() {
       return {
-        'mx-6 mb-28':
+        'mx-6 md:mx-12 mb-28':
           this.isAuthenticated && this.getRouteName !== 'QuestPage',
       };
     },

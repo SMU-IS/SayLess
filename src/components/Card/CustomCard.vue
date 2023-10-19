@@ -23,7 +23,7 @@ const CardVariants = cva(
       },
       /* card sizes */
       size: {
-        small: 'p-2',
+        small: 'p-0',
         medium: 'p-4',
         large: 'p-8',
       },
@@ -36,7 +36,7 @@ const CardVariants = cva(
       /* card width */
       width: {
         fit: 'w-fit ',
-        full: 'w-full md:w-1/2',
+        full: 'w-full ',
       },
     },
   },

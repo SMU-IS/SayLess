@@ -1,26 +1,33 @@
 <template>
   <div class="message-list p-2 basis-0 flex-1">
-    <Message
+    <MessageComponent
       v-for="message in messages"
+      :key="message.timestamp"
       :timestamp="message.timestamp"
       :message="message.messageText"
       :sender="message.sender"
-      :currentUser="sender"
+      :current-user="sender"
     />
   </div>
 </template>
 
 <script>
-import Message from '@/components/Chat/Message.vue';
+import MessageComponent from '@/components/Chat/MessageComponent.vue';
 
 export default {
   name: 'MessageList',
-  props: {
-    messages: Object,
-    sender: String,
-  },
   components: {
-    Message,
+    MessageComponent,
+  },
+  props: {
+    messages: {
+      type: Object,
+      required: true,
+    },
+    sender: {
+      type: String,
+      default: '',
+    },
   },
 };
 </script>

@@ -5,9 +5,9 @@
         <div class="container w-1/4 flex justify-start">
           <CustomButton
             roundness="full"
-            @click="goBack"
             size="small"
             style="padding: 0px; background: none"
+            @click="goBack"
           >
             <img
               src="@/assets/Icons/back.png"
@@ -42,20 +42,20 @@
             </p>
           </div>
           <CustomButton
+            v-if="!listingData.requested && sender !== listingData.personId"
             size="medium"
             roundness="round"
             color="primary"
             @click="requestItem"
-            v-if="!listingData.requested && sender !== listingData.personId"
             >Request Item</CustomButton
           >
           <CustomButton
+            v-if="!listingData.accepted && sender == listingData.personId"
             size="small"
             roundness="round"
             color="primary"
-            @click="acceptItem"
-            v-if="!listingData.accepted && sender == listingData.personId"
             :disabled="!listingData.requested"
+            @click="acceptItem"
             >Accept Item</CustomButton
           >
         </div>
@@ -73,21 +73,36 @@ export default {
     CustomButton,
   },
   props: {
-    listingData: Object,
-    messages: Object,
-    sender: String,
+    listingData: {
+      type: Object,
+      required: true,
+    },
+    messages: {
+      type: Object,
+      required: true,
+    },
+    sender: {
+      type: String,
+      default: '',
+    },
   },
+  emits: ['accept', 'request'],
   methods: {
     goBack() {
       this.$router.go(-1);
     },
     requestItem() {
-      this.listingData.requested = true;
-      this.sendMessage('Requested');
+      this.$emit('request', true);
+
+      // console.log('xxx');
+      // this.listingData.requested = true;
+      // this.sendMessage('Requested');
     },
     acceptItem() {
-      this.listingData.accepted = true;
-      this.sendMessage('Accepted');
+      this.$emit('accept', true);
+
+      // this.listingData.accepted = true;
+      // this.sendMessage('Accepted');
       //   this.listingData.reservedFor = sender
     },
     formatTimestamp(timestamp) {
@@ -98,14 +113,14 @@ export default {
         .toString()
         .padStart(2, '0')}`;
     },
-    sendMessage(message) {
-      let currentTime = new Date();
-      this.messages.push({
-        sender: this.sender,
-        messageText: message,
-        timestamp: this.formatTimestamp(currentTime),
-      });
-    },
+    // sendMessage(message) {
+    //   let currentTime = new Date();
+    //   this.messages.push({
+    //     sender: this.sender,
+    //     messageText: message,
+    //     timestamp: this.formatTimestamp(currentTime),
+    //   });
+    // },
   },
 };
 </script>

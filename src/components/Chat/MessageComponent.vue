@@ -12,12 +12,24 @@
 
 <script>
 export default {
-  name: 'Message',
+  name: 'MessageComponent',
   props: {
-    timestamp: String,
-    message: String,
-    sender: String,
-    currentUser: String,
+    timestamp: {
+      type: String,
+      default: '',
+    },
+    message: {
+      type: String,
+      default: '',
+    },
+    sender: {
+      type: String,
+      default: '',
+    },
+    currentUser: {
+      type: String,
+      default: '',
+    },
   },
   computed: {
     messageClass() {

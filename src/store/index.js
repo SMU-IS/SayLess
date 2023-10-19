@@ -20,6 +20,16 @@ const store = createStore({
       recipeListings: [],
       recipeIngredients: [],
     },
+    listingChatItem: {
+      id: 1,
+      // profilePicture: localStorage.getItem('profilePicture'),
+      personId: 'bryanchua1122',
+      listingTitle: 'Free Onions',
+      // listingImage: Inventory,
+      latestMessage: 'Good morning!',
+      requested: false,
+      accepted: false,
+    },
   },
   getters: {
     getEmail(state) {
@@ -38,6 +48,30 @@ const store = createStore({
     },
     getRecipe(state) {
       return state.user.recipeListings;
+    },
+    getChatId(state) {
+      return state.listingChatItem.id;
+    },
+    getRequestedFlag(state) {
+      return state.listingChatItem.requested;
+    },
+    getAcceptedFlag(state) {
+      return state.listingChatItem.accepted;
+    },
+    getLatestMsg(state) {
+      return state.listingChatItem.latestMessage;
+    },
+    getListingTitle(state) {
+      return state.listingChatItem.listingTitle;
+    },
+    getListingImage(state) {
+      return state.listingChatItem.listingImage;
+    },
+    getPersonId(state) {
+      return state.listingChatItem.personId;
+    },
+    getProfilePic(state) {
+      return state.listingChatItem.profilePic;
     },
   },
   mutations: {
@@ -63,6 +97,15 @@ const store = createStore({
     },
     SET_RECIPE_LISTINGS(state, payload) {
       state.user.recipeListings = payload;
+    },
+    SET_ACCEPT_FLAG(state, payload) {
+      state.listingChatItem.accepted = payload;
+    },
+    SET_REQUEST_FLAG(state, payload) {
+      state.listingChatItem.requested = payload;
+    },
+    SET_LATEST_MSG(state, payload) {
+      state.listingChatItem.latestMessage = payload;
     },
   },
   actions: {
@@ -107,6 +150,13 @@ const store = createStore({
       const response = await axios.get(apiURL);
       if (response) {
         context.commit('SET_FOOD_LISTINGS', response.data);
+      }
+    },
+    async getChatDetails(context) {
+      const apiURL = import.meta.env.VITE_GET_CHATDETAILS;
+      const response = await axios.get(apiURL);
+      if (response) {
+        context.commit('SET_CHATDETAILS', response.data);
       }
     },
     async addRecipes(context, { ingredientsList }) {

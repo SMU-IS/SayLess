@@ -82,7 +82,7 @@ const routes = [
     component: ChatDetails,
   },
   {
-    path: '/message/:chatId', // Use a dynamic segment to capture the listing ID
+    path: '/message/:chatId',
     name: 'chat-details',
     component: ChatDetails,
   },

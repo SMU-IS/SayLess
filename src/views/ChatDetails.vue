@@ -5,17 +5,19 @@
       style="height: 590px"
     >
       <ChatHeader
-        :listingData="listingDetails"
+        :listing-data="listingDetails"
         :messages="messages"
         :sender="sender"
+        @request="updateReqFlag"
+        @accept="updateAcceptFlag"
       />
       <MessageList
-        class="w-full w-md-60 overflow-scroll"
         v-if="messages.length !== 0"
+        class="w-full w-md-60 overflow-scroll"
         :messages="messages"
         :sender="sender"
       />
-      <MessageInput @send="sendMessage" :messages="messages" :sender="sender" />
+      <MessageInput :messages="messages" :sender="sender" @send="sendMessage" />
     </div>
   </div>
 </template>
@@ -41,6 +43,12 @@ export default {
       chatId: null,
     };
   },
+  mounted() {
+    this.chatId = this.$route.params.chatId;
+    if (this.chatId) {
+      this.fetchChatData(this.chatId);
+    }
+  },
   methods: {
     formatTimestamp(timestamp) {
       const hours = timestamp.getHours();
@@ -58,6 +66,15 @@ export default {
         timestamp: this.formatTimestamp(currentTime),
       });
     },
+    updateReqFlag(bool) {
+      this.listingDetails.requested = bool;
+      this.sendMessage('Requested');
+    },
+    updateAcceptFlag(bool) {
+      this.listingDetails.accepted = bool;
+      this.sendMessage('Accepted');
+    },
+
     async fetchChatData(chatId) {
       try {
         const chatDataModule = await import(`../data/chat${chatId}.js`);
@@ -66,23 +83,14 @@ export default {
         const listingData = listingDataModule.default;
         if (Array.isArray(chatData)) {
           this.messages = chatData;
-          console.log('YES');
         }
         if (typeof listingData == 'object') {
           this.listingDetails = listingData;
-          console.log('YES');
         }
       } catch (error) {
-        console.error('Error fetching chat data:', error);
         this.messages = [];
       }
     },
-  },
-  mounted() {
-    this.chatId = this.$route.params.chatId;
-    if (this.chatId) {
-      this.fetchChatData(this.chatId);
-    }
   },
 };
 </script>

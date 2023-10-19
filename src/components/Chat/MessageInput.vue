@@ -1,13 +1,14 @@
 <template>
   <div
-    class="promptsContainer flex-1 flex items-center justify-center"
-    id="promptCon"
     v-if="messages.length === 0"
+    id="promptCon"
+    class="promptsContainer flex-1 flex items-center justify-center"
   >
     <div class="promptsContent w-full">
       <h2 class="text-white text-center mb-8">Ask something like:</h2>
       <div
-        v-for="prompt in prompts"
+        v-for="(prompt, index) in prompts"
+        :key="index"
         class="bg-gray-300 rounded-md text-center text-white bg-opacity-20 p-4 mb-3 w-full"
         @click="selectPrompt(prompt)"
       >
@@ -17,17 +18,18 @@
   </div>
   <div class="message-input border-t-2">
     <div class="inputdiv flex w-full mt-5">
-      <input
+      <CustomInput
         v-model="messageText"
-        @keydown.enter="sendMessage"
+        type="text"
         placeholder="Type your message..."
-        class="p-2 rounded-lg flex-1 me-2"
+        class="flex-1 me-2"
+        @keydown.enter="sendMessage"
       />
       <CustomButton
         roundness="full"
-        @click="sendMessage"
         size="small"
         style="padding: 0px; background: none"
+        @click="sendMessage"
       >
         <img
           src="@/assets/Icons/sendButton.png"
@@ -46,15 +48,21 @@ import CustomInput from '@/components/Form/CustomInput.vue';
 
 export default {
   name: 'MessageInput',
-  emits: ['send'],
   components: {
     CustomButton,
     CustomInput,
   },
   props: {
-    messages: Object,
-    sender: String,
+    messages: {
+      type: Object,
+      required: true,
+    },
+    sender: {
+      type: String,
+      required: true,
+    },
   },
+  emits: ['send'],
   data() {
     return {
       messageText: '',

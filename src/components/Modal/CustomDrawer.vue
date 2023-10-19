@@ -12,15 +12,15 @@
         </p>
       </div>
       <form method="dialog" class="flex flex-col justify-around gap-2">
+        <CustomButton width="full" roundness="round" color="green">
+          {{ buttonTrue }}
+        </CustomButton>
         <CustomButton
           width="full"
           roundness="round"
-          size="large"
-          color="success"
+          color="ghost"
+          @click="onDrawerClose"
         >
-          {{ buttonTrue }}
-        </CustomButton>
-        <CustomButton width="full" roundness="round" size="large" color="ghost"  >
           {{ buttonFalse }}
         </CustomButton>
       </form>
@@ -83,6 +83,11 @@ export default {
     buttonTrue: {
       type: String,
       default: '',
+    },
+  },
+  methods: {
+    onDrawerClose() {
+      closeDrawer();
     },
   },
 };

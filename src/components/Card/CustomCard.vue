@@ -15,11 +15,10 @@ const CardVariants = cva(
       /* card background colors */
       background: {
         white: 'bg-white',
-        blue: 'bg-blue-200',
-        red: 'bg-red-200',
-        green: 'bg-green-200',
-        yellow: 'bg-yellow-200',
-        black: 'bg-base-200',
+        blue: 'bg-blue',
+        red: 'bg-red',
+        green: 'bg-green',
+        black: 'bg-black',
         gradient: 'bg-gradient-header bg-cover',
       },
       /* card sizes */

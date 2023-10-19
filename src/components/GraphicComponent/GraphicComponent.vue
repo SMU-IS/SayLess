@@ -76,9 +76,9 @@ export default {
   data() {
     return {
       scales: ((ref(screen.width).value - 363) / 2 + 320) / 320,
+      doesMove: true,
     };
   },
-
   methods: {
     enter() {
       gsap.to('.dot', {

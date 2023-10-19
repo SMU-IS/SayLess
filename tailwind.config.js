@@ -13,10 +13,20 @@ export default {
       },
       colors: {
         midnight: '#221E2F',
+        red: {
+          light: '#EE4B2B',
+          DEFAULT: '#CC5500',
+          dark: '#D22B2B',
+        },
         green: {
-          light: '#9E9E9E',
-          DEFAULT: '#006400',
+          light: '#228B22',
+          DEFAULT: '#9E9E9E',
           dark: '#006400',
+        },
+        blue: {
+          light: '#ADD8E6',
+          DEFAULT: '#0047AB',
+          dark: '#00008B',
         },
         purple: {
           light: '#A3B3ED',
@@ -35,8 +45,13 @@ export default {
         },
         white: {
           light: '#94A3B8',
-          DEFAULT: '#ffffff',
+          DEFAULT: '#FFFFFF',
           dark: '#E2E8F0',
+        },
+        black: {
+          light: '#343434',
+          DEFAULT: '#000000',
+          dark: '#28282B',
         },
         card: {
           light: '#332E46',

@@ -1,3 +1,5 @@
+import { gsap } from 'gsap';
+
 const goHome = (router) => {
   router.push('/');
 };
@@ -10,12 +12,42 @@ const scrollToTop = () => {
   window.scrollTo(options);
 };
 
-const openModal = () => {
-  document.getElementById('my_modal_2').showModal();
+const openModal = (modalId) => {
+  document.getElementById(modalId).showModal();
+};
+
+const closeModal = (modalId) => {
+  document.getElementById(modalId).close();
 };
 
 // const openDrawer = () => {
 //   document.getElementById('my_drawer_4').showModal();
 // };
 
-export { goHome, scrollToTop, openModal };
+const closeDrawer = () => {
+  document.getElementById('my_drawer').close();
+};
+
+const pageLoadAnimation = (elementIds) => {
+  const timeline = gsap.timeline();
+  elementIds.forEach((elementId, i) => {
+    timeline.from(
+      elementId,
+      i === 0
+        ? { y: 0, opacity: 0, ease: 'power1.out' }
+        : { y: 50, opacity: 0, ease: 'power1.out' },
+      '>-0.2',
+    );
+  });
+
+  timeline.play();
+};
+
+export {
+  goHome,
+  scrollToTop,
+  openModal,
+  closeModal,
+  closeDrawer,
+  pageLoadAnimation,
+};

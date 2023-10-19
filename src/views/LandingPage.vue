@@ -1,10 +1,10 @@
 <template>
   <ParentHeader> Wasteless Kitchen </ParentHeader>
-  <div id="tl1" class="flex flex-row justify-center gap-4 mt-32">
-    <CustomCard background="white" size="small" @click="tween">
+  <div id="divOne" class="flex flex-row justify-center gap-4 mt-32">
+    <CustomCard background="white" size="small">
       <div class="card-body items-left text-left">
         <div class="bg-white min-h-[60px] sm:min-h-[150px]">
-          <img :src="InventoryIcon" :alt="Inventory" class="w-1/2" />
+          <img :src="InventoryIcon" alt="Inventory" class="w-1/2" />
         </div>
 
         <h2 class="card-title text-black">Inventory</h2>
@@ -15,7 +15,7 @@
     <CustomCard background="white" size="small">
       <div class="card-body items-left text-left">
         <div class="bg-white min-h-[60px] sm:min-h-[150px]">
-          <img :src="InventoryIcon" :alt="Inventory" class="w-1/2" />
+          <img :src="InventoryIcon" alt="Inventory" class="w-1/2" />
         </div>
 
         <h2 class="card-title text-black">Inventory</h2>
@@ -24,13 +24,13 @@
     </CustomCard>
   </div>
 
-  <div id="tl2" class="flex flex-row justify-center mt-8">
+  <div id="divTwo" class="flex flex-row justify-center mt-8">
     <CustomCard background="gradient" size="small" width="full">
       <div class="p-5">
         <h2 class="card-title text-white">Complete quests to earn vouchers</h2>
         <div class="flex card-actions justify-start mt-4">
           <router-link to="/quest">
-            <CustomButton color="midnight" roundness="full">
+            <CustomButton color="black" roundness="full">
               <div class="flex items-center gap-2">
                 Check It Out
                 <ArrowRightIcon class="h-4 w-4" />
@@ -42,7 +42,7 @@
     </CustomCard>
   </div>
 
-  <div id="tl3" class="flex flex-col md:items-center mt-8">
+  <div id="divThree" class="flex flex-col md:items-center mt-8">
     <h3 class="text-white">Community Sharing</h3>
 
     <div class="grid md:grid-cols-3 justify-center mt-8 gap-5 md:mx-32">
@@ -98,11 +98,6 @@
     </div>
   </div>
 
-  <CustomModal modal-title="Hello World">
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim maiores ipsam
-    neque.
-  </CustomModal>
-
   <CustomDrawer
     drawer-title="You joined Challenge 1!"
     drawer-subtitle="Do you want to complete the challenge now?"
@@ -121,11 +116,8 @@ import { communitySharingData } from '@/data/communitySharing';
 import ParentHeader from '@/components/NavBar/ParentHeader.vue';
 import CustomButton from '@/components/Button/CustomButton.vue';
 import { ArrowRightIcon } from '@heroicons/vue/24/solid';
-import { openModal } from '@/helpers/common';
-// import { openDrawer } from '@/helpers/common';
-import CustomModal from '@/components/Modal/CustomModal.vue';
 import CustomDrawer from '@/components/Modal/CustomDrawer.vue';
-import { gsap } from 'gsap';
+import { pageLoadAnimation } from '@/helpers/common';
 
 export default {
   name: 'LandingPage',
@@ -134,7 +126,6 @@ export default {
     ParentHeader,
     CustomButton,
     ArrowRightIcon,
-    CustomModal,
     CustomDrawer,
   },
   data() {
@@ -145,20 +136,13 @@ export default {
     };
   },
   mounted() {
-    let tl = gsap.timeline();
-    let tween = tl
-      .from('#tl1', { y: 0, opacity: 0, ease: 'power1.out' })
-      .from('#tl2', { y: 50, opacity: 0, ease: 'power1.out' }, '>-0.2')
-      .from('#tl3', { y: 50, opacity: 0, ease: 'power1.out' }, '>-0.2');
-    tween.play();
+    const divIds = ['#divOne', '#divTwo', '#divThree'];
+    pageLoadAnimation(divIds);
   },
   methods: {
     showModal() {
       openModal();
     },
-    // showDrawer() {
-    //   openDrawer();
-    // },
   },
 };
 </script>

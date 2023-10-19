@@ -7,9 +7,7 @@
             <div>
               <img class="w-auto h-7" :src="link.icon" />
             </div>
-            <span class="text-green-light text-sm self-end">{{
-              link.title
-            }}</span>
+            <span class="text-green text-sm self-end">{{ link.title }}</span>
           </div>
         </router-link>
       </div>

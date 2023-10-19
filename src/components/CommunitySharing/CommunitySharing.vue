@@ -1,19 +1,43 @@
 <template>
-  <div class="flex justify-between">
-    <h3>Community Sharing</h3>
-  </div>
+  <div class="w-full">
+    <div class="flex justify-between">
+      <h4 class="text-white">Community sharing</h4>
+    </div>
 
-  <div class="grid md:grid-cols-3 justify-center mt-4 gap-5 md:mx-32">
-    <div
-      v-for="item in foodList"
-      :key="item.id"
-      class="cursor-pointer card card-side bg-white shadow-xl md:flex-col md:justify-center md:pb-10 gap-12 items-center md:p-0 md:gap-5 pr-7"
-    >
-      <figure>
-        <img :src="item.listingImages[0]" class="md:w-full" />
-      </figure>
-      <div>
-        <h2 class="card-title text-black">{{ item.listingTitle }}</h2>
+    <div class="grid md:grid-cols-3 mt-4 gap-5">
+      <div
+        v-for="item in foodList"
+        :key="item.id"
+        class="md:max-w-sm w-full max-w-full flex md:block rounded"
+      >
+        <div
+          class="h-full w-32 md:h-48 md:w-full flex-none bg-cover rounded-l md:rounded-l-none md:rounded-t text-center overflow-hidden"
+          :style="'background-image: url(' + item.listingImages[0] + ')'"
+          title="Woman holding a mug"
+        ></div>
+
+        <div
+          class="w-full bg-white rounded-r md:rounded-b-none md:rounded-b p-4 flex flex-col justify-between leading-normal"
+        >
+          <div class="mb-4 md:mb-8">
+            <p class="text-sm text-gray-600 flex items-center">Members only</p>
+            <div class="text-gray-900 font-bold text-md mb-2">
+              {{ item.listingTitle }}
+            </div>
+            <p class="text-gray-700 text-base">Lorem ipsum dolor sit amet</p>
+          </div>
+          <div class="flex items-center">
+            <img
+              class="w-7 h-7 md:w-10 md:h-10 rounded-full mr-4"
+              :src="item.listingImages[0]"
+              alt="Avatar of Jonathan Reinink"
+            />
+            <div>
+              <p class="text-gray-900 leading-none text-xs">Jonathan Reinink</p>
+              <p class="text-gray-600 text-xs">Aug 18</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

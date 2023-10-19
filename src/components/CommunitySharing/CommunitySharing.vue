@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     ...mapActions(['getFoodListings']),
-    getItemDetails(id) {
+    getItemDetails() {
       // console.log(id);
     },
   },

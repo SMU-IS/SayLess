@@ -11,6 +11,8 @@ import ResetPasswordPage from '@/views/ResetPassword.vue';
 import ListItemDetails from '@/components/Listings/ListItemsDetails.vue';
 import RecipePage from '@/views/RecipePage.vue';
 import ProfilePage from '@/views/ProfilePage.vue';
+import ChatDetails from '@/views/ChatDetails.vue';
+
 import store from '@/store';
 
 const routes = [
@@ -73,6 +75,16 @@ const routes = [
     path: '/profile',
     name: 'ProfilePage',
     component: ProfilePage,
+  },
+  {
+    path: '/chat',
+    name: 'ChatDetails',
+    component: ChatDetails,
+  },
+  {
+    path: '/message/:chatId',
+    name: 'chat-details',
+    component: ChatDetails,
   },
 ];
 

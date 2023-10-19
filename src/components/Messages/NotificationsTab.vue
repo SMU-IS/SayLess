@@ -10,12 +10,12 @@
       <div
         v-for="notification in notificationList"
         :key="notification.id"
-        class="notification-item flex items-center p-2 border-b border-gray-300"
+        class="gap-4 notification-item flex items-center p-2 border-b border-gray-300"
       >
         <img
           :src="notification.notificationImage"
           alt="Notification Pic"
-          class="w-20"
+          class="w-10"
         />
         <div class="notification-details flex-1">
           <p class="text-gray-400">{{ notification.category }}</p>

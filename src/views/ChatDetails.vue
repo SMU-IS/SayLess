@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center mt-32 w-full">
+  <div class="flex justify-center md:mt-32 mt-12 w-full">
     <div
       class="chat-container d-flex flex flex-col h-full w-full md:w-3/4"
       style="height: 590px"

@@ -1,5 +1,7 @@
 <template>
-  <div class="flex justify-center items-center h-screen mx-5 text-black">
+  <div
+    class="flex justify-center items-center h-screen lg:mx-96 mx-6 text-black"
+  >
     <CustomCard background="white" size="large" width="full">
       <div class="flex flex-col justify-center items-center">
         <img :src="Avocado" class="w-20 h-auto" />

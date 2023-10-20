@@ -12,6 +12,7 @@ import RecipePage from '@/views/RecipePage.vue';
 import ProfilePage from '@/views/ProfilePage.vue';
 import ChatDetails from '@/views/ChatDetails.vue';
 import CommunitySharingDetails from '@/components/CommunitySharing/CommunitySharingDetails.vue';
+import CommunitySharingAll from '@/components/CommunitySharing/CommunitySharingAll.vue';
 import store from '@/store';
 
 const routes = [
@@ -39,6 +40,11 @@ const routes = [
     path: '/',
     name: 'LandingPage',
     component: LandingPageVue,
+  },
+  {
+    path: '/community',
+    name: 'CommunitySharingAll',
+    component: CommunitySharingAll,
   },
   {
     path: '/item/:id',

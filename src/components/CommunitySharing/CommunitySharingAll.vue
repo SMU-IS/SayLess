@@ -1,13 +1,18 @@
 <template>
-  <div class="mb-36">
-    <div class="flex justify-between items-baseline">
-      <h4 class="text-white">Community Sharing</h4>
-      <h4 class="text-sm text-green" @click="viewAll">View All</h4>
-    </div>
+  <ParentHeader :show-back-btn="true" @header-click="goBack">
+    Community Sharing
+  </ParentHeader>
+  <div class="mx-auto md:mt-44 mt-28 w-full md:w-1/3">
+    <CustomInput v-model="dataField" type="text" placeholder="Search Item..." />
+  </div>
 
-    <div class="grid md:grid-cols-3 mt-4 gap-5">
+  <p class="md:text-center text-2xl mt-6 text-white">Current deals available</p>
+
+  <div class="flex flex-col md:flex-row justify-center md:gap-4 mb-28">
+    <div class="grid md:grid-cols-3 mt-5 gap-5">
       <div
-        v-for="item in getCommunityListings.slice(0, 3)"
+        v-for="item in communityListings"
+        :id="item.id"
         :key="item.id"
         class="card card-side bg-white text-black shadow-xl rounded-lg cursor-pointer"
         @click="getItemDetails(item.id)"
@@ -43,22 +48,42 @@
 </template>
 
 <script>
-import { scrollToTop } from '@/helpers/common';
 import { mapActions, mapGetters } from 'vuex';
+import ParentHeader from '@/components/NavBar/ParentHeader.vue';
+import { scrollToTop } from '@/helpers/common';
+import CustomInput from '@/components/Form/CustomInput.vue';
 
 export default {
-  name: 'CommunitySharing',
+  name: 'CommunitySharingAll',
+  components: { ParentHeader, CustomInput },
+  data() {
+    return {
+      details: [],
+      dataField: '',
+      filteredDetails: [],
+    };
+  },
   computed: {
     ...mapGetters(['getCommunityListings', 'getProfilePicture']),
+    communityListings() {
+      if (this.dataField) {
+        return this.getCommunityListings.filter((item) => {
+          return item.listingTitle
+            .toLowerCase()
+            .includes(this.dataField.toLowerCase());
+        });
+      } else {
+        return this.getCommunityListings;
+      }
+    },
   },
   mounted() {
     this.fetchCommunityListings();
   },
   methods: {
     ...mapActions(['fetchCommunityListings']),
-    viewAll() {
-      this.$router.push('/community');
-      scrollToTop();
+    goBack() {
+      this.$router.go(-1);
     },
     getItemDetails(id) {
       this.$router.push(`/item/${id}`);

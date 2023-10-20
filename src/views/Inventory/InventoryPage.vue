@@ -21,7 +21,7 @@
     </div>
   </div>
 
-  <div class="flex justify-between mt-6">
+  <div class="flex justify-between mt-6 md:w-1/2 md:mx-auto">
     <p class="md:text-center text-2xl text-white">Your Inventory</p>
     <CustomButton roundness="full" color="gray" size="small">
       <div class="flex flex-row gap-1.5">
@@ -31,7 +31,7 @@
     </CustomButton>
   </div>
 
-  <div class="flex flex-row mt-6 mb-28">
+  <div class="flex flex-row mt-6 mb-28 md:w-1/2 md:mx-auto">
     <CustomCard width="full" background="gray">
       <div class="flex flex-col gap-5">
         <CustomCard

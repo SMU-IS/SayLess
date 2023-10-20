@@ -1,7 +1,7 @@
 <template>
   <ParentHeader>Profile</ParentHeader>
   <div
-    class="flex flex-col text-white text-center items-center md:h-screen gap-4 mt-32 lg:mx-96"
+    class="flex flex-col text-white text-center items-center md:h-screen gap-4 mt-32 md:w-1/2 mx-auto"
   >
     <CustomCard id="divOne" background="black" width="full">
       <div class="flex flex-row items-center gap-5 p-5 text-white">
@@ -48,7 +48,6 @@
 </template>
 
 <script>
-import { getResponse } from '@/helpers/getResponse';
 import CustomCard from '@/components/Card/CustomCard.vue';
 import ParentHeader from '@/components/NavBar/ParentHeader.vue';
 import { ArrowRightOnRectangleIcon } from '@heroicons/vue/24/solid';
@@ -89,7 +88,6 @@ export default {
       try {
         await this.$store.dispatch('logout');
         this.$router.push('/onboard');
-        getResponse('success', "You've logged out!");
       } catch (err) {
         throw err;
       }

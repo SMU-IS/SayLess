@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex justify-center items-center h-screen lg:mx-96 mx-6 text-black"
+    class="flex justify-center items-center h-screen md:w-1/3 md:mx-auto mx-6 text-black"
   >
     <CustomCard background="white" width="full">
       <div class="flex flex-col justify-center items-center mt-5 text-center">

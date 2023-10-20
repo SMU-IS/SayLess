@@ -3,7 +3,7 @@
     <div class="chat-header text-white text-bold mb-1">
       {{ sender }}
     </div>
-    <div class="chat-bubble">{{ message }}</div>
+    <div :class="chatColor">{{ message }}</div>
     <div class="chat-footer text-white">
       <time class="text-xs opacity-50">{{ timestamp }}</time>
     </div>
@@ -36,6 +36,12 @@ export default {
       return {
         'chat chat-end': this.sender == this.currentUser,
         'chat chat-start': this.sender !== this.currentUser,
+      };
+    },
+    chatColor() {
+      return {
+        'chat-bubble bg-green text-white': this.sender == this.currentUser,
+        'chat-bubble text-white': this.sender !== this.currentUser,
       };
     },
   },

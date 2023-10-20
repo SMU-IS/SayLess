@@ -1,8 +1,7 @@
 <template>
-  <div class="flex justify-center md:mt-32 mt-12 w-full">
+  <div class="flex justify-center mt-8 md:mt-32 w-full md:mb-28">
     <div
-      class="chat-container d-flex flex flex-col h-full w-full md:w-3/4"
-      style="height: 590px"
+      class="chat-container d-flex flex flex-col h-full w-full md:w-3/4 h-[43rem] md:h-[40rem]"
     >
       <ChatHeader
         :listing-data="listingDetails"
@@ -10,6 +9,7 @@
         :sender="sender"
         @request="updateReqFlag"
         @accept="updateAcceptFlag"
+        @scroll-to-bottom="scrollToBottom"
       />
       <MessageList
         v-if="messages.length !== 0"
@@ -89,6 +89,18 @@ export default {
         }
       } catch (error) {
         this.messages = [];
+      }
+    },
+    scrollToBottom() {
+      this.$refs.messageList.scrollToBottom();
+    },
+    mounted() {
+      this.chatId = this.$route.params.chatId;
+      if (this.chatId) {
+        this.fetchChatData(this.chatId);
+        this.$nextTick(() => {
+          this.scrollToBottom();
+        });
       }
     },
   },

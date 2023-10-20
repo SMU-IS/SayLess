@@ -3,7 +3,7 @@
     class="flex flex-col text-white text-center justify-center items-center md:h-screen gap-4 lg:mx-96"
   >
     <DetailsHeader @header-click="goBack">
-      {{ data.title }}
+      {{ details.title }}
     </DetailsHeader>
 
     <div class="flex flex-col items-center gap-12 my-28 md:mt-36">
@@ -12,19 +12,19 @@
       >
         <div class="carousel carousel-end rounded-box">
           <div
-            v-for="imgData in data.allImages"
+            v-for="imgData in details.allImages"
             :key="imgData.id"
             class="carousel-item"
           >
-            <img :src="imgData" class="w-52" />
+            <img src="../../assets/Food/Sourdough.jpg" class="w-52" />
           </div>
         </div>
       </div>
 
-      {{ data.name }}
-      {{ data.details }}
-      {{ data.location }}
-      {{ data.owner }}
+      {{ details.name }}
+      {{ details.details }}
+      {{ details.location }}
+      {{ details.owner }}
     </div>
 
     <CustomButton width="full" roundness="round" color="green"
@@ -42,7 +42,7 @@ export default {
   components: { DetailsHeader, CustomButton },
   data() {
     return {
-      data: [],
+      details: [],
     };
   },
   mounted() {
@@ -52,36 +52,31 @@ export default {
     goBack() {
       this.$router.go(-1);
     },
-    async fetchData() {
-      try {
-        await this.$store.dispatch('getFoodListings');
-        const data = this.$store.getters.getFood;
-        const listingId = this.$route.params.id;
-        const selectedListing = data.find((item) => item.id === listingId);
+    fetchData() {
+      const data = this.$store.getters.getCommunityListings;
+      const listingId = this.$route.params.id;
+      const selectedListing = data.find((item) => item.id === listingId);
 
-        if (selectedListing) {
-          const {
-            id,
-            createdBy,
-            isAvailable,
-            listingTitle,
-            listingDetails,
-            listingImages,
-            pickUpLocation,
-          } = selectedListing;
+      if (selectedListing) {
+        const {
+          id,
+          createdBy,
+          isAvailable,
+          listingTitle,
+          listingDetails,
+          listingImages,
+          pickUpLocation,
+        } = selectedListing;
 
-          this.data = {
-            id: id,
-            name: createdBy.name,
-            availablity: isAvailable,
-            title: listingTitle,
-            details: listingDetails,
-            allImages: listingImages,
-            location: pickUpLocation,
-          };
-        }
-      } catch (err) {
-        throw err;
+        this.details = {
+          id: id,
+          name: createdBy.name,
+          availablity: isAvailable,
+          title: listingTitle,
+          details: listingDetails,
+          allImages: listingImages,
+          location: pickUpLocation,
+        };
       }
     },
   },

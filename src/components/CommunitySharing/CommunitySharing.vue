@@ -7,13 +7,17 @@
 
     <div class="grid md:grid-cols-3 mt-4 gap-5">
       <div
-        v-for="item in foodList"
+        v-for="item in getCommunityListings"
         :key="item.id"
         class="card card-side bg-white text-black shadow-xl rounded-lg cursor-pointer"
         @click="getItemDetails(item.id)"
       >
         <figure>
-          <img :src="item.listingImages[0]" alt="Movie" class="h-full w-32" />
+          <img
+            src="../../assets/Food/Chip.jpg"
+            alt="Movie"
+            class="h-full w-32"
+          />
         </figure>
 
         <div class="flex flex-col justify-center gap-2 p-5">
@@ -23,7 +27,8 @@
           <div class="flex items-center gap-3">
             <div class="avatar">
               <div class="w-8 rounded-full">
-                <img :src="item.createdBy.profilePic" />
+                <!-- <img :src="item.createdBy.profilePic" /> -->
+                <img :src="getProfilePicture" />
               </div>
             </div>
 
@@ -44,18 +49,13 @@ import { mapActions, mapGetters } from 'vuex';
 export default {
   name: 'CommunitySharing',
   computed: {
-    ...mapGetters(['getFood']),
-    foodList() {
-      const data = JSON.parse(JSON.stringify(this.getFood));
-      const showLimitedItems = data.slice(0, 3);
-      return showLimitedItems;
-    },
+    ...mapGetters(['getCommunityListings', 'getProfilePicture']),
   },
   mounted() {
-    this.getFoodListings();
+    this.fetchCommunityListings();
   },
   methods: {
-    ...mapActions(['getFoodListings']),
+    ...mapActions(['fetchCommunityListings']),
     getItemDetails(id) {
       this.$router.push(`/item/${id}`);
       scrollToTop();

@@ -7,7 +7,7 @@
 
     <div class="grid md:grid-cols-3 mt-4 gap-5">
       <div
-        v-for="item in getCommunityListings.slice(0, 3)"
+        v-for="item in getCommunityListings"
         :key="item.id"
         class="card card-side bg-white text-black shadow-xl rounded-lg cursor-pointer"
         @click="getItemDetails(item.id)"

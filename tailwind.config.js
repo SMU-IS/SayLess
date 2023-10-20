@@ -63,6 +63,11 @@ export default {
           DEFAULT: 'rgba(255,255,255,0.2)',
           dark: '#FFFFFF1A',
         },
+        gray: {
+          light: '#f8fafc',
+          DEFAULT: '#64748b',
+          dark: '##0f172a',
+        },
       },
     },
   },

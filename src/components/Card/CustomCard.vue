@@ -15,10 +15,11 @@ const CardVariants = cva(
       /* card background colors */
       background: {
         white: 'bg-white',
-        blue: 'bg-blue',
+        blue: 'bg-blue-light',
         red: 'bg-red',
         green: 'bg-green',
         black: 'bg-black',
+        gray: 'bg-gray-light',
         gradient: 'bg-gradient-header bg-cover',
       },
       /* card sizes */
@@ -35,8 +36,8 @@ const CardVariants = cva(
       },
       /* card width */
       width: {
-        fit: 'w-fit ',
-        full: 'w-full ',
+        fit: 'w-fit',
+        full: 'w-full',
       },
     },
   },

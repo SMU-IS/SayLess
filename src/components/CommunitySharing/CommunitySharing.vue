@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mb-36">
     <div class="flex justify-between items-baseline">
       <h4 class="text-white">Community Sharing</h4>
       <h4 class="text-sm text-green">View All</h4>
@@ -7,7 +7,7 @@
 
     <div class="grid md:grid-cols-3 mt-4 gap-5">
       <div
-        v-for="item in getCommunityListings"
+        v-for="item in getCommunityListings.slice(0, 3)"
         :key="item.id"
         class="card card-side bg-white text-black shadow-xl rounded-lg cursor-pointer"
         @click="getItemDetails(item.id)"

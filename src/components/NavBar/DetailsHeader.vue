@@ -1,8 +1,8 @@
 <template>
   <nav
-    class="grid grid-cols-3 items-center rounded-b-xl fixed top-0 w-full bg-gradient-header border-gray-200 h-20"
+    class="absolute grid grid-cols-3 items-center rounded-b-xl top-0 w-full bg-ghost h-20 md:hidden"
   >
-    <ArrowLeftIcon class="ml-3 h-7 w-7" @click="emitHeaderClick" />
+    <ArrowLeftIcon class="ml-5 h-7 w-7" @click="emitHeaderClick" />
     <h3 class="text-center font-semibold">
       <slot>{{ children }}</slot>
     </h3>

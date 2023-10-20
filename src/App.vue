@@ -10,13 +10,7 @@
       <router-view />
     </div>
 
-    <div
-      v-if="
-        isAuthenticated &&
-        getRouteName !== 'CommunitySharingDetails' &&
-        getRouteName !== 'CommunitySharingAll'
-      "
-    >
+    <div v-if="shouldDisplayNavBar">
       <NavBar />
     </div>
 
@@ -39,6 +33,16 @@ export default {
     },
     getRouteName() {
       return this.$route.name;
+    },
+    shouldDisplayNavBar() {
+      const excludedRoutes = [
+        'CommunitySharingDetails',
+        'CommunitySharingAll',
+        'InventoryPage',
+      ];
+      return (
+        this.isAuthenticated && !excludedRoutes.includes(this.getRouteName)
+      );
     },
     childrenStyle() {
       return {

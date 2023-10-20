@@ -11,8 +11,9 @@ import ResetPasswordPage from '@/views/ResetPassword.vue';
 import RecipePage from '@/views/RecipePage.vue';
 import ProfilePage from '@/views/ProfilePage.vue';
 import ChatDetails from '@/views/ChatDetails.vue';
-import CommunitySharingDetails from '@/components/CommunitySharing/CommunitySharingDetails.vue';
-import CommunitySharingAll from '@/components/CommunitySharing/CommunitySharingAll.vue';
+import CommunitySharingDetails from '@/views/CommunitySharing/CommunitySharingDetails.vue';
+import CommunitySharingAll from '@/views/CommunitySharing/CommunitySharingAll.vue';
+import InventoryPage from '@/views/Inventory/InventoryPage.vue';
 import store from '@/store';
 
 const routes = [
@@ -50,6 +51,11 @@ const routes = [
     path: '/item/:id',
     name: 'CommunitySharingDetails',
     component: CommunitySharingDetails,
+  },
+  {
+    path: '/inventory',
+    name: 'InventoryPage',
+    component: InventoryPage,
   },
   {
     path: '/quest',
@@ -111,7 +117,6 @@ router.beforeEach(async (to) => {
       name: 'OnboardPage',
     };
   }
-
   if (isAuthenticated && forbiddenPages.includes(to.name)) {
     return {
       name: 'LandingPage',

@@ -4,7 +4,7 @@
       <CustomButton color="ghost" @click="navigateHome">
         <div class="flex items-center gap-3">
           <img :src="Avocado" class="w-10" />
-          Wasteless Kitchen
+          <p class="text-lg tracking-widest">{{ BRAND_NAME }}</p>
         </div>
       </CustomButton>
 
@@ -56,6 +56,7 @@ import Avocado from '@/assets/Icons/Avocado.png';
 import CustomModal from '@/components/Modal/CustomModal.vue';
 import { openModal } from '@/helpers/common';
 import { getResponse } from '@/helpers/getResponse';
+import { BRAND_NAME } from '@/constants';
 
 export default {
   name: 'DesktopNavBar',
@@ -67,6 +68,7 @@ export default {
       profilePic: this.$store.getters.getProfilePicture,
       navLinks,
       Avocado,
+      BRAND_NAME,
     };
   },
   methods: {

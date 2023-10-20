@@ -1,3 +1,3 @@
-const DUMMY_TEXT = 'Welcome,';
+const BRAND_NAME = 'SAYLESS';
 
-export { DUMMY_TEXT };
+export { BRAND_NAME };

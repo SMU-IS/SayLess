@@ -5,8 +5,8 @@
     >
       <aside>
         <img :src="Avocado" class="w-1/4" />
-        <p class="mt-5">
-          Wasteless Kitchen<br />
+        <p class="mt-5 tracking-widest">
+          {{ BRAND_NAME }}<br />
           Saving the Earth Since 2023.
         </p>
       </aside>
@@ -24,6 +24,7 @@
 import { ChevronDoubleUpIcon } from '@heroicons/vue/24/solid';
 import { scrollToTop } from '@/helpers/common';
 import Avocado from '@/assets/Icons/Avocado.png';
+import { BRAND_NAME } from '@/constants';
 
 export default {
   name: 'CustomFooter',
@@ -31,6 +32,7 @@ export default {
   data() {
     return {
       Avocado,
+      BRAND_NAME,
     };
   },
   methods: {

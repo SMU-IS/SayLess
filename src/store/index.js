@@ -16,16 +16,14 @@ const store = createStore({
       email: localStorage.getItem('email'),
       name: localStorage.getItem('name'),
       profilePicture: localStorage.getItem('profilePicture'),
-      foodListings: [],
+      communityListings: localStorage.getItem('community-sharing-data'),
       recipeListings: [],
       recipeIngredients: [],
     },
     listingChatItem: {
       id: 1,
-      // profilePicture: localStorage.getItem('profilePicture'),
       personId: 'bryanchua1122',
       listingTitle: 'Free Onions',
-      // listingImage: Inventory,
       latestMessage: 'Good morning!',
       requested: false,
       accepted: false,
@@ -43,8 +41,8 @@ const store = createStore({
         ? state.user.profilePicture
         : null;
     },
-    getFood(state) {
-      return state.user.foodListings;
+    getCommunityListings(state) {
+      return JSON.parse(state.user.communityListings);
     },
     getRecipe(state) {
       return state.user.recipeListings;
@@ -85,12 +83,13 @@ const store = createStore({
     },
     SET_LOGGED_OUT(state, payload) {
       state.user.email = payload;
-      localStorage.removeItem('email');
-      localStorage.removeItem('name');
-      localStorage.removeItem('profilePicture');
+      state.user.name = payload;
+      state.user.profilePicture = payload;
+      localStorage.clear();
     },
-    SET_FOOD_LISTINGS(state, payload) {
-      state.user.foodListings = payload;
+    SET_COMMUNITY_SHARING_LISTINGS(state, payload) {
+      state.user.communityListings = payload;
+      localStorage.setItem('community-sharing-data', payload);
     },
     SET_RECIPE_INGREDIENTS(state, payload) {
       state.user.recipeIngredients = payload;
@@ -145,7 +144,7 @@ const store = createStore({
         throw new Error('login failed');
       }
     },
-    async getFoodListings(context) {
+    async fetchCommunityListings(context) {
       const apiURL = import.meta.env.VITE_GET_LISTING;
       const config = {
         headers: {
@@ -156,9 +155,9 @@ const store = createStore({
 
       const { headers } = config;
       const response = await axios.get(apiURL, { headers });
-      // console.log(response.data);
       if (response) {
-        context.commit('SET_FOOD_LISTINGS', response.data);
+        const strData = JSON.stringify(response.data);
+        context.commit('SET_COMMUNITY_SHARING_LISTINGS', strData);
       }
     },
     async getChatDetails(context) {

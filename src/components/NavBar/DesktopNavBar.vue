@@ -55,7 +55,6 @@ import { UserIcon } from '@heroicons/vue/24/outline';
 import Avocado from '@/assets/Icons/Avocado.png';
 import CustomModal from '@/components/Modal/CustomModal.vue';
 import { openModal } from '@/helpers/common';
-import { getResponse } from '@/helpers/getResponse';
 import { BRAND_NAME } from '@/constants';
 
 export default {
@@ -79,7 +78,6 @@ export default {
       try {
         await this.$store.dispatch('logout');
         this.$router.push('/onboard');
-        getResponse('success', "You've logged out!");
       } catch (err) {
         throw err;
       }

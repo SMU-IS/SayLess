@@ -6,8 +6,6 @@
     <h3 class="text-center font-semibold">
       <slot>{{ children }}</slot>
     </h3>
-
-    <div />
   </nav>
 </template>
 <script>

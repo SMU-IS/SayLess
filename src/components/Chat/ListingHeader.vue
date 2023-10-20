@@ -45,7 +45,7 @@
             v-if="!listingData.requested && sender !== listingData.personId"
             size="medium"
             roundness="round"
-            color="primary"
+            color="green"
             @click="requestItem"
             >Request Item</CustomButton
           >
@@ -53,7 +53,7 @@
             v-if="!listingData.accepted && sender == listingData.personId"
             size="small"
             roundness="round"
-            color="primary"
+            color="green"
             :disabled="!listingData.requested"
             @click="acceptItem"
             >Accept Item</CustomButton
@@ -93,17 +93,9 @@ export default {
     },
     requestItem() {
       this.$emit('request', true);
-
-      // console.log('xxx');
-      // this.listingData.requested = true;
-      // this.sendMessage('Requested');
     },
     acceptItem() {
       this.$emit('accept', true);
-
-      // this.listingData.accepted = true;
-      // this.sendMessage('Accepted');
-      //   this.listingData.reservedFor = sender
     },
     formatTimestamp(timestamp) {
       const hours = timestamp.getHours();
@@ -113,14 +105,6 @@ export default {
         .toString()
         .padStart(2, '0')}`;
     },
-    // sendMessage(message) {
-    //   let currentTime = new Date();
-    //   this.messages.push({
-    //     sender: this.sender,
-    //     messageText: message,
-    //     timestamp: this.formatTimestamp(currentTime),
-    //   });
-    // },
   },
 };
 </script>

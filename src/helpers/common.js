@@ -20,10 +20,6 @@ const closeModal = (modalId) => {
   document.getElementById(modalId).close();
 };
 
-// const openDrawer = () => {
-//   document.getElementById('my_drawer_4').showModal();
-// };
-
 const closeDrawer = () => {
   document.getElementById('my_drawer').close();
 };

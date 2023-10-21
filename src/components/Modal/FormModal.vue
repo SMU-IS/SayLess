@@ -1,19 +1,26 @@
 <template>
   <dialog :id="modalId" class="modal text-center">
     <div class="modal-box">
-      <ExclamationTriangleIcon class="w-20 h-20 mx-auto text-red-light my-3" />
       <h3 class="text-lg">{{ modalTitle }}</h3>
-      <p class="py-2">
-        <slot>{{ modalContent }}</slot>
-      </p>
-      <div class="modal-action">
+      <form class="space-y-5" @submit.prevent>
+        <div class="flex flex-col gap-2">
+          <label class="font-semibold text-left" for="item">Item</label>
+          <CustomInput
+            v-model="item"
+            type="text"
+            placeholder="e.g. Oatside Milk"
+            @enter-pressed="handleAdd"
+          />
+        </div>
+      </form>
+      <div class="modal-action flex justify-center">
         <form method="dialog">
           <CustomButton color="ghost" @click="onModalClose"
             >Cancel</CustomButton
           >
         </form>
         <form method="dialog">
-          <CustomButton color="red" @click="handleConfirmation">{{
+          <CustomButton color="gradient" @click="handleAdd">{{
             confirmationText
           }}</CustomButton>
         </form>
@@ -29,25 +36,17 @@
 <script>
 import CustomButton from '@/components/Button/CustomButton.vue';
 import { closeModal } from '@/helpers/common';
-import { ExclamationTriangleIcon } from '@heroicons/vue/24/outline';
+import CustomInput from '@/components/Form/CustomInput.vue';
 
 export default {
-  name: 'CustomModal',
-  components: { CustomButton, ExclamationTriangleIcon },
+  name: 'FormModal',
+  components: { CustomButton, CustomInput },
   props: {
     modalId: {
       type: String,
       default: '',
     },
-    clickHandler: {
-      type: Function,
-      default: () => {},
-    },
     modalTitle: {
-      type: String,
-      default: '',
-    },
-    modalContent: {
       type: String,
       default: '',
     },
@@ -56,12 +55,17 @@ export default {
       default: '',
     },
   },
+  data() {
+    return {
+      item: '',
+    };
+  },
   methods: {
     onModalClose() {
       closeModal(this.modalId);
     },
-    handleConfirmation() {
-      this.clickHandler();
+    handleAdd() {
+      // console.log(this.item);
     },
   },
 };

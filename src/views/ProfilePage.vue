@@ -56,7 +56,6 @@ import { UserIcon } from '@heroicons/vue/24/outline';
 import { pageLoadAnimation } from '@/helpers/common';
 import CustomModal from '@/components/Modal/CustomModal.vue';
 import { openModal } from '@/helpers/common';
-import CustomButton from '@/components/Button/CustomButton.vue';
 
 export default {
   name: 'ProfilePage',
@@ -66,7 +65,6 @@ export default {
     ArrowRightOnRectangleIcon,
     UserIcon,
     CustomModal,
-    CustomButton,
   },
   data() {
     return {

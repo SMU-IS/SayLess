@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col text-white justify-between items-center h-screen gap-4 lg:mx-96 lg:mb-44"
+    class="flex flex-col text-white justify-between items-center h-screen gap-4 lg:mb-44"
   >
     <DetailsHeader @header-click="goBack">
       {{ details.title }}

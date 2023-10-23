@@ -1,6 +1,6 @@
 <template>
-  <div class="navbar bg-base-100 hidden md:block py-4 fixed z-50">
-    <div class="flex flex-row justify-between">
+  <div class="navbar bg-base-100">
+    <div class="flex flex-row justify-between w-full">
       <CustomButton color="ghost" @click="navigateHome">
         <div class="flex items-center gap-3">
           <img :src="Avocado" class="w-10" />

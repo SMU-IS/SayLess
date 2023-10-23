@@ -1,7 +1,7 @@
 <template>
-  <div class="flex justify-center mt-8 md:mt-32 w-full md:mb-28">
+  <div class="flex justify-center mt-8 md:mt-32 w-full">
     <div
-      class="chat-container d-flex flex flex-col h-full w-full md:w-3/4 h-[43rem] md:h-[40rem]"
+      class="chat-container d-flex flex flex-col w-full md:w-3/4 h-[43rem] md:h-[40rem]"
     >
       <ChatHeader
         :listing-data="listingDetails"

@@ -1,20 +1,18 @@
 <template>
-  <div
-    class="relative bg-main flex flex-col min-h-screen w-screen overflow-auto"
-  >
-    <div v-if="isAuthenticated">
+  <div class="flex flex-col min-h-screen bg-main">
+    <div v-if="isAuthenticated" class="hidden md:block fixed z-50 w-screen">
       <DesktopNavBar />
     </div>
 
-    <div :class="childrenStyle">
+    <main :class="childrenStyle">
       <router-view />
-    </div>
+    </main>
 
     <div v-if="shouldDisplayNavBar">
       <NavBar />
     </div>
 
-    <div v-if="isAuthenticated">
+    <div class="w-screen hidden md:block">
       <CustomFooter />
     </div>
   </div>
@@ -47,8 +45,10 @@ export default {
     },
     childrenStyle() {
       return {
-        'mx-6 md:mx-12':
-          this.isAuthenticated && this.getRouteName !== 'QuestPage',
+        'mx-6 md:mx-12 mb-44 min-h-screen':
+          this.isAuthenticated &&
+          this.getRouteName !== 'QuestPage' &&
+          this.getRouteName !== 'CommunitySharingDetails',
       };
     },
   },

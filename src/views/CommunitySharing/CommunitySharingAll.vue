@@ -12,10 +12,6 @@
       />
     </div>
 
-    <!-- <p class="md:text-center text-2xl mt-6 text-white">
-      Current deals available
-    </p> -->
-
     <h4 class="text-white md:text-center mt-6">Current Deals Available</h4>
 
     <div class="flex flex-col md:flex-row justify-center md:gap-4 mb-28">
@@ -88,7 +84,7 @@ export default {
       }
     },
   },
-  mounted() {
+  created() {
     this.fetchCommunityListings();
   },
   methods: {

@@ -51,7 +51,7 @@ export default {
   computed: {
     ...mapGetters(['getCommunityListings', 'getProfilePicture']),
   },
-  mounted() {
+  created() {
     this.fetchCommunityListings();
   },
   methods: {

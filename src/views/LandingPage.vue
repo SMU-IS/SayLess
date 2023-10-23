@@ -19,8 +19,13 @@
         </div>
       </CustomCard>
 
-      <CustomCard background="white" size="small" class="flex-1 flex-grow">
-        <div class="card-body p-7 items-left text-left">
+      <CustomCard
+        background="white"
+        size="small"
+        class="flex-1 flex-grow"
+        @click="navigateRecipe"
+      >
+        <div class="card-body p-7 items-left text-left cursor-pointer">
           <img :src="GroupBuyIcon" alt="recipe" class="w-[64px] sm:w-1/4" />
 
           <h2 class="card-title text-black">Recipes</h2>
@@ -90,6 +95,9 @@ export default {
     },
     navigateInventory() {
       this.$router.push('/inventory');
+    },
+    navigateRecipe() {
+      this.$router.push('/recipe');
     },
   },
 };

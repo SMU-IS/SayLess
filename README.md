@@ -9,7 +9,7 @@
 <br />
 <br />
 
-- [View Project](https://sayless.netlify.app)
+- [View Project](https://sayless.vercel.app)
 - [Report Bug](https://github.com/SMU-IS/SayLess/issues/new?assignees=&labels=&projects=&template=bug_report.md&title=)
 - [Request Feature](https://github.com/SMU-IS/SayLess/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=)
 
@@ -18,7 +18,7 @@
 ### Frontend
 
 - Framework: [Vue.js](https://vuejs.org/) + [Vite](https://vitejs.dev)
-- CSS: [Tailwind CSS](https://tailwindcss.com)
+- CSS: [Tailwind CSS](https://tailwindcss.com) + [DaisyUI](https://daisyui.com/)
 
 ### Backend
 
@@ -28,8 +28,8 @@
 
 Hosting
 
-- Frontend: [Netlify](https://www.netlify.com/)
-- Backend: [Heroku](https://heroku.com)
+- Frontend: [Vercel](https://vercel.com/)
+- Backend: [AWS](https://heroku.com)
 
 CI/CD
 

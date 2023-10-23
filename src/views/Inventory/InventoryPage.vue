@@ -10,7 +10,7 @@
           background="white"
           size="small"
           class="flex-1 flex-grow"
-          @click="showModal"
+          @click="showModal('my_modal_1')"
         >
           <div class="card-body items-left text-left cursor-pointer p-4">
             <h2 class="card-title text-black">Add Food</h2>
@@ -41,10 +41,11 @@
       <CustomCard width="full" background="gray">
         <div class="flex flex-col gap-5">
           <CustomCard
-            v-for="grocery in groceries"
+            v-for="grocery in getInventoryData.slice().reverse()"
             :key="grocery.id"
             background="white"
             width="full"
+            @click="deleteItem(grocery.id)"
           >
             <div class="flex flex-row justify-between items-center">
               <div class="flex flex-col">
@@ -75,9 +76,9 @@ import ParentHeader from '@/components/NavBar/ParentHeader.vue';
 import CustomCard from '@/components/Card/CustomCard.vue';
 import CustomButton from '@/components/Button/CustomButton.vue';
 import { PencilSquareIcon } from '@heroicons/vue/24/outline';
-import { groceries } from '@/data/inventoryData.js';
 import FormModal from '@/components/Modal/FormModal.vue';
 import { openModal } from '@/helpers/common';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'InventoryPage',
@@ -88,17 +89,24 @@ export default {
     PencilSquareIcon,
     FormModal,
   },
-  data() {
-    return {
-      groceries,
-    };
+  computed: {
+    ...mapGetters(['getInventoryData']),
   },
   methods: {
     goBack() {
       this.$router.go(-1);
     },
-    showModal() {
-      openModal('my_modal_1');
+    showModal(modal) {
+      openModal(modal);
+    },
+    async deleteItem(id) {
+      try {
+        await this.$store.dispatch('handleRemoveItem', {
+          id: id,
+        });
+      } catch (err) {
+        throw err;
+      }
     },
   },
 };

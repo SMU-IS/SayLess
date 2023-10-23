@@ -5,24 +5,22 @@
       <h4 class="cursor-pointer" @click="viewAll">View All</h4>
     </div>
 
-    <div class="grid md:grid-cols-3 mt-4 gap-5">
+    <div class="grid md:grid-cols-3 lg:grid-cols-5 mt-4 gap-5">
       <div
         v-for="item in getCommunityListings"
         :key="item.id"
-        class="card card-side bg-white text-black shadow-xl rounded-lg cursor-pointer"
+        class="card card-side bg-white text-black shadow-xl rounded-lg cursor-pointer md:max-w-sm w-full max-w-full flex md:block"
         @click="getItemDetails(item.id)"
       >
-        <figure>
-          <img
-            src="../../assets/Food/Chip.jpg"
-            alt="Movie"
-            class="h-full w-32"
-          />
-        </figure>
+        <div
+          class="h-full w-32 md:h-48 md:w-full flex-none bg-cover rounded-l md:rounded-l-none md:rounded-t text-center overflow-hidden"
+          :style="'background-image: url(' + item.listingImages[0] + ')'"
+          title="Woman holding a mug"
+        ></div>
 
         <div class="flex flex-col justify-center gap-2 p-5">
-          <h2 class="card-title">{{ item.listingTitle }}</h2>
-          <p class="text-black-light text-base">Lorem ipsum dolor sit amet</p>
+          <h2 class="card-title text-base">{{ item.listingTitle }}</h2>
+          <p class="text-black-light text-xs">Lorem ipsum dolor sit amet</p>
 
           <div class="flex items-center gap-3">
             <div class="avatar">

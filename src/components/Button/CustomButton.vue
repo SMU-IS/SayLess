@@ -18,7 +18,7 @@ const ButtonVariants = cva(
         red: 'bg-red-dark text-white  hover:bg-red',
         blue: 'bg-blue-dark text-white hover:bg-blue',
         green: 'bg-green text-white hover:bg-green-dark',
-        ghost: 'bg-none text-white-light hover:bg-gray-800 ',
+        ghost: 'bg-none text-white-light hover:bg-gray-100 ',
         gradient: 'bg-gradient-header text-white',
         gray: 'bg-gray-light',
       },

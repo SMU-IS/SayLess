@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-36">
+  <div class="">
     <div class="flex justify-between text-white">
       <h4>Community Sharing</h4>
       <h4 class="cursor-pointer" @click="viewAll">View All</h4>

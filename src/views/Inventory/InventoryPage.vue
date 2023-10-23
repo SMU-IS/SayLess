@@ -3,7 +3,7 @@
     Inventory
   </ParentHeader>
 
-  <div class="md:h-screen">
+  <div>
     <div class="mx-auto md:mt-32 mt-28 w-full md:w-1/3">
       <div class="flex gap-5">
         <CustomCard
@@ -37,7 +37,7 @@
       </CustomButton>
     </div>
 
-    <div class="flex flex-row mt-6 mb-28 md:w-1/2 md:mx-auto">
+    <div class="flex flex-row mt-6 md:w-1/2 md:mx-auto">
       <CustomCard width="full" background="gray">
         <div class="flex flex-col gap-5">
           <CustomCard

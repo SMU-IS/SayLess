@@ -1,5 +1,5 @@
 <template>
-  <div class="relative lg:w-1/3">
+  <div class="relative w-96 md:w-72">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="90%"
@@ -29,9 +29,10 @@
         </linearGradient>
       </defs>
 
-      <circle class="c1 fill-current text-pink" r="12"></circle>
-      <circle class="c2 fill-current text-pink" r="12"></circle>
-      <circle class="c3 fill-current text-pink" r="12"></circle>
+      <circle class="c0 fill-current text-white-light" r="12"></circle>
+      <circle class="c1 fill-current text-green" r="12"></circle>
+      <circle class="c2 fill-current text-green" r="12"></circle>
+      <circle class="c3 fill-current text-green" r="12"></circle>
 
       <circle
         class="dot fill-current text-white"
@@ -124,23 +125,32 @@ export default {
 </script>
 
 <style scoped>
+.c0 {
+  offset-path: path(
+    'M0 8H311.75C337.017 8 357.5 28.483 357.5 53.75V53.75C357.5 79.017 337.017 99.5 311.75 99.5H115C90.6995 99.5 71 119.199 71 143.5V143.5C71 167.801 90.6995 187.5 115 187.5H273C286.807 187.5 298 198.693 298 212.5V271'
+  );
+  offset-distance: 0%;
+}
 .c1 {
   offset-path: path(
     'M0 8H311.75C337.017 8 357.5 28.483 357.5 53.75V53.75C357.5 79.017 337.017 99.5 311.75 99.5H115C90.6995 99.5 71 119.199 71 143.5V143.5C71 167.801 90.6995 187.5 115 187.5H273C286.807 187.5 298 198.693 298 212.5V271'
   );
   offset-distance: 20%;
+  filter: drop-shadow(0px 1px 7px rgba(3, 255, 200, 0.8));
 }
 .c2 {
   offset-path: path(
     'M0 8H311.75C337.017 8 357.5 28.483 357.5 53.75V53.75C357.5 79.017 337.017 99.5 311.75 99.5H115C90.6995 99.5 71 119.199 71 143.5V143.5C71 167.801 90.6995 187.5 115 187.5H273C286.807 187.5 298 198.693 298 212.5V271'
   );
   offset-distance: 53.3%;
+  filter: drop-shadow(0px 1px 7px rgba(3, 255, 200, 0.8));
 }
 .c3 {
   offset-path: path(
     'M0 8H311.75C337.017 8 357.5 28.483 357.5 53.75V53.75C357.5 79.017 337.017 99.5 311.75 99.5H115C90.6995 99.5 71 119.199 71 143.5V143.5C71 167.801 90.6995 187.5 115 187.5H273C286.807 187.5 298 198.693 298 212.5V271'
   );
   offset-distance: 100%;
+  filter: drop-shadow(0px 1px 7px rgba(3, 255, 200, 0.8));
 }
 .dot {
   position: absolute;

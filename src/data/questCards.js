@@ -7,7 +7,7 @@ const questCards = [
     checked: false,
     icon: CheckBadgeIcon,
     content:
-      'Lorem 1 ipsum dolor sit amet consectetur. Vitae consequat ipsum sed pharetra dolor pellentesque risus. Nibh magna molestie leo est enim vulputate massa. ',
+      'Lorem 1 ipsum dolor sit amet consectetur. Vitae consequat ipsum sed pharetra dolor',
     status: 'Not Started',
   },
   {
@@ -16,7 +16,7 @@ const questCards = [
     checked: true,
     icon: CheckBadgeIcon,
     content:
-      'Lorem 2 ipsum dolor sit amet consectetur. Vitae consequat ipsum sed pharetra dolor pellentesque risus. Nibh magna molestie leo est enim vulputate massa. ',
+      'Lorem 1 ipsum dolor sit amet consectetur. Vitae consequat ipsum sed pharetra dolor',
     status: 'In Progress',
   },
   {
@@ -25,7 +25,7 @@ const questCards = [
     checked: true,
     icon: CheckBadgeIcon,
     content:
-      'Lorem 3 ipsum dolor sit amet consectetur. Vitae consequat ipsum sed pharetra dolor pellentesque risus. Nibh magna molestie leo est enim vulputate massa. ',
+      'Lorem 1 ipsum dolor sit amet consectetur. Vitae consequat ipsum sed pharetra dolor',
     status: 'Completed',
   },
 ];

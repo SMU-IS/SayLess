@@ -12,8 +12,15 @@
           class="flex-1 flex-grow rounded-[16px]"
           @click="showModal('my_modal_1')"
         >
-          <div class="card-body gap-0 items-left text-left cursor-pointer p-4">
+          <div
+            class="card-body gap-0 items-left text-left cursor-pointer p-4 relative"
+          >
             <h2 class="card-title text-black text-base">Add Food</h2>
+            <img
+              src="@/assets/Icons/addfood.png"
+              alt="Custom Icon"
+              class="h-8 w-8 absolute right-1 top-1"
+            />
             <p class="text-xs text-white-light">
               Manually input item into your inventory
             </p>
@@ -25,8 +32,15 @@
           size="small"
           class="flex-1 flex-grow rounded-[16px]"
         >
-          <div class="card-body gap-0 items-left text-left cursor-pointer p-4">
+          <div
+            class="card-body gap-0 items-left text-left cursor-pointer p-4 relative"
+          >
             <h2 class="card-title text-black text-base">Scan Receipt</h2>
+            <img
+              src="@/assets/Icons/addreceipt.png"
+              alt="Custom Icon"
+              class="h-8 w-8 absolute right-1 top-1"
+            />
             <p class="text-xs text-white-light">
               Scan receipt to add items into inventory
             </p>

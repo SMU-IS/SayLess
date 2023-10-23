@@ -11,6 +11,17 @@
       <div class="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
         <form class="space-y-5">
           <div class="flex flex-col gap-2">
+            <label for="email">Name</label>
+
+            <CustomInput
+              v-model="name"
+              type="text"
+              placeholder="e.g. John Doe"
+              @enter-pressed="handleRegister"
+            />
+          </div>
+
+          <div class="flex flex-col gap-2">
             <label for="email">Email Address</label>
 
             <CustomInput
@@ -49,7 +60,7 @@
 
           <CustomButton width="full" @click="handleRegister">
             <span v-if="isLoading">
-              <CustomLoader loading="isLoading" />
+              <CustomLoader :loading="isLoading" />
             </span>
             <p v-else>Register</p>
           </CustomButton>
@@ -86,6 +97,7 @@ export default {
   },
   data() {
     return {
+      name: '',
       email: '',
       password: '',
       confirmPassword: '',
@@ -96,6 +108,7 @@ export default {
   methods: {
     async handleRegister() {
       const validateForm = validateSignUpFields(
+        this.name,
         this.email,
         this.password,
         this.confirmPassword,
@@ -107,6 +120,7 @@ export default {
         if (isMatch) {
           try {
             await this.$store.dispatch('register', {
+              name: this.name,
               email: this.email,
               password: this.password,
             });

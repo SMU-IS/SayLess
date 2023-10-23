@@ -5,10 +5,14 @@ import {
   signOut,
   GoogleAuthProvider,
   signInWithPopup,
+  getAuth,
+  updateProfile,
 } from 'firebase/auth';
 import { auth } from '@/utils/firebaseConfig';
 import { createStore } from 'vuex';
 import axios from 'axios';
+import { groceries } from '@/data/inventoryData';
+import { getCurrentDate, randomUniqueId } from '@/helpers/common';
 
 const store = createStore({
   state: {
@@ -19,14 +23,8 @@ const store = createStore({
       communityListings: localStorage.getItem('community-sharing-data'),
       recipeListings: [],
       recipeIngredients: [],
-    },
-    listingChatItem: {
-      id: 1,
-      personId: 'bryanchua1122',
-      listingTitle: 'Free Onions',
-      latestMessage: 'Good morning!',
-      requested: false,
-      accepted: false,
+      inventoryData:
+        JSON.parse(localStorage.getItem('inventory-data')) || groceries,
     },
   },
   getters: {
@@ -44,35 +42,18 @@ const store = createStore({
     getCommunityListings(state) {
       return JSON.parse(state.user.communityListings);
     },
+    getInventoryData(state) {
+      return state.user.inventoryData;
+    },
     getRecipe(state) {
       return state.user.recipeListings;
     },
-    getChatId(state) {
-      return state.listingChatItem.id;
-    },
-    getRequestedFlag(state) {
-      return state.listingChatItem.requested;
-    },
-    getAcceptedFlag(state) {
-      return state.listingChatItem.accepted;
-    },
-    getLatestMsg(state) {
-      return state.listingChatItem.latestMessage;
-    },
-    getListingTitle(state) {
-      return state.listingChatItem.listingTitle;
-    },
-    getListingImage(state) {
-      return state.listingChatItem.listingImage;
-    },
-    getPersonId(state) {
-      return state.listingChatItem.personId;
-    },
-    getProfilePic(state) {
-      return state.listingChatItem.profilePic;
-    },
   },
   mutations: {
+    SET_DISPLAY_NAME_MANUAL(state, payload) {
+      state.user.name = payload;
+      localStorage.setItem('name', payload);
+    },
     SET_USER(state, payload) {
       state.user.email = payload.email;
       state.user.name = payload.displayName;
@@ -91,6 +72,30 @@ const store = createStore({
       state.user.communityListings = payload;
       localStorage.setItem('community-sharing-data', payload);
     },
+    SET_INVENTORY_DATA(state, payload) {
+      state.user.inventoryData.push({
+        id: randomUniqueId(),
+        item: payload,
+        quantity: 2,
+        doe: getCurrentDate(),
+        category: 'Dairy',
+      });
+
+      localStorage.setItem(
+        'inventory-data',
+        JSON.stringify(state.user.inventoryData),
+      );
+    },
+    REMOVE_INVENTORY_DATA(state, payload) {
+      let id = state.user.inventoryData.findIndex(
+        (result) => result.id == payload,
+      );
+      state.user.inventoryData.splice(id, 1);
+      localStorage.setItem(
+        'inventory-data',
+        JSON.stringify(state.user.inventoryData),
+      );
+    },
     SET_RECIPE_INGREDIENTS(state, payload) {
       state.user.recipeIngredients = payload;
     },
@@ -108,14 +113,21 @@ const store = createStore({
     },
   },
   actions: {
-    async register(context, { email, password }) {
+    async register(context, { name, email, password }) {
       const response = await createUserWithEmailAndPassword(
         auth,
         email,
         password,
       );
+
       if (response) {
         context.commit('SET_USER', response.user);
+        const auth = getAuth();
+        updateProfile(auth.currentUser, {
+          displayName: name,
+        }).then(() => {
+          context.commit('SET_DISPLAY_NAME_MANUAL', name);
+        });
       } else {
         throw new Error('Unable to register user');
       }
@@ -159,6 +171,12 @@ const store = createStore({
         const strData = JSON.stringify(response.data);
         context.commit('SET_COMMUNITY_SHARING_LISTINGS', strData);
       }
+    },
+    async handleAddItem(context, { item }) {
+      context.commit('SET_INVENTORY_DATA', item);
+    },
+    async handleRemoveItem(context, { id }) {
+      context.commit('REMOVE_INVENTORY_DATA', id);
     },
     async getChatDetails(context) {
       const apiURL = import.meta.env.VITE_GET_CHATDETAILS;

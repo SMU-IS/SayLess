@@ -1,9 +1,11 @@
 <template>
-  <div>
-    <div
-      class="flex flex-col w-screen text-white p-5 justify-center items-center bg-gray-800 rounded-lg"
-    >
-      <h3 class="mb-4">What's in your fridge?</h3>
+  <ParentHeader :show-back-btn="true" @header-click="goBack">
+    Recipe
+  </ParentHeader>
+
+  <div class="md:h-screen">
+    <div class="mx-auto md:mt-32 mt-28 w-full md:w-1/3">
+      <h4 class="text-white mb-4">Your Inventory</h4>
 
       <div class="w-full">
         <div class="flex items-center gap-3">
@@ -20,14 +22,14 @@
         <div class="flex items-center flex-wrap mt-5 gap-3">
           <div v-for="(tag, i) in tags" :key="i">
             <ChipLabel @close-click="deleteTag(tag)">
-              {{ tag }}
+              <p class="text-white">{{ tag }}</p>
             </ChipLabel>
           </div>
         </div>
       </div>
-    </div>
 
-    <ListRecipe />
+      <ListRecipe />
+    </div>
   </div>
 </template>
 
@@ -36,6 +38,7 @@ import IconButton from '@/components/Button/IconButton.vue';
 import CustomInput from '@/components/Form/CustomInput.vue';
 import ListRecipe from '@/components/Listings/ListRecipe.vue';
 import ChipLabel from '@/components/Chip/ChipLabel.vue';
+import ParentHeader from '@/components/NavBar/ParentHeader.vue';
 
 export default {
   name: 'RecipePage',
@@ -44,6 +47,7 @@ export default {
     CustomInput,
     IconButton,
     ChipLabel,
+    ParentHeader,
   },
   data() {
     return {
@@ -52,6 +56,9 @@ export default {
     };
   },
   methods: {
+    goBack() {
+      this.$router.go(-1);
+    },
     addTag() {
       if (!this.newTag) return;
       this.tags.push(this.newTag);

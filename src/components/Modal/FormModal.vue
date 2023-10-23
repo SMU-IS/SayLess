@@ -37,6 +37,8 @@
 import CustomButton from '@/components/Button/CustomButton.vue';
 import { closeModal } from '@/helpers/common';
 import CustomInput from '@/components/Form/CustomInput.vue';
+import { getErrorMessage } from '@/helpers/getErrorMessage';
+import { getResponse } from '@/helpers/getResponse';
 
 export default {
   name: 'FormModal',
@@ -64,8 +66,19 @@ export default {
     onModalClose() {
       closeModal(this.modalId);
     },
-    handleAdd() {
-      // console.log(this.item);
+    async handleAdd() {
+      if (this.item.length !== 0) {
+        try {
+          await this.$store.dispatch('handleAddItem', {
+            item: this.item,
+          });
+        } catch (err) {
+          getResponse('error', getErrorMessage(err.message));
+        }
+      }
+
+      this.item = '';
+      this.onModalClose();
     },
   },
 };

@@ -78,7 +78,7 @@ const routes = [
     component: PageNotFound,
   },
   {
-    path: '/get-recipe',
+    path: '/recipe',
     name: 'RecipePage',
     component: RecipePage,
   },

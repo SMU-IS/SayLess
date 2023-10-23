@@ -8,9 +8,12 @@ import LandingPageVue from '@/views/LandingPage.vue';
 import LoginPageVue from '@/views/LoginPage.vue';
 import SignUpPage from '@/views/SignUpPage.vue';
 import ResetPasswordPage from '@/views/ResetPassword.vue';
-import ListItemDetails from '@/components/Listings/ListItemsDetails.vue';
 import RecipePage from '@/views/RecipePage.vue';
 import ProfilePage from '@/views/ProfilePage.vue';
+import ChatDetails from '@/views/ChatDetails.vue';
+import CommunitySharingDetails from '@/views/CommunitySharing/CommunitySharingDetails.vue';
+import CommunitySharingAll from '@/views/CommunitySharing/CommunitySharingAll.vue';
+import InventoryPage from '@/views/Inventory/InventoryPage.vue';
 import store from '@/store';
 
 const routes = [
@@ -40,6 +43,21 @@ const routes = [
     component: LandingPageVue,
   },
   {
+    path: '/community',
+    name: 'CommunitySharingAll',
+    component: CommunitySharingAll,
+  },
+  {
+    path: '/item/:id',
+    name: 'CommunitySharingDetails',
+    component: CommunitySharingDetails,
+  },
+  {
+    path: '/inventory',
+    name: 'InventoryPage',
+    component: InventoryPage,
+  },
+  {
     path: '/quest',
     name: 'QuestPage',
     component: QuestPageVue,
@@ -60,12 +78,7 @@ const routes = [
     component: PageNotFound,
   },
   {
-    path: '/item/:id',
-    name: 'ListItemDetails',
-    component: ListItemDetails,
-  },
-  {
-    path: '/get-recipe',
+    path: '/recipe',
     name: 'RecipePage',
     component: RecipePage,
   },
@@ -73,6 +86,16 @@ const routes = [
     path: '/profile',
     name: 'ProfilePage',
     component: ProfilePage,
+  },
+  {
+    path: '/chat',
+    name: 'ChatDetails',
+    component: ChatDetails,
+  },
+  {
+    path: '/message/:chatId',
+    name: 'chat-details',
+    component: ChatDetails,
   },
 ];
 
@@ -94,7 +117,6 @@ router.beforeEach(async (to) => {
       name: 'OnboardPage',
     };
   }
-
   if (isAuthenticated && forbiddenPages.includes(to.name)) {
     return {
       name: 'LandingPage',

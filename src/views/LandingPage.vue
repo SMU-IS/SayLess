@@ -1,12 +1,17 @@
 <template>
-  <ParentHeader> Wasteless Kitchen </ParentHeader>
+  <ParentHeader> SayLess </ParentHeader>
   <div class="flex flex-col md:flex-row justify-center md:gap-4">
     <div
       id="divOne"
       class="flex flex-row justify-center gap-4 mt-32 flex-1 md:grow"
     >
-      <CustomCard background="white" size="small" class="flex-1 flex-grow">
-        <div class="card-body p-7 items-left text-left">
+      <CustomCard
+        background="white"
+        size="small"
+        class="flex-1 flex-grow"
+        @click="navigateInventory"
+      >
+        <div class="card-body p-7 items-left text-left cursor-pointer">
           <img :src="InventoryIcon" alt="Inventory" class="w-[64px] sm:w-1/4" />
 
           <h2 class="card-title text-black">Inventory</h2>
@@ -14,8 +19,13 @@
         </div>
       </CustomCard>
 
-      <CustomCard background="white" size="small" class="flex-1 flex-grow">
-        <div class="card-body p-7 items-left text-left">
+      <CustomCard
+        background="white"
+        size="small"
+        class="flex-1 flex-grow"
+        @click="navigateRecipe"
+      >
+        <div class="card-body p-7 items-left text-left cursor-pointer">
           <img :src="GroupBuyIcon" alt="recipe" class="w-[64px] sm:w-1/4" />
 
           <h2 class="card-title text-black">Recipes</h2>
@@ -45,7 +55,7 @@
     </div>
   </div>
 
-  <div id="divThree" class="flex flex-col md:items-center mt-8">
+  <div id="divThree" class="flex flex-col mt-8">
     <CommunitySharing />
   </div>
 </template>
@@ -58,7 +68,7 @@ import ParentHeader from '@/components/NavBar/ParentHeader.vue';
 import CustomButton from '@/components/Button/CustomButton.vue';
 import { ArrowRightIcon } from '@heroicons/vue/24/solid';
 import { pageLoadAnimation } from '@/helpers/common';
-import CommunitySharing from '@/components/CommunitySharing/CommunitySharing.vue';
+import CommunitySharing from '@/views/CommunitySharing/CommunitySharing.vue';
 
 export default {
   name: 'LandingPage',
@@ -82,6 +92,12 @@ export default {
   methods: {
     showModal() {
       openModal();
+    },
+    navigateInventory() {
+      this.$router.push('/inventory');
+    },
+    navigateRecipe() {
+      this.$router.push('/recipe');
     },
   },
 };

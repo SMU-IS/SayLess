@@ -1,10 +1,10 @@
 <template>
-  <div class="navbar bg-base-100 hidden md:block py-4 fixed z-50">
-    <div class="flex flex-row justify-between">
+  <div class="navbar bg-base-100">
+    <div class="flex flex-row justify-between w-full">
       <CustomButton color="ghost" @click="navigateHome">
         <div class="flex items-center gap-3">
           <img :src="Avocado" class="w-10" />
-          Wasteless Kitchen
+          <p class="text-lg tracking-widest">{{ BRAND_NAME }}</p>
         </div>
       </CustomButton>
 
@@ -55,7 +55,7 @@ import { UserIcon } from '@heroicons/vue/24/outline';
 import Avocado from '@/assets/Icons/Avocado.png';
 import CustomModal from '@/components/Modal/CustomModal.vue';
 import { openModal } from '@/helpers/common';
-import { getResponse } from '@/helpers/getResponse';
+import { BRAND_NAME } from '@/constants';
 
 export default {
   name: 'DesktopNavBar',
@@ -67,6 +67,7 @@ export default {
       profilePic: this.$store.getters.getProfilePicture,
       navLinks,
       Avocado,
+      BRAND_NAME,
     };
   },
   methods: {
@@ -77,7 +78,6 @@ export default {
       try {
         await this.$store.dispatch('logout');
         this.$router.push('/onboard');
-        getResponse('success', "You've logged out!");
       } catch (err) {
         throw err;
       }

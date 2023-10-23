@@ -1,6 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
+  daisyui: {
+    logs: false,
+  },
   theme: {
     extend: {
       backgroundImage: {
@@ -62,6 +65,11 @@ export default {
           light: 'rgba(255,255,255,0.3)',
           DEFAULT: 'rgba(255,255,255,0.2)',
           dark: '#FFFFFF1A',
+        },
+        gray: {
+          light: '#f8fafc',
+          DEFAULT: '#64748b',
+          dark: '##0f172a',
         },
       },
     },

@@ -1,6 +1,7 @@
 <template>
   <div class="grid grid-cols-2 gap-3 min-w-full py-4 px-3">
-    <div v-for="item in recipeListings" :key="item.id">
+    <div v-for="item in getRecipe" :key="item.id">
+      {{ item.title }}
       <CustomCard
         :icon="item.img"
         :alt-text="item.title"
@@ -13,6 +14,7 @@
 
 <script>
 import CustomCard from '@/components/Card/CustomCard.vue';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'ListRecipe',
@@ -29,9 +31,7 @@ export default {
     };
   },
   computed: {
-    recipeListings() {
-      return this.$store.getters.getRecipe;
-    },
+    ...mapGetters(['getRecipe']),
   },
   methods: {
     seeDetails(itemId) {

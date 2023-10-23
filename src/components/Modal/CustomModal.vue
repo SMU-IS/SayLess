@@ -12,7 +12,6 @@
             >Cancel</CustomButton
           >
         </form>
-
         <form method="dialog">
           <CustomButton color="red" @click="handleConfirmation">{{
             confirmationText

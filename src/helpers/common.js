@@ -20,10 +20,6 @@ const closeModal = (modalId) => {
   document.getElementById(modalId).close();
 };
 
-// const openDrawer = () => {
-//   document.getElementById('my_drawer_4').showModal();
-// };
-
 const closeDrawer = () => {
   document.getElementById('my_drawer').close();
 };
@@ -43,6 +39,23 @@ const pageLoadAnimation = (elementIds) => {
   timeline.play();
 };
 
+const getCurrentDate = () => {
+  const date = new Date();
+  const year = date.toLocaleString('default', { year: 'numeric' });
+  const month = date.toLocaleString('default', {
+    month: '2-digit',
+  });
+  const day = date.toLocaleString('default', { day: '2-digit' });
+
+  return [year, month, day].join('-');
+};
+
+const randomUniqueId = () => {
+  const timeStamp = Date.now().toString(36);
+  const randomString = Math.random().toString(36);
+  return timeStamp + randomString + Math.floor(Math.random() * 999);
+};
+
 export {
   goHome,
   scrollToTop,
@@ -50,4 +63,6 @@ export {
   closeModal,
   closeDrawer,
   pageLoadAnimation,
+  getCurrentDate,
+  randomUniqueId,
 };

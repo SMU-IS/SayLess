@@ -2,7 +2,9 @@
   <div class="">
     <div class="flex justify-between text-white">
       <h4>Community Sharing</h4>
-      <h4 class="cursor-pointer" @click="viewAll">View All</h4>
+      <p class="cursor-pointer text-green self-end" @click="viewAll">
+        View All
+      </p>
     </div>
 
     <div class="grid md:grid-cols-3 mt-4 gap-5">

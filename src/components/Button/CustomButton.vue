@@ -24,7 +24,7 @@ const ButtonVariants = cva(
       },
       /* button sizes */
       size: {
-        small: ['text-sm', 'py-2', 'px-3'],
+        small: ['text-sm', 'py-2', 'px-4'],
         medium: ['text-base', 'py-3', 'px-4'],
         large: ['text-lg', 'py-4', 'px-8'],
       },

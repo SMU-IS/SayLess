@@ -1,11 +1,11 @@
 <template>
-  <div class="flex flex-col md:items-center ml-6 md:mb-44">
-    <div class="flex hide-scroll-bar overflow-x-scroll">
+  <div class="flex flex-col md:items-center mt-10 md:mb-10 ">
+    <div class="flex hide-scroll-bar overflow-x-scroll px-10">
       <div class="flex flex-nowrap">
         <div v-for="content in questCards" :key="content.id">
           <div class="inline-block px-3">
             <div
-              class="relative w-72 h-64 max-w-xs overflow-hidden rounded-lg shadow-md bg-card-light hover:shadow-xl transition-shadow duration-300 ease-in-out"
+              class="relative w-72 pb-4 max-w-xs overflow-hidden rounded-lg shadow-md bg-card-light hover:shadow-xl transition-shadow duration-300 ease-in-out"
             >
               <div
                 class="p-4 font-bold tracking-tight min-h-[20px] bg-[#221E2F] w-full text-pink"
@@ -18,7 +18,7 @@
                 />
               </div>
 
-              <div class="text-white p-4">{{ content.content }}</div>
+              <div class="text-white p-4 mb-4">{{ content.content }}</div>
 
               <div class="flex justify-end mr-5">
                 <CustomButton

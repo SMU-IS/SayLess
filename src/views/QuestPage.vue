@@ -1,9 +1,9 @@
 <template>
   <div class="flex justify-center items-center mt-16 md:mt-40">
-    <div class="relative card w-7/12 bg-transparent-dark shadow-xl">
+    <div class="relative card w-60 md:w-48 glass shadow-md">
       <div class="card-body gap-0 p-4 pt-6 items-center text-center">
         <h1 class="card-title text-pink">Quest 1</h1>
-        <p class="text-gray-400">complete challenges</p>
+        <p class="text-sm text-white-light">complete challenges</p>
         <div class="absolute -top-3.5">
           <QuestStars />
         </div>
@@ -11,7 +11,7 @@
     </div>
   </div>
 
-  <GraphicComponent class="m-auto mt-12 -mb-5" />
+  <GraphicComponent class="m-auto mt-12" />
   <ChallengesContainer />
 </template>
 

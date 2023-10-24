@@ -20,8 +20,8 @@ const closeModal = (modalId) => {
   document.getElementById(modalId).close();
 };
 
-const closeDrawer = () => {
-  document.getElementById('my_drawer').close();
+const closeDrawer = (drawerId) => {
+  document.getElementById(drawerId).close();
 };
 
 const pageLoadAnimation = (elementIds) => {

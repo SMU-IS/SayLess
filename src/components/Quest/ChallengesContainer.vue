@@ -23,18 +23,19 @@
               <div class="flex justify-end mr-5">
                 <CustomButton
                   size="small"
-                  roundness="full"
+                  roundness="round"
                   :color="
                     content.status === 'In Progress'
                       ? 'blue'
-                      : content.status === 'Not Started'
-                      ? 'red'
-                      : 'green'
+                      : content.status === 'Start'
+                      ? 'green'
+                      : 'disabled'
                   "
-                  @click="changeTab('chat')"
-                  ><label for="my_drawer_4" class="drawer-button">{{
-                    content.status
-                  }}</label></CustomButton
+                  ><label
+                    :for="'my_drawer_' + content.id"
+                    class="drawer-button"
+                    >{{ content.status }}</label
+                  ></CustomButton
                 >
               </div>
             </div>
@@ -43,14 +44,19 @@
       </div>
     </div>
   </div>
-  <CustomDrawer
-    drawer-title="You joined Challenge 1!"
-    drawer-subtitle="Do you want to complete the challenge now?"
-    button-false="Not now"
-    button-true="Yes, take me there!"
-  >
-    Get an item for free from the Community Sharing page
-  </CustomDrawer>
+
+  <div v-for="content in questCards" :key="content.id">
+    <CustomDrawer
+      :drawer-id="'my_drawer_' + content.id"
+      :page-name="content.page"
+      :drawer-title="'You joined Challenge ' + content.id"
+      drawer-subtitle="Do you want to complete the challenge now?"
+      button-false="Not now"
+      button-true="Yes, take me there!"
+    >
+      {{ content.content }}
+    </CustomDrawer>
+  </div>
 </template>
 
 <script>

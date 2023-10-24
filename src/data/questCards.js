@@ -8,7 +8,8 @@ const questCards = [
     icon: CheckBadgeIcon,
     content:
       'Lorem 1 ipsum dolor sit amet consectetur. Vitae consequat ipsum sed pharetra dolor pellentesque risus. Nibh magna molestie leo est enim vulputate massa. ',
-    status: 'Not Started',
+    status: 'Start',
+    page: '/community',
   },
   {
     id: 2,
@@ -18,6 +19,7 @@ const questCards = [
     content:
       'Lorem 2 ipsum dolor sit amet consectetur. Vitae consequat ipsum sed pharetra dolor pellentesque risus. Nibh magna molestie leo est enim vulputate massa. ',
     status: 'In Progress',
+    page: `/chat`,
   },
   {
     id: 3,
@@ -27,6 +29,7 @@ const questCards = [
     content:
       'Lorem 3 ipsum dolor sit amet consectetur. Vitae consequat ipsum sed pharetra dolor pellentesque risus. Nibh magna molestie leo est enim vulputate massa. ',
     status: 'Completed',
+    page: `/chat`,
   },
 ];
 

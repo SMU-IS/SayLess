@@ -1,10 +1,10 @@
 <template>
   <div class="drawer drawer_bottom z-50">
-    <input id="my_drawer_4" type="checkbox" class="drawer-toggle" />
+    <input :id="drawerId" type="checkbox" class="drawer-toggle" />
 
     <div class="drawer-side">
       <label
-        for="my_drawer_4"
+        :for="drawerId"
         aria-label="close sidebar"
         class="drawer-overlay"
       ></label>
@@ -22,7 +22,12 @@
           </p>
         </div>
         <form method="dialog" class="flex flex-col justify-around gap-2">
-          <CustomButton width="full" roundness="round" color="green">
+          <CustomButton
+            width="full"
+            roundness="round"
+            color="green"
+            @click="changeTab"
+          >
             {{ buttonTrue }}
           </CustomButton>
           <CustomButton
@@ -48,6 +53,14 @@ export default {
     CustomButton,
   },
   props: {
+    drawerId: {
+      type: String,
+      default: '',
+    },
+    pageName: {
+      type: String,
+      default: '',
+    },
     contentHere: {
       type: String,
       default: '',
@@ -75,7 +88,10 @@ export default {
   },
   methods: {
     onDrawerClose() {
-      closeDrawer();
+      closeDrawer(this.drawerId);
+    },
+    changeTab() {
+      this.$router.push(this.pageName);
     },
   },
 };

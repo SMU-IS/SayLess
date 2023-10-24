@@ -15,12 +15,12 @@
       </form>
       <div class="modal-action flex justify-center">
         <form method="dialog" class="w-full">
-          <CustomButton class="w-full" color="ghost" @click="onModalClose"
+          <CustomButton width="full" color="ghost" @click="onModalClose"
             >Cancel</CustomButton
           >
         </form>
         <form method="dialog" class="w-full">
-          <CustomButton class="w-full" color="gradient" @click="handleAdd">{{
+          <CustomButton width="full" color="gradient" @click="handleAdd">{{
             confirmationText
           }}</CustomButton>
         </form>

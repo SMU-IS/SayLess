@@ -13,6 +13,7 @@ import { createStore } from 'vuex';
 import axios from 'axios';
 import { groceries } from '@/data/inventoryData';
 import { getCurrentDate, randomUniqueId } from '@/helpers/common';
+import { questCards } from '@/data/questCards';
 
 const store = createStore({
   state: {
@@ -25,6 +26,7 @@ const store = createStore({
       recipeIngredients: [],
       inventoryData:
         JSON.parse(localStorage.getItem('inventory-data')) || groceries,
+      questData: questCards,
     },
   },
   getters: {
@@ -47,6 +49,9 @@ const store = createStore({
     },
     getRecipe(state) {
       return state.user.recipeListings;
+    },
+    getQuestData(state) {
+      return state.user.questData;
     },
   },
   mutations: {
@@ -95,6 +100,16 @@ const store = createStore({
         'inventory-data',
         JSON.stringify(state.user.inventoryData),
       );
+    },
+    SET_QUEST_STATUS(state, payload) {
+      const questChallenge = state.user.questData.find(
+        (result) => result.id === payload,
+      );
+      if (questChallenge.status === 'Start') {
+        questChallenge.status = 'In Progress';
+      } else {
+        questChallenge.status = 'Completed';
+      }
     },
     SET_RECIPE_INGREDIENTS(state, payload) {
       state.user.recipeIngredients = payload;
@@ -200,6 +215,9 @@ const store = createStore({
       if (response) {
         context.commit('SET_RECIPE_LISTINGS', response.data.results);
       }
+    },
+    updateQuestStatus(context, { id }) {
+      context.commit('SET_QUEST_STATUS', id);
     },
   },
 });

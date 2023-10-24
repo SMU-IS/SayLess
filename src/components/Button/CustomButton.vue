@@ -1,5 +1,5 @@
 <template>
-  <button type="button" :class="computedClasses">
+  <button type="button" :class="computedClasses" :disabled="disableBtn">
     <slot> {{ buttonText }}</slot>
   </button>
 </template>
@@ -66,6 +66,10 @@ export default {
     width: {
       type: String,
       default: 'fit',
+    },
+    disableBtn: {
+      type: Boolean,
+      default: false,
     },
   },
   computed: {

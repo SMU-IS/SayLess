@@ -2,7 +2,7 @@
   <div class="flex flex-col md:items-center mt-10 md:mb-10">
     <div class="flex hide-scroll-bar overflow-x-scroll px-10">
       <div class="flex flex-nowrap">
-        <div v-for="content in questCards" :key="content.id">
+        <div v-for="content in getQuestData" :key="content.id">
           <div class="inline-block px-3">
             <div
               class="relative w-72 pb-4 max-w-xs overflow-hidden rounded-lg shadow-md bg-card-light hover:shadow-xl transition-shadow duration-300 ease-in-out"
@@ -24,6 +24,7 @@
                 <CustomButton
                   size="small"
                   roundness="round"
+                  :disabled="content.status === 'Completed'"
                   :color="
                     content.status === 'In Progress'
                       ? 'blue'
@@ -31,7 +32,7 @@
                       ? 'green'
                       : 'disabled'
                   "
-                  @click="handleUpdateChallengeStatus"
+                  @click="handleUpdateChallengeStatus(content.id)"
                   ><label
                     :for="'my_drawer_' + content.id"
                     class="drawer-button"
@@ -46,7 +47,7 @@
     </div>
   </div>
 
-  <div v-for="content in questCards" :key="content.id">
+  <!-- <div v-for="content in getQuestData" :key="content.id">
     <CustomDrawer
       :drawer-id="'my_drawer_' + content.id"
       :page-name="content.page"
@@ -57,14 +58,13 @@
     >
       {{ content.content }}
     </CustomDrawer>
-  </div>
+  </div> -->
 </template>
 
 <script>
-import { questCards } from '@/data/questCards.js';
 import CustomButton from '@/components/Button/CustomButton.vue';
 import CustomDrawer from '@/components/Modal/CustomDrawer.vue';
-import { updateChallengeStatus } from '@/helpers/updateQuests';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'ChallengesContainer',
@@ -72,14 +72,18 @@ export default {
     CustomButton,
     CustomDrawer,
   },
-  data() {
-    return {
-      questCards,
-    };
+  computed: {
+    ...mapGetters(['getQuestData']),
   },
   methods: {
-    handleUpdateChallengeStatus() {
-      updateChallengeStatus(1);
+    async handleUpdateChallengeStatus(id) {
+      try {
+        await this.$store.dispatch('updateQuestStatus', {
+          id: id,
+        });
+      } catch (err) {
+        throw err;
+      }
     },
   },
 };

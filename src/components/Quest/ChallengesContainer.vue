@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col md:items-center mt-10 md:mb-10 ">
+  <div class="flex flex-col md:items-center mt-10 md:mb-10">
     <div class="flex hide-scroll-bar overflow-x-scroll px-10">
       <div class="flex flex-nowrap">
         <div v-for="content in questCards" :key="content.id">
@@ -31,6 +31,7 @@
                       ? 'green'
                       : 'disabled'
                   "
+                  @click="handleUpdateChallengeStatus"
                   ><label
                     :for="'my_drawer_' + content.id"
                     class="drawer-button"
@@ -63,6 +64,7 @@
 import { questCards } from '@/data/questCards.js';
 import CustomButton from '@/components/Button/CustomButton.vue';
 import CustomDrawer from '@/components/Modal/CustomDrawer.vue';
+import { updateChallengeStatus } from '@/helpers/updateQuests';
 
 export default {
   name: 'ChallengesContainer',
@@ -74,6 +76,11 @@ export default {
     return {
       questCards,
     };
+  },
+  methods: {
+    handleUpdateChallengeStatus() {
+      updateChallengeStatus(1);
+    },
   },
 };
 </script>

@@ -32,7 +32,7 @@
             <div class="avatar">
               <div class="w-8 rounded-full">
                 <!-- <img :src="item.createdBy.profilePic" /> -->
-                <img :src="getProfilePicture" />
+                <img :src="getProfilePicture" referrerpolicy="no-referrer" />
               </div>
             </div>
 

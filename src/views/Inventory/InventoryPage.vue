@@ -3,69 +3,93 @@
     Inventory
   </ParentHeader>
 
-  <div>
+  <div class="flex flex-col md:flex-row-reverse md:gap-4 md:mt-24">
     <div class="mx-auto md:mt-32 mt-28 w-full md:w-1/3">
-      <div class="flex gap-5">
+      <div class="flex gap-3 md:flex-col md:items-center">
         <CustomCard
           background="white"
           size="small"
-          class="flex-1 flex-grow"
+          class="flex-1 flex-grow rounded-[16px]"
           @click="showModal('my_modal_1')"
         >
-          <div class="card-body items-left text-left cursor-pointer p-4">
-            <h2 class="card-title text-black">Add Food</h2>
-            <p class="text-sm">Manually input item into your inventory</p>
+          <div
+            class="card-body gap-0 items-left text-left cursor-pointer p-4 relative"
+          >
+            <h2 class="card-title text-black text-base">Add Food</h2>
+            <img
+              src="@/assets/Icons/addfood.png"
+              alt="Custom Icon"
+              class="h-8 w-8 absolute right-1 top-1"
+            />
+            <p class="text-xs text-white-light">
+              Manually input item into your inventory
+            </p>
           </div>
         </CustomCard>
 
-        <CustomCard background="white" size="small" class="flex-1 flex-grow">
-          <div class="card-body items-left text-left cursor-pointer p-4">
-            <h2 class="card-title text-black">Scan Receipt</h2>
-            <p class="text-sm">Scan receipt to add items into inventory</p>
+        <CustomCard
+          background="white"
+          size="small"
+          class="flex-1 flex-grow rounded-[16px]"
+        >
+          <div
+            class="card-body gap-0 items-left text-left cursor-pointer p-4 relative"
+          >
+            <h2 class="card-title text-black text-base">Scan Receipt</h2>
+            <img
+              src="@/assets/Icons/addreceipt.png"
+              alt="Custom Icon"
+              class="h-8 w-8 absolute right-1 top-1"
+            />
+            <p class="text-xs text-white-light">
+              Scan receipt to add items into inventory
+            </p>
           </div>
         </CustomCard>
       </div>
     </div>
 
-    <div class="flex justify-between items-center mt-6 md:w-1/2 md:mx-auto">
-      <h4 class="text-white">Your Inventory</h4>
-      <CustomButton roundness="full" color="gray" size="small">
-        <div class="flex flex-row gap-1.5">
-          <p class="md:text-center text-sm text-black">Edit</p>
-          <PencilSquareIcon class="w-4 h-auto text-black" />
-        </div>
-      </CustomButton>
-    </div>
+    <div class="md:flex-1">
+      <div class="flex justify-between items-center mt-6 md:w-full md:mx-auto">
+        <h4 class="text-white">Your Inventory</h4>
+        <CustomButton roundness="full" color="green" size="small">
+          <div class="flex flex-row gap-1.5">
+            <p class="md:text-center text-sm text-white">Edit</p>
+            <PencilSquareIcon class="w-4 h-auto text-white" />
+          </div>
+        </CustomButton>
+      </div>
 
-    <div class="flex flex-row mt-6 md:w-1/2 md:mx-auto">
-      <CustomCard width="full" background="gray">
-        <div class="flex flex-col gap-5">
-          <CustomCard
-            v-for="grocery in getInventoryData.slice().reverse()"
-            :key="grocery.id"
-            background="white"
-            width="full"
-            @click="deleteItem(grocery.id)"
-          >
-            <div class="flex flex-row justify-between items-center">
-              <div class="flex flex-col">
-                <p class="text-black">Item</p>
-                <p>{{ grocery.item }}</p>
-              </div>
+      <div class="flex min-h-[24rem] h-fit flex-row mt-6 md:w-full md:mx-auto">
+        <CustomCard width="full" background="transparent">
+          <div class="flex flex-col gap-5">
+            <CustomCard
+              v-for="grocery in getInventoryData.slice().reverse()"
+              :key="grocery.id"
+              background="white"
+              width="full"
+              @click="deleteItem(grocery.id)"
+            >
+              <div class="flex flex-row justify-between items-center">
+                <div class="flex flex-col">
+                  <p class="text-white-light">Item</p>
+                  <p>{{ grocery.item }}</p>
+                </div>
 
-              <div class="flex flex-col">
-                <p class="text-black">Expiry Date</p>
-                <p class="text-red">{{ grocery.doe }}</p>
+                <div class="flex flex-col">
+                  <p class="text-white-light">Expiry Date</p>
+                  <p class="text-red">{{ grocery.doe }}</p>
+                </div>
               </div>
-            </div>
-          </CustomCard>
-        </div>
-      </CustomCard>
+            </CustomCard>
+          </div>
+        </CustomCard>
+      </div>
     </div>
 
     <FormModal
       modal-id="my_modal_1"
-      modal-title="Add to inventory"
+      modal-title="Add to Inventory"
       confirmation-text="Add"
     />
   </div>

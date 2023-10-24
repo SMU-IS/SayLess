@@ -18,14 +18,14 @@ const ButtonVariants = cva(
         red: 'bg-red-dark text-white  hover:bg-red',
         blue: 'bg-blue-dark text-white hover:bg-blue',
         green: 'bg-green text-white hover:bg-green-dark',
-        ghost: 'bg-none text-white-light hover:bg-gray-800 ',
+        ghost: 'bg-none text-white-light hover:bg-gray-100 ',
         gradient: 'bg-gradient-header text-white',
         gray: 'bg-gray-light',
         disabled: 'bg-transparent text-white-light',
       },
       /* button sizes */
       size: {
-        small: ['text-sm', 'py-2', 'px-3'],
+        small: ['text-sm', 'py-2', 'px-4'],
         medium: ['text-base', 'py-3', 'px-4'],
         large: ['text-lg', 'py-4', 'px-8'],
       },

@@ -14,13 +14,13 @@
         </div>
       </form>
       <div class="modal-action flex justify-center">
-        <form method="dialog">
-          <CustomButton color="ghost" @click="onModalClose"
+        <form method="dialog" class="w-full">
+          <CustomButton width="full" color="ghost" @click="onModalClose"
             >Cancel</CustomButton
           >
         </form>
-        <form method="dialog">
-          <CustomButton color="gradient" @click="handleAdd">{{
+        <form method="dialog" class="w-full">
+          <CustomButton width="full" color="gradient" @click="handleAdd">{{
             confirmationText
           }}</CustomButton>
         </form>

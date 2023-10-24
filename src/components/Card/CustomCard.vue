@@ -21,6 +21,7 @@ const CardVariants = cva(
         black: 'bg-black',
         gray: 'bg-gray-light',
         gradient: 'bg-gradient-header bg-cover',
+        transparent: 'bg-transparent',
       },
       /* card sizes */
       size: {

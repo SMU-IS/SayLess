@@ -12,9 +12,15 @@
         class="card card-side bg-white text-black shadow-xl rounded-lg cursor-pointer md:max-w-sm w-full max-w-full flex md:block"
         @click="getItemDetails(item.id)"
       >
-        <div
+        <!-- <div
           class="h-full w-32 md:h-48 md:w-full flex-none bg-cover rounded-l md:rounded-l-none md:rounded-t text-center overflow-hidden"
           :style="'background-image: url(' + item.listingImages[0] + ')'"
+          title="Woman holding a mug"
+        ></div> -->
+
+        <div
+          class="h-full w-32 md:h-48 md:w-full flex-none bg-cover rounded-l md:rounded-l-none md:rounded-t text-center overflow-hidden"
+          :style="'background-image: url(src/assets/Food/Chip.jpg)'"
           title="Woman holding a mug"
         ></div>
 

@@ -5,9 +5,9 @@
       <h4 class="cursor-pointer" @click="viewAll">View All</h4>
     </div>
 
-    <div class="grid md:grid-cols-3 lg:grid-cols-5 mt-4 gap-5">
+    <div class="grid md:grid-cols-3 lg:grid-cols-4 mt-4 gap-5">
       <div
-        v-for="item in getCommunityListings"
+        v-for="item in showLimitedListings"
         :key="item.id"
         class="card card-side bg-white text-black shadow-xl rounded-lg cursor-pointer md:max-w-sm w-full max-w-full flex md:block"
         @click="getItemDetails(item.id)"
@@ -54,6 +54,12 @@ export default {
   name: 'CommunitySharing',
   computed: {
     ...mapGetters(['getCommunityListings', 'getProfilePicture']),
+    showLimitedListings() {
+      if (this.getCommunityListings) {
+        return this.getCommunityListings.slice(0, 3);
+      }
+      return this.getCommunityListings;
+    },
   },
   created() {
     this.fetchCommunityListings();

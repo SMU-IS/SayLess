@@ -85,6 +85,7 @@ import { validateLoginFields } from '@/helpers/validateForm';
 import CustomCard from '@/components/Card/CustomCard.vue';
 import Avocado from '@/assets/Icons/Avocado.png';
 import { getTokenId } from '@/helpers/getTokenId';
+import axios from 'axios';
 
 export default {
   name: 'LoginPage',
@@ -117,9 +118,8 @@ export default {
           getResponse('success', `Welcome, ${this.email}!`);
 
           const tokenId = getTokenId();
-          tokenId.then(() => {
-            // console.log(id);
-            // send to backend
+          tokenId.then((id) => {
+            sendToken(id);
           });
         } catch (err) {
           this.isLoading = false;
@@ -138,12 +138,26 @@ export default {
         getResponse('success', `Welcome, ${getEmail}!`);
 
         const tokenId = getTokenId();
-        tokenId.then(() => {
-          // console.log(id);
-          // send to backend
+        tokenId.then((id) => {
+          this.sendToken(id);
         });
       } catch (err) {
         getResponse('error', getErrorMessage(err.message));
+      }
+    },
+    async sendToken(token) {
+      const apiURL = import.meta.env.VITE_GET_RECIPE;
+      const headers = {
+        'x-access-token': token,
+      };
+      const data = {
+        token: token,
+      };
+      const response = await axios.post(apiURL, data, { headers });
+      if (response) {
+        // do something
+      } else {
+        // do something
       }
     },
   },

@@ -23,17 +23,14 @@ const recipeModule = {
   actions: {
     async addRecipes(context, { ingredientsList }) {
       const apiURL = import.meta.env.VITE_GET_RECIPE;
-      const config = {
-        headers: {
-          'x-access-token':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5hbWUiLCJpYXQiOjE2OTc1MzM2OTR9.61Sb5M-ZYL74WZbkBKvBMBYfnylTOxtY3FhnS8k518Q',
-        },
+      const headers = {
+        'x-access-token':
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5hbWUiLCJpYXQiOjE2OTc1MzM2OTR9.61Sb5M-ZYL74WZbkBKvBMBYfnylTOxtY3FhnS8k518Q',
       };
-      const { headers } = config;
-      const postData = {
+      const data = {
         ingredient: ingredientsList,
       };
-      const response = await axios.post(apiURL, postData, { headers });
+      const response = await axios.post(apiURL, data, { headers });
       if (response) {
         context.commit('SET_RECIPE_LISTINGS', response.data.results);
       }

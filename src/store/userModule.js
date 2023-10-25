@@ -58,7 +58,6 @@ const userModule = {
         email,
         password,
       );
-
       if (response) {
         context.commit('SET_USER', response.user);
         const auth = getAuth();

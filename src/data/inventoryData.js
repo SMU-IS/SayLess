@@ -10,7 +10,7 @@ const groceries = [
     id: 2,
     item: 'Eggs',
     quantity: 1,
-    doe: '2023-11/-1',
+    doe: '2023-11-1',
     category: 'Dairy',
   },
   {

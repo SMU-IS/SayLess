@@ -20,13 +20,10 @@ const communityModule = {
   actions: {
     async fetchCommunityListings(context) {
       const apiURL = import.meta.env.VITE_GET_LISTING;
-      const config = {
-        headers: {
-          'x-access-token':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5hbWUiLCJpYXQiOjE2OTc1MzM2OTR9.61Sb5M-ZYL74WZbkBKvBMBYfnylTOxtY3FhnS8k518Q',
-        },
+      const headers = {
+        'x-access-token':
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5hbWUiLCJpYXQiOjE2OTc1MzM2OTR9.61Sb5M-ZYL74WZbkBKvBMBYfnylTOxtY3FhnS8k518Q',
       };
-      const { headers } = config;
       const response = await axios.get(apiURL, { headers });
       if (response) {
         const strData = JSON.stringify(response.data);

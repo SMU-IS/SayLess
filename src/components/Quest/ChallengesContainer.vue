@@ -2,23 +2,23 @@
   <div class="flex flex-col md:items-center mt-10 md:mb-10">
     <div class="flex hide-scroll-bar overflow-x-scroll px-10">
       <div class="flex flex-nowrap">
-        <div v-for="content in getQuestData" :key="content.id">
+        <div v-for="content in getQuestData.challenges" :key="content.id">
           <div class="inline-block px-3">
             <div
-              class="relative w-72 pb-4 max-w-xs overflow-hidden rounded-lg shadow-md bg-card-light hover:shadow-xl transition-shadow duration-300 ease-in-out"
+              class="relative w-72 pb-4 min-h-[200px] max-w-xs overflow-hidden rounded-lg shadow-md bg-card-light hover:shadow-xl transition-shadow duration-300 ease-in-out"
             >
               <div
                 class="p-4 font-bold tracking-tight min-h-[20px] bg-[#221E2F] w-full text-pink"
               >
-                Challenge {{ content.id }}
+                {{ content.id }}
                 <component
                   :is="content.icon"
                   class="checkedIcon w-5 float-right"
-                  :class="{ 'icon-checked': content.checked }"
+                  :class="{ 'icon-checked': content.completed }"
                 />
               </div>
 
-              <div class="text-white p-4 mb-4">{{ content.content }}</div>
+              <div class="text-white p-4 mb-4">{{ content.description }}</div>
 
               <div class="flex justify-end mr-5">
                 <CustomButton
@@ -46,12 +46,11 @@
     </div>
   </div>
 
-  <div v-for="content in getQuestData" :key="content.id">
+  <div v-for="content in getQuestData.challenges" :key="content.id">
     <CustomDrawer
-      v-if="content.status === 'In Progress'"
       :drawer-id="'my_drawer_' + content.id"
-      :page-name="content.page"
-      :drawer-title="'You joined Challenge ' + content.id"
+      :page-name="content.callToAction"
+      :drawer-title="'You joined ' + content.id"
       drawer-subtitle="Do you want to complete the challenge now?"
       button-false="Not now"
       button-true="Yes, take me there!"
@@ -74,7 +73,7 @@ export default {
     CustomDrawer,
   },
   computed: {
-    ...mapGetters(['getQuestData']),
+    ...mapGetters(['getQuestData', 'getChallengeStatus']),
   },
   methods: {
     onDrawerOpen(drawerId) {

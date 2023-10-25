@@ -1,35 +1,57 @@
-import { CheckBadgeIcon } from '@heroicons/vue/24/solid';
-
 const questCards = [
   {
-    id: 1,
-    questID: 1,
-    checked: false,
-    icon: CheckBadgeIcon,
-    content:
-      'Lorem 1 ipsum dolor sit amet consectetur. Vitae consequat ipsum sed pharetra dolor',
-    status: 'Start',
-    page: '/community',
+    questId: 1,
+    questName: 'Quest 1',
+    challenges: [
+      {
+        id: 'Challenge 1',
+        description: 'Add an item to your inventory manually',
+        completed: false,
+        status: 'Start',
+        callToAction: '/inventory',
+      },
+      {
+        id: 'Challenge 2',
+        description: 'Scan a receipt to add items to your inventory',
+        completed: false,
+        status: 'Start',
+        callToAction: '/inventory',
+      },
+      {
+        id: 'Challenge 3',
+        description: 'Grab an item from the community sharing marketplace',
+        completed: false,
+        status: 'Start',
+        callToAction: '/community',
+      },
+    ],
   },
   {
-    id: 2,
-    questID: 1,
-    checked: true,
-    icon: CheckBadgeIcon,
-    content:
-      'Lorem 2 ipsum dolor sit amet consectetur. Vitae consequat ipsum sed pharetra dolor',
-    status: 'In Progress',
-    page: `/chat`,
-  },
-  {
-    id: 3,
-    questID: 1,
-    checked: true,
-    icon: CheckBadgeIcon,
-    content:
-      'Lorem  ipsum dolor sit amet consectetur. Vitae consequat ipsum sed pharetra dolor',
-    status: 'Completed',
-    page: `/chat`,
+    questId: 2,
+    questName: 'Quest 2',
+    challenges: [
+      {
+        id: 'Challenge 1',
+        description: 'TBC',
+        completed: false,
+        status: 'Start',
+        callToAction: '/inventory',
+      },
+      {
+        id: 'Challenge 2',
+        description: 'TBC',
+        completed: false,
+        status: 'Start',
+        callToAction: '/inventory',
+      },
+      {
+        id: 'Challenge 3',
+        description: 'TBC',
+        completed: true,
+        status: 'Completed',
+        callToAction: '/community',
+      },
+    ],
   },
 ];
 

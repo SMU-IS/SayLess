@@ -86,21 +86,32 @@
 import { ref } from 'vue';
 import { gsap } from 'gsap';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
-
 gsap.registerPlugin(MotionPathPlugin);
-let timelineQuest = gsap.timeline();
 
 export default {
   name: 'GraphicComponent',
+  props: {
+    challengeStatus: {
+      type: String,
+      default: '',
+      timeline: '',
+    },
+  },
   data() {
     return {
       scales: ((ref(screen.width).value - 363) / 2 + 320) / 320,
     };
   },
+  created() {
+    this.timelineQuest = gsap.timeline();
+  },
   mounted() {
-    timelineQuest.pause();
-
-    timelineQuest
+    if (this.challengeStatus === 'Completed') {
+      this.timelineTrigger();
+    } else {
+      this.timelineQuest.pause();
+    }
+    this.timelineQuest
       .to('.dot', {
         duration: 3,
         ease: 'power1.inOut',
@@ -119,9 +130,7 @@ export default {
         { opacity: 0.2 },
         { opacity: 1, duration: 1, ease: 'power1.inOut' },
       )
-
       .addPause()
-
       .to('.dot', {
         duration: 3,
         ease: 'power1.inOut',
@@ -140,9 +149,7 @@ export default {
         { opacity: 0.2 },
         { opacity: 1, duration: 1, ease: 'power1.inOut' },
       )
-
       .addPause()
-
       .to('.dot', {
         duration: 3,
         ease: 'power1.inOut',
@@ -156,7 +163,6 @@ export default {
           end: '1',
         },
       })
-
       .fromTo(
         '#c3',
         { opacity: 0.2 },
@@ -165,7 +171,7 @@ export default {
   },
   methods: {
     timelineTrigger() {
-      timelineQuest.play();
+      this.timelineQuest.play();
     },
   },
 };

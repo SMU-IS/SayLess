@@ -61,7 +61,10 @@
       </div>
 
       <div class="flex min-h-[24rem] h-fit flex-row mt-6 md:w-full md:mx-auto">
-        <CustomCard width="full" background="transparent">
+        <div v-if="getInventoryData.length < 1">
+          <h4>Add Something</h4>
+        </div>
+        <CustomCard v-else width="full" background="transparent">
           <div class="flex flex-col gap-5">
             <CustomCard
               v-for="grocery in getInventoryData.slice().reverse()"
@@ -92,13 +95,6 @@
       modal-title="Add to Inventory"
       confirmation-text="Add"
     />
-
-    <CongratsModal
-      modal-id="congrats_1"
-      modal-title="You've got an achievement"
-      modal-subtitle="You completed Challenge 1"
-      button-text="Collect Reward"
-    />
   </div>
 </template>
 
@@ -110,7 +106,6 @@ import { PencilSquareIcon } from '@heroicons/vue/24/outline';
 import FormModal from '@/components/Modal/FormModal.vue';
 import { openModal } from '@/helpers/common';
 import { mapGetters } from 'vuex';
-import CongratsModal from '@/components/Modal/CongratsModal.vue';
 
 export default {
   name: 'InventoryPage',
@@ -120,7 +115,6 @@ export default {
     CustomButton,
     PencilSquareIcon,
     FormModal,
-    CongratsModal,
   },
   computed: {
     ...mapGetters(['getInventoryData']),

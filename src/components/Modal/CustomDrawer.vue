@@ -8,18 +8,13 @@
         aria-label="close sidebar"
         class="drawer-overlay"
       ></label>
-      <div
-        class="bottomDrawer bg-zinc-900 menu p-6 w-full h-3/6 text-base-content"
-      >
+      <div class="bottomDrawer bg-zinc-900 menu p-6 w-full text-base-content">
         <form method="dialog"></form>
         <div class="mb-12 mt-6">
           <div>
             <h3 class="font-bold text-lg text-white">{{ drawerTitle }}</h3>
             <p class="text-md text-white">{{ drawerSubtitle }}</p>
           </div>
-          <p class="p-4 mt-4 text-pink bg-zinc-800 rounded">
-            <slot>{{ drawerContent }}</slot>
-          </p>
         </div>
         <form method="dialog" class="flex flex-col justify-around gap-2">
           <CustomButton
@@ -72,10 +67,6 @@ export default {
       default: '',
     },
     drawerSubtitle: {
-      type: String,
-      default: '',
-    },
-    drawerContent: {
       type: String,
       default: '',
     },

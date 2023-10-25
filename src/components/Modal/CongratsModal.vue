@@ -43,7 +43,7 @@
 
 <script>
 import CustomButton from '@/components/Button/CustomButton.vue';
-import { closeModal } from '@/helpers/common';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'CongratsModal',
@@ -52,10 +52,6 @@ export default {
     modalId: {
       type: String,
       default: '',
-    },
-    clickHandler: {
-      type: Function,
-      default: () => {},
     },
     modalTitle: {
       type: String,
@@ -74,12 +70,22 @@ export default {
       default: '',
     },
   },
-  methods: {
-    onModalClose() {
-      closeModal(this.modalId);
+  computed: {
+    ...mapGetters(['getQuestData']),
+    getChallengeId() {
+      return this.getQuestData.challenges[0].id;
     },
-    changeTab() {
-      this.$router.push('/quest');
+  },
+  methods: {
+    async changeTab() {
+      try {
+        await this.$store.dispatch('updateQuestStatus', {
+          id: this.getChallengeId,
+        });
+        this.$router.push('/quest');
+      } catch (err) {
+        throw err;
+      }
     },
   },
 };

@@ -3,6 +3,7 @@
     <slot> {{ buttonText }}</slot>
   </button>
 </template>
+
 <script>
 import { cva } from 'class-variance-authority';
 

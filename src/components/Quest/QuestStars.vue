@@ -2,7 +2,7 @@
   <header class="flex justify-center">
     <div class="flex gradientQuest">
       <div v-for="stars in sortedQuestCards" :key="stars.id">
-        <span v-if="stars.checked">
+        <span v-if="stars.completed">
           <StarIcon class="w-4 mx-1 fill-[#FFE993]" />
         </span>
         <p v-else>
@@ -14,23 +14,27 @@
 </template>
 
 <script>
-import { questCards } from '@/data/questCards.js';
 import { StarIcon } from '@heroicons/vue/24/solid';
 import { sortByState } from '@/helpers/Sort/sortByState';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'QuestStars',
   components: {
     StarIcon,
   },
-  data() {
-    return {
-      questCards,
-    };
+  props: {
+    challengeStatus: {
+      type: Object,
+      default: () => {
+        return {};
+      },
+    },
   },
   computed: {
+    ...mapGetters(['getQuestData']),
     sortedQuestCards() {
-      return sortByState(this.questCards);
+      return sortByState(this.getQuestData.challenges);
     },
   },
 };

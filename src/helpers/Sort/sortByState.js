@@ -1,6 +1,7 @@
 const sortByState = (arr) => {
-  return arr.sort((a, b) =>
-    a.checked && !b.checked ? -1 : !a.checked && b.checked ? 1 : 0,
+  let filterArr = [...arr];
+  return filterArr.sort((a, b) =>
+    a.completed && !b.completed ? -1 : !a.completed && b.completed ? 1 : 0,
   );
 };
 

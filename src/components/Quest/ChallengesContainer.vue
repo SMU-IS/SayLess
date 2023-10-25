@@ -1,40 +1,42 @@
 <template>
-  <div class="flex flex-col md:items-center mt-10 md:mb-10 ">
+  <div class="flex flex-col md:items-center mt-10 md:mb-10">
     <div class="flex hide-scroll-bar overflow-x-scroll px-10">
       <div class="flex flex-nowrap">
-        <div v-for="content in questCards" :key="content.id">
+        <div v-for="content in getQuestData.challenges" :key="content.id">
           <div class="inline-block px-3">
             <div
-              class="relative w-72 pb-4 max-w-xs overflow-hidden rounded-lg shadow-md bg-card-light hover:shadow-xl transition-shadow duration-300 ease-in-out"
+              class="relative w-72 pb-4 min-h-[200px] max-w-xs overflow-hidden rounded-lg shadow-md bg-card-light hover:shadow-xl transition-shadow duration-300 ease-in-out"
             >
               <div
                 class="p-4 font-bold tracking-tight min-h-[20px] bg-[#221E2F] w-full text-pink"
               >
-                Challenge {{ content.id }}
+                {{ content.id }}
                 <component
                   :is="content.icon"
                   class="checkedIcon w-5 float-right"
-                  :class="{ 'icon-checked': content.checked }"
+                  :class="{ 'icon-checked': content.completed }"
                 />
               </div>
 
-              <div class="text-white p-4 mb-4">{{ content.content }}</div>
+              <div class="text-white p-4 mb-4">{{ content.description }}</div>
 
               <div class="flex justify-end mr-5">
                 <CustomButton
                   size="small"
-                  roundness="full"
+                  roundness="round"
+                  :disabled="
+                    content.status === 'Completed' ||
+                    content.status === 'In Progress'
+                  "
                   :color="
                     content.status === 'In Progress'
-                      ? 'blue'
-                      : content.status === 'Not Started'
-                      ? 'red'
-                      : 'green'
+                      ? 'disabled'
+                      : content.status === 'Start'
+                      ? 'green'
+                      : 'disabled'
                   "
-                  @click="changeTab('chat')"
-                  ><label for="my_drawer_4" class="drawer-button">{{
-                    content.status
-                  }}</label></CustomButton
+                  @click="onDrawerOpen(content.id)"
+                  >{{ content.status }}</CustomButton
                 >
               </div>
             </div>
@@ -43,20 +45,26 @@
       </div>
     </div>
   </div>
-  <CustomDrawer
-    drawer-title="You joined Challenge 1!"
-    drawer-subtitle="Do you want to complete the challenge now?"
-    button-false="Not now"
-    button-true="Yes, take me there!"
-  >
-    Get an item for free from the Community Sharing page
-  </CustomDrawer>
+
+  <div v-for="content in getQuestData.challenges" :key="content.id">
+    <CustomDrawer
+      :drawer-id="'my_drawer_' + content.id"
+      :page-name="content.callToAction"
+      :drawer-title="'You joined ' + content.id"
+      drawer-subtitle="Do you want to complete the challenge now?"
+      button-false="Not now"
+      button-true="Yes, take me there!"
+    >
+      {{ content.content }}
+    </CustomDrawer>
+  </div>
 </template>
 
 <script>
-import { questCards } from '@/data/questCards.js';
 import CustomButton from '@/components/Button/CustomButton.vue';
 import CustomDrawer from '@/components/Modal/CustomDrawer.vue';
+import { toggleDrawer } from '@/helpers/common';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'ChallengesContainer',
@@ -64,10 +72,23 @@ export default {
     CustomButton,
     CustomDrawer,
   },
-  data() {
-    return {
-      questCards,
-    };
+  computed: {
+    ...mapGetters(['getQuestData', 'getChallengeStatus']),
+  },
+  methods: {
+    onDrawerOpen(drawerId) {
+      toggleDrawer(`my_drawer_${drawerId}`);
+      this.handleUpdateChallengeStatus(drawerId);
+    },
+    async handleUpdateChallengeStatus(id) {
+      try {
+        await this.$store.dispatch('updateQuestStatus', {
+          id: id,
+        });
+      } catch (err) {
+        throw err;
+      }
+    },
   },
 };
 </script>

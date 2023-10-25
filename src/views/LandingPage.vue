@@ -90,9 +90,6 @@ export default {
     pageLoadAnimation(divIds);
   },
   methods: {
-    showModal() {
-      openModal();
-    },
     navigateInventory() {
       this.$router.push('/inventory');
     },

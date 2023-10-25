@@ -1,30 +1,31 @@
 <template>
   <div class="drawer drawer_bottom z-50">
-    <input id="my_drawer_4" type="checkbox" class="drawer-toggle" />
+    <input :id="drawerId" type="checkbox" class="drawer-toggle" />
 
     <div class="drawer-side">
       <label
-        for="my_drawer_4"
+        :for="drawerId"
         aria-label="close sidebar"
         class="drawer-overlay"
       ></label>
-      <div
-        class="bottomDrawer bg-zinc-900 menu p-6 w-full h-3/6 text-base-content"
-      >
+      <div class="bottomDrawer bg-zinc-900 menu p-6 w-full text-base-content">
         <form method="dialog"></form>
         <div class="mb-12 mt-6">
           <div>
             <h3 class="font-bold text-lg text-white">{{ drawerTitle }}</h3>
             <p class="text-md text-white">{{ drawerSubtitle }}</p>
           </div>
-          <p class="p-4 mt-4 text-pink bg-zinc-800 rounded">
-            <slot>{{ drawerContent }}</slot>
-          </p>
         </div>
         <form method="dialog" class="flex flex-col justify-around gap-2">
-          <CustomButton width="full" roundness="round" color="green">
+          <CustomButton
+            width="full"
+            roundness="round"
+            color="green"
+            @click="changeTab"
+          >
             {{ buttonTrue }}
           </CustomButton>
+
           <CustomButton
             width="full"
             roundness="round"
@@ -41,6 +42,7 @@
 
 <script>
 import CustomButton from '@/components/Button/CustomButton.vue';
+import { toggleDrawer } from '@/helpers/common';
 
 export default {
   name: 'CustomDrawer',
@@ -48,6 +50,14 @@ export default {
     CustomButton,
   },
   props: {
+    drawerId: {
+      type: String,
+      default: '',
+    },
+    pageName: {
+      type: String,
+      default: '',
+    },
     contentHere: {
       type: String,
       default: '',
@@ -57,10 +67,6 @@ export default {
       default: '',
     },
     drawerSubtitle: {
-      type: String,
-      default: '',
-    },
-    drawerContent: {
       type: String,
       default: '',
     },
@@ -75,7 +81,10 @@ export default {
   },
   methods: {
     onDrawerClose() {
-      closeDrawer();
+      toggleDrawer(this.drawerId);
+    },
+    changeTab() {
+      this.$router.push(this.pageName);
     },
   },
 };

@@ -1,8 +1,9 @@
 <template>
-  <button type="button" :class="computedClasses">
+  <button type="button" :class="computedClasses" :disabled="disableBtn">
     <slot> {{ buttonText }}</slot>
   </button>
 </template>
+
 <script>
 import { cva } from 'class-variance-authority';
 
@@ -21,6 +22,7 @@ const ButtonVariants = cva(
         ghost: 'bg-none text-white-light hover:bg-gray-100 ',
         gradient: 'bg-gradient-header text-white',
         gray: 'bg-gray-light',
+        disabled: 'bg-transparent text-white-light',
       },
       /* button sizes */
       size: {
@@ -65,6 +67,10 @@ export default {
     width: {
       type: String,
       default: 'fit',
+    },
+    disableBtn: {
+      type: Boolean,
+      default: false,
     },
   },
   computed: {

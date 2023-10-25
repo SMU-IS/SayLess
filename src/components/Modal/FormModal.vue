@@ -31,6 +31,13 @@
       <button>close</button>
     </form>
   </dialog>
+
+  <CongratsModal
+    modal-id="congrats_1"
+    modal-title="You've got an achievement"
+    modal-subtitle="You completed Challenge 1"
+    button-text="Collect Reward"
+  />
 </template>
 
 <script>
@@ -39,10 +46,14 @@ import { closeModal } from '@/helpers/common';
 import CustomInput from '@/components/Form/CustomInput.vue';
 import { getErrorMessage } from '@/helpers/getErrorMessage';
 import { getResponse } from '@/helpers/getResponse';
+import { openModal } from '@/helpers/common';
+import CongratsModal from '@/components/Modal/CongratsModal.vue';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'FormModal',
-  components: { CustomButton, CustomInput },
+  components: { CustomButton, CustomInput, CongratsModal },
+
   props: {
     modalId: {
       type: String,
@@ -62,11 +73,26 @@ export default {
       item: '',
     };
   },
+  computed: {
+    ...mapGetters(['getInventoryData', 'getQuestData']),
+    getChallengeStatus() {
+      return this.getQuestData.challenges[0].status;
+    },
+  },
   methods: {
     onModalClose() {
       closeModal(this.modalId);
     },
+    showCongratsModal() {
+      openModal('congrats_1');
+    },
     async handleAdd() {
+      if (
+        this.getChallengeStatus === 'In Progress' &&
+        this.getInventoryData.length === 0
+      ) {
+        this.showCongratsModal();
+      }
       if (this.item.length !== 0) {
         try {
           await this.$store.dispatch('handleAddItem', {

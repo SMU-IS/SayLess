@@ -1,5 +1,5 @@
 <template>
-  <ParentHeader> SayLess </ParentHeader>
+  <ParentHeader @click="showCongratsModal"> SayLess </ParentHeader>
   <div class="flex flex-col md:flex-row justify-center md:gap-4">
     <div
       id="divOne"
@@ -90,8 +90,8 @@ export default {
     pageLoadAnimation(divIds);
   },
   methods: {
-    showModal() {
-      openModal();
+    showCongratsModal() {
+      openCongratsModal('congrats_1');
     },
     navigateInventory() {
       this.$router.push('/inventory');

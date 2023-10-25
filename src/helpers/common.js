@@ -20,8 +20,8 @@ const closeModal = (modalId) => {
   document.getElementById(modalId).close();
 };
 
-const closeDrawer = (drawerId) => {
-  document.getElementById(drawerId).close();
+const toggleDrawer = (drawerId) => {
+  document.getElementById(drawerId).click();
 };
 
 const pageLoadAnimation = (elementIds) => {
@@ -61,7 +61,7 @@ export {
   scrollToTop,
   openModal,
   closeModal,
-  closeDrawer,
+  toggleDrawer,
   pageLoadAnimation,
   getCurrentDate,
   randomUniqueId,

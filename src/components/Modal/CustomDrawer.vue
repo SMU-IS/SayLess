@@ -30,6 +30,7 @@
           >
             {{ buttonTrue }}
           </CustomButton>
+
           <CustomButton
             width="full"
             roundness="round"
@@ -46,6 +47,7 @@
 
 <script>
 import CustomButton from '@/components/Button/CustomButton.vue';
+import { toggleDrawer } from '@/helpers/common';
 
 export default {
   name: 'CustomDrawer',
@@ -88,7 +90,7 @@ export default {
   },
   methods: {
     onDrawerClose() {
-      closeDrawer(this.drawerId);
+      toggleDrawer(this.drawerId);
     },
     changeTab() {
       this.$router.push(this.pageName);

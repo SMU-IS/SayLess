@@ -51,6 +51,7 @@ const store = createStore({
       return state.user.recipeListings;
     },
     getQuestData(state) {
+      console.log(state.user.questData);
       return state.user.questData;
     },
   },

@@ -24,20 +24,19 @@
                 <CustomButton
                   size="small"
                   roundness="round"
-                  :disabled="content.status === 'Completed'"
+                  :disabled="
+                    content.status === 'Completed' ||
+                    content.status === 'In Progress'
+                  "
                   :color="
                     content.status === 'In Progress'
-                      ? 'blue'
+                      ? 'disabled'
                       : content.status === 'Start'
                       ? 'green'
                       : 'disabled'
                   "
-                  @click="handleUpdateChallengeStatus(content.id)"
-                  ><label
-                    :for="'my_drawer_' + content.id"
-                    class="drawer-button cursor-pointer"
-                    >{{ content.status }}</label
-                  ></CustomButton
+                  @click="onDrawerOpen(content.id)"
+                  >{{ content.status }}</CustomButton
                 >
               </div>
             </div>
@@ -65,6 +64,7 @@
 <script>
 import CustomButton from '@/components/Button/CustomButton.vue';
 import CustomDrawer from '@/components/Modal/CustomDrawer.vue';
+import { toggleDrawer } from '@/helpers/common';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -77,6 +77,10 @@ export default {
     ...mapGetters(['getQuestData']),
   },
   methods: {
+    onDrawerOpen(drawerId) {
+      toggleDrawer(`my_drawer_${drawerId}`);
+      this.handleUpdateChallengeStatus(drawerId);
+    },
     async handleUpdateChallengeStatus(id) {
       try {
         await this.$store.dispatch('updateQuestStatus', {

@@ -27,7 +27,7 @@ const questCards = [
     checked: true,
     icon: CheckBadgeIcon,
     content:
-      'Lorem 3 ipsum dolor sit amet consectetur. Vitae consequat ipsum sed pharetra dolor',
+      'Lorem  ipsum dolor sit amet consectetur. Vitae consequat ipsum sed pharetra dolor',
     status: 'Completed',
     page: `/chat`,
   },

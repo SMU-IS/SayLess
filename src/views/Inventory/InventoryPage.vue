@@ -92,6 +92,13 @@
       modal-title="Add to Inventory"
       confirmation-text="Add"
     />
+
+    <CongratsModal
+      modal-id="congrats_1"
+      modal-title="You've got an achievement"
+      modal-subtitle="You completed Challenge 1"
+      button-text="Collect Reward"
+    />
   </div>
 </template>
 
@@ -103,6 +110,7 @@ import { PencilSquareIcon } from '@heroicons/vue/24/outline';
 import FormModal from '@/components/Modal/FormModal.vue';
 import { openModal } from '@/helpers/common';
 import { mapGetters } from 'vuex';
+import CongratsModal from '@/components/Modal/CongratsModal.vue';
 
 export default {
   name: 'InventoryPage',
@@ -112,6 +120,7 @@ export default {
     CustomButton,
     PencilSquareIcon,
     FormModal,
+    CongratsModal,
   },
   computed: {
     ...mapGetters(['getInventoryData']),

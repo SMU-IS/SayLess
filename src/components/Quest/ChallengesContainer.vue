@@ -48,6 +48,7 @@
 
   <div v-for="content in getQuestData" :key="content.id">
     <CustomDrawer
+      v-if="content.status === 'In Progress'"
       :drawer-id="'my_drawer_' + content.id"
       :page-name="content.page"
       :drawer-title="'You joined Challenge ' + content.id"

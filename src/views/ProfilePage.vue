@@ -10,6 +10,7 @@
           :src="profilePic"
           :alt="name"
           class="w-20 h-20 rounded-full"
+          referrerpolicy="no-referrer"
         />
 
         <UserIcon v-else class="w-9 h-9 rounded-full" />

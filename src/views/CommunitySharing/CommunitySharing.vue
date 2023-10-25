@@ -5,30 +5,34 @@
       <h4 class="cursor-pointer" @click="viewAll">View All</h4>
     </div>
 
-    <div class="grid md:grid-cols-3 mt-4 gap-5">
+    <div class="grid md:grid-cols-3 lg:grid-cols-4 mt-4 gap-5">
       <div
-        v-for="item in getCommunityListings"
+        v-for="item in showLimitedListings"
         :key="item.id"
-        class="card card-side bg-white text-black shadow-xl rounded-lg cursor-pointer"
+        class="card card-side bg-white text-black shadow-xl rounded-lg cursor-pointer md:max-w-sm w-full max-w-full flex md:block"
         @click="getItemDetails(item.id)"
       >
-        <figure>
-          <img
-            src="../../assets/Food/Chip.jpg"
-            alt="Movie"
-            class="h-full w-32"
-          />
-        </figure>
+        <!-- <div
+          class="h-full w-32 md:h-48 md:w-full flex-none bg-cover rounded-l md:rounded-l-none md:rounded-t text-center overflow-hidden"
+          :style="'background-image: url(' + item.listingImages[0] + ')'"
+          title="Woman holding a mug"
+        ></div> -->
+
+        <div
+          class="h-full w-32 md:h-48 md:w-full flex-none bg-cover rounded-l md:rounded-l-none md:rounded-t text-center overflow-hidden"
+          :style="'background-image: url(src/assets/Food/Chip.jpg)'"
+          title="Woman holding a mug"
+        ></div>
 
         <div class="flex flex-col justify-center gap-2 p-5">
-          <h2 class="card-title">{{ item.listingTitle }}</h2>
-          <p class="text-black-light text-base">Lorem ipsum dolor sit amet</p>
+          <h2 class="card-title text-base">{{ item.listingTitle }}</h2>
+          <p class="text-black-light text-xs">Lorem ipsum dolor sit amet</p>
 
           <div class="flex items-center gap-3">
             <div class="avatar">
               <div class="w-8 rounded-full">
                 <!-- <img :src="item.createdBy.profilePic" /> -->
-                <img :src="getProfilePicture" />
+                <img :src="getProfilePicture" referrerpolicy="no-referrer" />
               </div>
             </div>
 
@@ -50,6 +54,12 @@ export default {
   name: 'CommunitySharing',
   computed: {
     ...mapGetters(['getCommunityListings', 'getProfilePicture']),
+    showLimitedListings() {
+      if (this.getCommunityListings) {
+        return this.getCommunityListings.slice(0, 3);
+      }
+      return this.getCommunityListings;
+    },
   },
   created() {
     this.fetchCommunityListings();

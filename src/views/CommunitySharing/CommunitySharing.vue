@@ -30,10 +30,11 @@
 
           <div class="flex items-center gap-3">
             <div class="avatar">
-              <div class="w-8 rounded-full">
+              <div v-if="getProfilePicture" class="w-8 rounded-full">
                 <!-- <img :src="item.createdBy.profilePic" /> -->
                 <img :src="getProfilePicture" referrerpolicy="no-referrer" />
               </div>
+              <UserIcon v-else class="w-4 h-auto" />
             </div>
 
             <p class="text-black-light text-xs">
@@ -49,9 +50,11 @@
 <script>
 import { scrollToTop } from '@/helpers/common';
 import { mapActions, mapGetters } from 'vuex';
+import { UserIcon } from '@heroicons/vue/24/outline';
 
 export default {
   name: 'CommunitySharing',
+  components: { UserIcon },
   computed: {
     ...mapGetters(['getCommunityListings', 'getProfilePicture']),
     showLimitedListings() {

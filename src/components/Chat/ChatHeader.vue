@@ -18,31 +18,33 @@
         </div>
         <div class="container w-2/4 text-center">
           <div class="owner-name text-center">
-            <h3>{{ listingData.personId }}</h3>
+            <h3>{{ correspondentObj.name }}</h3>
           </div>
         </div>
-        <div class="container w-1/4 flex justify-end items-center">
+        <div class="container w-1/4 flex justify-end">
           <img
-            :src="listingData.profilePic"
+            :src="correspondentObj.profilePic"
             alt="Owner's Picture"
-            class="owner-picture w-7 h-7 float-right rounded-full border-2 border-white"
+            class="owner-picture w-8 h-8 float-right rounded-full border-2 border-white"
           />
         </div>
       </div>
-      <div class="listing-content flex">
+      <div v-if="specificListing" class="listing-content flex">
         <img
-          :src="listingData.listingImage"
+          :src="specificListing.listingImages[0]"
           alt="Listing Picture"
           class="listing-picture w-24"
         />
         <div class="container ms-4">
           <div class="listing-name">
             <p class="text-md font-semibold mb-2">
-              {{ listingData.listingTitle }}
+              {{ specificListing.listingTitle }}
             </p>
           </div>
           <CustomButton
-            v-if="!listingData.requested && sender !== listingData.personId"
+            v-if="
+              specificListing.isAvailable && id !== specificListing.createdBy
+            "
             size="medium"
             roundness="round"
             color="green"
@@ -50,11 +52,13 @@
             >Request Item</CustomButton
           >
           <CustomButton
-            v-if="!listingData.accepted && sender == listingData.personId"
+            v-if="
+              specificListing.isAvailable && id == specificListing.createdBy
+            "
             size="small"
             roundness="round"
             color="green"
-            :disabled="!listingData.requested"
+            :disabled="!specificListing.requested.includes(correspondentObj.id)"
             @click="acceptItem"
             >Accept Item</CustomButton
           >
@@ -66,36 +70,54 @@
 
 <script>
 import CustomButton from '@/components/Button/CustomButton.vue';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
-  name: 'ListingHeader',
+  name: 'ChatHeader',
   components: {
     CustomButton,
   },
   props: {
-    listingData: {
-      type: Object,
-      required: true,
+    listingId: {
+      type: String,
+      default: '',
     },
     messages: {
       type: Object,
       required: true,
     },
-    sender: {
-      type: String,
-      default: '',
+    correspondentObj: {
+      type: Object,
+      required: true,
     },
   },
   emits: ['accept', 'request'],
+  data() {
+    return {
+      id: '6530d24110a9828679f8858a',
+    };
+  },
+  computed: {
+    ...mapGetters(['getCommunityListings']),
+    specificListing() {
+      return this.getCommunityListings.find(
+        (listing) => listing.id === this.listingId,
+      );
+    },
+  },
+  mounted() {
+    this.fetchCommunityListings();
+  },
   methods: {
+    ...mapActions(['fetchCommunityListings']),
     goBack() {
       this.$router.go(-1);
     },
     requestItem() {
-      this.$emit('request', true);
+      this.$emit('request', this.specificListing.id);
     },
     acceptItem() {
-      this.$emit('accept', true);
+      this.$emit('accept', this.specificListing.id);
     },
     formatTimestamp(timestamp) {
       const hours = timestamp.getHours();

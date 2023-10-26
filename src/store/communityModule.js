@@ -31,6 +31,20 @@ const communityModule = {
       }
     },
   },
+  async setRequest(context, { listingid }) {
+    const apiURL = import.meta.env.VITE_SET_REQUEST;
+    const config = {
+      headers: {
+        'x-access-token':
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTMwZDI0MTEwYTk4Mjg2NzlmODg1OGEiLCJ1c2VySWQiOiJZRzFJZ3RzdFFETmNxYTUwaEVjRXVFSEJhaFIyIiwiZW1haWwiOiJjeGFuZy4yMDIyQHNtdS5lZHUuc2ciLCJuYW1lIjoiSk9TSFVBIERBVklEIEFORyBDSFVOIFhJT05HIF8iLCJwcm9maWxlUGljIjoiaHR0cHM6Ly9pLmt5bS1jZG4uY29tL2VudHJpZXMvaWNvbnMvb3JpZ2luYWwvMDAwLzAzNi8wMDcvdW5kZXJ0aGV3YXRlcmNvdmVyLmpwZyIsImlhdCI6MTY5NzcwOTg0OH0.wN1yj3wrxJHZpGmpHsCPHSiOUIvqdhMtRzVyt2HBxzc',
+      },
+    };
+    const { headers } = config;
+    const postData = {
+      listingid: listingid,
+    };
+    await axios.post(apiURL, postData, { headers });
+  },
 };
 
 export { communityModule };

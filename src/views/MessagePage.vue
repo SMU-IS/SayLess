@@ -1,7 +1,7 @@
 <template>
   <ParentHeader> Messages </ParentHeader>
   <div class="flex justify-center mt-32 md:h-screen">
-    <div class="w-screen md:w-1/3">
+    <div class="w-screen lg:w-1/3">
       <div class="flex justify-center">
         <CustomButton
           size="small"
@@ -36,7 +36,7 @@
         </CustomButton>
       </div>
 
-      <div class="content mt-4">
+      <div class="content mt-4 h-[32rem] md:h-[40rem] overflow-y-scroll">
         <div v-if="currentTab === 'chat'">
           <ChatsTab />
         </div>

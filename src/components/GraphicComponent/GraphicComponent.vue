@@ -92,9 +92,8 @@ export default {
   name: 'GraphicComponent',
   props: {
     challengeStatus: {
-      type: String,
-      default: '',
-      timeline: '',
+      type: Object,
+      default: () => {},
     },
   },
   data() {
@@ -106,11 +105,16 @@ export default {
     this.timelineQuest = gsap.timeline();
   },
   mounted() {
-    if (this.challengeStatus === 'Completed') {
-      this.timelineTrigger();
-    } else {
-      this.timelineQuest.pause();
+    if (this.challengeStatus) {
+      for (let i = 0; i < this.challengeStatus.length; i++) {
+        if (this.challengeStatus[i].status === 'Completed') {
+          this.timelineTrigger();
+        } else {
+          this.timelineQuest.pause();
+        }
+      }
     }
+
     this.timelineQuest
       .to('.dot', {
         duration: 3,

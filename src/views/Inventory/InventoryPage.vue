@@ -2,7 +2,6 @@
   <ParentHeader :show-back-btn="true" @header-click="goBack">
     Inventory
   </ParentHeader>
-
   <div class="flex flex-col md:flex-row-reverse md:gap-4 md:mt-24">
     <div class="mx-auto md:mt-32 mt-28 w-full md:w-1/3">
       <div class="flex gap-3 md:flex-col md:items-center">
@@ -95,6 +94,13 @@
       modal-title="Add to Inventory"
       confirmation-text="Add"
     />
+
+    <CongratsModal
+      modal-id="congrats_2"
+      modal-title="You've got an achievement"
+      modal-subtitle="You completed Challenge 2"
+      button-text="Collect Reward"
+    />
   </div>
 </template>
 
@@ -104,6 +110,7 @@ import CustomCard from '@/components/Card/CustomCard.vue';
 import CustomButton from '@/components/Button/CustomButton.vue';
 import { PencilSquareIcon } from '@heroicons/vue/24/outline';
 import FormModal from '@/components/Modal/FormModal.vue';
+import CongratsModal from '@/components/Modal/CongratsModal.vue';
 import { openModal } from '@/helpers/common';
 import { mapGetters } from 'vuex';
 
@@ -115,9 +122,13 @@ export default {
     CustomButton,
     PencilSquareIcon,
     FormModal,
+    CongratsModal,
   },
   computed: {
-    ...mapGetters(['getInventoryData']),
+    ...mapGetters(['getInventoryData', 'getQuestData']),
+    getChallengeStatus() {
+      return this.getQuestData[1].status;
+    },
   },
   methods: {
     goBack() {
@@ -136,7 +147,10 @@ export default {
       }
     },
     async scanReceipt() {
-      // this is challenge 2
+      // if (this.getChallengeStatus === 'In Progress') {
+      //   this.showModal('congrats_2');
+      // }
+
       try {
         await this.$store.dispatch('incrementCount');
         await this.$store.dispatch('updateQuestStatus', {

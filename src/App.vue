@@ -49,7 +49,8 @@ export default {
         'mx-6 md:mx-12 mb-44 min-h-screen':
           this.isAuthenticated &&
           this.getRouteName !== 'QuestPage' &&
-          this.getRouteName !== 'CommunitySharingDetails',
+          this.getRouteName !== 'CommunitySharingDetails' &&
+          this.getRouteName !== 'AddItem',
       };
     },
   },

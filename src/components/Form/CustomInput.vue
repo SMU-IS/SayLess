@@ -3,7 +3,7 @@
     :value="modelValue"
     :type="type"
     :placeholder="placeholder"
-    class="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:shadow-outline focus:bg-white focus:border-purple-500"
+    class="bg-gray-100 appearance-none border-0 rounded w-full py-3 px-4 text-black leading-tight"
     @input="handleInput"
     @keyup.enter.prevent="handleEnterKey"
   />

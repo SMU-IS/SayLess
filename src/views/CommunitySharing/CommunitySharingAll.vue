@@ -41,7 +41,6 @@
                   <img :src="getProfilePicture" />
                 </div>
               </div>
-
               <p class="text-black-light text-xs">
                 {{ item.createdBy.name }}
               </p>

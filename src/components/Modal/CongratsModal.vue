@@ -73,7 +73,7 @@ export default {
   computed: {
     ...mapGetters(['getQuestData']),
     getChallengeId() {
-      return this.getQuestData.challenges[0].id;
+      return this.getQuestData[0].challenge.id;
     },
   },
   methods: {
@@ -81,6 +81,7 @@ export default {
       try {
         await this.$store.dispatch('updateQuestStatus', {
           id: this.getChallengeId,
+          status: 'Completed',
         });
         this.$router.push('/quest');
       } catch (err) {

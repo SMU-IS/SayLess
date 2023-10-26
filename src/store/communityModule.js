@@ -79,7 +79,6 @@ const communityModule = {
       }
     },
   },
-  },
 };
 
 export { communityModule };

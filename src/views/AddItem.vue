@@ -1,36 +1,35 @@
 <template>
-  <div class="flex flex-col gap-6 text-center px-6">
-    <h3 class="text-white font-black text-4xl text-start font-sans mb-4">
-      Add Item
-    </h3>
-
+  <ParentHeader :show-back-btn="true" @header-click="goBack">
+    Add Item
+  </ParentHeader>
+  <div
+    class="flex flex-col md:w-1/2 md:mx-auto md:gap-4 mt-28 gap-6 mx-6 mb-12"
+  >
     <div>
       <label
         for="image"
-        class="block text-gray-200 text-xm font-bold text-start"
-        >Image Upload</label
+        class="block text-white text-xm font-bold text-start mb-2"
+        >Listing Photo</label
       >
-      <ImageUpload />
+      <ImageUpload @image-changed="handleImageChanged" />
     </div>
-
     <div>
       <label
         for="title"
-        class="block mb-3 text-gray-200 text-xm font-bold text-start"
+        class="block mb-2 text-white text-xm font-bold text-start"
         >Title</label
       >
       <CustomInput
         v-model="title"
         type="text"
         placeholder="e.g Canned Tuna"
-        @enter-pressed="handleSubmit"
+        @enter-pressed="handleAdd"
       />
     </div>
-
     <div>
       <label
         for="Description"
-        class="block text-gray-200 text-xm font-bold text-start"
+        class="block mb-2 text-white text-xm font-bold text-start"
         >Description</label
       >
       <textarea
@@ -39,44 +38,99 @@
         placeholder="e.g. 2x cloves of garlic. Best Before 07 December 2023"
         rows="4"
         required
-        class="bg-gray-100 mt-3 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:shadow-outline focus:bg-white focus:border-purple-500"
+        class="bg-gray-100 appearance-none border-0 rounded w-full py-3 px-4 text-black leading-tight"
+        @enter-pressed="handleAdd"
       />
     </div>
     <div>
       <label
         for="pickUpTime"
-        class="block mb-3 text-gray-200 text-xm font-bold text-start"
-        >Pick-up time</label
+        class="block mb-2 text-white text-xm font-bold text-start"
+        >Pick-up Location</label
       >
       <CustomInput
-        v-model="pickUpTime"
+        v-model="location"
         type="text"
-        placeholder="e.g. Today from 4-6pm"
-        @enter-pressed="handleSubmit"
+        placeholder="e.g. Today at Bedok"
+        @enter-pressed="handleAdd"
       />
     </div>
-
-    <CustomButton button-color="btn--purple"> Submit </CustomButton>
+    <CustomButton color="green" size="medium" width="full" @click="handleAdd">
+      <span v-if="isLoading">
+        <CustomLoader :loading="isLoading" />
+      </span>
+      <p v-else>Submit</p>
+    </CustomButton>
   </div>
 </template>
 <script>
 import CustomButton from '@/components/Button/CustomButton.vue';
 import CustomInput from '@/components/Form/CustomInput.vue';
 import ImageUpload from '@/components/Form/ImageUpload.vue';
+import { mapActions } from 'vuex';
+import ParentHeader from '@/components/NavBar/ParentHeader.vue';
+import { validateForm } from '@/helpers/validateForm';
+import { getResponse } from '@/helpers/getResponse';
+import CustomLoader from '@/components/Loader/CustomLoader.vue';
 
 export default {
   name: 'AddItem',
-  components: { CustomInput, ImageUpload, CustomButton },
+  components: {
+    CustomInput,
+    ImageUpload,
+    CustomButton,
+    ParentHeader,
+    CustomLoader,
+  },
   data() {
     return {
+      images: [],
       title: '',
       description: '',
-      pickUpTime: '',
+      location: '',
+      childImage: null,
+      isLoading: false,
     };
   },
   methods: {
-    async handleSubmit() {
-      return this.title, this.description, this.pickUpTime;
+    ...mapActions(['postCommunityListings']),
+    goBack() {
+      this.$router.go(-1);
+    },
+    handleImageChanged(imageUrl) {
+      this.childImage = imageUrl;
+    },
+    async handleAdd() {
+      this.isLoading = true;
+      if (
+        validateForm(this.title) &&
+        validateForm(this.description) &&
+        validateForm(this.location)
+      ) {
+        this.images.push(this.childImage);
+        try {
+          const data = {
+            listingImages: this.images,
+            listingTitle: this.title,
+            listingDetails: this.description,
+            pickUpLocation: this.location,
+          };
+
+          await this.$store.dispatch('postCommunityListings', data);
+          getResponse('success', 'Added to Community market place!');
+          this.$router.push('/community');
+        } catch (err) {
+          this.isLoading = false;
+          getResponse('error', getErrorMessage(err.message));
+        }
+        this.images = [];
+        this.title = '';
+        this.description = '';
+        this.location = '';
+      } else {
+        this.isLoading = false;
+        getResponse('error', 'Fill in all the fields');
+      }
     },
   },
 };

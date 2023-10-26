@@ -16,7 +16,7 @@
     <div class="flex flex-col md:flex-row justify-center md:gap-4">
       <div class="grid md:grid-cols-3 mt-5 gap-5">
         <div
-          v-for="item in communityListings"
+          v-for="item in communityListings.slice().reverse()"
           :id="item.id"
           :key="item.id"
           class="card card-side bg-white text-black shadow-xl rounded-lg cursor-pointer"
@@ -41,13 +41,18 @@
                   <img :src="getProfilePicture" />
                 </div>
               </div>
-
               <p class="text-black-light text-xs">
                 {{ item.createdBy.name }}
               </p>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div class="fixed bottom-8 right-8" @click="navigateItem">
+      <div class="btn btn-circle bg-green border-0">
+        <PlusIcon class="w-6 h-6 text-white" />
       </div>
     </div>
   </div>
@@ -58,10 +63,11 @@ import { mapActions, mapGetters } from 'vuex';
 import ParentHeader from '@/components/NavBar/ParentHeader.vue';
 import { scrollToTop } from '@/helpers/common';
 import CustomInput from '@/components/Form/CustomInput.vue';
+import { PlusIcon } from '@heroicons/vue/24/solid';
 
 export default {
   name: 'CommunitySharingAll',
-  components: { ParentHeader, CustomInput },
+  components: { ParentHeader, CustomInput, PlusIcon },
   data() {
     return {
       details: [],
@@ -89,11 +95,14 @@ export default {
   methods: {
     ...mapActions(['fetchCommunityListings']),
     goBack() {
-      this.$router.go(-1);
+      this.$router.push('/');
     },
     getItemDetails(id) {
       this.$router.push(`/item/${id}`);
       scrollToTop();
+    },
+    navigateItem() {
+      this.$router.push('/add-item');
     },
   },
 };

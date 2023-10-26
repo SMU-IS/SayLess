@@ -9,7 +9,7 @@
         :listing-id="details.listing.id"
         :correspondent-obj="correspondentObj"
         @request="updateReqFlag"
-        @accept="updateAcceptFlag"
+        @close="updateAvailableFlag"
       />
       <MessageList
         v-if="messages.length !== 0"
@@ -71,10 +71,13 @@ export default {
       });
     },
     updateReqFlag(listingid) {
-      this.$store.dispatch('setRequest', listingid);
+      this.$store.dispatch('setRequest', { listingid: listingid });
+      this.sendMessage('Requested');
+      this.$store.getters.getCommunityListings;
     },
-    updateAcceptFlag(listingid) {
+    updateAvailableFlag(listingid) {
       this.$store.dispatch('setRequest', listingid);
+      this.sendMessage('Deal Closed');
     },
 
     fetchData(chatid) {
@@ -119,6 +122,7 @@ export default {
       });
       this.socket.on('messageData', (event) => {
         this.messages = this.messages.concat(event);
+        this.$store.dispatch('readChat', this.chatId);
         this.$nextTick(() => {
           if (this.$refs.messageList) {
             this.$refs.messageList.scrollToBottom();

@@ -58,6 +58,7 @@
 import DetailsHeader from '@/components/NavBar/DetailsHeader.vue';
 import CustomButton from '@/components/Button/CustomButton.vue';
 import CustomCard from '@/components/Card/CustomCard.vue';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'CommunitySharingDetails',
@@ -72,6 +73,7 @@ export default {
     this.fetchData();
   },
   methods: {
+    ...mapActions(['fetchChatRoomDetails']),
     goBack() {
       this.$router.go(-1);
     },
@@ -103,12 +105,23 @@ export default {
       }
     },
     createChatRoom() {
-      const participants = [this.id, '6530e927da6325020804e042'];
-      this.$store.dispatch('createChatRoom', {
-        participants: participants,
-        listing: this.details.id,
-      });
-      // this.$router.push(`/message/${this.details.id}`);
+      const participants = [this.id, '653297865a3478ad39210492'];
+      this.$store
+        .dispatch('createChatRoom', {
+          participants: participants,
+          listing: this.details.id,
+        })
+        .then((id) => {
+          this.fetchChatRoomDetails();
+          this.$store.watch(
+            (state, getters) => getters.getChatRooms,
+            (newValue) => {
+              if (newValue) {
+                this.$router.push(`/message/${id}`);
+              }
+            },
+          );
+        });
     },
   },
 };

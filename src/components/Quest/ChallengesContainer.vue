@@ -117,7 +117,6 @@ export default {
   .checkedIcon {
     @apply text-transparent-dark;
   }
-
   .icon-checked {
     @apply !text-white;
   }

@@ -55,11 +55,7 @@
       <circle class="c2 fill-current text-green" r="12"></circle>
       <circle class="c3 fill-current text-green" r="12"></circle>
 
-      <circle
-        class="dot fill-current text-white"
-        r="15"
-        @click="timelineTrigger"
-      ></circle>
+      <circle class="dot fill-current text-white" r="15"></circle>
     </svg>
     <img
       id="c1"
@@ -110,7 +106,6 @@ export default {
   },
   mounted() {
     this.timelineQuest.pause();
-
     let userViewCount = this.getCount;
 
     this.timelineQuest

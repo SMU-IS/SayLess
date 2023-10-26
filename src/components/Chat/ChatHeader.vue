@@ -43,25 +43,50 @@
           </div>
           <CustomButton
             v-if="
-              specificListing.isAvailable && id !== specificListing.createdBy
+              specificListing.isAvailable && id !== specificListing.createdBy.id
             "
             size="medium"
             roundness="round"
             color="green"
+            :disabled="specificListing.requested.some((obj) => obj.id === id)"
             @click="requestItem"
             >Request Item</CustomButton
           >
           <CustomButton
             v-if="
-              specificListing.isAvailable && id == specificListing.createdBy
+              specificListing.isAvailable && id == specificListing.createdBy.id
             "
             size="small"
             roundness="round"
             color="green"
-            :disabled="!specificListing.requested.includes(correspondentObj.id)"
-            @click="acceptItem"
-            >Accept Item</CustomButton
+            :disabled="
+              !specificListing.requested.some(
+                (obj) => obj.id === correspondentObj.id,
+              )
+            "
+            @click="closeDeal"
+            >Close Deal</CustomButton
           >
+          <!-- <CustomButton
+            v-if="
+              specificListing.reservedFor != null
+            "
+            size="small"
+            roundness="round"
+            color="gray"
+            disabled
+            >Reserved</CustomButton
+          > -->
+          <!-- <CustomButton
+            v-if="
+              specificListing.reservedFor.id === correspondentObj.id && isAvailable
+            "
+            size="small"
+            roundness="round"
+            color="green"
+            @click="closeDeal"            
+            >Close Deal</CustomButton
+          > -->
         </div>
       </div>
     </div>
@@ -70,7 +95,7 @@
 
 <script>
 import CustomButton from '@/components/Button/CustomButton.vue';
-import { mapActions, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'ChatHeader',
@@ -91,7 +116,8 @@ export default {
       required: true,
     },
   },
-  emits: ['accept', 'request'],
+  // add a close
+  emits: ['close', 'request'],
   data() {
     return {
       id: '6530d24110a9828679f8858a',
@@ -104,21 +130,25 @@ export default {
         (listing) => listing.id === this.listingId,
       );
     },
+    // isAlreadyRequested() {
+    //   this.specificListing.requested.some(obj => obj.id === this.id)
+    //   return this.specificListing.requested.some(obj => obj.id === this.id);
+    // },
   },
-  mounted() {
-    this.fetchCommunityListings();
-  },
+  mounted() {},
   methods: {
-    ...mapActions(['fetchCommunityListings']),
     goBack() {
       this.$router.go(-1);
     },
     requestItem() {
       this.$emit('request', this.specificListing.id);
     },
-    acceptItem() {
-      this.$emit('accept', this.specificListing.id);
+    closeDeal() {
+      this.$emit('close', this.specificListing.id);
     },
+    // closeDeal() {
+    //   this.$emit('close', this.correspondentObj);
+    // },
     formatTimestamp(timestamp) {
       const hours = timestamp.getHours();
       const minutes = timestamp.getMinutes();

@@ -37,6 +37,7 @@
 export default {
   name: 'ImageUploader',
   components: {},
+  emits: ['image-changed'],
   data() {
     return {
       showImageDropText: true,
@@ -57,23 +58,21 @@ export default {
       const file = e.target.files[0];
       this.image = file;
       this.item.imageUrl = URL.createObjectURL(file);
-
       this.showImageDropText = false;
       this.changeImage = true;
+
+      this.$emit('image-changed', this.item.imageUrl);
     },
     handleDrop(event) {
       event.preventDefault();
       const droppedFiles = event.dataTransfer.files;
-
       if (droppedFiles.length > 0) {
         const file = droppedFiles[0];
-
         const reader = new FileReader();
         reader.onload = () => {
           this.item.imageUrl = reader.result;
         };
         reader.readAsDataURL(file);
-
         this.showImageDropText = false;
         this.changeImage = true;
       }
@@ -88,12 +87,10 @@ export default {
   background: #eeeeee26;
   border-color: #111;
 }
-
 .drop-container:hover .drop-title,
 .drop-container.drag-active .drop-title {
   color: #222;
 }
-
 .drop-title {
   color: #444;
   font-size: 20px;
@@ -101,7 +98,6 @@ export default {
   text-align: center;
   transition: color 0.2s ease-in-out;
 }
-
 input[type='file'] {
   width: 350px;
   max-width: 100%;
@@ -111,7 +107,6 @@ input[type='file'] {
   border-radius: 10px;
   border: 1px solid #555;
 }
-
 input[type='file']::file-selector-button {
   margin-right: 20px;
   border: none;
@@ -122,7 +117,6 @@ input[type='file']::file-selector-button {
   cursor: pointer;
   transition: background 0.2s ease-in-out;
 }
-
 input[type='file']::file-selector-button:hover {
   background: #0d45a5;
 }

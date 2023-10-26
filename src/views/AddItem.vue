@@ -7,7 +7,7 @@
         class="block text-white-light text-xm font-bold text-start mb-2"
         >Listing Photo</label
       >
-      <ImageUpload />
+      <ImageUpload @image-changed="handleImageChanged" />
     </div>
     <div>
       <label
@@ -19,7 +19,7 @@
         v-model="title"
         type="text"
         placeholder="e.g Canned Tuna"
-        @enter-pressed="handleSubmit"
+        @enter-pressed="handleAdd"
       />
     </div>
     <div>
@@ -35,6 +35,7 @@
         rows="4"
         required
         class="mt-2 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 leading-tight focus:shadow-outline focus:bg-white focus:border-purple-500"
+        @enter-pressed="handleAdd"
       />
     </div>
     <div>
@@ -47,9 +48,9 @@
         v-model="location"
         type="text"
         placeholder="e.g. Today at Bedok"
+        @enter-pressed="handleAdd"
       />
     </div>
-
     <CustomButton color="green" size="medium" width="full" @click="handleAdd">
       Submit
     </CustomButton>
@@ -58,7 +59,7 @@
 <script>
 import CustomButton from '@/components/Button/CustomButton.vue';
 import CustomInput from '@/components/Form/CustomInput.vue';
-import ImageUpload from '@/components/Form/imageUpload.vue';
+import ImageUpload from '@/components/Form/ImageUpload.vue';
 import { mapActions } from 'vuex';
 
 export default {
@@ -70,30 +71,28 @@ export default {
       title: '',
       description: '',
       location: '',
+      childImage: null,
     };
-  },
-  created() {
-    this.postCommunityListings();
   },
   methods: {
     ...mapActions(['postCommunityListings']),
-
-    async handleSubmit() {
-      return this.images, this.title, this.description, this.pickUpTime;
+    handleImageChanged(imageUrl) {
+      this.childImage = imageUrl;
     },
-
     async handleAdd() {
+      this.images.push(this.childImage);
       try {
-        await this.$store.dispatch('postCommunityListings', {
+        const data = {
+          listingImages: this.images,
           listingTitle: this.title,
           listingDetails: this.description,
           pickUpLocation: this.location,
-        });
+        };
+        await this.$store.dispatch('postCommunityListings', data);
       } catch (err) {
         getResponse('error', getErrorMessage(err.message));
       }
-
-      this.images = '';
+      this.images = [];
       this.title = '';
       this.description = '';
       this.location = '';

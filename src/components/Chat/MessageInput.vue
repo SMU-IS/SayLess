@@ -57,10 +57,6 @@ export default {
       type: Object,
       required: true,
     },
-    sender: {
-      type: String,
-      required: true,
-    },
   },
   emits: ['send'],
   data() {

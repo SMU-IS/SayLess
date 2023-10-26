@@ -43,7 +43,11 @@
     </div>
 
     <div class="w-full md:w-1/3 mb-14 md:mt-14">
-      <CustomButton width="full" roundness="round" color="green"
+      <CustomButton
+        width="full"
+        roundness="round"
+        color="green"
+        @click="createChatRoom"
         >Chat to Deal</CustomButton
       >
     </div>
@@ -61,6 +65,7 @@ export default {
   data() {
     return {
       details: [],
+      id: '6530d24110a9828679f8858a',
     };
   },
   created() {
@@ -96,6 +101,14 @@ export default {
           location: pickUpLocation,
         };
       }
+    },
+    createChatRoom() {
+      const participants = [this.id, '6530e927da6325020804e042'];
+      this.$store.dispatch('createChatRoom', {
+        participants: participants,
+        listing: this.details.id,
+      });
+      // this.$router.push(`/message/${this.details.id}`);
     },
   },
 };

@@ -1,12 +1,14 @@
 <template>
-  <div class="message-list p-2 basis-0 flex-1">
+  <div
+    ref="messageList"
+    class="message-list p-2 basis-0 flex-1 w-full w-md-60 overflow-scroll"
+  >
     <MessageComponent
       v-for="message in messages"
-      :key="message.timestamp"
-      :timestamp="message.timestamp"
-      :message="message.messageText"
+      :key="message.id"
+      :timestamp="message.createdOn"
+      :message="message.message"
       :sender="message.sender"
-      :current-user="sender"
     />
   </div>
 </template>
@@ -24,9 +26,16 @@ export default {
       type: Object,
       required: true,
     },
-    sender: {
-      type: String,
-      default: '',
+  },
+  mounted() {
+    this.scrollToBottom();
+  },
+  methods: {
+    scrollToBottom() {
+      const messageList = this.$refs.messageList;
+      if (messageList) {
+        messageList.scrollTop = messageList.scrollHeight;
+      }
     },
   },
 };

@@ -38,6 +38,7 @@ export default {
         'CommunitySharingAll',
         'InventoryPage',
         'RecipePage',
+        'AddItem',
       ];
       return (
         this.isAuthenticated && !excludedRoutes.includes(this.getRouteName)

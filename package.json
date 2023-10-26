@@ -17,9 +17,10 @@
     "class-variance-authority": "^0.7.0",
     "firebase": "^10.2.0",
     "gsap": "^3.12.2",
+    "socket.io": "^4.7.2",
+    "socket.io-client": "^4.7.2",
     "sweetalert2": "^11.7.27",
     "vue": "^3.3.4",
-    "vue-media-upload": "^2.1.2",
     "vue-router": "^4.2.4",
     "vue-spinner": "^1.0.4",
     "vuex": "^4.0.2"

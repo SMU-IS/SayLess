@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const questModule = {
   state: {
+    count: parseInt(localStorage.getItem('count-state')) || 0,
     user: {
       questData: localStorage.getItem('quest-data'),
     },
@@ -10,8 +11,19 @@ const questModule = {
     getQuestData(state) {
       return JSON.parse(state.user.questData);
     },
+    getCount(state) {
+      return state.count;
+    },
   },
   mutations: {
+    SET_INCREMENT_COUNT(state) {
+      state.count += 1;
+      localStorage.setItem('count-state', state.count);
+    },
+    SET_DECREMENT_COUNT(state) {
+      state.count -= 1;
+      localStorage.setItem('count-state', state.count);
+    },
     SET_QUEST_DATA(state, payload) {
       state.user.questData = payload;
       localStorage.setItem('quest-data', payload);
@@ -36,6 +48,12 @@ const questModule = {
     },
   },
   actions: {
+    incrementCount(context) {
+      context.commit('SET_INCREMENT_COUNT');
+    },
+    decrementCount(context) {
+      context.commit('SET_DECREMENT_COUNT');
+    },
     async fetchQuestData(context) {
       const apiURL = import.meta.env.VITE_GET_QUEST_DATA;
       const headers = {

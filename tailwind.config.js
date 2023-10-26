@@ -69,7 +69,7 @@ export default {
         gray: {
           light: '#f8fafc',
           DEFAULT: '#64748b',
-          dark: '##0f172a',
+          dark: '#0f172a',
         },
       },
     },

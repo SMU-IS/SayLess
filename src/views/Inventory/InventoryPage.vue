@@ -41,7 +41,7 @@
               alt="Custom Icon"
               class="h-8 w-8 absolute right-1 top-1"
             />
-            <p class="text-xs text-white-light">
+            <p class="text-xs text-white-light" @click="scanReceipt">
               Scan receipt to add items into inventory
             </p>
           </div>
@@ -131,6 +131,19 @@ export default {
         await this.$store.dispatch('handleRemoveItem', {
           id: id,
         });
+      } catch (err) {
+        throw err;
+      }
+    },
+    async scanReceipt() {
+      // this is challenge 2
+      try {
+        await this.$store.dispatch('incrementCount');
+        await this.$store.dispatch('updateQuestStatus', {
+          id: '653767e6a456e880499948db',
+          status: 'Completed',
+        });
+        this.$router.push('/quest');
       } catch (err) {
         throw err;
       }

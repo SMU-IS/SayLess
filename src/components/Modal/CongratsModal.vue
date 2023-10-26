@@ -79,6 +79,7 @@ export default {
   methods: {
     async changeTab() {
       try {
+        await this.$store.dispatch('incrementCount');
         await this.$store.dispatch('updateQuestStatus', {
           id: this.getChallengeId,
           status: 'Completed',

@@ -18,8 +18,6 @@
             >
               <p class="text-md text-white px-8">{{ links.title }}</p>
             </li>
-
-            <!-- <li @click="showModal"><p>Logout</p></li> -->
           </ul>
         </div>
 
@@ -35,10 +33,10 @@
               tabindex="0"
               class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <li v-if="name">
-                <p class="text-black">{{ name }}</p>
+              <li v-if="name" @click="goToProfile">
+                <p class="text-white">{{ name }}</p>
               </li>
-              <li v-else>
+              <li v-else @click="goToProfile">
                 <p class="text-white">{{ email }}</p>
               </li>
               <li class="text-red" @click="showModal"><p>Logout</p></li>
@@ -80,11 +78,19 @@ export default {
       navLinks,
       Avocado,
       BRAND_NAME,
+      isSelected: false,
     };
   },
   methods: {
     showModal() {
       openModal('my_modal_2');
+    },
+    goToProfile() {
+      this.$router.push('/profile');
+      const elem = document.activeElement;
+      if (elem) {
+        elem?.blur();
+      }
     },
     async logout() {
       try {
@@ -100,11 +106,8 @@ export default {
     },
     handleClick(path) {
       this.$router.push(`${path}`);
+      this.isSelected = true;
       scrollToTop();
-      const elem = document.activeElement;
-      if (elem) {
-        elem?.blur();
-      }
     },
   },
 };

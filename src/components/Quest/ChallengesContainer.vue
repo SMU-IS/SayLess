@@ -90,7 +90,6 @@ export default {
       return 'You joined Challenge ' + (questNameIndex + 1);
     },
   },
-
   methods: {
     onDrawerOpen(drawerId) {
       toggleDrawer(`my_drawer_${drawerId}`);

@@ -61,17 +61,26 @@
       </span>
       <p v-else>Submit</p>
     </CustomButton>
+
+    <CongratsModal
+      modal-id="congrats_3"
+      modal-title="You've got an achievement"
+      modal-subtitle="You completed Challenge 3"
+      button-text="Collect Reward"
+    />
   </div>
 </template>
 <script>
 import CustomButton from '@/components/Button/CustomButton.vue';
 import CustomInput from '@/components/Form/CustomInput.vue';
 import ImageUpload from '@/components/Form/ImageUpload.vue';
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import ParentHeader from '@/components/NavBar/ParentHeader.vue';
 import { validateForm } from '@/helpers/validateForm';
 import { getResponse } from '@/helpers/getResponse';
 import CustomLoader from '@/components/Loader/CustomLoader.vue';
+import { openModal } from '@/helpers/common';
+import CongratsModal from '@/components/Modal/CongratsModal.vue';
 
 export default {
   name: 'AddItem',
@@ -81,6 +90,7 @@ export default {
     CustomButton,
     ParentHeader,
     CustomLoader,
+    CongratsModal,
   },
   data() {
     return {
@@ -92,10 +102,19 @@ export default {
       isLoading: false,
     };
   },
+  computed: {
+    ...mapGetters(['getQuestData']),
+    getChallengeStatus() {
+      return this.getQuestData[2].status;
+    },
+  },
   methods: {
     ...mapActions(['postCommunityListings']),
     goBack() {
       this.$router.go(-1);
+    },
+    showModal(modal) {
+      openModal(modal);
     },
     handleImageChanged(imageUrl) {
       this.childImage = imageUrl;
@@ -108,6 +127,7 @@ export default {
         validateForm(this.location)
       ) {
         this.images.push(this.childImage);
+
         try {
           const data = {
             listingImages: this.images,
@@ -117,8 +137,13 @@ export default {
           };
 
           await this.$store.dispatch('postCommunityListings', data);
-          getResponse('success', 'Added to Community market place!');
-          this.$router.push('/community');
+          if (this.getChallengeStatus === 'In Progress') {
+            this.isLoading = false;
+            this.showModal('congrats_3');
+          } else {
+            getResponse('success', 'Added to Community market place!');
+            this.$router.push('/community');
+          }
         } catch (err) {
           this.isLoading = false;
           getResponse('error', getErrorMessage(err.message));

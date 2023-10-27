@@ -84,7 +84,14 @@ export default {
   computed: {
     ...mapGetters(['getQuestData']),
     getChallengeId() {
-      return this.getQuestData[0].challenge.id;
+      if (this.modalId === 'congrats_1') {
+        return '653767cabeca8f1fa9473322';
+      } else if (this.modalId === 'congrats_2') {
+        return '653767e6a456e880499948db';
+      } else if (this.modalId === 'congrats_3') {
+        return '65376b37eeedf45dd416465e';
+      }
+      return '';
     },
   },
   methods: {

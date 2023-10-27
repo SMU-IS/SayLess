@@ -61,7 +61,7 @@ export default {
     ...mapGetters(['getCommunityListings', 'getProfilePicture']),
     showLimitedListings() {
       if (this.getCommunityListings) {
-        return this.getCommunityListings.slice(0, 5);
+        return this.getCommunityListings.slice(0, 4);
       }
       return this.getCommunityListings;
     },

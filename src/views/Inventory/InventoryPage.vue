@@ -147,19 +147,8 @@ export default {
       }
     },
     async scanReceipt() {
-      // if (this.getChallengeStatus === 'In Progress') {
-      //   this.showModal('congrats_2');
-      // }
-
-      try {
-        await this.$store.dispatch('incrementCount');
-        await this.$store.dispatch('updateQuestStatus', {
-          id: '653767e6a456e880499948db',
-          status: 'Completed',
-        });
-        this.$router.push('/quest');
-      } catch (err) {
-        throw err;
+      if (this.getChallengeStatus === 'In Progress') {
+        this.showModal('congrats_2');
       }
     },
   },

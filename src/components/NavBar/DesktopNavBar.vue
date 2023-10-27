@@ -1,12 +1,10 @@
 <template>
   <div class="navbar bg-main-dark">
     <div class="flex flex-row justify-between w-full md:mx-8 lg:mx-20">
-      <CustomButton color="ghost" @click="navigateHome">
-        <div class="flex items-center gap-3">
-          <img :src="Avocado" class="w-10" />
-          <p class="text-lg tracking-widest">{{ BRAND_NAME }}</p>
-        </div>
-      </CustomButton>
+      <div class="flex items-center gap-3 cursor-pointer" @click="navigateHome">
+        <img :src="Avocado" class="w-10" />
+        <p class="text-lg tracking-widest">{{ BRAND_NAME }}</p>
+      </div>
 
       <div class="flex">
         <div class="navbar-center hidden md:flex">
@@ -17,7 +15,7 @@
               class="text-white"
               @click="handleClick(links.path)"
             >
-              <p class="text-md px-8 hover:bg-green">{{ links.title }}</p>
+              <p class="text-md px-6 hover:bg-green">{{ links.title }}</p>
             </li>
           </ul>
         </div>
@@ -59,7 +57,6 @@
 </template>
 
 <script>
-import CustomButton from '@/components/Button/CustomButton.vue';
 import { navLinks } from '@/data/navLinks';
 import { goHome, scrollToTop } from '@/helpers/common';
 import { UserIcon } from '@heroicons/vue/24/outline';
@@ -70,7 +67,7 @@ import { BRAND_NAME } from '@/constants';
 
 export default {
   name: 'DesktopNavBar',
-  components: { CustomButton, UserIcon, CustomModal },
+  components: { UserIcon, CustomModal },
   data() {
     return {
       email: this.$store.getters.getEmail,

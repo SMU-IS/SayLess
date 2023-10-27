@@ -68,11 +68,11 @@ import { mapActions, mapGetters } from 'vuex';
 import ParentHeader from '@/components/NavBar/ParentHeader.vue';
 import { scrollToTop } from '@/helpers/common';
 import CustomInput from '@/components/Form/CustomInput.vue';
-import { PlusIcon } from '@heroicons/vue/24/solid';
+import { PlusIcon, UserIcon } from '@heroicons/vue/24/solid';
 
 export default {
   name: 'CommunitySharingAll',
-  components: { ParentHeader, CustomInput, PlusIcon },
+  components: { ParentHeader, CustomInput, PlusIcon, UserIcon },
   data() {
     return {
       details: [],
@@ -89,9 +89,8 @@ export default {
             .toLowerCase()
             .includes(this.dataField.toLowerCase());
         });
-      } else {
-        return this.getCommunityListings;
       }
+      return this.getCommunityListings;
     },
   },
   created() {

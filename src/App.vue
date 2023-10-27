@@ -38,6 +38,7 @@ export default {
         'CommunitySharingAll',
         'InventoryPage',
         'RecipePage',
+        'RecipeDetail',
         'AddItem',
       ];
       return (

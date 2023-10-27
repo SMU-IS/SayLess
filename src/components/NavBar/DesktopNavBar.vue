@@ -3,7 +3,7 @@
     <div class="flex flex-row justify-between w-full md:mx-8 lg:mx-20">
       <div class="flex items-center gap-3 cursor-pointer" @click="navigateHome">
         <img :src="Avocado" class="w-10" />
-        <p class="text-lg tracking-widest">{{ BRAND_NAME }}</p>
+        <p class="text-lg tracking-widest text-green">{{ BRAND_NAME }}</p>
       </div>
 
       <div class="flex">

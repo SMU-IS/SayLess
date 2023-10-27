@@ -4,8 +4,7 @@
   </ParentHeader>
 
   <div>
-
-    <div class="mx-auto md:mt-32 mt-28 w-full md:w-1/3">
+    <div class="mt-28">
       <h4 class="text-white mb-4">Recipes</h4>
       <div class="w-full">
         <div class="flex items-start gap-3">
@@ -49,7 +48,7 @@
           </div>
         </div>
       </div>
-      <div class="w-full mt-5">
+      <div class="w-full my-5">
         <h4>Suggestions</h4>
         <div class="flex items-center flex-wrap mt-3 gap-3">
           <div v-for="(item, i) in getRecipePrompt" :key="i">

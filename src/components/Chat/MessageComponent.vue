@@ -1,7 +1,9 @@
 <template>
   <div :class="messageClass">
-    <div class="chat-header text-white text-bold mb-1">
-      {{ sender.name }}
+    <div class="chat-header mb-1">
+      <p class="text-white text-bold text-xs truncate w-20">
+        {{ sender.name }}
+      </p>
     </div>
     <div :class="chatColor">{{ message }}</div>
     <div class="chat-footer text-white">
@@ -41,8 +43,9 @@ export default {
     },
     chatColor() {
       return {
-        'chat-bubble bg-green text-white': this.sender.id == this.currentUser,
-        'chat-bubble text-white': this.sender.id !== this.currentUser,
+        'chat-bubble min-h-0 bg-green text-white':
+          this.sender.id == this.currentUser,
+        'chat-bubble min-h-0 text-white': this.sender.id !== this.currentUser,
       };
     },
   },

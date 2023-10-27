@@ -4,9 +4,9 @@
   </ParentHeader>
 
   <div>
-    <div class="mt-28">
-      <h4 class="text-white mb-4">Your Inventory</h4>
 
+    <div class="mx-auto md:mt-32 mt-28 w-full md:w-1/3">
+      <h4 class="text-white mb-4">Recipes</h4>
       <div class="w-full">
         <div class="flex items-start gap-3">
           <div class="w-full relative" @blur="hidePrompt">

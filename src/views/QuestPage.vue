@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center items-center mt-16 md:mt-40">
+  <div class="flex justify-center items-center mt-16 md:mt-28">
     <div class="relative card w-60 md:w-48 glass shadow-md">
       <div class="card-body gap-0 p-4 pt-6 items-center text-center">
         <h1 class="card-title text-pink">Quest 1</h1>

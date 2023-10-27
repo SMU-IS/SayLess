@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ParentHeader :show-logo="true" class="text-lg tracking-widest">
+    <ParentHeader :show-logo="true" class="text-lg tracking-widest text-green">
       SAYLESS
     </ParentHeader>
   </div>

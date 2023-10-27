@@ -1,37 +1,31 @@
 <template>
   <ParentHeader> Messages </ParentHeader>
-  <div class="flex justify-center mt-32 md:h-screen">
-    <div class="w-screen lg:w-1/3">
-      <div class="flex justify-center">
+  <div class="flex justify-center mt-24 md:h-screen">
+    <div class="w-screen md:w-3/4 h-screen pb-8 md:rounded-xl md:h-[80vh]">
+      <div class="flex justify-between gap-3">
         <CustomButton
           size="small"
+          width="full"
           roundness="full"
-          :color="currentTab === 'chat' ? 'gradient' : null"
+          :color="currentTab === 'chat' ? 'gradient' : 'disabled'"
           @click="changeTab('chat')"
         >
-          <div class="flex items-center gap-3 px-5 text-white">
-            <img
-              src="@/assets/Icons/Chat.png"
-              alt="Custom Icon"
-              class="pr-1 py-2 w-6"
-            />
-            Chat
+          <div class="flex items-center gap-3 p-1 text-white text-sm">
+            <img src="@/assets/Icons/Chat.png" alt="Custom Icon" class="w-6" />
+            <p>Chat</p>
           </div>
         </CustomButton>
 
         <CustomButton
           size="small"
           roundness="full"
-          :color="currentTab === 'notifications' ? 'gradient' : null"
+          width="full"
+          :color="currentTab === 'notifications' ? 'gradient' : 'disabled'"
           @click="changeTab('notifications')"
         >
-          <div class="flex items-center gap-3 px-5 text-white">
-            <img
-              src="@/assets/Icons/Ring.png"
-              alt="Custom Icon"
-              class="pr-1 py-2 w-6"
-            />
-            Notifications
+          <div class="flex items-center gap-3 p-1 text-white text-sm">
+            <img src="@/assets/Icons/Ring.png" alt="Custom Icon" class="w-6" />
+            <p>Notifications</p>
           </div>
         </CustomButton>
       </div>

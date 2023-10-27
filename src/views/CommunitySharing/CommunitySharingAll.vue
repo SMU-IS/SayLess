@@ -51,9 +51,11 @@
     </div>
 
     <div class="fixed bottom-8 right-8" @click="navigateItem">
-      <div class="btn bg-green border-0 shadow-xl">
+      <div
+        class="btn text-white bg-green hover:bg-green-dark border-0 shadow-xl"
+      >
         <div class="flex flex-row">
-          <PlusIcon class="w-6 h-6 text-black mr-2" />
+          <PlusIcon class="w-6 h-6 stroke-2 text-white mr-2" />
           <p>Add Listing</p>
         </div>
       </div>

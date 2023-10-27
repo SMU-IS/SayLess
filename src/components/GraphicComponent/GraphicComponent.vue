@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-96 md:w-72">
+  <div class="relative w-96 md:w-[21rem]">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="90%"
@@ -59,21 +59,21 @@
     </svg>
     <img
       id="c1"
-      src="@/assets/Icons/quest1.png"
+      src="@/assets/Icons/questChallenge.png"
       alt="Custom Icon"
-      class="w-24 mx-auto my-3 absolute top-3 md:top-0 left-40 md:left-28"
+      class="w-24 md:w-20 mx-auto my-3 absolute top-3 md:top-2 left-40 md:left-36"
     />
     <img
       id="c2"
-      src="@/assets/Icons/quest2.png"
+      src="@/assets/Icons/questChallenge.png"
       alt="Custom Icon"
-      class="w-24 mx-auto my-3 absolute top-24 md:top-16 left-40 md:left-28"
+      class="w-24 md:w-20 mx-auto my-3 absolute top-24 md:top-20 left-40 md:left-36"
     />
     <img
       id="c3"
-      src="@/assets/Icons/quest3.png"
+      src="@/assets/Icons/questChallenge.png"
       alt="Custom Icon"
-      class="w-24 mx-auto my-3 absolute top-52 md:top-36 left-40 md:left-28"
+      class="w-24 md:w-20 mx-auto my-3 absolute top-52 md:top-48 left-40 md:left-36"
     />
   </div>
 </template>

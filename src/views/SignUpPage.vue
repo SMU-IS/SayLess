@@ -68,7 +68,7 @@
 
         <p class="text-center text-black text-sm mt-12">
           Already have an account? Login
-          <span class="underline text-midnight font-bold">
+          <span class="underline text-green font-bold">
             <router-link to="/login"> here </router-link>
           </span>
         </p>

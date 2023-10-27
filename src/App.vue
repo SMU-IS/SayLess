@@ -12,7 +12,7 @@
       <NavBar />
     </div>
 
-    <div class="w-screen hidden md:block">
+    <div class="w-screen hidden md:block relative">
       <CustomFooter />
     </div>
   </div>

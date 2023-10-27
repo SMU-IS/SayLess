@@ -4,7 +4,6 @@
   </ParentHeader>
 
   <div v-if="getRecipeDetailInit">
-    <!-- <div class="mx-auto md:mt-32 mt-28 w-full md:w-1/3"> -->
     <div class="mt-28">
       <div class="w-full">
         <div class="grid md:grid-cols-2 gap-5">
@@ -119,11 +118,7 @@
 </template>
 
 <script>
-import IconButton from '@/components/Button/IconButton.vue';
 import CustomButton from '@/components/Button/CustomButton.vue';
-import CustomInput from '@/components/Form/CustomInput.vue';
-import ListRecipe from '@/components/Listings/ListRecipe.vue';
-import ChipLabel from '@/components/Chip/ChipLabel.vue';
 import ParentHeader from '@/components/NavBar/ParentHeader.vue';
 import { mapGetters } from 'vuex';
 import {
@@ -137,11 +132,7 @@ import { StarIcon as StarIconOutline } from '@heroicons/vue/24/outline';
 export default {
   name: 'RecipeDetail',
   components: {
-    ListRecipe,
-    CustomInput,
     CustomButton,
-    IconButton,
-    ChipLabel,
     ParentHeader,
     StarIcon,
     StarIconOutline,

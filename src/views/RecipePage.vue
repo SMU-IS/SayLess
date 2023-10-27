@@ -4,7 +4,6 @@
   </ParentHeader>
 
   <div>
-    <!-- <div class="mx-auto md:mt-32 mt-28 w-full md:w-1/3"> -->
     <div class="mt-28">
       <h4 class="text-white mb-4">Your Inventory</h4>
 
@@ -17,7 +16,7 @@
               placeholder="Enter Ingredients"
               @enter-pressed="addTag"
             />
-            <!-- Prompt -->
+
             <ul
               v-if="newTag.length > 0"
               class="max-h-80 overflow-scroll absolute top-100 left-0 w-full z-10"

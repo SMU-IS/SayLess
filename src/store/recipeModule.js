@@ -71,7 +71,6 @@ const recipeModule = {
       };
       const response = await axios.post(apiURL, data, { headers });
       if (response) {
-        console.log(response);
         context.commit('SET_RECIPE_DETAILS', response.data);
         context.commit('SET_RECIPE_DETAILS_INIT', true);
       }

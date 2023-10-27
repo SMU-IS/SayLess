@@ -12,7 +12,7 @@
       <NavBar />
     </div>
 
-    <div class="w-screen hidden md:block">
+    <div v-if="isAuthenticated" class="w-screen hidden md:block">
       <CustomFooter />
     </div>
   </div>

@@ -1,9 +1,9 @@
 <template>
-  <div class="navbar bg-transparent-dark">
+  <div class="navbar bg-main-dark">
     <div class="flex flex-row justify-between w-full md:mx-8 lg:mx-20">
       <div class="flex items-center gap-3 cursor-pointer" @click="navigateHome">
         <img :src="Avocado" class="w-10" />
-        <p class="text-lg tracking-widest">{{ BRAND_NAME }}</p>
+        <p class="text-lg tracking-widest text-green">{{ BRAND_NAME }}</p>
       </div>
 
       <div class="flex">
@@ -12,9 +12,15 @@
             <li
               v-for="links in navLinks"
               :key="links.title"
+              class="text-white"
               @click="handleClick(links.path)"
             >
-              <p class="text-md text-white px-6">{{ links.title }}</p>
+              <p
+                :class="{ 'opacity-40': !isCurrentRoute(links.path) }"
+                class="text-md px-6 hover:bg-green"
+              >
+                {{ links.title }}
+              </p>
             </li>
           </ul>
         </div>
@@ -31,7 +37,7 @@
               tabindex="0"
               class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <li v-if="name" @click="goToProfile">
+              <li v-if="name" class="text-black" @click="goToProfile">
                 <p class="text-white">{{ name }}</p>
               </li>
               <li v-else @click="goToProfile">
@@ -79,6 +85,9 @@ export default {
     };
   },
   methods: {
+    isCurrentRoute(route) {
+      return this.$route.path === route;
+    },
     showModal() {
       openModal('my_modal_2');
     },

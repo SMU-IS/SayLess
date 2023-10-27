@@ -5,18 +5,18 @@
     class="promptsContainer flex-1 flex items-center justify-center"
   >
     <div class="promptsContent w-full">
-      <h2 class="text-white text-center mb-8">Ask something like:</h2>
+      <h2 class="text-white text-base text-center mb-8">Ask something like:</h2>
       <div
         v-for="(prompt, index) in prompts"
         :key="index"
-        class="bg-gray-300 rounded-md text-center text-white bg-opacity-20 p-4 mb-3 w-full"
+        class="text-sm bg-gray-300 rounded-md text-center text-white bg-opacity-20 p-4 mb-3 w-3/4 mx-auto"
         @click="selectPrompt(prompt)"
       >
         {{ prompt }}
       </div>
     </div>
   </div>
-  <div class="message-input border-t-2">
+  <div class="message-input border-t-2 px-4">
     <div class="inputdiv flex w-full mt-5">
       <CustomInput
         v-model="messageText"

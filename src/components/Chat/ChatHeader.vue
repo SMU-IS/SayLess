@@ -1,5 +1,5 @@
 <template>
-  <div class="chat-header text-white border-b-2 pb-4">
+  <div class="chat-header text-white border-b-2 pb-4 px-6 md:px-12 lg:px-20">
     <div class="chat-header-content">
       <div class="owner-content flex mb-4">
         <div class="container w-1/4 flex justify-start">
@@ -18,7 +18,7 @@
         </div>
         <div class="container w-2/4 text-center">
           <div class="owner-name text-center">
-            <h3>{{ correspondentObj.name }}</h3>
+            <h3 class="text-sm">{{ correspondentObj.name }}</h3>
           </div>
         </div>
         <div class="container w-1/4 flex justify-end">
@@ -33,11 +33,11 @@
         <img
           :src="specificListing.listingImages[0]"
           alt="Listing Picture"
-          class="listing-picture w-24"
+          class="listing-picture w-16 h-16 object-cover"
         />
         <div class="container ms-4">
           <div class="listing-name">
-            <p class="text-md font-semibold mb-2">
+            <p class="text-xs font-semibold mb-2">
               {{ specificListing.listingTitle }}
             </p>
           </div>
@@ -45,7 +45,7 @@
             v-if="
               specificListing.isAvailable && id !== specificListing.createdBy.id
             "
-            size="medium"
+            size="small"
             roundness="round"
             color="green"
             :disabled="specificListing.requested.some((obj) => obj.id === id)"

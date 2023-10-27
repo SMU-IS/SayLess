@@ -3,7 +3,10 @@
     <div class="navBar bg-main-dark">
       <div v-for="link in navLinks" :key="link.id">
         <router-link :to="link.path">
-          <div class="flex flex-col items-center gap-1 content-end">
+          <div
+            :class="{ 'opacity-40': !isCurrentRoute(link.path) }"
+            class="flex flex-col items-center gap-1 content-end"
+          >
             <div>
               <img class="w-auto h-7" :src="link.icon" />
             </div>
@@ -24,6 +27,11 @@ export default {
     return {
       navLinks,
     };
+  },
+  methods: {
+    isCurrentRoute(route) {
+      return this.$route.path === route;
+    },
   },
 };
 </script>

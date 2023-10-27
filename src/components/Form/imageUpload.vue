@@ -2,7 +2,7 @@
   <label
     id="dropcontainer"
     for="images"
-    class="drop-container cursor-pointer flex relative flex-col gap-2 justify-center align-center p-4 rounded-lg border-dashed border-2 border-gray text-white"
+    class="drop-container cursor-pointer flex relative text-center flex-col gap-2 justify-center align-center p-4 rounded-lg border-dashed border-2 border-gray text-white"
     @dragover.prevent
     @drop="handleDrop"
   >

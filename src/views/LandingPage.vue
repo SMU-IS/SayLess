@@ -1,5 +1,10 @@
 <template>
-  <ParentHeader> SayLess </ParentHeader>
+  <div>
+    <ParentHeader :show-logo="true" class="text-lg tracking-widest">
+      SAYLESS
+    </ParentHeader>
+  </div>
+
   <div class="flex flex-col md:flex-row justify-center md:gap-4">
     <div
       id="divOne"

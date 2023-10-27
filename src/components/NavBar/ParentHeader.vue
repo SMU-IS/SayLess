@@ -4,10 +4,11 @@
   >
     <ArrowLeftIcon
       v-if="showBackBtn"
-      class="ml-5 h-7 w-7 text-white"
+      class="ml-5 h-7 w-7 text-white cursor-pointer"
       @click="emitHeaderClick"
     />
-    <h3 class="text-white ml-6">
+    <img v-if="showLogo" :src="Avocado" class="w-10 ml-4" />
+    <h3 class="text-white ml-4 text-xl">
       <slot>{{ children }}</slot>
     </h3>
   </div>
@@ -15,6 +16,7 @@
 
 <script>
 import { ArrowLeftIcon } from '@heroicons/vue/24/outline';
+import Avocado from '@/assets/Icons/Avocado.png';
 
 export default {
   name: 'ParentHeader',
@@ -24,12 +26,22 @@ export default {
       type: Boolean,
       default: false,
     },
+    showLogo: {
+      type: Boolean,
+      default: false,
+    },
     children: {
       type: String,
       default: '',
     },
   },
   emits: ['header-click'],
+  data() {
+    return {
+      Avocado,
+    };
+  },
+
   methods: {
     emitHeaderClick() {
       this.$emit('header-click');

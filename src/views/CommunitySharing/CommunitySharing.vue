@@ -1,8 +1,10 @@
 <template>
   <div class="">
-    <div class="flex justify-between text-white">
+    <div class="flex justify-between items-end text-white">
       <h4>Community Sharing</h4>
-      <h4 class="cursor-pointer" @click="viewAll">View All</h4>
+      <h4 class="cursor-pointer text-base text-green" @click="viewAll">
+        View All
+      </h4>
     </div>
 
     <div class="grid md:grid-cols-3 lg:grid-cols-4 mt-4 gap-5">

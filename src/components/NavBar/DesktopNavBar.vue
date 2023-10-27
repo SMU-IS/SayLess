@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar bg-transparent-dark">
+  <div class="navbar bg-main-dark">
     <div class="flex flex-row justify-between w-full md:mx-8 lg:mx-20">
       <CustomButton color="ghost" @click="navigateHome">
         <div class="flex items-center gap-3">
@@ -14,9 +14,10 @@
             <li
               v-for="links in navLinks"
               :key="links.title"
+              class="text-white"
               @click="handleClick(links.path)"
             >
-              <p class="text-md text-white px-8">{{ links.title }}</p>
+              <p class="text-md px-8 hover:bg-green">{{ links.title }}</p>
             </li>
           </ul>
         </div>
@@ -33,7 +34,7 @@
               tabindex="0"
               class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <li v-if="name" @click="goToProfile">
+              <li v-if="name" class="text-black" @click="goToProfile">
                 <p class="text-white">{{ name }}</p>
               </li>
               <li v-else @click="goToProfile">

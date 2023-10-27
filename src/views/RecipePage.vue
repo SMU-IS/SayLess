@@ -5,7 +5,7 @@
 
   <div>
     <div class="mx-auto md:mt-32 mt-28 w-full md:w-1/3">
-      <h4 class="text-white mb-4">Your Inventory</h4>
+      <h4 class="text-white mb-4">Recipes</h4>
 
       <div class="w-full">
         <div class="flex items-center gap-3">

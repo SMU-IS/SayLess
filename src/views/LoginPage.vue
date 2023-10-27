@@ -85,7 +85,7 @@ import { validateLoginFields } from '@/helpers/validateForm';
 import CustomCard from '@/components/Card/CustomCard.vue';
 import Avocado from '@/assets/Icons/Avocado.png';
 import { getTokenId } from '@/helpers/getTokenId';
-import axios from 'axios';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'LoginPage',
@@ -104,6 +104,9 @@ export default {
       Avocado,
     };
   },
+  computed: {
+    ...mapGetters(['getFirebaseData', 'getName']),
+  },
   methods: {
     async handleLogin() {
       const validateForm = validateLoginFields(this.email, this.password);
@@ -116,11 +119,7 @@ export default {
           });
           this.$router.push('/');
           getResponse('success', `Welcome, ${this.email}!`);
-
-          const tokenId = getTokenId();
-          tokenId.then((id) => {
-            sendToken(id);
-          });
+          this.createUserDBManual();
         } catch (err) {
           this.isLoading = false;
           getResponse('error', getErrorMessage(err.message));
@@ -136,29 +135,36 @@ export default {
         this.$router.push('/');
         const getEmail = this.$store.getters.getEmail;
         getResponse('success', `Welcome, ${getEmail}!`);
-
-        const tokenId = getTokenId();
-        tokenId.then((id) => {
-          this.sendToken(id);
-        });
+        this.createUserDBGoogle();
       } catch (err) {
         getResponse('error', getErrorMessage(err.message));
       }
     },
-    async sendToken(token) {
-      const apiURL = import.meta.env.VITE_GET_RECIPE;
-      const headers = {
-        'x-access-token': token,
-      };
-      const data = {
-        token: token,
-      };
-      const response = await axios.post(apiURL, data, { headers });
-      if (response) {
-        // do something
-      } else {
-        // do something
-      }
+    async createUserDBManual() {
+      const tokenId = getTokenId();
+      tokenId.then(async (id) => {
+        const data = {
+          accessTokenId: id,
+          userId: this.getFirebaseData.uid,
+          name: this.getName,
+          email: this.getFirebaseData.email,
+          profilePic: this.getFirebaseData.photoURL,
+        };
+        await this.$store.dispatch('createUserDB', data);
+      });
+    },
+    async createUserDBGoogle() {
+      const tokenId = getTokenId();
+      tokenId.then(async (id) => {
+        const data = {
+          accessTokenId: id,
+          userId: this.getFirebaseData.uid,
+          name: this.getFirebaseData.displayName,
+          email: this.getFirebaseData.email,
+          profilePic: this.getFirebaseData.photoURL,
+        };
+        await this.$store.dispatch('createUserDB', data);
+      });
     },
   },
 };

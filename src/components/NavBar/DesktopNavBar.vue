@@ -15,7 +15,12 @@
               class="text-white"
               @click="handleClick(links.path)"
             >
-              <p class="text-md px-6 hover:bg-green">{{ links.title }}</p>
+              <p
+                :class="{ 'opacity-40': !isCurrentRoute(links.path) }"
+                class="text-md px-6 hover:bg-green"
+              >
+                {{ links.title }}
+              </p>
             </li>
           </ul>
         </div>
@@ -80,6 +85,9 @@ export default {
     };
   },
   methods: {
+    isCurrentRoute(route) {
+      return this.$route.path === route;
+    },
     showModal() {
       openModal('my_modal_2');
     },

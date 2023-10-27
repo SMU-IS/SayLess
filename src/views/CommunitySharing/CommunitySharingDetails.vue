@@ -43,7 +43,11 @@
     </div>
 
     <div class="w-full md:w-1/3 mb-14 md:mt-14">
-      <CustomButton width="full" roundness="round" color="green"
+      <CustomButton
+        width="full"
+        roundness="round"
+        color="green"
+        @click="createChatRoom"
         >Chat to Deal</CustomButton
       >
     </div>
@@ -54,6 +58,7 @@
 import DetailsHeader from '@/components/NavBar/DetailsHeader.vue';
 import CustomButton from '@/components/Button/CustomButton.vue';
 import CustomCard from '@/components/Card/CustomCard.vue';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'CommunitySharingDetails',
@@ -61,12 +66,14 @@ export default {
   data() {
     return {
       details: [],
+      id: '6530d24110a9828679f8858a',
     };
   },
   created() {
     this.fetchData();
   },
   methods: {
+    ...mapActions(['fetchChatRoomDetails']),
     goBack() {
       this.$router.go(-1);
     },
@@ -96,6 +103,25 @@ export default {
           location: pickUpLocation,
         };
       }
+    },
+    createChatRoom() {
+      const participants = [this.id, '653297865a3478ad39210492'];
+      this.$store
+        .dispatch('createChatRoom', {
+          participants: participants,
+          listing: this.details.id,
+        })
+        .then((id) => {
+          this.fetchChatRoomDetails();
+          this.$store.watch(
+            (state, getters) => getters.getChatRooms,
+            (newValue) => {
+              if (newValue) {
+                this.$router.push(`/message/${id}`);
+              }
+            },
+          );
+        });
     },
   },
 };

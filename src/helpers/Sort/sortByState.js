@@ -1,7 +1,11 @@
 const sortByState = (arr) => {
   let filterArr = [...arr];
   return filterArr.sort((a, b) =>
-    a.completed && !b.completed ? -1 : !a.completed && b.completed ? 1 : 0,
+    a.status === 'Completed' && b.status !== 'Completed'
+      ? -1
+      : a.status !== 'Completed' && b.status === 'Completed'
+      ? 1
+      : 0,
   );
 };
 

@@ -38,6 +38,7 @@ export default {
         'CommunitySharingAll',
         'InventoryPage',
         'RecipePage',
+        'AddItem',
       ];
       return (
         this.isAuthenticated && !excludedRoutes.includes(this.getRouteName)
@@ -45,10 +46,11 @@ export default {
     },
     childrenStyle() {
       return {
-        'mx-6 md:mx-12 mb-44 min-h-screen':
+        'mx-6 md:mx-12 lg:mx-20 mb-44 min-h-screen':
           this.isAuthenticated &&
           this.getRouteName !== 'QuestPage' &&
-          this.getRouteName !== 'CommunitySharingDetails',
+          this.getRouteName !== 'CommunitySharingDetails' &&
+          this.getRouteName !== 'AddItem',
       };
     },
   },

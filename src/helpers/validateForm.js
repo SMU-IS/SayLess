@@ -10,4 +10,13 @@ const isPasswordMatch = (password, confirmPassword) => {
   return password === confirmPassword;
 };
 
-export { validateLoginFields, validateSignUpFields, isPasswordMatch };
+const validateForm = (formField) => {
+  return formField.length > 0;
+};
+
+export {
+  validateLoginFields,
+  validateSignUpFields,
+  isPasswordMatch,
+  validateForm,
+};

@@ -55,11 +55,7 @@
       <circle class="c2 fill-current text-green" r="12"></circle>
       <circle class="c3 fill-current text-green" r="12"></circle>
 
-      <circle
-        class="dot fill-current text-white"
-        r="15"
-        @click="timelineTrigger"
-      ></circle>
+      <circle class="dot fill-current text-white" r="15"></circle>
     </svg>
     <img
       id="c1"
@@ -86,15 +82,15 @@
 import { ref } from 'vue';
 import { gsap } from 'gsap';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
+import { mapGetters } from 'vuex';
 gsap.registerPlugin(MotionPathPlugin);
 
 export default {
   name: 'GraphicComponent',
   props: {
     challengeStatus: {
-      type: String,
-      default: '',
-      timeline: '',
+      type: Object,
+      default: () => {},
     },
   },
   data() {
@@ -102,15 +98,16 @@ export default {
       scales: ((ref(screen.width).value - 363) / 2 + 320) / 320,
     };
   },
+  computed: {
+    ...mapGetters(['getCount']),
+  },
   created() {
     this.timelineQuest = gsap.timeline();
   },
   mounted() {
-    if (this.challengeStatus === 'Completed') {
-      this.timelineTrigger();
-    } else {
-      this.timelineQuest.pause();
-    }
+    this.timelineQuest.pause();
+    let userViewCount = this.getCount;
+
     this.timelineQuest
       .to('.dot', {
         duration: 3,
@@ -168,10 +165,55 @@ export default {
         { opacity: 0.2 },
         { opacity: 1, duration: 1, ease: 'power1.inOut' },
       );
+
+    if (this.challengeStatus) {
+      let counter = 0;
+
+      for (let i = 0; i < this.challengeStatus.length; i++) {
+        if (this.challengeStatus[i].status === 'Completed') {
+          counter += 1;
+        }
+      }
+
+      if (counter == 0) {
+        this.timelineQuest.seek(0);
+      } else if (counter == 1) {
+        if (userViewCount == 1) {
+          this.timelineQuest.seek(0);
+          this.timelineTrigger();
+          this.decrementCount();
+        } else {
+          this.timelineQuest.seek(4);
+        }
+      } else if (counter == 2) {
+        if (userViewCount == 1) {
+          this.timelineQuest.seek(4);
+          this.timelineTrigger();
+          this.decrementCount();
+        } else {
+          this.timelineQuest.seek(8);
+        }
+      } else {
+        if (userViewCount == 1) {
+          this.timelineQuest.seek(8);
+          this.timelineTrigger();
+          this.decrementCount();
+        } else {
+          this.timelineQuest.seek(12);
+        }
+      }
+    }
   },
   methods: {
     timelineTrigger() {
       this.timelineQuest.play();
+    },
+    async decrementCount() {
+      try {
+        await this.$store.dispatch('decrementCount');
+      } catch (err) {
+        throw err;
+      }
     },
   },
 };
@@ -220,69 +262,6 @@ export default {
   );
 }
 
-.dot1 {
-  motion-path: path(
-    'M0 8H311.75C337.017 8 357.5 28.483 357.5 53.75V53.75C357.5 79.017 337.017 99.5 311.75 99.5H115C90.6995 99.5 71 119.199 71 143.5V143.5C71 167.801 90.6995 187.5 115 187.5H273C286.807 187.5 298 198.693 298 212.5V271'
-  );
-  offset-path: path(
-    'M0 8H311.75C337.017 8 357.5 28.483 357.5 53.75V53.75C357.5 79.017 337.017 99.5 311.75 99.5H115C90.6995 99.5 71 119.199 71 143.5V143.5C71 167.801 90.6995 187.5 115 187.5H273C286.807 187.5 298 198.693 298 212.5V271'
-  );
-  animation: move1 3s 1 ease-in-out forwards;
-}
-
-.dot2 {
-  motion-path: path(
-    'M0 8H311.75C337.017 8 357.5 28.483 357.5 53.75V53.75C357.5 79.017 337.017 99.5 311.75 99.5H115C90.6995 99.5 71 119.199 71 143.5V143.5C71 167.801 90.6995 187.5 115 187.5H273C286.807 187.5 298 198.693 298 212.5V271'
-  );
-  offset-path: path(
-    'M0 8H311.75C337.017 8 357.5 28.483 357.5 53.75V53.75C357.5 79.017 337.017 99.5 311.75 99.5H115C90.6995 99.5 71 119.199 71 143.5V143.5C71 167.801 90.6995 187.5 115 187.5H273C286.807 187.5 298 198.693 298 212.5V271'
-  );
-  animation: move2 3s 1 ease-in-out forwards;
-}
-
-.dot3 {
-  motion-path: path(
-    'M0 8H311.75C337.017 8 357.5 28.483 357.5 53.75V53.75C357.5 79.017 337.017 99.5 311.75 99.5H115C90.6995 99.5 71 119.199 71 143.5V143.5C71 167.801 90.6995 187.5 115 187.5H273C286.807 187.5 298 198.693 298 212.5V271'
-  );
-  offset-path: path(
-    'M0 8H311.75C337.017 8 357.5 28.483 357.5 53.75V53.75C357.5 79.017 337.017 99.5 311.75 99.5H115C90.6995 99.5 71 119.199 71 143.5V143.5C71 167.801 90.6995 187.5 115 187.5H273C286.807 187.5 298 198.693 298 212.5V271'
-  );
-  animation: move3 3s 1 ease-in-out forwards;
-}
-
-@keyframes move1 {
-  0% {
-    motion-offset: 0%;
-    offset-distance: 0%;
-  }
-  100% {
-    motion-offset: 20%;
-    offset-distance: 20%;
-  }
-}
-
-@keyframes move2 {
-  0% {
-    motion-offset: 0%;
-    offset-distance: 0%;
-  }
-  100% {
-    motion-offset: 53.3%;
-    offset-distance: 53.3%;
-  }
-}
-
-@keyframes move3 {
-  0% {
-    motion-offset: 0%;
-    offset-distance: 0%;
-  }
-  100% {
-    motion-offset: 100%;
-    offset-distance: 100%;
-  }
-}
-
 @keyframes blink {
   0% {
     opacity: 0.6;
@@ -290,9 +269,5 @@ export default {
   100% {
     opacity: 1s;
   }
-}
-.specialPath {
-  transform-origin: 319px;
-  transform: scaleX(v-bind(scales));
 }
 </style>

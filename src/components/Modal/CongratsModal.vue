@@ -27,9 +27,14 @@
         </p>
         <div class="modal-action mt-0">
           <form method="dialog" class="w-full">
-            <CustomButton width="full" color="white" @click="changeTab">{{
-              buttonText
-            }}</CustomButton>
+            <CustomButton width="full" color="white" @click="changeTab">
+              <span v-if="isLoading">
+                <CustomLoader :loading="isLoading" color="black" />
+              </span>
+              <p v-else>
+                {{ buttonText }}
+              </p>
+            </CustomButton>
           </form>
         </div>
       </div>
@@ -44,10 +49,11 @@
 <script>
 import CustomButton from '@/components/Button/CustomButton.vue';
 import { mapGetters } from 'vuex';
+import CustomLoader from '@/components/Loader/CustomLoader.vue';
 
 export default {
   name: 'CongratsModal',
-  components: { CustomButton },
+  components: { CustomButton, CustomLoader },
   props: {
     modalId: {
       type: String,
@@ -70,20 +76,37 @@ export default {
       default: '',
     },
   },
+  data() {
+    return {
+      isLoading: false,
+    };
+  },
   computed: {
     ...mapGetters(['getQuestData']),
     getChallengeId() {
-      return this.getQuestData.challenges[0].id;
+      if (this.modalId === 'congrats_1') {
+        return '653767cabeca8f1fa9473322';
+      } else if (this.modalId === 'congrats_2') {
+        return '653767e6a456e880499948db';
+      } else if (this.modalId === 'congrats_3') {
+        return '65376b37eeedf45dd416465e';
+      }
+      return '';
     },
   },
   methods: {
     async changeTab() {
+      this.isLoading = true;
       try {
+        await this.$store.dispatch('incrementCount');
         await this.$store.dispatch('updateQuestStatus', {
           id: this.getChallengeId,
+          status: 'Completed',
         });
+        this.isLoading = false;
         this.$router.push('/quest');
       } catch (err) {
+        this.isLoading = false;
         throw err;
       }
     },

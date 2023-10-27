@@ -15,6 +15,7 @@ import ChatDetails from '@/views/ChatDetails.vue';
 import CommunitySharingDetails from '@/views/CommunitySharing/CommunitySharingDetails.vue';
 import CommunitySharingAll from '@/views/CommunitySharing/CommunitySharingAll.vue';
 import InventoryPage from '@/views/Inventory/InventoryPage.vue';
+import NotificationDetails from '@/views/NotificationDetails.vue';
 import store from '@/store';
 
 const routes = [
@@ -102,6 +103,11 @@ const routes = [
     path: '/message/:chatId',
     name: 'chat-details',
     component: ChatDetails,
+  },
+  {
+    path: '/notification',
+    name: 'NotificationDetails',
+    component: NotificationDetails,
   },
 ];
 

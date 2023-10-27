@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar bg-base-100">
+  <div class="navbar bg-transparent-dark">
     <div class="flex flex-row justify-between w-full">
       <CustomButton color="ghost" @click="navigateHome">
         <div class="flex items-center gap-3">
@@ -9,8 +9,8 @@
       </CustomButton>
 
       <div class="flex items-center gap-2">
-        <p v-if="name">{{ name }}</p>
-        <p v-else>{{ email }}</p>
+        <p v-if="name" class="text-white">{{ name }}</p>
+        <p v-else class="text-white">{{ email }}</p>
         <div class="dropdown dropdown-left flex pr-5 gap-5">
           <label tabindex="0" class="btn btn-ghost btn-circle avatar">
             <div class="w-7 h-7 rounded-full">

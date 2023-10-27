@@ -4,25 +4,25 @@
     class="flex flex-col text-white text-center items-center md:h-screen gap-4 mt-32 md:w-1/2 mx-auto"
   >
     <CustomCard id="divOne" background="black" width="full">
-      <div class="flex flex-row items-center gap-5 p-5 text-white">
+      <div class="flex flex-row items-center gap-5 text-white">
         <img
           v-if="profilePic"
           :src="profilePic"
           :alt="name"
-          class="w-20 h-20 rounded-full"
+          class="w-16 h-16 rounded-full"
           referrerpolicy="no-referrer"
         />
 
         <UserIcon v-else class="w-9 h-9 rounded-full" />
 
-        <div class="flex flex-col justify-center gap-1">
-          <h2 v-if="name" class="card-title">{{ name }}</h2>
+        <div class="flex flex-col justify-start text-left gap-1">
+          <h2 v-if="name" class="card-title text-base">{{ name }}</h2>
           <p class="text-md text-left">{{ email }}</p>
         </div>
       </div>
     </CustomCard>
 
-    <ul id="divTwo" class="menu bg-base-200 w-full rounded-box text-lg">
+    <ul id="divTwo" class="menu bg-transparent-dark w-full rounded-lg text-lg">
       <li v-for="data in profileData" :key="data.title">
         <span @click="handleLink(data.title)">
           <component :is="data.icon" class="h-5 w-5" />

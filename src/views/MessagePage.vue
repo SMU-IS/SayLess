@@ -1,7 +1,7 @@
 <template>
   <ParentHeader> Messages </ParentHeader>
   <div class="flex justify-center mt-24 md:h-screen">
-    <div class="w-screen md:w-3/4 h-screen py-8 md:rounded-xl md:h-[80vh]">
+    <div class="w-screen md:w-3/4 h-screen pb-8 md:rounded-xl md:h-[80vh]">
       <div class="flex justify-between gap-3">
         <CustomButton
           size="small"

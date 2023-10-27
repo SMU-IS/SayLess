@@ -22,6 +22,7 @@ const ButtonVariants = cva(
         ghost: 'bg-none text-white-light hover:bg-gray-100 ',
         gradient: 'bg-gradient-header text-white',
         gray: 'bg-gray-light',
+        offwhite: 'bg-transparent text-white-light hover:bg-gray-700',
         disabled: 'bg-transparent text-white-light',
       },
       /* button sizes */

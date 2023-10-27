@@ -9,6 +9,7 @@ import LoginPageVue from '@/views/LoginPage.vue';
 import SignUpPage from '@/views/SignUpPage.vue';
 import ResetPasswordPage from '@/views/ResetPassword.vue';
 import RecipePage from '@/views/RecipePage.vue';
+import RecipeDetail from '@/views/RecipeDetail.vue';
 import ProfilePage from '@/views/ProfilePage.vue';
 import ChatDetails from '@/views/ChatDetails.vue';
 import CommunitySharingDetails from '@/views/CommunitySharing/CommunitySharingDetails.vue';
@@ -83,6 +84,11 @@ const routes = [
     component: RecipePage,
   },
   {
+    path: '/recipe/:rid',
+    name: 'RecipeDetail',
+    component: RecipeDetail,
+  },
+  {
     path: '/profile',
     name: 'ProfilePage',
     component: ProfilePage,
@@ -100,6 +106,10 @@ const routes = [
 ];
 
 const router = createRouter({
+  scrollBehavior() {
+    // always scroll to top
+    return { top: 0 };
+  },
   history: createWebHistory(),
   routes,
 });

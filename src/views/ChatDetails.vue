@@ -1,7 +1,7 @@
 <template>
-  <div class="flex justify-center mt-8 md:mt-32 w-full md:mb-28">
+  <div class="flex justify-center w-full md:my-28">
     <div
-      class="chat-container d-flex flex flex-col w-full md:w-3/4 h-[43rem] md:h-[40rem]"
+      class="chat-container d-flex flex flex-col w-full md:w-3/4 h-screen py-8 bg-main-dark md:rounded-xl md:h-[80vh]"
     >
       <ChatHeader
         v-if="details.listing"

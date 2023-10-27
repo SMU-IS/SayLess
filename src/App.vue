@@ -39,6 +39,7 @@ export default {
         'InventoryPage',
         'RecipePage',
         'AddItem',
+        'chat-details',
       ];
       return (
         this.isAuthenticated && !excludedRoutes.includes(this.getRouteName)
@@ -49,6 +50,7 @@ export default {
         'mx-6 md:mx-12 lg:mx-20 mb-44 min-h-screen':
           this.isAuthenticated &&
           this.getRouteName !== 'QuestPage' &&
+          this.getRouteName !== 'chat-details' &&
           this.getRouteName !== 'CommunitySharingDetails' &&
           this.getRouteName !== 'AddItem',
       };

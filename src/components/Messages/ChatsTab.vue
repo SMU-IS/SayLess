@@ -10,11 +10,13 @@
         class="chat-item cursor-pointer"
         @click="viewChat(chat.id)"
       >
-        <div class="chatContent flex items-center p-2 border-b border-gray-300">
+        <div
+          class="chatContent flex items-center p-2 border-b border-transparent"
+        >
           <img
             :src="getCorrespondentPic(chat)"
             alt="Profile Pic"
-            class="profile-pic w-10 h-10 mr-5"
+            class="profile-pic w-10 h-10 mr-5 rounded-lg"
           />
           <div class="chat-details flex-1">
             <p class="text-gray-400 text-xs">
@@ -27,7 +29,7 @@
                 >2</span
               >
             </h4>
-            <p class="text-white text-sm">{{ chat.listing.id }}</p>
+            <p class="text-white-light text-sm">{{ chat.listing.id }}</p>
           </div>
         </div>
       </div>

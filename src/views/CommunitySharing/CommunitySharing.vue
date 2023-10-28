@@ -30,16 +30,13 @@
 
           <div class="flex items-center gap-3 mt-2">
             <div class="avatar">
-              <div v-if="getProfilePicture" class="w-8 rounded-full">
-                <!-- <img :src="item.createdBy.profilePic" /> -->
-                <img :src="getProfilePicture" referrerpolicy="no-referrer" />
+              <div v-if="getCreatedByOwnerPic" class="w-8 rounded-full">
+                <img :src="getCreatedByOwnerPic" referrerpolicy="no-referrer" />
               </div>
               <UserIcon v-else class="w-4 h-auto" />
             </div>
 
-            <p class="text-black-light text-xs">
-              {{ item.createdBy.name }}
-            </p>
+            <p class="text-black-light text-xs">{{ item.createdBy.name }}</p>
           </div>
         </div>
       </div>
@@ -56,19 +53,23 @@ export default {
   name: 'CommunitySharing',
   components: { UserIcon },
   computed: {
-    ...mapGetters(['getCommunityListings', 'getProfilePicture']),
+    ...mapGetters(['getCommunityListings', 'getUserDetails']),
     showLimitedListings() {
       if (this.getCommunityListings) {
         return this.getCommunityListings.slice(0, 4);
       }
       return this.getCommunityListings;
     },
+    getCreatedByOwnerPic() {
+      return this.getUserDetails?.profilePic;
+    },
   },
   created() {
     this.fetchCommunityListings();
+    this.fetchUser();
   },
   methods: {
-    ...mapActions(['fetchCommunityListings']),
+    ...mapActions(['fetchCommunityListings', 'fetchUser']),
     viewAll() {
       this.$router.push('/community');
       scrollToTop();

@@ -37,9 +37,11 @@
 
             <div class="flex items-center gap-3 mt-2">
               <div class="avatar">
-                <div v-if="getProfilePicture" class="w-8 rounded-full">
-                  <!-- <img :src="item.createdBy.profilePic" /> -->
-                  <img :src="getProfilePicture" referrerpolicy="no-referrer" />
+                <div v-if="getCreatedByOwnerPic" class="w-8 rounded-full">
+                  <img
+                    :src="getCreatedByOwnerPic"
+                    referrerpolicy="no-referrer"
+                  />
                 </div>
                 <UserIcon v-else class="w-4 h-auto" />
               </div>
@@ -84,7 +86,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['getCommunityListings', 'getProfilePicture']),
+    ...mapGetters(['getCommunityListings', 'getUserDetails']),
     communityListings() {
       if (this.dataField) {
         return this.getCommunityListings.filter((item) => {
@@ -95,12 +97,16 @@ export default {
       }
       return this.getCommunityListings;
     },
+    getCreatedByOwnerPic() {
+      return this.getUserDetails?.profilePic;
+    },
   },
   created() {
     this.fetchCommunityListings();
+    this.fetchUser();
   },
   methods: {
-    ...mapActions(['fetchCommunityListings']),
+    ...mapActions(['fetchCommunityListings', 'fetchUser']),
     goBack() {
       this.$router.push('/');
     },

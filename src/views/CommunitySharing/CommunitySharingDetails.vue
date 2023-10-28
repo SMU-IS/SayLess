@@ -13,7 +13,7 @@
               :key="imgData.id"
               class="carousel-item w-full"
             >
-              <img src="../../assets/Food/Sourdough.jpg" class="object-cover" />
+              <img :src="imgData" class="object-cover" />
             </div>
           </div>
         </div>

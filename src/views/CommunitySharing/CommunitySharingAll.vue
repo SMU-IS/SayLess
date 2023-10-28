@@ -23,7 +23,7 @@
         >
           <div
             class="h-full w-32 md:h-48 md:w-full flex-none bg-cover rounded-l md:rounded-l-none md:rounded-t text-center overflow-hidden"
-            :style="'background-image: url(src/assets/Food/Chip.jpg)'"
+            :style="'background-image: url(' + item.listingImages[0] + ')'"
             title="Woman holding a mug"
           ></div>
 

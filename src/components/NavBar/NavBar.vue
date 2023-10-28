@@ -2,17 +2,16 @@
   <header class="flex justify-center">
     <div class="navBar bg-main-dark">
       <div v-for="link in navLinks" :key="link.id">
-        <router-link :to="link.path">
-          <div
-            :class="{ 'opacity-40': !isCurrentRoute(link.path) }"
-            class="flex flex-col items-center gap-1 content-end"
-          >
-            <div>
-              <img class="w-auto h-7" :src="link.icon" />
-            </div>
-            <span class="text-green text-sm self-end">{{ link.title }}</span>
+        <div
+          :class="{ 'opacity-40': !isCurrentRoute(link.path) }"
+          class="flex flex-col items-center gap-1 content-end"
+          @click="navigateAround(link.path)"
+        >
+          <div>
+            <img class="w-auto h-7" :src="link.icon" />
           </div>
-        </router-link>
+          <span class="text-green text-sm self-end">{{ link.title }}</span>
+        </div>
       </div>
     </div>
   </header>
@@ -20,6 +19,7 @@
 
 <script>
 import { navLinks } from '@/data/navLinks.js';
+import { scrollToTop } from '@/helpers/common';
 
 export default {
   name: 'NavBar',
@@ -31,6 +31,10 @@ export default {
   methods: {
     isCurrentRoute(route) {
       return this.$route.path === route;
+    },
+    navigateAround(path) {
+      this.$router.push(path);
+      scrollToTop();
     },
   },
 };

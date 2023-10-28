@@ -102,8 +102,9 @@ export default {
       isLoading: false,
     };
   },
+
   computed: {
-    ...mapGetters(['getQuestData']),
+    ...mapGetters(['getQuestData', 'getUserDetails']),
     getChallengeStatus() {
       return this.getQuestData?.[2].status;
     },
@@ -130,6 +131,7 @@ export default {
         this.images.push(this.childImage);
         try {
           const data = {
+            token: this.getUserDetails['x-access-token'],
             listingImages: this.images,
             listingTitle: this.title,
             listingDetails: this.description,

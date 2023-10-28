@@ -16,7 +16,6 @@ const communityModule = {
       state.user.communityListings = payload;
       localStorage.setItem('community-sharing-data', payload);
     },
-
     UPDATE_LISTINGS(state, payload) {
       let listingid = payload[0];
       let requestList = payload[1];
@@ -37,10 +36,10 @@ const communityModule = {
   },
   actions: {
     async fetchCommunityListings(context) {
+      const token = JSON.parse(localStorage.getItem('user-data'));
       const apiURL = import.meta.env.VITE_GET_LISTING;
       const headers = {
-        'x-access-token':
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTMwZDI0MTEwYTk4Mjg2NzlmODg1OGEiLCJ1c2VySWQiOiJZRzFJZ3RzdFFETmNxYTUwaEVjRXVFSEJhaFIyIiwiZW1haWwiOiJjeGFuZy4yMDIyQHNtdS5lZHUuc2ciLCJuYW1lIjoiSk9TSFVBIERBVklEIEFORyBDSFVOIFhJT05HIF8iLCJwcm9maWxlUGljIjoiaHR0cHM6Ly9pLmt5bS1jZG4uY29tL2VudHJpZXMvaWNvbnMvb3JpZ2luYWwvMDAwLzAzNi8wMDcvdW5kZXJ0aGV3YXRlcmNvdmVyLmpwZyIsImlhdCI6MTY5NzcwOTg0OH0.wN1yj3wrxJHZpGmpHsCPHSiOUIvqdhMtRzVyt2HBxzc',
+        'x-access-token': token?.['x-access-token'],
       };
       const response = await axios.get(apiURL, { headers });
       if (response) {
@@ -49,14 +48,11 @@ const communityModule = {
       }
     },
     async setRequest(context, { listingid }) {
+      const token = JSON.parse(localStorage.getItem('user-data'));
       const apiURL = import.meta.env.VITE_SET_REQUEST;
-      const config = {
-        headers: {
-          'x-access-token':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTMwZDI0MTEwYTk4Mjg2NzlmODg1OGEiLCJ1c2VySWQiOiJZRzFJZ3RzdFFETmNxYTUwaEVjRXVFSEJhaFIyIiwiZW1haWwiOiJjeGFuZy4yMDIyQHNtdS5lZHUuc2ciLCJuYW1lIjoiSk9TSFVBIERBVklEIEFORyBDSFVOIFhJT05HIF8iLCJwcm9maWxlUGljIjoiaHR0cHM6Ly9pLmt5bS1jZG4uY29tL2VudHJpZXMvaWNvbnMvb3JpZ2luYWwvMDAwLzAzNi8wMDcvdW5kZXJ0aGV3YXRlcmNvdmVyLmpwZyIsImlhdCI6MTY5NzcwOTg0OH0.wN1yj3wrxJHZpGmpHsCPHSiOUIvqdhMtRzVyt2HBxzc',
-        },
+      const headers = {
+        'x-access-token': token?.['x-access-token'],
       };
-      const { headers } = config;
       const postData = {
         listingId: listingid,
       };
@@ -67,16 +63,11 @@ const communityModule = {
       }
     },
     async postCommunityListings(_, data) {
-      try {
-        const apiURL = import.meta.env.VITE_POST_LISTING;
-        const headers = {
-          'x-access-token':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTMwZDI0MTEwYTk4Mjg2NzlmODg1OGEiLCJ1c2VySWQiOiJZRzFJZ3RzdFFETmNxYTUwaEVjRXVFSEJhaFIyIiwiZW1haWwiOiJjeGFuZy4yMDIyQHNtdS5lZHUuc2ciLCJuYW1lIjoiSk9TSFVBIERBVklEIEFORyBDSFVOIFhJT05HIF8iLCJwcm9maWxlUGljIjoiaHR0cHM6Ly9pLmt5bS1jZG4uY29tL2VudHJpZXMvaWNvbnMvb3JpZ2luYWwvMDAwLzAzNi8wMDcvdW5kZXJ0aGV3YXRlcmNvdmVyLmpwZyIsImlhdCI6MTY5NzcwOTg0OH0.wN1yj3wrxJHZpGmpHsCPHSiOUIvqdhMtRzVyt2HBxzc',
-        };
-        await axios.post(apiURL, data, { headers });
-      } catch (err) {
-        throw err;
-      }
+      const apiURL = import.meta.env.VITE_POST_LISTING;
+      const headers = {
+        'x-access-token': data.token,
+      };
+      await axios.post(apiURL, data, { headers });
     },
   },
 };

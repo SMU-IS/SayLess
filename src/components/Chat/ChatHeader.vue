@@ -123,8 +123,9 @@ export default {
       id: '6530d24110a9828679f8858a',
     };
   },
+
   computed: {
-    ...mapGetters(['getCommunityListings']),
+    ...mapGetters(['getCommunityListings', 'getUserDetails']),
     specificListing() {
       return this.getCommunityListings.find(
         (listing) => listing.id === this.listingId,
@@ -135,7 +136,6 @@ export default {
     //   return this.specificListing.requested.some(obj => obj.id === this.id);
     // },
   },
-  mounted() {},
   methods: {
     goBack() {
       this.$router.go(-1);

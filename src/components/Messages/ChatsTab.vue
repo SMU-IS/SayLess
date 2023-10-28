@@ -42,11 +42,6 @@ import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'ChatsTab',
-  data() {
-    return {
-      id: '6530d24110a9828679f8858a',
-    };
-  },
   computed: {
     ...mapGetters(['getChatRooms', 'getUserDetails']),
     selectedChat() {
@@ -55,7 +50,10 @@ export default {
           const participants = result.participants;
           if (participants && participants.length === 2) {
             const [participant1, participant2] = participants;
-            return participant1.id === this.id || participant2.id === this.id;
+            return (
+              participant1.id === this.getUserDetails.userData.id ||
+              participant2.id === this.getUserDetails.userData.id
+            );
           }
           return false;
         });
@@ -65,27 +63,25 @@ export default {
   },
   created() {
     this.fetchChatRoomDetails();
-    // this.fetchUser();
   },
   methods: {
     ...mapActions(['fetchChatRoomDetails']),
-    // ...mapActions(['fetchUser']),
     getCorrespondentName(chat) {
-      if (chat.participants[0].id == this.id) {
+      if (chat.participants[0].id == this.getUserDetails.userData.id) {
         return chat.participants[1].name;
       } else {
         return chat.participants[0].name;
       }
     },
     getCorrespondentId(chat) {
-      if (chat.participants[0].id == this.id) {
+      if (chat.participants[0].id == this.getUserDetails.userData.id) {
         return chat.participants[1].id;
       } else {
         return chat.participants[0].id;
       }
     },
     getCorrespondentPic(chat) {
-      if (chat.participants[0].id == this.id) {
+      if (chat.participants[0].id == this.getUserDetails.userData.id) {
         return chat.participants[1].profilePic;
       } else {
         return chat.participants[0].profilePic;

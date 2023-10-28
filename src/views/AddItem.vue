@@ -74,7 +74,7 @@
 import CustomButton from '@/components/Button/CustomButton.vue';
 import CustomInput from '@/components/Form/CustomInput.vue';
 import ImageUpload from '@/components/Form/ImageUpload.vue';
-import { mapActions, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 import ParentHeader from '@/components/NavBar/ParentHeader.vue';
 import { validateForm } from '@/helpers/validateForm';
 import { getResponse } from '@/helpers/getResponse';
@@ -102,7 +102,6 @@ export default {
       isLoading: false,
     };
   },
-
   computed: {
     ...mapGetters(['getQuestData', 'getUserDetails']),
     getChallengeStatus() {
@@ -110,7 +109,6 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['postCommunityListings']),
     goBack() {
       this.$router.go(-1);
     },

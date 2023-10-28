@@ -16,7 +16,6 @@ const userModule = {
     user: {
       email: localStorage.getItem('email'),
       name: localStorage.getItem('name'),
-      profilePicture: localStorage.getItem('profilePicture'),
       userDetails: localStorage.getItem('user-data'),
       firebaseData: [],
     },
@@ -27,11 +26,6 @@ const userModule = {
     },
     getName(state) {
       return state.user.name !== 'null' ? state.user.name : null;
-    },
-    getProfilePicture(state) {
-      return state.user.profilePicture !== 'null'
-        ? state.user.profilePicture
-        : null;
     },
     getFirebaseData(state) {
       return state.user.firebaseData;
@@ -49,10 +43,8 @@ const userModule = {
       state.user.firebaseData = payload;
       state.user.email = payload.email;
       state.user.name = payload.displayName;
-      state.user.profilePicture = payload.photoURL;
       localStorage.setItem('email', payload.email);
       localStorage.setItem('name', payload.displayName);
-      localStorage.setItem('profilePicture', payload.photoURL);
     },
     SET_FIREBASE_USER_DETAILS(state, payload) {
       state.user.firebaseUserData = payload;
@@ -87,15 +79,13 @@ const userModule = {
         throw new Error('Unable to register user');
       }
     },
-    async createUserDB(_, data) {
-      // to update end point
-      const apiURL = import.meta.env.VITE_CREATE_USER_IN_DB;
-      // to remove
-      const headers = {
-        'x-access-token':
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTMwZDI0MTEwYTk4Mjg2NzlmODg1OGEiLCJ1c2VySWQiOiJZRzFJZ3RzdFFETmNxYTUwaEVjRXVFSEJhaFIyIiwiZW1haWwiOiJjeGFuZy4yMDIyQHNtdS5lZHUuc2ciLCJuYW1lIjoiSk9TSFVBIERBVklEIEFORyBDSFVOIFhJT05HIF8iLCJwcm9maWxlUGljIjoiaHR0cHM6Ly9pLmt5bS1jZG4uY29tL2VudHJpZXMvaWNvbnMvb3JpZ2luYWwvMDAwLzAzNi8wMDcvdW5kZXJ0aGV3YXRlcmNvdmVyLmpwZyIsImlhdCI6MTY5NzcwOTg0OH0.wN1yj3wrxJHZpGmpHsCPHSiOUIvqdhMtRzVyt2HBxzc',
-      };
-      await axios.post(apiURL, data, { headers });
+    async authenticateUser(context, data) {
+      const apiURL = import.meta.env.VITE_AUTHENTICATE_USER_RETRIEVE_USER_DATA;
+      const response = await axios.post(apiURL, data);
+      if (response) {
+        const strData = JSON.stringify(response.data);
+        context.commit('SET_USER_DETAILS', strData);
+      }
     },
     async login(context, { email, password }) {
       const response = await signInWithEmailAndPassword(auth, email, password);
@@ -119,23 +109,6 @@ const userModule = {
         context.commit('SET_USER', response.user);
       } else {
         throw new Error('login failed');
-      }
-    },
-    async fetchUser(context) {
-      const apiURL = import.meta.env.VITE_GET_USER;
-      const config = {
-        headers: {
-          'x-access-token':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTMwZDI0MTEwYTk4Mjg2NzlmODg1OGEiLCJ1c2VySWQiOiJZRzFJZ3RzdFFETmNxYTUwaEVjRXVFSEJhaFIyIiwiZW1haWwiOiJjeGFuZy4yMDIyQHNtdS5lZHUuc2ciLCJuYW1lIjoiSk9TSFVBIERBVklEIEFORyBDSFVOIFhJT05HIF8iLCJwcm9maWxlUGljIjoiaHR0cHM6Ly9pLmt5bS1jZG4uY29tL2VudHJpZXMvaWNvbnMvb3JpZ2luYWwvMDAwLzAzNi8wMDcvdW5kZXJ0aGV3YXRlcmNvdmVyLmpwZyIsImlhdCI6MTY5NzcwOTg0OH0.wN1yj3wrxJHZpGmpHsCPHSiOUIvqdhMtRzVyt2HBxzc',
-        },
-      };
-      const data = {
-        userId: '6530d24110a9828679f8858a',
-      };
-      const response = await axios.post(apiURL, data, config);
-      if (response) {
-        const strData = JSON.stringify(response.data);
-        context.commit('SET_USER_DETAILS', strData);
       }
     },
   },

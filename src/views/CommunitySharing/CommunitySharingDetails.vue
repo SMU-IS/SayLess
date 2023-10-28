@@ -9,8 +9,8 @@
         <div class="p-2 bg-transparent rounded-xl">
           <div class="carousel w-full rounded-box">
             <div
-              v-for="imgData in details.allImages"
-              :key="imgData.id"
+              v-for="imgData in details?.allImages"
+              :key="imgData?.id"
               class="carousel-item w-full h-72"
             >
               <img :src="imgData" class="w-full object-cover" />
@@ -19,17 +19,20 @@
         </div>
 
         <div class="flex flex-col order-last gap-3">
-          <p class="text-sm">{{ details.lastPosted }}</p>
+          <p class="text-sm">{{ details?.lastPosted }}</p>
 
           <div class="flex items-center gap-3">
             <div class="avatar">
               <div v-if="details.profilePic" class="w-8 rounded-full">
                 <img :src="details.profilePic" referrerpolicy="no-referrer" />
               </div>
-              <UserIcon v-else class="w-4 h-auto" />
+              <UserIcon v-else class="w-5 h-auto" />
             </div>
 
-            <p class="text-sm">{{ details.name }}</p>
+            <p v-if="details.name" class="text-sm">
+              {{ details?.name }}
+            </p>
+            <p v-else class="text-sm">Anonymous User</p>
           </div>
         </div>
       </div>
@@ -40,7 +43,7 @@
             <div class="flex flex-col text-left gap-1">
               <p class="text-gray text-xl">Pick Up Location</p>
               <p class="text-black-light pb-10">
-                {{ details.location }}
+                {{ details?.location }}
               </p>
             </div>
           </CustomCard>
@@ -49,7 +52,7 @@
             <div class="flex flex-col text-left gap-1">
               <p class="text-gray text-xl">Description</p>
               <p class="text-black-light pb-10">
-                {{ details.details }}
+                {{ details?.details }}
               </p>
             </div>
           </CustomCard>
@@ -73,7 +76,7 @@
 import DetailsHeader from '@/components/NavBar/DetailsHeader.vue';
 import CustomButton from '@/components/Button/CustomButton.vue';
 import CustomCard from '@/components/Card/CustomCard.vue';
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import { calculateTimeSincePosted } from '@/helpers/common';
 import { UserIcon } from '@heroicons/vue/24/outline';
 
@@ -86,6 +89,9 @@ export default {
       id: '6530d24110a9828679f8858a',
     };
   },
+  computed: {
+    ...mapGetters(['getCommunityListings']),
+  },
   created() {
     this.fetchData();
   },
@@ -95,7 +101,7 @@ export default {
       this.$router.go(-1);
     },
     fetchData() {
-      const data = this.$store.getters.getCommunityListings;
+      const data = this.getCommunityListings;
       const listingId = this.$route.params.id;
       const selectedListing = data.find((item) => item.id === listingId);
 

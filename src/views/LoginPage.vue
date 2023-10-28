@@ -84,8 +84,7 @@ import CustomInput from '@/components/Form/CustomInput.vue';
 import { validateLoginFields } from '@/helpers/validateForm';
 import CustomCard from '@/components/Card/CustomCard.vue';
 import Avocado from '@/assets/Icons/Avocado.png';
-import { getTokenId } from '@/helpers/getTokenId';
-import { mapGetters } from 'vuex';
+import { getAccessToken } from '@/helpers/getAccessToken';
 
 export default {
   name: 'LoginPage',
@@ -104,9 +103,6 @@ export default {
       Avocado,
     };
   },
-  computed: {
-    ...mapGetters(['getFirebaseData', 'getName']),
-  },
   methods: {
     async handleLogin() {
       const validateForm = validateLoginFields(this.email, this.password);
@@ -117,9 +113,10 @@ export default {
             email: this.email,
             password: this.password,
           });
+          await this.authenticateUser();
+
           this.$router.push('/');
           getResponse('success', `Welcome, ${this.email}!`);
-          this.createUserDBManual();
         } catch (err) {
           this.isLoading = false;
           getResponse('error', getErrorMessage(err.message));
@@ -132,38 +129,21 @@ export default {
     async loginViaGoogle() {
       try {
         await this.$store.dispatch('loginViaGoogle');
+        await this.authenticateUser();
+        const email = this.$store.getters.getEmail;
+        getResponse('success', `Welcome, ${email}!`);
         this.$router.push('/');
-        const getEmail = this.$store.getters.getEmail;
-        getResponse('success', `Welcome, ${getEmail}!`);
-        this.createUserDBGoogle();
       } catch (err) {
         getResponse('error', getErrorMessage(err.message));
       }
     },
-    async createUserDBManual() {
-      const tokenId = getTokenId();
+    async authenticateUser() {
+      const tokenId = getAccessToken();
       tokenId.then(async (id) => {
         const data = {
           accessTokenId: id,
-          userId: this.getFirebaseData.uid,
-          name: this.getName,
-          email: this.getFirebaseData.email,
-          profilePic: this.getFirebaseData.photoURL,
         };
-        await this.$store.dispatch('createUserDB', data);
-      });
-    },
-    async createUserDBGoogle() {
-      const tokenId = getTokenId();
-      tokenId.then(async (id) => {
-        const data = {
-          accessTokenId: id,
-          userId: this.getFirebaseData.uid,
-          name: this.getFirebaseData.displayName,
-          email: this.getFirebaseData.email,
-          profilePic: this.getFirebaseData.photoURL,
-        };
-        await this.$store.dispatch('createUserDB', data);
+        await this.$store.dispatch('authenticateUser', data);
       });
     },
   },

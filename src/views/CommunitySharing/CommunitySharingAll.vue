@@ -15,28 +15,27 @@
     <div class="flex flex-col md:flex-row justify-center md:gap-4 mt-6">
       <div class="w-full grid md:grid-cols-3 lg:grid-cols-4 mt-4 gap-5">
         <div
-          v-for="item in communityListings.slice().reverse()"
-          :id="item.id"
-          :key="item.id"
+          v-for="item in communityListings?.slice().reverse()"
+          :id="item?.id"
+          :key="item?.id"
           class="card card-side bg-white text-black shadow-xl rounded-lg cursor-pointer md:max-w-sm w-full max-w-full flex md:block"
-          @click="getItemDetails(item.id)"
+          @click="getItemDetails(item?.id)"
         >
           <div
             class="h-full w-32 md:h-48 md:w-full flex-none bg-cover rounded-l md:rounded-l-none md:rounded-t text-center overflow-hidden"
-            :style="'background-image: url(' + item.listingImages[0] + ')'"
-            title="Woman holding a mug"
+            :style="'background-image: url(' + item?.listingImages[0] + ')'"
           ></div>
 
           <div class="flex flex-col justify-center gap-2 p-5">
             <div class="flex justify-between">
               <div class="flex flex-col">
-                <h2 class="card-title text-base">{{ item.listingTitle }}</h2>
+                <h2 class="card-title text-base">{{ item?.listingTitle }}</h2>
                 <p class="text-black-light text-xs mt-1">
-                  {{ item.pickUpLocation }}
+                  {{ item?.pickUpLocation }}
                 </p>
               </div>
               <p class="text-xs mt-1 md:block hidden">
-                {{ calTimeSincePosted(item.createdOn) }}
+                {{ calTimeSincePosted(item?.createdOn) }}
               </p>
             </div>
 
@@ -48,12 +47,14 @@
                     referrerpolicy="no-referrer"
                   />
                 </div>
-                <UserIcon v-else class="w-4 h-auto" />
+                <UserIcon v-else class="w-4 h-auto mt-2" />
               </div>
 
-              <p class="text-black-light text-xs">
+              <p v-if="item.createdBy.name" class="text-black-light text-xs">
                 {{ item.createdBy.name }}
               </p>
+
+              <p v-else class="text-black-light text-xs mt-2">Anonymous User</p>
             </div>
           </div>
         </div>
@@ -74,7 +75,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import ParentHeader from '@/components/NavBar/ParentHeader.vue';
 import { scrollToTop, calculateTimeSincePosted } from '@/helpers/common';
 import CustomInput from '@/components/Form/CustomInput.vue';
@@ -105,10 +106,9 @@ export default {
   },
   created() {
     this.fetchCommunityListings();
-    this.fetchUser();
   },
   methods: {
-    ...mapActions(['fetchCommunityListings', 'fetchUser']),
+    ...mapActions(['fetchCommunityListings']),
     goBack() {
       this.$router.push('/');
     },

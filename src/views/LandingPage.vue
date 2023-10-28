@@ -61,7 +61,9 @@
   </div>
 
   <div id="divThree" class="flex flex-col mt-8">
-    <CommunitySharing />
+    <div v-if="getUserDetails">
+      <CommunitySharing />
+    </div>
   </div>
 </template>
 
@@ -74,6 +76,7 @@ import CustomButton from '@/components/Button/CustomButton.vue';
 import { ArrowRightIcon } from '@heroicons/vue/24/solid';
 import { pageLoadAnimation } from '@/helpers/common';
 import CommunitySharing from '@/views/CommunitySharing/CommunitySharing.vue';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'LandingPage',
@@ -89,6 +92,9 @@ export default {
       InventoryIcon,
       GroupBuyIcon,
     };
+  },
+  computed: {
+    ...mapGetters(['getUserDetails']),
   },
   mounted() {
     const divIds = ['#divOne', '#divTwo', '#divThree'];

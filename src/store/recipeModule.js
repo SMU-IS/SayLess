@@ -61,10 +61,10 @@ const recipeModule = {
       }
     },
     async fetchRecipeDetails(context, recipeId) {
+      const token = JSON.parse(localStorage.getItem('user-data'));
       const apiURL = import.meta.env.VITE_GET_RECIPE_DETAILS;
       const headers = {
-        'x-access-token':
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTMwZTkyN2RhNjMyNTAyMDgwNGUwNDIiLCJ1c2VySWQiOiJZRzFJZ3RzdFFETmNxYTUwaEVjRXVFSEJhaFIxIiwiZW1haWwiOiJjeGFuZy4yMDIyQHNtdS5lZHUuc2ciLCJuYW1lIjoiREFWSUQgQU5HIENIVU4gWElPTkcgXyIsInByb2ZpbGVQaWMiOiJodHRwczovL2kua3ltLWNkbi5jb20vZW50cmllcy9pY29ucy9vcmlnaW5hbC8wMDAvMDM2LzAwNy91bmRlcnRoZXdhdGVyY292ZXIuanBnIiwiaWF0IjoxNjk4MzkzMDgwfQ.EuIPYW_KiW5aYrfcrS-GyNPwb0MBq-GD0tQZqP_-Sdc',
+        'x-access-token': token?.['x-access-token'],
       };
       const data = {
         rid: recipeId,

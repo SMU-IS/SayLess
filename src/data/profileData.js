@@ -2,6 +2,7 @@ import {
   UserIcon,
   ShieldCheckIcon,
   QuestionMarkCircleIcon,
+  GiftIcon,
 } from '@heroicons/vue/24/solid';
 
 const profileData = [
@@ -14,7 +15,7 @@ const profileData = [
   {
     id: 2,
     path: '/rewards',
-    icon: ShieldCheckIcon,
+    icon: GiftIcon,
     title: 'Rewards',
   },
   {

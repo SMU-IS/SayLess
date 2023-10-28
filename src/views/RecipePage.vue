@@ -37,7 +37,7 @@
               </template>
             </ul>
           </div>
-          <IconButton class="mt-4 block" @click="addTag" />
+          <IconButton class="block bg-green p-3 rounded" @click="addTag" />
         </div>
 
         <div class="flex items-center flex-wrap mt-5 gap-3">

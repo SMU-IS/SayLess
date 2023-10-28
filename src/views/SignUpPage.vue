@@ -86,8 +86,7 @@ import CustomCard from '@/components/Card/CustomCard.vue';
 import CustomInput from '@/components/Form/CustomInput.vue';
 import { validateSignUpFields, isPasswordMatch } from '@/helpers/validateForm';
 import Avocado from '@/assets/Icons/Avocado.png';
-import { mapGetters } from 'vuex';
-import { getTokenId } from '@/helpers/getTokenId';
+import { getAccessToken } from '@/helpers/getAccessToken';
 
 export default {
   name: 'SignUpPage',
@@ -106,9 +105,6 @@ export default {
       isLoading: false,
       Avocado,
     };
-  },
-  computed: {
-    ...mapGetters(['getEmail', 'getFirebaseData']),
   },
   methods: {
     async handleRegister() {
@@ -131,7 +127,7 @@ export default {
             });
             this.$router.push('/');
             getResponse('success', `Welcome, ${this.email}`);
-            this.createUserDB();
+            this.authenticateUser_Manual();
           } catch (err) {
             this.isLoading = false;
             getResponse('error', getErrorMessage(err.message));
@@ -146,17 +142,14 @@ export default {
         getResponse('error', getErrorMessage(''));
       }
     },
-    async createUserDB() {
-      const tokenId = getTokenId();
+    async authenticateUser_Manual() {
+      const tokenId = getAccessToken();
       tokenId.then(async (id) => {
         const data = {
           accessTokenId: id,
-          userId: this.getFirebaseData.uid,
           name: this.name,
-          email: this.getFirebaseData.email,
-          profilePic: this.getFirebaseData.photoURL,
         };
-        await this.$store.dispatch('createUserDB', data);
+        await this.$store.dispatch('authenticateUser', data);
       });
     },
   },

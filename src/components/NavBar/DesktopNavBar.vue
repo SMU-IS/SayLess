@@ -29,7 +29,7 @@
           <div class="dropdown dropdown-left">
             <label tabindex="0" class="btn btn-ghost btn-circle avatar">
               <div class="w-7 h-7 rounded-full">
-                <img v-if="profilePic" :src="profilePic" />
+                <img v-if="getProfilePic" :src="getProfilePic" />
                 <UserIcon v-else class="rounded-full" />
               </div>
             </label>
@@ -37,11 +37,11 @@
               tabindex="0"
               class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <li v-if="name" class="text-black" @click="goToProfile">
-                <p class="text-white">{{ name }}</p>
+              <li v-if="getName" class="text-black" @click="goToProfile">
+                <p class="text-white">{{ getName }}</p>
               </li>
               <li v-else @click="goToProfile">
-                <p class="text-white">{{ email }}</p>
+                <p class="text-white">{{ getEmail }}</p>
               </li>
               <li class="text-red" @click="showModal"><p>Logout</p></li>
             </ul>
@@ -69,20 +69,30 @@ import Avocado from '@/assets/Icons/Avocado.png';
 import CustomModal from '@/components/Modal/CustomModal.vue';
 import { openModal } from '@/helpers/common';
 import { BRAND_NAME } from '@/constants';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'DesktopNavBar',
   components: { UserIcon, CustomModal },
   data() {
     return {
-      email: this.$store.getters.getEmail,
-      name: this.$store.getters.getName,
-      profilePic: this.$store.getters.getProfilePicture,
       navLinks,
       Avocado,
       BRAND_NAME,
       isSelected: false,
     };
+  },
+  computed: {
+    ...mapGetters(['getUserDetails']),
+    getProfilePic() {
+      return this.getUserDetails?.userData.profilePic;
+    },
+    getEmail() {
+      return this.getUserDetails?.userData.email;
+    },
+    getName() {
+      return this.getUserDetails?.userData.name;
+    },
   },
   methods: {
     isCurrentRoute(route) {

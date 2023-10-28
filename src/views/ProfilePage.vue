@@ -6,9 +6,9 @@
     <CustomCard id="divOne" background="black" width="full">
       <div class="flex flex-row items-center gap-5 text-white">
         <img
-          v-if="profilePic"
-          :src="profilePic"
-          :alt="name"
+          v-if="getProfilePic"
+          :src="getProfilePic"
+          :alt="getName"
           class="w-16 h-16 rounded-full"
           referrerpolicy="no-referrer"
         />
@@ -16,8 +16,10 @@
         <UserIcon v-else class="w-9 h-9 rounded-full" />
 
         <div class="flex flex-col justify-start text-left gap-1">
-          <h2 v-if="name" class="card-title text-base">{{ name }}</h2>
-          <p class="text-md text-left">{{ email }}</p>
+          <h2 v-if="getName" class="card-title text-base">
+            {{ retrieveName }}
+          </h2>
+          <p class="text-md text-left">{{ getEmail }}</p>
         </div>
       </div>
     </CustomCard>
@@ -52,11 +54,12 @@
 import CustomCard from '@/components/Card/CustomCard.vue';
 import ParentHeader from '@/components/NavBar/ParentHeader.vue';
 import { ArrowRightOnRectangleIcon } from '@heroicons/vue/24/solid';
-import { profileData } from '@/data/profileData';
 import { UserIcon } from '@heroicons/vue/24/outline';
 import { pageLoadAnimation } from '@/helpers/common';
 import CustomModal from '@/components/Modal/CustomModal.vue';
 import { openModal } from '@/helpers/common';
+import { mapGetters } from 'vuex';
+import { profileData } from '@/data/profileData';
 
 export default {
   name: 'ProfilePage',
@@ -69,11 +72,20 @@ export default {
   },
   data() {
     return {
-      email: this.$store.getters.getEmail,
-      name: this.$store.getters.getName,
-      profilePic: this.$store.getters.getProfilePicture,
       profileData,
     };
+  },
+  computed: {
+    ...mapGetters(['getUserDetails', 'getName']),
+    getProfilePic() {
+      return this.getUserDetails?.userData.profilePic;
+    },
+    getEmail() {
+      return this.getUserDetails?.userData.email;
+    },
+    retrieveName() {
+      return this.getUserDetails?.userData.name || this.getName;
+    },
   },
   mounted() {
     const divIds = ['#divOne', '#divTwo'];

@@ -29,7 +29,7 @@ export default {
     GraphicComponent,
   },
   computed: {
-    ...mapGetters(['getQuestData']),
+    ...mapGetters(['getQuestData', 'getUserDetails']),
   },
   mounted() {
     this.fetchQuestData();

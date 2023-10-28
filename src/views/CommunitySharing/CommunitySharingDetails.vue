@@ -73,7 +73,7 @@
 import DetailsHeader from '@/components/NavBar/DetailsHeader.vue';
 import CustomButton from '@/components/Button/CustomButton.vue';
 import CustomCard from '@/components/Card/CustomCard.vue';
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import { calculateTimeSincePosted } from '@/helpers/common';
 import { UserIcon } from '@heroicons/vue/24/outline';
 
@@ -86,6 +86,9 @@ export default {
       id: '6530d24110a9828679f8858a',
     };
   },
+  computed: {
+    ...mapGetters(['getCommunityListings']),
+  },
   created() {
     this.fetchData();
   },
@@ -95,7 +98,7 @@ export default {
       this.$router.go(-1);
     },
     fetchData() {
-      const data = this.$store.getters.getCommunityListings;
+      const data = this.getCommunityListings;
       const listingId = this.$route.params.id;
       const selectedListing = data.find((item) => item.id === listingId);
 

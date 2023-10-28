@@ -65,11 +65,11 @@ export default {
   },
   created() {
     this.fetchChatRoomDetails();
-    this.fetchUser();
+    // this.fetchUser();
   },
   methods: {
     ...mapActions(['fetchChatRoomDetails']),
-    ...mapActions(['fetchUser']),
+    // ...mapActions(['fetchUser']),
     getCorrespondentName(chat) {
       if (chat.participants[0].id == this.id) {
         return chat.participants[1].name;

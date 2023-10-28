@@ -24,7 +24,6 @@
           <div
             class="h-full w-32 md:h-48 md:w-full flex-none bg-cover rounded-l md:rounded-l-none md:rounded-t text-center overflow-hidden"
             :style="'background-image: url(' + item.listingImages[0] + ')'"
-            title="Woman holding a mug"
           ></div>
 
           <div class="flex flex-col justify-center gap-2 p-5">
@@ -74,7 +73,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import ParentHeader from '@/components/NavBar/ParentHeader.vue';
 import { scrollToTop, calculateTimeSincePosted } from '@/helpers/common';
 import CustomInput from '@/components/Form/CustomInput.vue';
@@ -105,10 +104,9 @@ export default {
   },
   created() {
     this.fetchCommunityListings();
-    this.fetchUser();
   },
   methods: {
-    ...mapActions(['fetchCommunityListings', 'fetchUser']),
+    ...mapActions(['fetchCommunityListings']),
     goBack() {
       this.$router.push('/');
     },

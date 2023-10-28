@@ -4,6 +4,7 @@
   </ParentHeader>
   <div>
     <div class="mx-auto md:mt-36 mt-28 w-full md:w-full">
+      <h4 class="text-white mb-4">Current Listings Available</h4>
       <CustomInput
         v-model="dataField"
         type="text"
@@ -11,9 +12,7 @@
       />
     </div>
 
-    <h4 class="text-white md:text-center mt-6">Current Listings Available</h4>
-
-    <div class="flex flex-col md:flex-row justify-center md:gap-4">
+    <div class="flex flex-col md:flex-row justify-center md:gap-4 mt-6">
       <div class="w-full grid md:grid-cols-3 lg:grid-cols-4 mt-4 gap-5">
         <div
           v-for="item in communityListings.slice().reverse()"
@@ -29,10 +28,14 @@
           ></div>
 
           <div class="flex flex-col justify-center gap-2 p-5">
-            <h2 class="card-title text-base">{{ item.listingTitle }}</h2>
-            <p class="text-black-light text-xs">Lorem ipsum dolor sit amet</p>
+            <div>
+              <h2 class="card-title text-base">{{ item.listingTitle }}</h2>
+              <p class="text-black-light text-xs mt-1">
+                {{ item.pickUpLocation }}
+              </p>
+            </div>
 
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-3 mt-2">
               <div class="avatar">
                 <div v-if="getProfilePicture" class="w-8 rounded-full">
                   <!-- <img :src="item.createdBy.profilePic" /> -->
@@ -50,7 +53,7 @@
       </div>
     </div>
 
-    <div class="fixed bottom-8 right-8" @click="navigateItem">
+    <div class="fixed bottom-8 right-8 z-10" @click="navigateItem">
       <div
         class="btn text-white bg-green hover:bg-green-dark border-0 shadow-xl"
       >

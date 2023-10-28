@@ -19,7 +19,6 @@
           :style="'background-image: url(' + item.listingImages[0] + ')'"
           title="Woman holding a mug"
         ></div> -->
-
         <div
           class="h-full w-32 md:h-48 md:w-full flex-none bg-cover rounded-l md:rounded-l-none md:rounded-t text-center overflow-hidden"
           :style="'background-image: url(src/assets/Food/Chip.jpg)'"
@@ -27,10 +26,14 @@
         ></div>
 
         <div class="flex flex-col justify-center gap-2 p-5">
-          <h2 class="card-title text-base">{{ item.listingTitle }}</h2>
-          <p class="text-black-light text-xs">Lorem ipsum dolor sit amet</p>
+          <div>
+            <h2 class="card-title text-base">{{ item.listingTitle }}</h2>
+            <p class="text-black-light text-xs mt-1">
+              {{ item.pickUpLocation }}
+            </p>
+          </div>
 
-          <div class="flex items-center gap-3">
+          <div class="flex items-center gap-3 mt-2">
             <div class="avatar">
               <div v-if="getProfilePicture" class="w-8 rounded-full">
                 <!-- <img :src="item.createdBy.profilePic" /> -->

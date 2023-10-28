@@ -18,7 +18,7 @@
           </div>
         </div>
 
-        <div class="flex flex-col order-last gap-1.5">
+        <div class="flex flex-col order-last gap-3">
           <p class="text-sm">{{ details.lastPosted }}</p>
 
           <div class="flex items-center gap-3">

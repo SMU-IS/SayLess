@@ -5,7 +5,6 @@
     <DetailsHeader @header-click="goBack">{{ details.title }}</DetailsHeader>
 
     <div class="flex flex-col gap-5 md:flex-row md:mt-28">
-      <!-- Left side (Image) -->
       <div class="flex flex-col gap-6 mt-24 md:mt-0 w-full md:w-1/2">
         <div class="p-2 bg-transparent rounded-xl">
           <div class="carousel w-full rounded-box">
@@ -25,15 +24,13 @@
         </div>
       </div>
 
-      <!-- Right side (Content) -->
       <div class="w-full md:w-1/2 mt-6 md:mt-0">
         <div class="p-2 bg-transparent rounded-xl">
           <CustomCard background="gray" width="full" class="mb-4">
             <div class="flex flex-col text-left gap-1">
               <p class="text-gray text-xl">Pick Up Location</p>
               <p class="text-black-light pb-10">
-                <!-- {{ details.location }} -->
-                2 Bayfront Ave, B2-06, Singapore 018972
+                {{ details.location }}
               </p>
             </div>
           </CustomCard>

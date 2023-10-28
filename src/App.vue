@@ -41,6 +41,7 @@ export default {
         'RecipeDetail',
         'AddItem',
         'chat-details',
+        'RewardsPage',
       ];
       return (
         this.isAuthenticated && !excludedRoutes.includes(this.getRouteName)

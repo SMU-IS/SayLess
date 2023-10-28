@@ -26,7 +26,7 @@
 
     <ul id="divTwo" class="menu bg-transparent-dark w-full rounded-lg text-lg">
       <li v-for="data in profileData" :key="data.title">
-        <span @click="handleLink(data.title)">
+        <span @click="handleLink(data.title, data.path)">
           <component :is="data.icon" class="h-5 w-5" />
           {{ data.title }}
         </span>
@@ -103,8 +103,12 @@ export default {
         throw err;
       }
     },
-    handleLink(name) {
-      alert(name);
+    handleLink(name, path) {
+      if (path === '/rewards') {
+        this.$router.push(path);
+      } else {
+        alert(name);
+      }
     },
   },
 };

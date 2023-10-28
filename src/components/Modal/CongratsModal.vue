@@ -1,7 +1,7 @@
 <template>
   <dialog :id="modalId" class="modal text-center">
     <div class="modal-box p-0 overflow-visible bg-green rounded-3xl">
-      <div class="bg-white absolute right-0 bottom-[30%] p-12">cwc</div>
+      <div class="bg-white absolute right-0 bottom-[30%] p-12"></div>
       <div class="bg-white rounded-3xl rounded-bl-[30px] relative py-8">
         <div class="absolute top-[-38%] left-0 right-0 text-center">
           <img

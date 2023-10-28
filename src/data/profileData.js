@@ -13,12 +13,19 @@ const profileData = [
   },
   {
     id: 2,
+    path: '/rewards',
+    icon: ShieldCheckIcon,
+    title: 'Rewards',
+  },
+  {
+    id: 3,
     path: '/',
     icon: ShieldCheckIcon,
     title: 'Security',
   },
+
   {
-    id: 3,
+    id: 4,
     path: '/',
     icon: QuestionMarkCircleIcon,
     title: 'Help Center',

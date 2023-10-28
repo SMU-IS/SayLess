@@ -2,7 +2,7 @@
   <div
     class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 min-w-full py-4"
   >
-    <div v-for="item in getRecipe" :key="item.id">
+    <div v-for="item in getRecipe?.slice().splice(0, 20)" :key="item.id">
       <CustomCard
         background="white"
         roundness="round"

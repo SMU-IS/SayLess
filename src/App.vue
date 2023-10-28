@@ -53,7 +53,8 @@ export default {
           this.getRouteName !== 'QuestPage' &&
           this.getRouteName !== 'chat-details' &&
           this.getRouteName !== 'CommunitySharingDetails' &&
-          this.getRouteName !== 'AddItem',
+          this.getRouteName !== 'AddItem' &&
+          this.getRouteName !== 'ProfilePage',
       };
     },
   },

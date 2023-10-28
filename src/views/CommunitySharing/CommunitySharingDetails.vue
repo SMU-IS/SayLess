@@ -19,8 +19,18 @@
         </div>
 
         <div class="flex flex-col order-last gap-1.5">
-          <p class="text-sm">25 mins ago</p>
-          <p class="text-sm">{{ details.name }}</p>
+          <p class="text-sm">{{ details.lastPosted }}</p>
+
+          <div class="flex items-center gap-3">
+            <div class="avatar">
+              <div v-if="details.profilePic" class="w-8 rounded-full">
+                <img :src="details.profilePic" referrerpolicy="no-referrer" />
+              </div>
+              <UserIcon v-else class="w-4 h-auto" />
+            </div>
+
+            <p class="text-sm">{{ details.name }}</p>
+          </div>
         </div>
       </div>
 
@@ -64,10 +74,12 @@ import DetailsHeader from '@/components/NavBar/DetailsHeader.vue';
 import CustomButton from '@/components/Button/CustomButton.vue';
 import CustomCard from '@/components/Card/CustomCard.vue';
 import { mapActions } from 'vuex';
+import { calculateTimeSincePosted } from '@/helpers/common';
+import { UserIcon } from '@heroicons/vue/24/outline';
 
 export default {
   name: 'CommunitySharingDetails',
-  components: { DetailsHeader, CustomButton, CustomCard },
+  components: { DetailsHeader, CustomButton, CustomCard, UserIcon },
   data() {
     return {
       details: [],
@@ -96,16 +108,19 @@ export default {
           listingDetails,
           listingImages,
           pickUpLocation,
+          createdOn,
         } = selectedListing;
 
         this.details = {
           id: id,
           name: createdBy.name,
+          profilePic: createdBy.profilePic,
           availablity: isAvailable,
           title: listingTitle,
           details: listingDetails,
           allImages: listingImages,
           location: pickUpLocation,
+          lastPosted: calculateTimeSincePosted(createdOn),
         };
       }
     },

@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div>
     <div class="flex justify-between items-end text-white">
       <h4>Community Sharing</h4>
       <h4 class="cursor-pointer text-base text-green" @click="viewAll">
@@ -30,8 +30,11 @@
 
           <div class="flex items-center gap-3 mt-2">
             <div class="avatar">
-              <div v-if="getCreatedByOwnerPic" class="w-8 rounded-full">
-                <img :src="getCreatedByOwnerPic" referrerpolicy="no-referrer" />
+              <div v-if="item.createdBy.profilePic" class="w-8 rounded-full">
+                <img
+                  :src="item.createdBy.profilePic"
+                  referrerpolicy="no-referrer"
+                />
               </div>
               <UserIcon v-else class="w-4 h-auto" />
             </div>
@@ -59,9 +62,6 @@ export default {
         return this.getCommunityListings.slice(0, 4);
       }
       return this.getCommunityListings;
-    },
-    getCreatedByOwnerPic() {
-      return this.getUserDetails?.profilePic;
     },
   },
   created() {

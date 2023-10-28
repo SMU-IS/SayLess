@@ -48,7 +48,7 @@ import { getErrorMessage } from '@/helpers/getErrorMessage';
 import { getResponse } from '@/helpers/getResponse';
 import { openModal } from '@/helpers/common';
 import CongratsModal from '@/components/Modal/CongratsModal.vue';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'FormModal',
@@ -71,15 +71,18 @@ export default {
   data() {
     return {
       item: '',
+      itemName: [],
+      isLoading: false,
     };
   },
   computed: {
-    ...mapGetters(['getInventoryData', 'getQuestData']),
+    ...mapGetters(['getInventoryData', 'getQuestData', 'getUserDetails']),
     getChallengeStatus() {
-      return this.getQuestData[0].status;
+      return this.getQuestData?.[0].status;
     },
   },
   methods: {
+    ...mapActions(['fetchInventory']),
     onModalClose() {
       closeModal(this.modalId);
     },
@@ -89,15 +92,20 @@ export default {
     async handleAdd() {
       if (
         this.getChallengeStatus === 'In Progress' &&
-        this.getInventoryData.length === 0
+        this.getInventoryData?.length === 0
       ) {
         this.showCongratsModal();
       }
       if (this.item.length !== 0) {
         try {
-          await this.$store.dispatch('handleAddItem', {
-            item: this.item,
-          });
+          this.itemName.push(this.item);
+          const data = {
+            token: this.getUserDetails['x-access-token'],
+            itemName: this.itemName,
+          };
+          await this.$store.dispatch('handleAddItem', data);
+          getResponse('success', 'Your item has been added!');
+          this.fetchInventory();
         } catch (err) {
           getResponse('error', getErrorMessage(err.message));
         }

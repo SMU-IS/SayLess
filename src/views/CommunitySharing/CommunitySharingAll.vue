@@ -37,9 +37,9 @@
 
             <div class="flex items-center gap-3 mt-2">
               <div class="avatar">
-                <div v-if="getCreatedByOwnerPic" class="w-8 rounded-full">
+                <div v-if="item.createdBy.profilePic" class="w-8 rounded-full">
                   <img
-                    :src="getCreatedByOwnerPic"
+                    :src="item.createdBy.profilePic"
                     referrerpolicy="no-referrer"
                   />
                 </div>
@@ -96,9 +96,6 @@ export default {
         });
       }
       return this.getCommunityListings;
-    },
-    getCreatedByOwnerPic() {
-      return this.getUserDetails?.profilePic;
     },
   },
   created() {

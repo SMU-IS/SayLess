@@ -56,6 +56,27 @@ const randomUniqueId = () => {
   return timeStamp + randomString + Math.floor(Math.random() * 999);
 };
 
+const calculateTimeSincePosted = (date) => {
+  const targetDate = new Date(date);
+  const differenceMs = new Date() - targetDate;
+
+  const minutesAgo = Math.floor(differenceMs / (1000 * 60));
+  const hoursAgo = Math.floor(minutesAgo / 60);
+  const daysAgo = Math.floor(hoursAgo / 24);
+
+  let result = '';
+
+  if (daysAgo >= 1) {
+    result = `${daysAgo} day${daysAgo > 1 ? 's' : ''} ago`;
+  } else if (hoursAgo >= 1) {
+    result = `${hoursAgo} hour${hoursAgo > 1 ? 's' : ''} ago`;
+  } else {
+    result = `${minutesAgo} min${minutesAgo > 1 ? 's' : ''} ago`;
+  }
+
+  return result;
+};
+
 export {
   goHome,
   scrollToTop,
@@ -65,4 +86,5 @@ export {
   pageLoadAnimation,
   getCurrentDate,
   randomUniqueId,
+  calculateTimeSincePosted,
 };

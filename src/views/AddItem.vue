@@ -105,7 +105,7 @@ export default {
   computed: {
     ...mapGetters(['getQuestData']),
     getChallengeStatus() {
-      return this.getQuestData[2].status;
+      return this.getQuestData?.[2].status;
     },
   },
   methods: {
@@ -122,12 +122,12 @@ export default {
     async handleAdd() {
       this.isLoading = true;
       if (
+        this.childImage &&
         validateForm(this.title) &&
         validateForm(this.description) &&
         validateForm(this.location)
       ) {
         this.images.push(this.childImage);
-
         try {
           const data = {
             listingImages: this.images,
@@ -135,7 +135,6 @@ export default {
             listingDetails: this.description,
             pickUpLocation: this.location,
           };
-
           await this.$store.dispatch('postCommunityListings', data);
           if (this.getChallengeStatus === 'In Progress') {
             this.isLoading = false;
@@ -143,15 +142,15 @@ export default {
           } else {
             getResponse('success', 'Added to Community market place!');
             this.$router.push('/community');
+            this.images = [];
+            this.title = '';
+            this.description = '';
+            this.location = '';
           }
         } catch (err) {
           this.isLoading = false;
-          getResponse('error', getErrorMessage(err.message));
+          getResponse('error', err.message);
         }
-        this.images = [];
-        this.title = '';
-        this.description = '';
-        this.location = '';
       } else {
         this.isLoading = false;
         getResponse('error', 'Fill in all the fields');

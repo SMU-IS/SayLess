@@ -15,7 +15,7 @@
           Do More.
         </h3>
 
-        <p class="font-semibold">Rescue Your Food Now.</p>
+        <p class="font-semibold">{{ BRAND_TAGLINE }}</p>
       </div>
 
       <div class="flex flex-col md:items-start items-center md:mt-0 mt-3">
@@ -37,7 +37,7 @@
 
 <script>
 import CustomButton from '@/components/Button/CustomButton.vue';
-import { BRAND_NAME } from '@/constants';
+import { BRAND_NAME, BRAND_TAGLINE } from '@/constants';
 
 export default {
   name: 'OnboardPage',
@@ -45,6 +45,7 @@ export default {
   data() {
     return {
       BRAND_NAME,
+      BRAND_TAGLINE,
     };
   },
   methods: {

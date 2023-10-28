@@ -5,7 +5,6 @@
     <DetailsHeader @header-click="goBack">{{ details.title }}</DetailsHeader>
 
     <div class="flex flex-col gap-5 md:flex-row md:mt-28">
-      <!-- Left side (Image) -->
       <div class="flex flex-col gap-6 mt-24 md:mt-0 w-full md:w-1/2">
         <div class="p-2 bg-transparent rounded-xl">
           <div class="carousel w-full rounded-box">
@@ -14,26 +13,34 @@
               :key="imgData.id"
               class="carousel-item w-full"
             >
-              <img src="../../assets/Food/Sourdough.jpg" class="object-cover" />
+              <img :src="imgData" class="object-cover" />
             </div>
           </div>
         </div>
 
-        <div class="flex flex-col order-last gap-1.5">
-          <p class="text-sm">25 mins ago</p>
-          <p class="text-sm">{{ details.name }}</p>
+        <div class="flex flex-col order-last gap-3">
+          <p class="text-sm">{{ details.lastPosted }}</p>
+
+          <div class="flex items-center gap-3">
+            <div class="avatar">
+              <div v-if="details.profilePic" class="w-8 rounded-full">
+                <img :src="details.profilePic" referrerpolicy="no-referrer" />
+              </div>
+              <UserIcon v-else class="w-4 h-auto" />
+            </div>
+
+            <p class="text-sm">{{ details.name }}</p>
+          </div>
         </div>
       </div>
 
-      <!-- Right side (Content) -->
       <div class="w-full md:w-1/2 mt-6 md:mt-0">
         <div class="p-2 bg-transparent rounded-xl">
           <CustomCard background="gray" width="full" class="mb-4">
             <div class="flex flex-col text-left gap-1">
               <p class="text-gray text-xl">Pick Up Location</p>
               <p class="text-black-light pb-10">
-                <!-- {{ details.location }} -->
-                2 Bayfront Ave, B2-06, Singapore 018972
+                {{ details.location }}
               </p>
             </div>
           </CustomCard>
@@ -67,10 +74,12 @@ import DetailsHeader from '@/components/NavBar/DetailsHeader.vue';
 import CustomButton from '@/components/Button/CustomButton.vue';
 import CustomCard from '@/components/Card/CustomCard.vue';
 import { mapActions } from 'vuex';
+import { calculateTimeSincePosted } from '@/helpers/common';
+import { UserIcon } from '@heroicons/vue/24/outline';
 
 export default {
   name: 'CommunitySharingDetails',
-  components: { DetailsHeader, CustomButton, CustomCard },
+  components: { DetailsHeader, CustomButton, CustomCard, UserIcon },
   data() {
     return {
       details: [],
@@ -99,16 +108,19 @@ export default {
           listingDetails,
           listingImages,
           pickUpLocation,
+          createdOn,
         } = selectedListing;
 
         this.details = {
           id: id,
           name: createdBy.name,
+          profilePic: createdBy.profilePic,
           availablity: isAvailable,
           title: listingTitle,
           details: listingDetails,
           allImages: listingImages,
           location: pickUpLocation,
+          lastPosted: calculateTimeSincePosted(createdOn),
         };
       }
     },

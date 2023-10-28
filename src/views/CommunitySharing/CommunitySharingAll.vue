@@ -4,6 +4,7 @@
   </ParentHeader>
   <div>
     <div class="mx-auto md:mt-36 mt-28 w-full md:w-full">
+      <h4 class="text-white mb-4">Current Listings Available</h4>
       <CustomInput
         v-model="dataField"
         type="text"
@@ -11,9 +12,7 @@
       />
     </div>
 
-    <h4 class="text-white md:text-center mt-6">Current Listings Available</h4>
-
-    <div class="flex flex-col md:flex-row justify-center md:gap-4">
+    <div class="flex flex-col md:flex-row justify-center md:gap-4 mt-6">
       <div class="w-full grid md:grid-cols-3 lg:grid-cols-4 mt-4 gap-5">
         <div
           v-for="item in communityListings.slice().reverse()"
@@ -24,19 +23,30 @@
         >
           <div
             class="h-full w-32 md:h-48 md:w-full flex-none bg-cover rounded-l md:rounded-l-none md:rounded-t text-center overflow-hidden"
-            :style="'background-image: url(src/assets/Food/Chip.jpg)'"
+            :style="'background-image: url(' + item.listingImages[0] + ')'"
             title="Woman holding a mug"
           ></div>
 
           <div class="flex flex-col justify-center gap-2 p-5">
-            <h2 class="card-title text-base">{{ item.listingTitle }}</h2>
-            <p class="text-black-light text-xs">Lorem ipsum dolor sit amet</p>
+            <div class="flex justify-between">
+              <div class="flex flex-col">
+                <h2 class="card-title text-base">{{ item.listingTitle }}</h2>
+                <p class="text-black-light text-xs mt-1">
+                  {{ item.pickUpLocation }}
+                </p>
+              </div>
+              <p class="text-xs mt-1 md:block hidden">
+                {{ calTimeSincePosted(item.createdOn) }}
+              </p>
+            </div>
 
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-3 mt-2">
               <div class="avatar">
-                <div v-if="getProfilePicture" class="w-8 rounded-full">
-                  <!-- <img :src="item.createdBy.profilePic" /> -->
-                  <img :src="getProfilePicture" referrerpolicy="no-referrer" />
+                <div v-if="item.createdBy.profilePic" class="w-8 rounded-full">
+                  <img
+                    :src="item.createdBy.profilePic"
+                    referrerpolicy="no-referrer"
+                  />
                 </div>
                 <UserIcon v-else class="w-4 h-auto" />
               </div>
@@ -50,7 +60,7 @@
       </div>
     </div>
 
-    <div class="fixed bottom-8 right-8" @click="navigateItem">
+    <div class="fixed bottom-8 right-8 z-10" @click="navigateItem">
       <div
         class="btn text-white bg-green hover:bg-green-dark border-0 shadow-xl"
       >
@@ -66,7 +76,7 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import ParentHeader from '@/components/NavBar/ParentHeader.vue';
-import { scrollToTop } from '@/helpers/common';
+import { scrollToTop, calculateTimeSincePosted } from '@/helpers/common';
 import CustomInput from '@/components/Form/CustomInput.vue';
 import { PlusIcon, UserIcon } from '@heroicons/vue/24/solid';
 
@@ -81,7 +91,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['getCommunityListings', 'getProfilePicture']),
+    ...mapGetters(['getCommunityListings', 'getUserDetails']),
     communityListings() {
       if (this.dataField) {
         return this.getCommunityListings.filter((item) => {
@@ -95,9 +105,10 @@ export default {
   },
   created() {
     this.fetchCommunityListings();
+    this.fetchUser();
   },
   methods: {
-    ...mapActions(['fetchCommunityListings']),
+    ...mapActions(['fetchCommunityListings', 'fetchUser']),
     goBack() {
       this.$router.push('/');
     },
@@ -107,6 +118,9 @@ export default {
     },
     navigateItem() {
       this.$router.push('/add-item');
+    },
+    calTimeSincePosted(data) {
+      return calculateTimeSincePosted(data);
     },
   },
 };

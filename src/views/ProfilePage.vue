@@ -1,7 +1,7 @@
 <template>
   <ParentHeader>Profile</ParentHeader>
   <div
-    class="flex flex-col text-white text-center items-center md:h-screen gap-4 mt-32 md:w-1/2 mx-auto"
+    class="flex flex-col text-white text-center items-center md:h-screen gap-4 mt-32 md:w-1/2 md:mx-auto mx-6"
   >
     <CustomCard id="divOne" background="black" width="full">
       <div class="flex flex-row items-center gap-5 text-white">

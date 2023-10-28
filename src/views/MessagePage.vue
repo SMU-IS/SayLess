@@ -10,7 +10,9 @@
           :color="currentTab === 'chat' ? 'gradient' : 'disabled'"
           @click="changeTab('chat')"
         >
-          <div class="flex items-center gap-3 p-1 text-white text-sm">
+          <div
+            class="flex justify-center items-center gap-3 p-1 text-white text-sm"
+          >
             <img src="@/assets/Icons/Chat.png" alt="Custom Icon" class="w-6" />
             <p>Chat</p>
           </div>
@@ -23,7 +25,9 @@
           :color="currentTab === 'notifications' ? 'gradient' : 'disabled'"
           @click="changeTab('notifications')"
         >
-          <div class="flex items-center gap-3 p-1 text-white text-sm">
+          <div
+            class="flex justify-center items-center gap-3 p-1 text-white text-sm"
+          >
             <img src="@/assets/Icons/Ring.png" alt="Custom Icon" class="w-6" />
             <p>Notifications</p>
           </div>

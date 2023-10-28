@@ -17,7 +17,7 @@
             >
               <p
                 :class="{ 'opacity-40': !isCurrentRoute(links.path) }"
-                class="text-md px-6 hover:bg-green"
+                class="text-md px-6 hover:bg-green hover:text-white"
               >
                 {{ links.title }}
               </p>

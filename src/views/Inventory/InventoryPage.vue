@@ -127,7 +127,7 @@ export default {
   computed: {
     ...mapGetters(['getInventoryData', 'getQuestData']),
     getChallengeStatus() {
-      return this.getQuestData[1].status;
+      return this.getQuestData?.[1].status;
     },
   },
   methods: {

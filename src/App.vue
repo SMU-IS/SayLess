@@ -12,7 +12,7 @@
       <NavBar />
     </div>
 
-    <div class="w-screen hidden md:block relative">
+    <div v-if="isAuthenticated" class="w-screen hidden md:block relative">
       <CustomFooter />
     </div>
   </div>
@@ -38,6 +38,7 @@ export default {
         'CommunitySharingAll',
         'InventoryPage',
         'RecipePage',
+        'RecipeDetail',
         'AddItem',
         'chat-details',
       ];
@@ -52,7 +53,8 @@ export default {
           this.getRouteName !== 'QuestPage' &&
           this.getRouteName !== 'chat-details' &&
           this.getRouteName !== 'CommunitySharingDetails' &&
-          this.getRouteName !== 'AddItem',
+          this.getRouteName !== 'AddItem' &&
+          this.getRouteName !== 'ProfilePage',
       };
     },
   },

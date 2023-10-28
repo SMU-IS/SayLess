@@ -13,7 +13,7 @@ export default {
   props: {
     buttonColor: {
       type: String,
-      default: 'btn--primary',
+      default: 'text-white',
     },
     textSize: {
       type: String,

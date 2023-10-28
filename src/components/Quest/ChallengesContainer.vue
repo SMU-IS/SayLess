@@ -1,9 +1,9 @@
 <template>
-  <div class="flex flex-col md:items-center mt-10 md:mb-10">
-    <div class="flex hide-scroll-bar overflow-x-scroll px-10">
+  <div class="flex flex-col lg:items-center mt-10 md:mb-10">
+    <div class="flex hide-scroll-bar overflow-x-scroll snap-x px-10">
       <div class="flex flex-nowrap">
         <div v-for="data in getQuestData" :key="data.challenge.id">
-          <div class="inline-block px-3">
+          <div class="inline-block px-3 snap-center">
             <div
               class="relative w-72 pb-4 min-h-[200px] max-w-xs overflow-hidden rounded-lg shadow-md bg-card-light hover:shadow-xl transition-shadow duration-300 ease-in-out"
             >

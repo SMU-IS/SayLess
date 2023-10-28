@@ -28,10 +28,15 @@
           ></div>
 
           <div class="flex flex-col justify-center gap-2 p-5">
-            <div>
-              <h2 class="card-title text-base">{{ item.listingTitle }}</h2>
-              <p class="text-black-light text-xs mt-1">
-                {{ item.pickUpLocation }}
+            <div class="flex justify-between">
+              <div class="flex flex-col">
+                <h2 class="card-title text-base">{{ item.listingTitle }}</h2>
+                <p class="text-black-light text-xs mt-1">
+                  {{ item.pickUpLocation }}
+                </p>
+              </div>
+              <p class="text-xs mt-1 md:block hidden">
+                {{ calTimeSincePosted(item.createdOn) }}
               </p>
             </div>
 
@@ -71,7 +76,7 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import ParentHeader from '@/components/NavBar/ParentHeader.vue';
-import { scrollToTop } from '@/helpers/common';
+import { scrollToTop, calculateTimeSincePosted } from '@/helpers/common';
 import CustomInput from '@/components/Form/CustomInput.vue';
 import { PlusIcon, UserIcon } from '@heroicons/vue/24/solid';
 
@@ -113,6 +118,9 @@ export default {
     },
     navigateItem() {
       this.$router.push('/add-item');
+    },
+    calTimeSincePosted(data) {
+      return calculateTimeSincePosted(data);
     },
   },
 };

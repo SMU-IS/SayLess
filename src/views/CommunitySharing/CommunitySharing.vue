@@ -21,10 +21,15 @@
         ></div>
 
         <div class="flex flex-col justify-center gap-2 p-5">
-          <div>
-            <h2 class="card-title text-base">{{ item.listingTitle }}</h2>
-            <p class="text-black-light text-xs mt-1">
-              {{ item.pickUpLocation }}
+          <div class="flex justify-between">
+            <div class="flex flex-col">
+              <h2 class="card-title text-base">{{ item.listingTitle }}</h2>
+              <p class="text-black-light text-xs mt-1">
+                {{ item.pickUpLocation }}
+              </p>
+            </div>
+            <p class="text-xs mt-1 md:block hidden">
+              {{ calTimeSincePosted(item.createdOn) }}
             </p>
           </div>
 
@@ -51,6 +56,7 @@
 import { scrollToTop } from '@/helpers/common';
 import { mapActions, mapGetters } from 'vuex';
 import { UserIcon } from '@heroicons/vue/24/outline';
+import { calculateTimeSincePosted } from '@/helpers/common';
 
 export default {
   name: 'CommunitySharing',
@@ -77,6 +83,9 @@ export default {
     getItemDetails(id) {
       this.$router.push(`/item/${id}`);
       scrollToTop();
+    },
+    calTimeSincePosted(data) {
+      return calculateTimeSincePosted(data);
     },
   },
 };

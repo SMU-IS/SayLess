@@ -147,7 +147,6 @@ export default {
       tokenId.then(async (id) => {
         const data = {
           accessTokenId: id,
-          name: this.name,
         };
         await this.$store.dispatch('authenticateUser', data);
       });

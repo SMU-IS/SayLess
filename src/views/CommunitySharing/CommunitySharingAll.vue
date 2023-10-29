@@ -15,7 +15,7 @@
     <div class="flex flex-col md:flex-row justify-center md:gap-4 mt-6">
       <div class="w-full grid md:grid-cols-3 lg:grid-cols-4 mt-4 gap-5">
         <div
-          v-for="item in communityListings?.slice().reverse()"
+          v-for="item in communityListings?.slice().reverse().slice(0, 20)"
           :id="item?.id"
           :key="item?.id"
           class="card card-side bg-white text-black shadow-xl rounded-lg cursor-pointer md:max-w-sm w-full max-w-full flex md:block"
@@ -40,21 +40,32 @@
             </div>
 
             <div class="flex items-center gap-3 mt-2">
-              <div class="avatar">
-                <div v-if="item.createdBy.profilePic" class="w-8 rounded-full">
+              <div v-if="item?.createdBy.profilePic" class="avatar">
+                <div class="w-8 rounded-full">
                   <img
                     :src="item.createdBy.profilePic"
                     referrerpolicy="no-referrer"
                   />
                 </div>
-                <UserIcon v-else class="w-4 h-auto mt-2" />
+              </div>
+              <div v-else class="avatar placeholder">
+                <div class="bg-black text-white rounded-full w-8">
+                  <span class="text-xs">{{
+                    item?.createdBy.email
+                      .split('@')[0]
+                      .slice(0, 1)
+                      .toUpperCase()
+                  }}</span>
+                </div>
               </div>
 
-              <p v-if="item.createdBy.name" class="text-black-light text-xs">
+              <p v-if="item?.createdBy.name" class="text-black-light text-xs">
                 {{ item.createdBy.name }}
               </p>
 
-              <p v-else class="text-black-light text-xs mt-2">Anonymous User</p>
+              <p v-else class="text-black-light text-xs">
+                {{ item?.createdBy.email.split('@')[0] }}
+              </p>
             </div>
           </div>
         </div>
@@ -79,11 +90,11 @@ import { mapGetters, mapActions } from 'vuex';
 import ParentHeader from '@/components/NavBar/ParentHeader.vue';
 import { scrollToTop, calculateTimeSincePosted } from '@/helpers/common';
 import CustomInput from '@/components/Form/CustomInput.vue';
-import { PlusIcon, UserIcon } from '@heroicons/vue/24/solid';
+import { PlusIcon } from '@heroicons/vue/24/solid';
 
 export default {
   name: 'CommunitySharingAll',
-  components: { ParentHeader, CustomInput, PlusIcon, UserIcon },
+  components: { ParentHeader, CustomInput, PlusIcon },
   data() {
     return {
       details: [],

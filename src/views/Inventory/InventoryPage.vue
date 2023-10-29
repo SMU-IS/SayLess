@@ -60,7 +60,7 @@
       </div>
 
       <div class="flex min-h-[24rem] h-fit flex-row mt-6 md:w-full md:mx-auto">
-        <div v-if="getInventoryData.length < 1">
+        <div v-if="getInventoryData?.length < 1">
           <h4>Add Something</h4>
         </div>
         <CustomCard v-else width="full" background="transparent">

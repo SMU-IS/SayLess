@@ -22,22 +22,31 @@
           <p class="text-sm">{{ details?.lastPosted }}</p>
 
           <div class="flex items-center gap-3">
-            <div class="avatar">
-              <div v-if="details.profilePic" class="w-8 rounded-full">
+            <div v-if="details.profilePic" class="avatar">
+              <div class="w-8 rounded-full">
                 <img :src="details.profilePic" referrerpolicy="no-referrer" />
               </div>
-              <UserIcon v-else class="w-5 h-auto" />
+            </div>
+            <div v-else class="avatar placeholder">
+              <div class="bg-white text-black rounded-full w-8">
+                <span class="text-xs">{{
+                  details?.name.split('@')[0].slice(0, 1).toUpperCase()
+                }}</span>
+              </div>
             </div>
 
-            <p v-if="details.name" class="text-sm">
-              {{ details?.name }}
+            <p v-if="details?.profilePic" class="text-sm">
+              {{ details.name }}
             </p>
-            <p v-else class="text-sm">Anonymous User</p>
+
+            <p v-else class="text-white text-sm">
+              {{ details?.name.split('@')[0] }}
+            </p>
           </div>
         </div>
       </div>
 
-      <div class="w-full md:w-1/2 mt-6 md:mt-0">
+      <div class="w-full md:w-1/2 mt-3 md:mt-0">
         <div class="p-2 bg-transparent rounded-xl">
           <CustomCard background="gray" width="full" class="mb-4">
             <div class="flex flex-col text-left gap-1">
@@ -78,11 +87,10 @@ import CustomButton from '@/components/Button/CustomButton.vue';
 import CustomCard from '@/components/Card/CustomCard.vue';
 import { mapActions, mapGetters } from 'vuex';
 import { calculateTimeSincePosted } from '@/helpers/common';
-import { UserIcon } from '@heroicons/vue/24/outline';
 
 export default {
   name: 'CommunitySharingDetails',
-  components: { DetailsHeader, CustomButton, CustomCard, UserIcon },
+  components: { DetailsHeader, CustomButton, CustomCard },
   data() {
     return {
       details: [],
@@ -90,7 +98,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['getCommunityListings']),
+    ...mapGetters(['getCommunityListings', 'getUserDetails']),
   },
   created() {
     this.fetchData();
@@ -119,7 +127,7 @@ export default {
 
         this.details = {
           id: id,
-          name: createdBy.name,
+          name: createdBy.name ? createdBy.name : createdBy.email,
           profilePic: createdBy.profilePic,
           availablity: isAvailable,
           title: listingTitle,

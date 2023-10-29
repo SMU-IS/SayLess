@@ -28,16 +28,21 @@
         <div class="flex items-center gap-2">
           <div class="dropdown dropdown-left">
             <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-              <div class="w-7 h-7 rounded-full">
-                <img v-if="getProfilePic" :src="getProfilePic" />
-                <UserIcon v-else class="rounded-full" />
+              <div v-if="getProfilePic" class="w-7 h-7 rounded-full">
+                <img :src="getProfilePic" />
+              </div>
+
+              <div v-else class="avatar placeholder">
+                <div class="bg-white text-black rounded-full w-9 h-9">
+                  <span class="text-xs">{{ getFirstLetter }}</span>
+                </div>
               </div>
             </label>
             <ul
               tabindex="0"
-              class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-gray-dark rounded-box w-52"
             >
-              <li v-if="getName" class="text-black" @click="goToProfile">
+              <li v-if="getName" class="text-white" @click="goToProfile">
                 <p class="text-white">{{ getName }}</p>
               </li>
               <li v-else @click="goToProfile">
@@ -64,7 +69,6 @@
 <script>
 import { navLinks } from '@/data/navLinks';
 import { goHome, scrollToTop } from '@/helpers/common';
-import { UserIcon } from '@heroicons/vue/24/outline';
 import Avocado from '@/assets/Icons/Avocado.png';
 import CustomModal from '@/components/Modal/CustomModal.vue';
 import { openModal } from '@/helpers/common';
@@ -73,7 +77,7 @@ import { mapGetters } from 'vuex';
 
 export default {
   name: 'DesktopNavBar',
-  components: { UserIcon, CustomModal },
+  components: { CustomModal },
   data() {
     return {
       navLinks,
@@ -92,6 +96,11 @@ export default {
     },
     getName() {
       return this.getUserDetails?.userData.name;
+    },
+    getFirstLetter() {
+      let ownerEmail = this.getUserDetails?.userData.email;
+      let ownerName = ownerEmail?.split('@')[0];
+      return ownerName?.charAt(0).toUpperCase();
     },
   },
   methods: {

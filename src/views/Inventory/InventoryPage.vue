@@ -60,27 +60,26 @@
       </div>
 
       <div class="flex min-h-[24rem] h-fit flex-row mt-6 md:w-full md:mx-auto">
-        <div v-if="getInventoryData.length < 1">
+        <div v-if="getInventoryData?.length < 1">
           <h4>Add Something</h4>
         </div>
         <CustomCard v-else width="full" background="transparent">
           <div class="flex flex-col gap-5">
             <CustomCard
-              v-for="grocery in getInventoryData.slice().reverse()"
+              v-for="grocery in getInventoryData?.slice().reverse()"
               :key="grocery.id"
               background="white"
               width="full"
-              @click="deleteItem(grocery.id)"
             >
               <div class="flex flex-row justify-between items-center">
                 <div class="flex flex-col">
                   <p class="text-white-light">Item</p>
-                  <p>{{ grocery.item }}</p>
+                  <p>{{ grocery.itemName }}</p>
                 </div>
 
                 <div class="flex flex-col">
                   <p class="text-white-light">Expiry Date</p>
-                  <p class="text-red">{{ grocery.doe }}</p>
+                  <p class="text-red">{{ grocery.expiry }}</p>
                 </div>
               </div>
             </CustomCard>
@@ -112,7 +111,7 @@ import { PencilSquareIcon } from '@heroicons/vue/24/outline';
 import FormModal from '@/components/Modal/FormModal.vue';
 import CongratsModal from '@/components/Modal/CongratsModal.vue';
 import { openModal } from '@/helpers/common';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'InventoryPage',
@@ -130,21 +129,16 @@ export default {
       return this.getQuestData?.[1].status;
     },
   },
+  mounted() {
+    this.fetchInventory();
+  },
   methods: {
+    ...mapActions(['fetchInventory']),
     goBack() {
       this.$router.go(-1);
     },
     showModal(modal) {
       openModal(modal);
-    },
-    async deleteItem(id) {
-      try {
-        await this.$store.dispatch('handleRemoveItem', {
-          id: id,
-        });
-      } catch (err) {
-        throw err;
-      }
     },
     async scanReceipt() {
       if (this.getChallengeStatus === 'In Progress') {

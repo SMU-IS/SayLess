@@ -9,8 +9,8 @@
         <div class="p-2 bg-transparent rounded-xl">
           <div class="carousel w-full rounded-box">
             <div
-              v-for="imgData in details.allImages"
-              :key="imgData.id"
+              v-for="imgData in details?.allImages"
+              :key="imgData?.id"
               class="carousel-item w-full h-72"
             >
               <img :src="imgData" class="w-full object-cover" />
@@ -19,28 +19,40 @@
         </div>
 
         <div class="flex flex-col order-last gap-3">
-          <p class="text-sm">{{ details.lastPosted }}</p>
+          <p class="text-sm">{{ details?.lastPosted }}</p>
 
           <div class="flex items-center gap-3">
-            <div class="avatar">
-              <div v-if="details.profilePic" class="w-8 rounded-full">
+            <div v-if="details.profilePic" class="avatar">
+              <div class="w-8 rounded-full">
                 <img :src="details.profilePic" referrerpolicy="no-referrer" />
               </div>
-              <UserIcon v-else class="w-4 h-auto" />
+            </div>
+            <div v-else class="avatar placeholder">
+              <div class="bg-white text-black rounded-full w-8">
+                <span class="text-xs">{{
+                  details?.name.split('@')[0].slice(0, 1).toUpperCase()
+                }}</span>
+              </div>
             </div>
 
-            <p class="text-sm">{{ details.name }}</p>
+            <p v-if="details?.profilePic" class="text-sm">
+              {{ details.name }}
+            </p>
+
+            <p v-else class="text-white text-sm">
+              {{ details?.name.split('@')[0] }}
+            </p>
           </div>
         </div>
       </div>
 
-      <div class="w-full md:w-1/2 mt-6 md:mt-0">
+      <div class="w-full md:w-1/2 mt-3 md:mt-0">
         <div class="p-2 bg-transparent rounded-xl">
           <CustomCard background="gray" width="full" class="mb-4">
             <div class="flex flex-col text-left gap-1">
               <p class="text-gray text-xl">Pick Up Location</p>
               <p class="text-black-light pb-10">
-                {{ details.location }}
+                {{ details?.location }}
               </p>
             </div>
           </CustomCard>
@@ -49,7 +61,7 @@
             <div class="flex flex-col text-left gap-1">
               <p class="text-gray text-xl">Description</p>
               <p class="text-black-light pb-10">
-                {{ details.details }}
+                {{ details?.details }}
               </p>
             </div>
           </CustomCard>
@@ -90,11 +102,10 @@ import CustomButton from '@/components/Button/CustomButton.vue';
 import CustomCard from '@/components/Card/CustomCard.vue';
 import { mapActions, mapGetters } from 'vuex';
 import { calculateTimeSincePosted } from '@/helpers/common';
-import { UserIcon } from '@heroicons/vue/24/outline';
 
 export default {
   name: 'CommunitySharingDetails',
-  components: { DetailsHeader, CustomButton, CustomCard, UserIcon },
+  components: { DetailsHeader, CustomButton, CustomCard },
   data() {
     return {
       details: [],
@@ -155,7 +166,7 @@ export default {
         this.details = {
           id: id,
           createdId: createdBy.id,
-          name: createdBy.name,
+          name: createdBy.name ? createdBy.name : createdBy.email,
           profilePic: createdBy.profilePic,
           availablity: isAvailable,
           title: listingTitle,

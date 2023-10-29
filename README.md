@@ -5,11 +5,11 @@
 ![Pull Request](https://img.shields.io/github/issues-pr/SMU-IS/SayLess)
 ![Release Badge](https://img.shields.io/github/downloads/SMU-IS/SayLess/total)
 
-<img src="https://github.com/SMU-IS/SayLess/assets/54788382/81dd94d0-71e4-469a-8528-7929f2f0183d" alt="landing-banner" width="200" /> 
+<img src="https://github.com/SMU-IS/SayLess/assets/54788382/56d85fc6-d134-471a-a05b-0bb2341b2aa1" alt="landing-banner" width="200" /> 
 <br />
 <br />
 
-- [View Project](https://sayless.vercel.app)
+- [View Project](https://sayless.netlify.app)
 - [Report Bug](https://github.com/SMU-IS/SayLess/issues/new?assignees=&labels=&projects=&template=bug_report.md&title=)
 - [Request Feature](https://github.com/SMU-IS/SayLess/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=)
 
@@ -28,7 +28,7 @@
 
 Hosting
 
-- Frontend: [Vercel](https://vercel.com/)
+- Frontend: [Netlify](https://netlify.com/)
 - Backend: [AWS](https://heroku.com)
 
 CI/CD

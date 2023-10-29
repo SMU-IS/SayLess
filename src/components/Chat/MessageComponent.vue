@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'MessageComponent',
   props: {
@@ -29,23 +31,20 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {
-      currentUser: '6530d24110a9828679f8858a',
-    };
-  },
   computed: {
+    ...mapGetters(['getUserDetails']),
     messageClass() {
       return {
-        'chat chat-end': this.sender.id == this.currentUser,
-        'chat chat-start': this.sender.id !== this.currentUser,
+        'chat chat-end': this.sender.id == this.getUserDetails.userData.id,
+        'chat chat-start': this.sender.id !== this.getUserDetails.userData.id,
       };
     },
     chatColor() {
       return {
         'chat-bubble min-h-0 bg-green text-white':
-          this.sender.id == this.currentUser,
-        'chat-bubble min-h-0 text-white': this.sender.id !== this.currentUser,
+          this.sender.id == this.getUserDetails.userData.id,
+        'chat-bubble min-h-0 text-white':
+          this.sender.id !== this.getUserDetails.userData.id,
       };
     },
   },

@@ -45,11 +45,7 @@ export default {
   components: {
     CustomButton,
   },
-  data() {
-    return {
-      id: '6530d24110a9828679f8858a',
-    };
-  },
+
   computed: {},
   methods: {},
 };

@@ -2,9 +2,15 @@
   <div class="flex flex-col min-h-screen bg-main">
     <div v-if="isAuthenticated" class="hidden md:block fixed z-50 w-screen">
       <DesktopNavBar />
+      <div class="w-2/6 float-right">
+        <AlertComponent />
+      </div>
     </div>
 
     <main :class="childrenStyle">
+      <div class="md:hidden" style="position: sticky; top: 0px; z-index: 1">
+        <AlertComponent />
+      </div>
       <router-view />
     </main>
 
@@ -22,9 +28,10 @@
 import NavBar from '@/components/NavBar/NavBar.vue';
 import DesktopNavBar from '@/components/NavBar/DesktopNavBar.vue';
 import CustomFooter from '@/components/Footer/CustomFooter.vue';
+import AlertComponent from '@/components/Notification/AlertComponent.vue';
 
 export default {
-  components: { NavBar, DesktopNavBar, CustomFooter },
+  components: { NavBar, DesktopNavBar, CustomFooter, AlertComponent },
   computed: {
     isAuthenticated() {
       return this.$store.getters.getEmail;

@@ -43,18 +43,22 @@
           </div>
           <CustomButton
             v-if="
-              specificListing.isAvailable && id !== specificListing.createdBy.id
+              specificListing.isAvailable &&
+              getId !== specificListing.createdBy.id
             "
             size="small"
             roundness="round"
             color="green"
-            :disabled="specificListing.requested.some((obj) => obj.id === id)"
+            :disabled="
+              specificListing.requested.some((obj) => obj.id === getId)
+            "
             @click="requestItem"
             >Request Item</CustomButton
           >
           <CustomButton
             v-if="
-              specificListing.isAvailable && id == specificListing.createdBy.id
+              specificListing.isAvailable &&
+              getId == specificListing.createdBy.id
             "
             size="small"
             roundness="round"
@@ -67,26 +71,6 @@
             @click="closeDeal"
             >Close Deal</CustomButton
           >
-          <!-- <CustomButton
-            v-if="
-              specificListing.reservedFor != null
-            "
-            size="small"
-            roundness="round"
-            color="gray"
-            disabled
-            >Reserved</CustomButton
-          > -->
-          <!-- <CustomButton
-            v-if="
-              specificListing.reservedFor.id === correspondentObj.id && isAvailable
-            "
-            size="small"
-            roundness="round"
-            color="green"
-            @click="closeDeal"            
-            >Close Deal</CustomButton
-          > -->
         </div>
       </div>
     </div>
@@ -118,12 +102,6 @@ export default {
   },
   // add a close
   emits: ['close', 'request'],
-  data() {
-    return {
-      id: '6530d24110a9828679f8858a',
-    };
-  },
-
   computed: {
     ...mapGetters(['getCommunityListings', 'getUserDetails']),
     specificListing() {
@@ -131,10 +109,10 @@ export default {
         (listing) => listing.id === this.listingId,
       );
     },
-    // isAlreadyRequested() {
-    //   this.specificListing.requested.some(obj => obj.id === this.id)
-    //   return this.specificListing.requested.some(obj => obj.id === this.id);
-    // },
+    getId() {
+      return this.getUserDetails?.userData.id;
+    },
+
   },
   methods: {
     goBack() {
@@ -146,9 +124,6 @@ export default {
     closeDeal() {
       this.$emit('close', this.specificListing.id);
     },
-    // closeDeal() {
-    //   this.$emit('close', this.correspondentObj);
-    // },
     formatTimestamp(timestamp) {
       const hours = timestamp.getHours();
       const minutes = timestamp.getMinutes();

@@ -20,7 +20,7 @@
           <CustomButton size="small" roundness="full" :color="null">
             <div class="flex items-center gap-3 text-white">
               <img
-                src="@/assets/Icons/ring.png"
+                src="@/assets/Icons/Ring.png"
                 alt="Custom Icon"
                 class="pr-1 py-2 w-6"
               />

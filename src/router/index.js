@@ -16,6 +16,7 @@ import CommunitySharingDetails from '@/views/CommunitySharing/CommunitySharingDe
 import CommunitySharingAll from '@/views/CommunitySharing/CommunitySharingAll.vue';
 import InventoryPage from '@/views/Inventory/InventoryPage.vue';
 import NotificationDetails from '@/views/NotificationDetails.vue';
+import RewardsPage from '@/views/RewardsPage.vue';
 import store from '@/store';
 
 const routes = [
@@ -88,6 +89,11 @@ const routes = [
     path: '/recipe/:rid',
     name: 'RecipeDetail',
     component: RecipeDetail,
+  },
+  {
+    path: '/Rewards',
+    name: 'RewardsPage',
+    component: RewardsPage,
   },
   {
     path: '/profile',

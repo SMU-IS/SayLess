@@ -28,7 +28,7 @@
           <div
             class="flex justify-center items-center gap-3 p-1 text-white text-sm"
           >
-            <img src="@/assets/Icons/Ring.png" alt="Custom Icon" class="w-6" />
+            <img src="@/assets/Icons/ring.png" alt="Custom Icon" class="w-6" />
             <p>Notifications</p>
           </div>
         </CustomButton>

@@ -39,23 +39,6 @@ const pageLoadAnimation = (elementIds) => {
   timeline.play();
 };
 
-const getCurrentDate = () => {
-  const date = new Date();
-  const year = date.toLocaleString('default', { year: 'numeric' });
-  const month = date.toLocaleString('default', {
-    month: '2-digit',
-  });
-  const day = date.toLocaleString('default', { day: '2-digit' });
-
-  return [year, month, day].join('-');
-};
-
-const randomUniqueId = () => {
-  const timeStamp = Date.now().toString(36);
-  const randomString = Math.random().toString(36);
-  return timeStamp + randomString + Math.floor(Math.random() * 999);
-};
-
 const calculateTimeSincePosted = (date) => {
   const targetDate = new Date(date);
   const differenceMs = new Date() - targetDate;
@@ -77,6 +60,17 @@ const calculateTimeSincePosted = (date) => {
   return result;
 };
 
+const sortByState = (arr) => {
+  let filterArr = [...arr];
+  return filterArr.sort((a, b) =>
+    a.status === 'Completed' && b.status !== 'Completed'
+      ? -1
+      : a.status !== 'Completed' && b.status === 'Completed'
+      ? 1
+      : 0,
+  );
+};
+
 export {
   goHome,
   scrollToTop,
@@ -84,7 +78,6 @@ export {
   closeModal,
   toggleDrawer,
   pageLoadAnimation,
-  getCurrentDate,
-  randomUniqueId,
   calculateTimeSincePosted,
+  sortByState,
 };

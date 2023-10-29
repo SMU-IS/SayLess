@@ -16,20 +16,23 @@
           <img
             :src="getCorrespondentPic(chat)"
             alt="Profile Pic"
-            class="profile-pic w-10 h-10 mr-5 rounded-lg"
+            class="avatar w-10 h-10 mr-5 rounded-full"
           />
           <div class="chat-details flex-1">
             <p class="text-gray-400 text-xs">
               {{ getCorrespondentName(chat) }}
             </p>
-            <h4 class="text-white text-base">
-              {{ chat.listing?.listingTitle }}
+            <h4 v-if="chat.listing" class="text-white text-base">
+              {{ chat.listing[0].listingTitle }}
               <span
                 class="inline-flex items-center justify-center w-6 h-6 ml-2 text-xs font-semibold text-white bg-gradient-header rounded-full float-right me-4"
                 >2</span
               >
             </h4>
-            <p class="text-white-light text-sm">{{ chat.listing?.id }}</p>
+            <p v-if="chat.latest_msg[0]" class="text-white-light text-sm">
+              {{ chat.latest_msg[0].message }}
+            </p>
+            <p v-else class="text-white-light text-sm">No messages yet.</p>
           </div>
         </div>
       </div>

@@ -78,19 +78,20 @@
           <div class="flex flex-col gap-5">
             <CustomCard
               v-for="grocery in getInventoryData?.slice().reverse()"
-              :key="grocery.id"
+              :key="grocery?.id"
               background="white"
               width="full"
+              @click="deleteItem(grocery?.id)"
             >
               <div class="flex flex-row justify-between items-center">
                 <div class="flex flex-col">
                   <p class="text-white-light">Item</p>
-                  <p>{{ grocery.itemName }}</p>
+                  <p>{{ grocery?.itemName }}</p>
                 </div>
 
                 <div class="flex flex-col">
                   <p class="text-white-light">Expiry Date</p>
-                  <p class="text-red">{{ grocery.expiry }}</p>
+                  <p class="text-red">{{ grocery?.expiry }}</p>
                 </div>
               </div>
             </CustomCard>
@@ -139,7 +140,7 @@ export default {
     CustomLoader,
   },
   computed: {
-    ...mapGetters(['getInventoryData', 'getQuestData']),
+    ...mapGetters(['getInventoryData', 'getQuestData', 'getUserDetails']),
     getChallengeStatus() {
       return this.getQuestData?.[1].status;
     },
@@ -154,6 +155,14 @@ export default {
     },
     showModal(modal) {
       openModal(modal);
+    },
+    async deleteItem(id) {
+      const data = {
+        token: this.getUserDetails?.['x-access-token'],
+        itemId: id,
+      };
+      await this.$store.dispatch('handleRemoveItem', data);
+      this.fetchInventory();
     },
   },
 };

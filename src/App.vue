@@ -81,9 +81,8 @@ export default {
   methods: {
     initializeSocket() {
       const token = JSON.parse(localStorage.getItem('user-data'));
-      // this.socket = io('ws://54.252.152.169:8887', {
       console.log(token?.['x-access-token']);
-      this.socket = io('ws://localhost:8887', {
+      this.socket = io('ws://54.252.152.169:8887', {
         extraHeaders: {
           'x-access-token': token?.['x-access-token'],
         },

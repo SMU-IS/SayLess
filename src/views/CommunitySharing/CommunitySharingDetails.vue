@@ -67,14 +67,29 @@
           </CustomCard>
 
           <CustomButton
+            v-if="details.createdId == getId"
             width="full"
             roundness="round"
             color="green"
-            class="mt-4"
-            @click="createChatRoom"
+            @click="viewChat('')"
+            >View Chats</CustomButton
           >
-            Chat to Deal
-          </CustomButton>
+          <CustomButton
+            v-else-if="details.createdId !== getId && checkExistingChat"
+            width="full"
+            roundness="round"
+            color="green"
+            @click="viewChat(details.id)"
+            >View Chat</CustomButton
+          >
+          <CustomButton
+            v-else
+            width="full"
+            roundness="round"
+            color="green"
+            @click="createChatRoom"
+            >Chat to Deal</CustomButton
+          >
         </div>
       </div>
     </div>
@@ -94,11 +109,33 @@ export default {
   data() {
     return {
       details: [],
-      id: '6530d24110a9828679f8858a',
+      chatrooms: Object,
+      listingId: '',
     };
   },
   computed: {
-    ...mapGetters(['getCommunityListings', 'getUserDetails']),
+    ...mapGetters(['getCommunityListings', 'getUserDetails', 'getChatRooms']),
+    checkExistingChat() {
+      if (this.chatrooms) {
+        return this.chatrooms.some((result) => {
+          if (result.listing[0]?.id === this.listingId) {
+            const participants = result.participants;
+            if (participants && participants.length === 2) {
+              const [participant1, participant2] = participants;
+              return (
+                participant1.id === this.getUserDetails.userData.id ||
+                participant2.id === this.getUserDetails.userData.id
+              );
+            }
+          }
+          return false;
+        });
+      }
+      return false;
+    },
+    getId() {
+      return this.getUserDetails?.userData.id;
+    },
   },
   mounted() {
     this.fetchData();
@@ -110,8 +147,9 @@ export default {
     },
     fetchData() {
       const data = this.getCommunityListings;
-      const listingId = this.$route.params.id;
-      const selectedListing = data.find((item) => item.id === listingId);
+      this.chatrooms = this.getChatRooms;
+      this.listingId = this.$route.params.id;
+      const selectedListing = data.find((item) => item.id === this.listingId);
 
       if (selectedListing) {
         const {
@@ -127,6 +165,7 @@ export default {
 
         this.details = {
           id: id,
+          createdId: createdBy.id,
           name: createdBy.name ? createdBy.name : createdBy.email,
           profilePic: createdBy.profilePic,
           availablity: isAvailable,
@@ -138,8 +177,21 @@ export default {
         };
       }
     },
+    viewChat(listingid) {
+      if (listingid !== null && listingid !== undefined && listingid != '') {
+        const selectedChatRoom = this.chatrooms.find(
+          (item) => item.listing[0].id === listingid,
+        );
+        this.$router.push(`/message/${selectedChatRoom.id}`);
+      } else {
+        this.$router.push('/message');
+      }
+    },
     createChatRoom() {
-      const participants = [this.id, '653297865a3478ad39210492'];
+      const participants = [
+        this.getUserDetails.userData.id,
+        this.details.createdId,
+      ];
       this.$store
         .dispatch('createChatRoom', {
           participants: participants,

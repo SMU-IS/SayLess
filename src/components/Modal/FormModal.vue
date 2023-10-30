@@ -90,12 +90,7 @@ export default {
       openModal('congrats_1');
     },
     async handleAdd() {
-      if (
-        this.getChallengeStatus === 'In Progress' &&
-        this.getInventoryData?.length === 0
-      ) {
-        this.showCongratsModal();
-      }
+      this.isLoading = true;
       if (this.item.length !== 0) {
         try {
           this.itemName.push(this.item);
@@ -104,7 +99,16 @@ export default {
             itemName: this.itemName,
           };
           await this.$store.dispatch('handleAddItem', data);
-          getResponse('success', 'Your item has been added!');
+          this.isLoading = false;
+          if (
+            this.getChallengeStatus === 'In Progress' &&
+            this.getInventoryData?.length === 0
+          ) {
+            this.showCongratsModal();
+          } else {
+            getResponse('success', 'Your item has been added!');
+          }
+
           this.fetchInventory();
         } catch (err) {
           getResponse('error', getErrorMessage(err.message));

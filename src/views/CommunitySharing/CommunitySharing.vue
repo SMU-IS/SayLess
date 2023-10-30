@@ -81,6 +81,12 @@ export default {
   components: {
     CustomLoader,
   },
+  data() {
+    return {
+      imgLoaded: true,
+      backupSrc: 'https://via.placeholder.com/300.png/09f/fff',
+    };
+  },
   computed: {
     ...mapGetters(['getCommunityListings', 'getUserDetails']),
     showLimitedListings() {

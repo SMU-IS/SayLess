@@ -6,7 +6,7 @@ const getAccessToken = async () => {
     const response = getAuth().currentUser;
     const { accessToken } = response;
     return accessToken;
-  } catch (error) {
+  } catch (err) {
     getResponse('error', err.message);
   }
 };

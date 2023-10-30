@@ -50,6 +50,7 @@
 import CustomButton from '@/components/Button/CustomButton.vue';
 import { mapGetters } from 'vuex';
 import CustomLoader from '@/components/Loader/CustomLoader.vue';
+import { getResponse } from '@/helpers/getResponse';
 
 export default {
   name: 'CongratsModal',
@@ -107,7 +108,7 @@ export default {
         this.$router.push('/quest');
       } catch (err) {
         this.isLoading = false;
-        throw err;
+        getResponse('error', err.message);
       }
     },
   },

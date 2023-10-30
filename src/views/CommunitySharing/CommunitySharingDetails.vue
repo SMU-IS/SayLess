@@ -11,14 +11,14 @@
             <div
               v-for="imgData in details?.allImages"
               :key="imgData?.id"
-              class="carousel-item w-full h-72"
+              class="carousel-item w-full"
             >
               <img :src="imgData" class="w-full object-cover" />
             </div>
           </div>
         </div>
 
-        <div class="flex flex-col order-last gap-3">
+        <div class="flex flex-col order-last gap-4">
           <p class="text-sm">{{ details?.lastPosted }}</p>
 
           <div class="flex items-center gap-3">
@@ -100,7 +100,7 @@ export default {
   computed: {
     ...mapGetters(['getCommunityListings', 'getUserDetails']),
   },
-  created() {
+  mounted() {
     this.fetchData();
   },
   methods: {

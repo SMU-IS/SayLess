@@ -61,7 +61,7 @@ export default {
       return [];
     },
   },
-  created() {
+  mounted() {
     this.fetchChatRoomDetails();
   },
   methods: {

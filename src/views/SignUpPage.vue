@@ -131,7 +131,6 @@ export default {
           } catch (err) {
             this.isLoading = false;
             getResponse('error', getErrorMessage(err.message));
-            throw err.message;
           }
         } else {
           this.isLoading = false;

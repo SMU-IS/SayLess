@@ -69,6 +69,7 @@ import CustomDrawer from '@/components/Modal/CustomDrawer.vue';
 import { toggleDrawer } from '@/helpers/common';
 import { mapGetters } from 'vuex';
 import { CheckCircleIcon } from '@heroicons/vue/24/solid';
+import { getResponse } from '@/helpers/getResponse';
 
 export default {
   name: 'ChallengesContainer',
@@ -103,7 +104,7 @@ export default {
           status: 'In Progress',
         });
       } catch (err) {
-        throw err;
+        getResponse('error', err.message);
       }
     },
   },

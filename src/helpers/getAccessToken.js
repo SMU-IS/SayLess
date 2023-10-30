@@ -1,4 +1,5 @@
 import { getAuth } from 'firebase/auth';
+import { getResponse } from './getResponse';
 
 const getAccessToken = async () => {
   try {
@@ -6,7 +7,7 @@ const getAccessToken = async () => {
     const { accessToken } = response;
     return accessToken;
   } catch (error) {
-    throw error;
+    getResponse('error', err.message);
   }
 };
 

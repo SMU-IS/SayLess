@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getResponse } from '@/helpers/getResponse';
 
 const questModule = {
   state: {
@@ -84,7 +85,7 @@ const questModule = {
           context.commit('UPDATE_QUEST_DATA', result);
         }
       } catch (err) {
-        throw err;
+        getResponse('error', err.message);
       }
     },
   },

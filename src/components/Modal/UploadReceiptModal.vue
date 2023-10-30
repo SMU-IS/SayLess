@@ -50,9 +50,9 @@
   </dialog>
 
   <CongratsModal
-    modal-id="congrats_1"
+    modal-id="congrats_2"
     modal-title="You've got an achievement"
-    modal-subtitle="You completed Challenge 1"
+    modal-subtitle="You completed Challenge 2"
     button-text="Collect Reward"
   />
 </template>
@@ -108,7 +108,7 @@ export default {
       'getEdenAIData',
     ]),
     getChallengeStatus() {
-      return this.getQuestData?.[0].status;
+      return this.getQuestData?.[1].status;
     },
   },
   methods: {
@@ -133,15 +133,9 @@ export default {
       closeModal(this.modalId);
     },
     showCongratsModal() {
-      openModal('congrats_1');
+      openModal('congrats_2');
     },
     async handleAdd() {
-      if (
-        this.getChallengeStatus === 'In Progress' &&
-        this.getInventoryData?.length === 0
-      ) {
-        this.showCongratsModal();
-      }
       if (this.dataToDisplay.length !== 0) {
         try {
           for (let i = 0; i < this.dataToDisplay.length; i++) {
@@ -154,6 +148,12 @@ export default {
             itemName: this.itemName,
           };
           await this.$store.dispatch('handleAddItem', data);
+
+          if (this.getChallengeStatus === 'In Progress') {
+            this.isLoading = false;
+            this.showCongratsModal();
+          }
+
           getResponse('success', 'Your item has been added!');
           this.fetchInventory();
         } catch (err) {

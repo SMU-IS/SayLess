@@ -30,7 +30,7 @@
             <div v-else class="avatar placeholder">
               <div class="bg-white text-black rounded-full w-8">
                 <span class="text-xs">{{
-                  details?.name.split('@')[0].slice(0, 1).toUpperCase()
+                  details?.name?.split('@')[0].slice(0, 1).toUpperCase()
                 }}</span>
               </div>
             </div>
@@ -40,7 +40,7 @@
             </p>
 
             <p v-else class="text-white text-sm">
-              {{ details?.name.split('@')[0] }}
+              {{ details?.name?.split('@')[0] }}
             </p>
           </div>
         </div>

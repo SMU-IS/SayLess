@@ -128,6 +128,7 @@ import {
   ShoppingBagIcon,
 } from '@heroicons/vue/24/solid';
 import { StarIcon as StarIconOutline } from '@heroicons/vue/24/outline';
+import { getResponse } from '@/helpers/getResponse';
 
 export default {
   name: 'RecipeDetail',
@@ -161,7 +162,7 @@ export default {
         const listingId = this.$route.params.rid;
         this.$store.dispatch('fetchRecipeDetails', listingId);
       } catch (err) {
-        throw err;
+        getResponse('error', err.message);
       }
     },
     browseRecipe(link) {

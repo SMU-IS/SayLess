@@ -35,6 +35,7 @@
 <script>
 import CustomButton from '@/components/Button/CustomButton.vue';
 import DetailsHeader from '@/components/NavBar/DetailsHeader.vue';
+import { getResponse } from '@/helpers/getResponse';
 
 export default {
   name: 'ListItemsDetails',
@@ -81,7 +82,7 @@ export default {
           }
         }
       } catch (err) {
-        throw err;
+        getResponse('error', err.message);
       }
     },
 

@@ -51,7 +51,12 @@
     <div class="md:flex-1">
       <div class="flex justify-between items-center mt-6 md:w-full md:mx-auto">
         <h4 class="text-white">Your Inventory</h4>
-        <CustomButton roundness="full" color="green" size="small">
+        <CustomButton
+          v-if="getInventoryData?.length > 0"
+          roundness="full"
+          color="green"
+          size="small"
+        >
           <div class="flex flex-row gap-1.5">
             <p class="md:text-center text-sm text-white">Edit</p>
             <PencilSquareIcon class="w-4 h-auto text-white" />
@@ -61,7 +66,7 @@
 
       <div class="flex min-h-[24rem] h-fit flex-row mt-6 md:w-full md:mx-auto">
         <div v-if="getInventoryData?.length < 1">
-          <h4>Add Something</h4>
+          <h4>No Items Found</h4>
         </div>
         <CustomCard v-else width="full" background="transparent">
           <div class="flex flex-col gap-5">

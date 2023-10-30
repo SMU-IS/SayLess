@@ -63,6 +63,7 @@ import CustomModal from '@/components/Modal/CustomModal.vue';
 import { openModal } from '@/helpers/common';
 import { mapGetters } from 'vuex';
 import { profileData } from '@/data/profileData';
+import { getResponse } from '@/helpers/getResponse';
 
 export default {
   name: 'ProfilePage',
@@ -107,7 +108,7 @@ export default {
         await this.$store.dispatch('logout');
         this.$router.push('/onboard');
       } catch (err) {
-        throw err;
+        getResponse('error', err.message);
       }
     },
     handleLink(name, path) {

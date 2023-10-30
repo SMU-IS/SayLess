@@ -115,7 +115,7 @@ export default {
       return this.getCommunityListings;
     },
   },
-  created() {
+  mounted() {
     this.fetchCommunityListings();
   },
   methods: {
@@ -129,6 +129,7 @@ export default {
     },
     navigateItem() {
       this.$router.push('/add-item');
+      scrollToTop();
     },
     calTimeSincePosted(data) {
       return calculateTimeSincePosted(data);

@@ -64,7 +64,7 @@
       </div>
     </div>
 
-    <div v-else class="flex mt-5 justify-center items-center">
+    <div v-else class="flex mt-12 justify-center items-center">
       <CustomLoader color="white" size="15px" />
     </div>
   </div>

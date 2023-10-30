@@ -83,6 +83,8 @@ import { ref } from 'vue';
 import { gsap } from 'gsap';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import { mapGetters } from 'vuex';
+import { getResponse } from '@/helpers/getResponse';
+
 gsap.registerPlugin(MotionPathPlugin);
 
 export default {
@@ -212,7 +214,7 @@ export default {
       try {
         await this.$store.dispatch('decrementCount');
       } catch (err) {
-        throw err;
+        getResponse('error', err.message);
       }
     },
   },

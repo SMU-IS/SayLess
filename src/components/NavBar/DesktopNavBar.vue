@@ -74,6 +74,7 @@ import CustomModal from '@/components/Modal/CustomModal.vue';
 import { openModal } from '@/helpers/common';
 import { BRAND_NAME } from '@/constants';
 import { mapGetters } from 'vuex';
+import { getResponse } from '@/helpers/getResponse';
 
 export default {
   name: 'DesktopNavBar',
@@ -122,7 +123,7 @@ export default {
         await this.$store.dispatch('logout');
         this.$router.push('/onboard');
       } catch (err) {
-        throw err;
+        getResponse('error', err.message);
       }
     },
     navigateHome() {

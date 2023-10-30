@@ -37,9 +37,13 @@
           >
         </form>
         <form method="dialog" class="w-full">
-          <CustomButton width="full" color="gradient" @click="handleAdd">{{
-            confirmationText
-          }}</CustomButton>
+          <CustomButton
+            width="full"
+            :color="isLoading ? 'disabled' : 'gradient'"
+            :disabled="isLoading"
+            @click="handleAdd"
+            >{{ confirmationText }}</CustomButton
+          >
         </form>
       </div>
     </div>

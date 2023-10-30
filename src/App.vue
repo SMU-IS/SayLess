@@ -81,7 +81,6 @@ export default {
   methods: {
     initializeSocket() {
       const token = JSON.parse(localStorage.getItem('user-data'));
-      console.log(token?.['x-access-token']);
       this.socket = io('ws://54.252.152.169:8887', {
         extraHeaders: {
           'x-access-token': token?.['x-access-token'],
@@ -90,7 +89,6 @@ export default {
 
       this.socket.on('connected', () => {
         this.socket.emit('chatNotification', {});
-        console.log('connected');
       });
       this.socket.on('notiMessage', (event) => {
         let message = event;

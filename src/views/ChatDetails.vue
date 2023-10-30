@@ -148,7 +148,6 @@ export default {
       });
       this.socket.on('messageData', (event) => {
         this.messages = this.messages.concat(event);
-
         this.$store.dispatch('readChat', this.chatId);
         this.$nextTick(() => {
           if (this.$refs.messageList) {

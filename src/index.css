@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  * {
+    word-break: break-word !important;
+  }
+
   html {
     font-family: 'Gill Sans';
   }

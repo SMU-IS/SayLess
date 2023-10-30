@@ -52,6 +52,14 @@ export default {
       return this.getUserDetails?.userData.id;
     },
   },
+  watch: {
+    $route(to, from) {
+      this.chatId = this.$route.params.chatId;
+      this.initializeSocket();
+      this.fetchData(this.chatId);
+      this.getCorrespondent(this.details.participants);
+    },
+  },
   mounted() {
     this.chatId = this.$route.params.chatId;
     this.initializeSocket();
@@ -94,7 +102,6 @@ export default {
     fetchData(chatid) {
       if (chatid) {
         const data = this.$store.getters.getChatRooms;
-
         if (data) {
           const selectedChatRoom = data.find((item) => item.id === chatid);
 
@@ -123,7 +130,7 @@ export default {
 
     initializeSocket() {
       const token = JSON.parse(localStorage.getItem('user-data'));
-      this.socket = io('ws://54.252.152.169:8887', {
+      this.socket = io('ws://localhost:8887', {
         extraHeaders: {
           'x-access-token': token?.['x-access-token'],
         },

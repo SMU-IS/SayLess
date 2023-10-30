@@ -5,11 +5,23 @@ const chatModule = {
     user: {
       chat: [],
       chatroomDetails: localStorage.getItem('chatroom-data'),
+      showNotification: false,
+      notificationMessage: '',
+      notificationRoom: '',
     },
   },
   getters: {
     getChatRooms(state) {
       return JSON.parse(state.user.chatroomDetails);
+    },
+    getNotificationVisibilty(state) {
+      return state.user.showNotification;
+    },
+    getNotificationMessage(state) {
+      return state.user.notificationMessage;
+    },
+    getNotificationRoom(state) {
+      return state.user.notificationRoom;
     },
   },
   mutations: {
@@ -20,8 +32,25 @@ const chatModule = {
     SET_CHAT(state, payload) {
       state.user.chat = payload;
     },
+    SET_SHOWNOTIFICATION(state, payload) {
+      state.user.showNotification = payload;
+    },
+    SET_NOTIFICATIONMESSAGE(state, payload) {
+      state.user.notificationMessage = payload;
+    },
+    SET_NOTIFICATIONROOM(state, payload) {
+      state.user.notificationRoom = payload;
+    },
   },
   actions: {
+    hideNotification(context) {
+      context.commit('SET_SHOWNOTIFICATION', false);
+    },
+    showNotification(context, { notimsg, room }) {
+      context.commit('SET_SHOWNOTIFICATION', true);
+      context.commit('SET_NOTIFICATIONMESSAGE', notimsg);
+      context.commit('SET_NOTIFICATIONROOM', room);
+    },
     async fetchChatRoomDetails(context) {
       const token = JSON.parse(localStorage.getItem('user-data'));
       const apiURL = import.meta.env.VITE_GET_CHATROOM;

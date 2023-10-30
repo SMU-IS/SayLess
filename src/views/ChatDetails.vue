@@ -15,6 +15,7 @@
         v-if="messages.length !== 0"
         ref="messageList"
         :messages="messages"
+        :listing-id="details.listing[0].id"
       />
       <MessageInput :messages="messages" @send="sendMessage" />
     </div>
@@ -61,6 +62,9 @@ export default {
     formatTimestamp(timestamp) {
       const hours = timestamp.getHours();
       const minutes = timestamp.getMinutes();
+      if (this.message === 'requested') {
+        this.$store.getters.getCommunityListings;
+      }
 
       return `${hours.toString().padStart(2, '0')}:${minutes
         .toString()
@@ -82,8 +86,9 @@ export default {
       this.$store.getters.getCommunityListings;
     },
     updateAvailableFlag(listingid) {
-      this.$store.dispatch('setRequest', listingid);
+      this.$store.dispatch('closeListing', { listingid: listingid });
       this.sendMessage('Deal Closed');
+      this.$store.getters.getCommunityListings;
     },
 
     fetchData(chatid) {

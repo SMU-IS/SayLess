@@ -84,7 +84,10 @@ export default {
   computed: {
     ...mapGetters(['getCommunityListings', 'getUserDetails']),
     showLimitedListings() {
-      return this.getCommunityListings?.slice().reverse().slice(0, 4);
+      const availableListings = this.getCommunityListings.filter(
+        (item) => item.isAvailable === true,
+      );
+      return availableListings?.slice().reverse().slice(0, 4);
     },
   },
   mounted() {

@@ -71,6 +71,14 @@
             @click="closeDeal"
             >Close Deal</CustomButton
           >
+          <CustomButton
+            v-if="!specificListing.isAvailable"
+            size="small"
+            roundness="round"
+            color="gray"
+            disabled
+            >Deal Closed</CustomButton
+          >
         </div>
       </div>
     </div>
@@ -105,14 +113,14 @@ export default {
   computed: {
     ...mapGetters(['getCommunityListings', 'getUserDetails']),
     specificListing() {
-      return this.getCommunityListings.find(
+      const listing = this.getCommunityListings.find(
         (listing) => listing.id === this.listingId,
       );
+      return listing;
     },
     getId() {
       return this.getUserDetails?.userData.id;
     },
-
   },
   methods: {
     goBack() {

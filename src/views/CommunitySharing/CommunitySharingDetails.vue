@@ -30,7 +30,7 @@
             <div v-else class="avatar placeholder">
               <div class="bg-white text-black rounded-full w-8">
                 <span class="text-xs">{{
-                  details?.name.split('@')[0].slice(0, 1).toUpperCase()
+                  details?.name?.split('@')[0].slice(0, 1).toUpperCase()
                 }}</span>
               </div>
             </div>
@@ -40,7 +40,7 @@
             </p>
 
             <p v-else class="text-white text-sm">
-              {{ details?.name.split('@')[0] }}
+              {{ details?.name?.split('@')[0] }}
             </p>
           </div>
         </div>
@@ -115,24 +115,24 @@ export default {
   },
   computed: {
     ...mapGetters(['getCommunityListings', 'getUserDetails', 'getChatRooms']),
-    checkExistingChat() {
-      if (this.chatrooms) {
-        return this.chatrooms.some((result) => {
-          if (result.listing[0]?.id === this.listingId) {
-            const participants = result.participants;
-            if (participants && participants.length === 2) {
-              const [participant1, participant2] = participants;
-              return (
-                participant1.id === this.getUserDetails.userData.id ||
-                participant2.id === this.getUserDetails.userData.id
-              );
-            }
-          }
-          return false;
-        });
-      }
-      return false;
-    },
+    // checkExistingChat() {
+    //   if (this.chatrooms) {
+    //     return this.chatrooms.some((result) => {
+    //       if (result.listing[0]?.id === this.listingId) {
+    //         const participants = result.participants;
+    //         if (participants && participants.length === 2) {
+    //           const [participant1, participant2] = participants;
+    //           return (
+    //             participant1.id === this.getUserDetails.userData.id ||
+    //             participant2.id === this.getUserDetails.userData.id
+    //           );
+    //         }
+    //       }
+    //       return false;
+    //     });
+    //   }
+    //   return false;
+    // },
     getId() {
       return this.getUserDetails?.userData.id;
     },

@@ -16,12 +16,11 @@
     >
       <img v-if="item.imageUrl" :src="item.imageUrl" />
     </div>
-    <label v-if="changeImage" for="images" class="btn bg-white text-black"
-      >Change Image
+
+    <label for="images" class="btn bg-white text-black hover:bg-white-dark"
+      >{{ changeImage ? 'Change Image' : 'Select Image' }}
     </label>
-    <label v-else for="images" class="btn bg-white text-black"
-      >Select Image
-    </label>
+
     <input
       id="images"
       type="file"
@@ -36,7 +35,6 @@
 <script>
 export default {
   name: 'ImageUploader',
-  components: {},
   emits: ['image-changed'],
   data() {
     return {
@@ -57,6 +55,10 @@ export default {
     onChange(e) {
       const file = e.target.files[0];
       this.image = file;
+      this.item.imageUrl = URL.createObjectURL(file);
+      this.showImageDropText = false;
+      this.changeImage = true;
+
       if (file) {
         const reader = new FileReader();
         reader.onload = () => {

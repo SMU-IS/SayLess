@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'MessageComponent',
@@ -29,6 +29,10 @@ export default {
     sender: {
       type: Object,
       required: true,
+    },
+    listingid: {
+      type: String,
+      default: '',
     },
   },
   computed: {
@@ -48,7 +52,13 @@ export default {
       };
     },
   },
+  created() {
+    if (this.message === 'Requested' || this.message === 'Deal Closed') {
+      this.fetchCommunityListings();
+    }
+  },
   methods: {
+    ...mapActions(['fetchCommunityListings']),
     formatTimestamp(timestamp) {
       timestamp = new Date(timestamp);
       const hours = timestamp.getHours();

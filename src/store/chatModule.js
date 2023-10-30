@@ -60,7 +60,7 @@ const chatModule = {
       const response = await axios.post(apiURL, postData, { headers });
       return response.data.id;
     },
-    async readChat(context, { chatroomId }) {
+    async readChat(context, chatroomId) {
       const token = JSON.parse(localStorage.getItem('user-data'));
       const apiURL = import.meta.env.VITE_READ_CHAT;
       const headers = {

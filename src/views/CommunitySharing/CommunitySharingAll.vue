@@ -60,7 +60,7 @@
               </div>
 
               <p v-if="item?.createdBy.name" class="text-black-light text-xs">
-                {{ item.createdBy.name }}
+                {{ item?.createdBy.name }}
               </p>
 
               <p v-else class="text-black-light text-xs">
@@ -106,7 +106,7 @@ export default {
     ...mapGetters(['getCommunityListings', 'getUserDetails']),
     communityListings() {
       const availableListings = this.getCommunityListings.filter(
-        (item) => item.isAvailable === true,
+        (item) => item?.isAvailable === true,
       );
       if (this.dataField) {
         return availableListings.filter((item) => {

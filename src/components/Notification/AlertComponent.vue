@@ -1,7 +1,11 @@
 <template>
   <div>
-    <transition name="fade" mode="out-in">
-      <div v-if="showElement" class="alert shadow-lg">
+    <!-- <transition name="fade" mode="out-in"> -->
+    <transition>
+      <div
+        v-if="getNotificationVisibilty"
+        class="alert shadow-lg flex flex-wrap justify-center"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -15,24 +19,47 @@
             d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
           ></path>
         </svg>
-        <div>
-          <h3 class="font-bold">Your ingredient is expiring in 2 days</h3>
-          <div class="text-xs">Share your ingredient with someone!</div>
+        <div class="text-left">
+          <h3 class="font-bold text-sm">{{ getNotificationMessage }}</h3>
+          <div class="text-xs">Go to chat now!</div>
         </div>
-        <button class="btn btn-sm">Close</button>
-        <button class="btn btn-sm btn-primary">Share</button>
+        <div class="grid-rows-2">
+          <button class="btn btn-xs" @click="closeAlert">Close</button>
+          <button class="btn btn-xs btn-primary" @click="goChat">Chat</button>
+        </div>
       </div>
     </transition>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'AlertComponent',
+  props: {
+    showElement: Boolean,
+  },
   data() {
     return {
-      showElement: false,
+      isVisible: this.showElement,
     };
+  },
+  computed: {
+    ...mapGetters([
+      'getNotificationVisibilty',
+      'getNotificationMessage',
+      'getNotificationRoom',
+    ]),
+  },
+  methods: {
+    closeAlert() {
+      this.$store.dispatch('hideNotification');
+    },
+    goChat() {
+      this.$router.push('/message/' + this.getNotificationRoom);
+      this.$store.dispatch('hideNotification');
+    },
   },
 };
 </script>

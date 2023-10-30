@@ -108,7 +108,6 @@ export default {
       required: true,
     },
   },
-  // add a close
   emits: ['close', 'request'],
   computed: {
     ...mapGetters(['getCommunityListings', 'getUserDetails']),

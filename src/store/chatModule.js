@@ -47,7 +47,7 @@ const chatModule = {
       await axios.post(apiURL, postData, { headers });
     },
 
-    async createChatRoom(context, { participants, listing }) {
+    async createChatRoom(_, { participants, listing }) {
       const token = JSON.parse(localStorage.getItem('user-data'));
       const apiURL = import.meta.env.VITE_CREATE_CHATROOM;
       const headers = {

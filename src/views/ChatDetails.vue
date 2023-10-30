@@ -85,8 +85,13 @@ export default {
       this.sendMessage('Requested');
       this.$store.getters.getCommunityListings;
     },
-    updateAvailableFlag(listingid) {
-      this.$store.dispatch('closeListing', { listingid: listingid });
+    async updateAvailableFlag(listingid) {
+      try {
+        await this.$store.dispatch('closeListing', { listingid: listingid });
+      } catch (err) {
+        throw err;
+      }
+
       this.sendMessage('Deal Closed');
       this.$store.getters.getCommunityListings;
     },
@@ -97,7 +102,6 @@ export default {
 
         if (data) {
           const selectedChatRoom = data.find((item) => item.id === chatid);
-
           if (selectedChatRoom) {
             const { participants, listing, createdOn, id } = selectedChatRoom;
 

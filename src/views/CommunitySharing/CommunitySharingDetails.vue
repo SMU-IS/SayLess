@@ -11,14 +11,14 @@
             <div
               v-for="imgData in details?.allImages"
               :key="imgData?.id"
-              class="carousel-item w-full"
+              class="carousel-item w-full h-72"
             >
               <img :src="imgData" class="w-full object-cover" />
             </div>
           </div>
         </div>
 
-        <div class="flex flex-col order-last gap-4">
+        <div class="flex flex-col order-last gap-3">
           <p class="text-sm">{{ details?.lastPosted }}</p>
 
           <div class="flex items-center gap-3">
@@ -30,7 +30,7 @@
             <div v-else class="avatar placeholder">
               <div class="bg-white text-black rounded-full w-8">
                 <span class="text-xs">{{
-                  details?.name.split('@')[0].slice(0, 1).toUpperCase()
+                  details?.name?.split('@')[0].slice(0, 1).toUpperCase()
                 }}</span>
               </div>
             </div>
@@ -40,7 +40,7 @@
             </p>
 
             <p v-else class="text-white text-sm">
-              {{ details?.name.split('@')[0] }}
+              {{ details?.name?.split('@')[0] }}
             </p>
           </div>
         </div>
@@ -109,7 +109,7 @@ export default {
   data() {
     return {
       details: [],
-      chatrooms: Object,
+      chatrooms: [],
       listingId: '',
     };
   },
@@ -120,7 +120,7 @@ export default {
         return this.chatrooms.some((result) => {
           if (result.listing[0]?.id === this.listingId) {
             const participants = result.participants;
-            if (participants && participants.length === 2) {
+            if (participants && participants?.length === 2) {
               const [participant1, participant2] = participants;
               return (
                 participant1.id === this.getUserDetails.userData.id ||
@@ -147,7 +147,9 @@ export default {
     },
     fetchData() {
       const data = this.getCommunityListings;
-      this.chatrooms = this.getChatRooms;
+      if (this.getChatRooms) {
+        this.chatrooms = this.getChatRooms;
+      }
       this.listingId = this.$route.params.id;
       const selectedListing = data.find((item) => item.id === this.listingId);
 
@@ -198,15 +200,25 @@ export default {
           listing: this.details.id,
         })
         .then((id) => {
+          let initialLength;
+          if (this.getChatRooms === null) {
+            initialLength = 0;
+          } else {
+            initialLength = this.getChatRooms.length;
+          }
           this.fetchChatRoomDetails();
-          this.$store.watch(
-            (state, getters) => getters.getChatRooms,
-            (newValue) => {
-              if (newValue) {
+          const waitForLengthIncrease = () => {
+            if (this.getChatRooms) {
+              if (this.getChatRooms.length >= initialLength + 1) {
                 this.$router.push(`/message/${id}`);
+              } else {
+                setTimeout(waitForLengthIncrease, 100);
               }
-            },
-          );
+            } else {
+              setTimeout(waitForLengthIncrease, 100);
+            }
+          };
+          waitForLengthIncrease();
         });
     },
   },

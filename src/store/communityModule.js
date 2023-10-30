@@ -85,6 +85,7 @@ const communityModule = {
         listingId: listingid,
       };
       await axios.post(apiURL, postData, { headers });
+      // console.log(response)
     },
     async postCommunityListings(_, data) {
       const apiURL = import.meta.env.VITE_POST_LISTING;

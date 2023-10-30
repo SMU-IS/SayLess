@@ -43,7 +43,7 @@
               alt="Custom Icon"
               class="h-8 w-8 absolute right-1 top-1"
             />
-            <p class="mt-1.5 text-xs text-white-light" @click="scanReceipt">
+            <p class="mt-1.5 text-xs text-white-light">
               Upload a photo of your receipt to add items into inventory
             </p>
           </div>
@@ -113,13 +113,6 @@
       modal-id="UPLOAD_RECEIPT_MODAL"
       confirmation-text="Add"
     />
-
-    <CongratsModal
-      modal-id="congrats_2"
-      modal-title="You've got an achievement"
-      modal-subtitle="You completed Challenge 2"
-      button-text="Collect Reward"
-    />
   </div>
 </template>
 
@@ -130,7 +123,6 @@ import CustomButton from '@/components/Button/CustomButton.vue';
 import { PencilSquareIcon } from '@heroicons/vue/24/outline';
 import FormModal from '@/components/Modal/FormModal.vue';
 import UploadReceiptModal from '@/components/Modal/UploadReceiptModal.vue';
-import CongratsModal from '@/components/Modal/CongratsModal.vue';
 import { openModal } from '@/helpers/common';
 import { mapGetters, mapActions } from 'vuex';
 import CustomLoader from '@/components/Loader/CustomLoader.vue';
@@ -143,7 +135,6 @@ export default {
     CustomButton,
     PencilSquareIcon,
     FormModal,
-    CongratsModal,
     UploadReceiptModal,
     CustomLoader,
   },
@@ -163,11 +154,6 @@ export default {
     },
     showModal(modal) {
       openModal(modal);
-    },
-    async scanReceipt() {
-      if (this.getChallengeStatus === 'In Progress') {
-        this.showModal('congrats_2');
-      }
     },
   },
 };

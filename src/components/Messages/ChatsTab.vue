@@ -16,20 +16,24 @@
           <img
             :src="getCorrespondentPic(chat)"
             alt="Profile Pic"
-            class="profile-pic w-10 h-10 mr-5 rounded-lg"
+            class="avatar w-10 h-10 mr-5 rounded-full"
           />
           <div class="chat-details flex-1">
             <p class="text-gray-400 text-xs">
               {{ getCorrespondentName(chat) }}
             </p>
-            <h4 class="text-white text-base">
-              {{ chat.listing?.listingTitle }}
+            <h4 v-if="chat.listing" class="text-white text-base">
+              {{ chat.listing[0].listingTitle }}
               <span
+                v-if="chat.unread_msg.length >= 1"
                 class="inline-flex items-center justify-center w-6 h-6 ml-2 text-xs font-semibold text-white bg-gradient-header rounded-full float-right me-4"
-                >2</span
+                >{{ chat.unread_msg.length }}</span
               >
             </h4>
-            <p class="text-white-light text-sm">{{ chat.listing?.id }}</p>
+            <p v-if="chat.latest_msg[0]" class="text-white-light text-sm">
+              {{ chat.latest_msg[0].message.slice(0, 200) }}
+            </p>
+            <p v-else class="text-white-light text-sm">No messages yet.</p>
           </div>
         </div>
       </div>
@@ -46,22 +50,40 @@ export default {
     ...mapGetters(['getChatRooms', 'getUserDetails']),
     selectedChat() {
       if (this.getChatRooms) {
-        return this.getChatRooms.filter((result) => {
-          const participants = result.participants;
-          if (participants && participants.length === 2) {
-            const [participant1, participant2] = participants;
-            return (
-              participant1.id === this.getUserDetails.userData.id ||
-              participant2.id === this.getUserDetails.userData.id
-            );
-          }
-          return false;
-        });
+        return this.getChatRooms
+          .filter((result) => {
+            const participants = result.participants;
+            if (participants && participants.length === 2) {
+              const [participant1, participant2] = participants;
+              return (
+                participant1.id === this.getUserDetails.userData.id ||
+                participant2.id === this.getUserDetails.userData.id
+              );
+            }
+            return false;
+          })
+          .sort((a, b) => {
+            let dateA, dateB;
+
+            if (a.latest_msg.length > 0) {
+              dateA = new Date(a.latest_msg[0].createdOn);
+            } else {
+              dateA = new Date(a.createdOn);
+            }
+
+            if (b.latest_msg.length > 0) {
+              dateB = new Date(b.latest_msg[0].createdOn);
+            } else {
+              dateB = new Date(b.createdOn);
+            }
+
+            return dateB - dateA;
+          });
       }
       return [];
     },
   },
-  created() {
+  mounted() {
     this.fetchChatRoomDetails();
   },
   methods: {

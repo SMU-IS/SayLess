@@ -20,7 +20,7 @@
           <CustomButton size="small" roundness="full" :color="null">
             <div class="flex items-center gap-3 text-white">
               <img
-                src="@/assets/Icons/Ring.png"
+                src="@/assets/Icons/Bell.png"
                 alt="Custom Icon"
                 class="pr-1 py-2 w-6"
               />
@@ -40,11 +40,6 @@ export default {
   name: 'NotificationHeader',
   components: {
     CustomButton,
-  },
-  data() {
-    return {
-      id: '6530d24110a9828679f8858a',
-    };
   },
   computed: {},
   methods: {

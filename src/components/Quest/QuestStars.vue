@@ -15,7 +15,7 @@
 
 <script>
 import { StarIcon } from '@heroicons/vue/24/solid';
-import { sortByState } from '@/helpers/Sort/sortByState';
+import { sortByState } from '@/helpers/common.js/';
 
 export default {
   name: 'QuestStars',

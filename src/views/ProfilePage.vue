@@ -13,7 +13,11 @@
           referrerpolicy="no-referrer"
         />
 
-        <UserIcon v-else class="w-9 h-9 rounded-full" />
+        <div v-else class="avatar placeholder">
+          <div class="bg-white text-black rounded-full w-9">
+            <span class="text-xs">{{ getFirstLetter }}</span>
+          </div>
+        </div>
 
         <div class="flex flex-col justify-start text-left gap-1">
           <h2 v-if="getName" class="card-title text-base">
@@ -54,12 +58,12 @@
 import CustomCard from '@/components/Card/CustomCard.vue';
 import ParentHeader from '@/components/NavBar/ParentHeader.vue';
 import { ArrowRightOnRectangleIcon } from '@heroicons/vue/24/solid';
-import { UserIcon } from '@heroicons/vue/24/outline';
 import { pageLoadAnimation } from '@/helpers/common';
 import CustomModal from '@/components/Modal/CustomModal.vue';
 import { openModal } from '@/helpers/common';
 import { mapGetters } from 'vuex';
 import { profileData } from '@/data/profileData';
+import { getResponse } from '@/helpers/getResponse';
 
 export default {
   name: 'ProfilePage',
@@ -67,7 +71,6 @@ export default {
     CustomCard,
     ParentHeader,
     ArrowRightOnRectangleIcon,
-    UserIcon,
     CustomModal,
   },
   data() {
@@ -86,6 +89,11 @@ export default {
     retrieveName() {
       return this.getUserDetails?.userData.name || this.getName;
     },
+    getFirstLetter() {
+      let ownerEmail = this.getUserDetails?.userData.email;
+      let ownerName = ownerEmail?.split('@')[0];
+      return ownerName?.charAt(0).toUpperCase();
+    },
   },
   mounted() {
     const divIds = ['#divOne', '#divTwo'];
@@ -100,7 +108,7 @@ export default {
         await this.$store.dispatch('logout');
         this.$router.push('/onboard');
       } catch (err) {
-        throw err;
+        getResponse('error', err.message);
       }
     },
     handleLink(name, path) {

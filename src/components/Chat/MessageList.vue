@@ -9,6 +9,7 @@
       :timestamp="message.createdOn"
       :message="message.message"
       :sender="message.sender"
+      :listingid="listingid"
     />
   </div>
 </template>
@@ -25,6 +26,10 @@ export default {
     messages: {
       type: Object,
       required: true,
+    },
+    listingid: {
+      type: String,
+      default: '',
     },
   },
   mounted() {

@@ -5,11 +5,23 @@ const chatModule = {
     user: {
       chat: [],
       chatroomDetails: localStorage.getItem('chatroom-data'),
+      showNotification: false,
+      notificationMessage: '',
+      notificationRoom: '',
     },
   },
   getters: {
     getChatRooms(state) {
       return JSON.parse(state.user.chatroomDetails);
+    },
+    getNotificationVisibilty(state) {
+      return state.user.showNotification;
+    },
+    getNotificationMessage(state) {
+      return state.user.notificationMessage;
+    },
+    getNotificationRoom(state) {
+      return state.user.notificationRoom;
     },
   },
   mutations: {
@@ -20,18 +32,31 @@ const chatModule = {
     SET_CHAT(state, payload) {
       state.user.chat = payload;
     },
+    SET_SHOWNOTIFICATION(state, payload) {
+      state.user.showNotification = payload;
+    },
+    SET_NOTIFICATIONMESSAGE(state, payload) {
+      state.user.notificationMessage = payload;
+    },
+    SET_NOTIFICATIONROOM(state, payload) {
+      state.user.notificationRoom = payload;
+    },
   },
   actions: {
+    hideNotification(context) {
+      context.commit('SET_SHOWNOTIFICATION', false);
+    },
+    showNotification(context, { notimsg, room }) {
+      context.commit('SET_SHOWNOTIFICATION', true);
+      context.commit('SET_NOTIFICATIONMESSAGE', notimsg);
+      context.commit('SET_NOTIFICATIONROOM', room);
+    },
     async fetchChatRoomDetails(context) {
+      const token = JSON.parse(localStorage.getItem('user-data'));
       const apiURL = import.meta.env.VITE_GET_CHATROOM;
-
-      const config = {
-        headers: {
-          'x-access-token':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTMwZDI0MTEwYTk4Mjg2NzlmODg1OGEiLCJ1c2VySWQiOiJZRzFJZ3RzdFFETmNxYTUwaEVjRXVFSEJhaFIyIiwiZW1haWwiOiJjeGFuZy4yMDIyQHNtdS5lZHUuc2ciLCJuYW1lIjoiSk9TSFVBIERBVklEIEFORyBDSFVOIFhJT05HIF8iLCJwcm9maWxlUGljIjoiaHR0cHM6Ly9pLmt5bS1jZG4uY29tL2VudHJpZXMvaWNvbnMvb3JpZ2luYWwvMDAwLzAzNi8wMDcvdW5kZXJ0aGV3YXRlcmNvdmVyLmpwZyIsImlhdCI6MTY5NzcwOTg0OH0.wN1yj3wrxJHZpGmpHsCPHSiOUIvqdhMtRzVyt2HBxzc',
-        },
+      const headers = {
+        'x-access-token': token?.['x-access-token'],
       };
-      const { headers } = config;
       const response = await axios.get(apiURL, { headers });
       if (response) {
         const strData = JSON.stringify(response.data);
@@ -39,30 +64,24 @@ const chatModule = {
         return response.data;
       }
     },
-    async createChat(context, { chat }) {
+    async createChat(_, { chat }) {
+      const token = JSON.parse(localStorage.getItem('user-data'));
       const apiURL = import.meta.env.VITE_CREATE_CHAT;
-      const config = {
-        headers: {
-          'x-access-token':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTMwZDI0MTEwYTk4Mjg2NzlmODg1OGEiLCJ1c2VySWQiOiJZRzFJZ3RzdFFETmNxYTUwaEVjRXVFSEJhaFIyIiwiZW1haWwiOiJjeGFuZy4yMDIyQHNtdS5lZHUuc2ciLCJuYW1lIjoiSk9TSFVBIERBVklEIEFORyBDSFVOIFhJT05HIF8iLCJwcm9maWxlUGljIjoiaHR0cHM6Ly9pLmt5bS1jZG4uY29tL2VudHJpZXMvaWNvbnMvb3JpZ2luYWwvMDAwLzAzNi8wMDcvdW5kZXJ0aGV3YXRlcmNvdmVyLmpwZyIsImlhdCI6MTY5NzcwOTg0OH0.wN1yj3wrxJHZpGmpHsCPHSiOUIvqdhMtRzVyt2HBxzc',
-        },
+      const headers = {
+        'x-access-token': token?.['x-access-token'],
       };
-      const { headers } = config;
       const postData = {
         chat: chat,
       };
       await axios.post(apiURL, postData, { headers });
     },
 
-    async createChatRoom(context, { participants, listing }) {
+    async createChatRoom(_, { participants, listing }) {
+      const token = JSON.parse(localStorage.getItem('user-data'));
       const apiURL = import.meta.env.VITE_CREATE_CHATROOM;
-      const config = {
-        headers: {
-          'x-access-token':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTMwZDI0MTEwYTk4Mjg2NzlmODg1OGEiLCJ1c2VySWQiOiJZRzFJZ3RzdFFETmNxYTUwaEVjRXVFSEJhaFIyIiwiZW1haWwiOiJjeGFuZy4yMDIyQHNtdS5lZHUuc2ciLCJuYW1lIjoiSk9TSFVBIERBVklEIEFORyBDSFVOIFhJT05HIF8iLCJwcm9maWxlUGljIjoiaHR0cHM6Ly9pLmt5bS1jZG4uY29tL2VudHJpZXMvaWNvbnMvb3JpZ2luYWwvMDAwLzAzNi8wMDcvdW5kZXJ0aGV3YXRlcmNvdmVyLmpwZyIsImlhdCI6MTY5NzcwOTg0OH0.wN1yj3wrxJHZpGmpHsCPHSiOUIvqdhMtRzVyt2HBxzc',
-        },
+      const headers = {
+        'x-access-token': token?.['x-access-token'],
       };
-      const { headers } = config;
       const postData = {
         participants: participants,
         listing: listing,
@@ -70,15 +89,12 @@ const chatModule = {
       const response = await axios.post(apiURL, postData, { headers });
       return response.data.id;
     },
-    async readChat(context, { chatroomId }) {
+    async readChat(_, chatroomId) {
+      const token = JSON.parse(localStorage.getItem('user-data'));
       const apiURL = import.meta.env.VITE_READ_CHAT;
-      const config = {
-        headers: {
-          'x-access-token':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTMwZDI0MTEwYTk4Mjg2NzlmODg1OGEiLCJ1c2VySWQiOiJZRzFJZ3RzdFFETmNxYTUwaEVjRXVFSEJhaFIyIiwiZW1haWwiOiJjeGFuZy4yMDIyQHNtdS5lZHUuc2ciLCJuYW1lIjoiSk9TSFVBIERBVklEIEFORyBDSFVOIFhJT05HIF8iLCJwcm9maWxlUGljIjoiaHR0cHM6Ly9pLmt5bS1jZG4uY29tL2VudHJpZXMvaWNvbnMvb3JpZ2luYWwvMDAwLzAzNi8wMDcvdW5kZXJ0aGV3YXRlcmNvdmVyLmpwZyIsImlhdCI6MTY5NzcwOTg0OH0.wN1yj3wrxJHZpGmpHsCPHSiOUIvqdhMtRzVyt2HBxzc',
-        },
+      const headers = {
+        'x-access-token': token?.['x-access-token'],
       };
-      const { headers } = config;
       const postData = {
         chatroomId: chatroomId,
       };

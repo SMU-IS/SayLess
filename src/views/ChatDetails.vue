@@ -6,7 +6,7 @@
       <ChatHeader
         v-if="details.listing"
         :messages="messages"
-        :listing-id="details.listing.id"
+        :listing-id="details.listing[0].id"
         :correspondent-obj="correspondentObj"
         @request="updateReqFlag"
         @close="updateAvailableFlag"
@@ -15,6 +15,7 @@
         v-if="messages.length !== 0"
         ref="messageList"
         :messages="messages"
+        :listing-id="details.listing[0].id"
       />
       <MessageInput :messages="messages" @send="sendMessage" />
     </div>
@@ -26,6 +27,7 @@ import MessageList from '@/components/Chat/MessageList.vue';
 import MessageInput from '@/components/Chat/MessageInput.vue';
 import ChatHeader from '@/components/Chat/ChatHeader.vue';
 import io from 'socket.io-client';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'ChatDetails',
@@ -39,11 +41,25 @@ export default {
       messages: [],
       socket: null,
       chatId: '',
-      id: '6530d24110a9828679f8858a',
       listingId: '',
       correspondentObj: Object,
       details: [],
     };
+  },
+  computed: {
+    ...mapGetters(['getUserDetails']),
+    getId() {
+      return this.getUserDetails?.userData.id;
+    },
+  },
+  watch: {
+    $route() {
+      this.messages = [];
+      this.chatId = this.$route.params.chatId;
+      this.initializeSocket();
+      this.fetchData(this.chatId);
+      this.getCorrespondent(this.details.participants);
+    },
   },
   mounted() {
     this.chatId = this.$route.params.chatId;
@@ -55,6 +71,9 @@ export default {
     formatTimestamp(timestamp) {
       const hours = timestamp.getHours();
       const minutes = timestamp.getMinutes();
+      if (this.message === 'requested') {
+        this.$store.getters.getCommunityListings;
+      }
 
       return `${hours.toString().padStart(2, '0')}:${minutes
         .toString()
@@ -75,9 +94,15 @@ export default {
       this.sendMessage('Requested');
       this.$store.getters.getCommunityListings;
     },
-    updateAvailableFlag(listingid) {
-      this.$store.dispatch('setRequest', listingid);
+    async updateAvailableFlag(listingid) {
+      try {
+        await this.$store.dispatch('closeListing', { listingid: listingid });
+      } catch (err) {
+        throw err;
+      }
+
       this.sendMessage('Deal Closed');
+      this.$store.getters.getCommunityListings;
     },
 
     fetchData(chatid) {
@@ -101,17 +126,18 @@ export default {
 
     getCorrespondent(participants) {
       if (participants) {
-        const correspondent = participants.find((item) => item.id !== this.id);
+        const correspondent = participants.find(
+          (item) => item.id !== this.getId,
+        );
         this.correspondentObj = correspondent;
       }
     },
 
     initializeSocket() {
-      const JWT =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTMwZDI0MTEwYTk4Mjg2NzlmODg1OGEiLCJ1c2VySWQiOiJZRzFJZ3RzdFFETmNxYTUwaEVjRXVFSEJhaFIyIiwiZW1haWwiOiJjeGFuZy4yMDIyQHNtdS5lZHUuc2ciLCJuYW1lIjoiSk9TSFVBIERBVklEIEFORyBDSFVOIFhJT05HIF8iLCJwcm9maWxlUGljIjoiaHR0cHM6Ly9pLmt5bS1jZG4uY29tL2VudHJpZXMvaWNvbnMvb3JpZ2luYWwvMDAwLzAzNi8wMDcvdW5kZXJ0aGV3YXRlcmNvdmVyLmpwZyIsImlhdCI6MTY5NzcwOTg0OH0.wN1yj3wrxJHZpGmpHsCPHSiOUIvqdhMtRzVyt2HBxzc';
+      const token = JSON.parse(localStorage.getItem('user-data'));
       this.socket = io('ws://54.252.152.169:8887', {
         extraHeaders: {
-          'x-access-token': JWT,
+          'x-access-token': token?.['x-access-token'],
         },
       });
 

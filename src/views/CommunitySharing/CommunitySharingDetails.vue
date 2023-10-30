@@ -22,22 +22,31 @@
           <p class="text-sm">{{ details?.lastPosted }}</p>
 
           <div class="flex items-center gap-3">
-            <div class="avatar">
-              <div v-if="details.profilePic" class="w-8 rounded-full">
+            <div v-if="details.profilePic" class="avatar">
+              <div class="w-8 rounded-full">
                 <img :src="details.profilePic" referrerpolicy="no-referrer" />
               </div>
-              <UserIcon v-else class="w-5 h-auto" />
+            </div>
+            <div v-else class="avatar placeholder">
+              <div class="bg-white text-black rounded-full w-8">
+                <span class="text-xs">{{
+                  details?.name?.split('@')[0].slice(0, 1).toUpperCase()
+                }}</span>
+              </div>
             </div>
 
-            <p v-if="details.name" class="text-sm">
-              {{ details?.name }}
+            <p v-if="details?.profilePic" class="text-sm">
+              {{ details.name }}
             </p>
-            <p v-else class="text-sm">Anonymous User</p>
+
+            <p v-else class="text-white text-sm">
+              {{ details?.name?.split('@')[0] }}
+            </p>
           </div>
         </div>
       </div>
 
-      <div class="w-full md:w-1/2 mt-6 md:mt-0">
+      <div class="w-full md:w-1/2 mt-3 md:mt-0">
         <div class="p-2 bg-transparent rounded-xl">
           <CustomCard background="gray" width="full" class="mb-4">
             <div class="flex flex-col text-left gap-1">
@@ -58,14 +67,29 @@
           </CustomCard>
 
           <CustomButton
+            v-if="details.createdId == getId"
             width="full"
             roundness="round"
             color="green"
-            class="mt-4"
-            @click="createChatRoom"
+            @click="viewChat('')"
+            >View Chats</CustomButton
           >
-            Chat to Deal
-          </CustomButton>
+          <CustomButton
+            v-else-if="details.createdId !== getId && checkExistingChat"
+            width="full"
+            roundness="round"
+            color="green"
+            @click="viewChat(details.id)"
+            >View Chat</CustomButton
+          >
+          <CustomButton
+            v-else
+            width="full"
+            roundness="round"
+            color="green"
+            @click="createChatRoom"
+            >Chat to Deal</CustomButton
+          >
         </div>
       </div>
     </div>
@@ -78,21 +102,42 @@ import CustomButton from '@/components/Button/CustomButton.vue';
 import CustomCard from '@/components/Card/CustomCard.vue';
 import { mapActions, mapGetters } from 'vuex';
 import { calculateTimeSincePosted } from '@/helpers/common';
-import { UserIcon } from '@heroicons/vue/24/outline';
 
 export default {
   name: 'CommunitySharingDetails',
-  components: { DetailsHeader, CustomButton, CustomCard, UserIcon },
+  components: { DetailsHeader, CustomButton, CustomCard },
   data() {
     return {
       details: [],
-      id: '6530d24110a9828679f8858a',
+      chatrooms: [],
+      listingId: '',
     };
   },
   computed: {
-    ...mapGetters(['getCommunityListings']),
+    ...mapGetters(['getCommunityListings', 'getUserDetails', 'getChatRooms']),
+    checkExistingChat() {
+      if (this.chatrooms) {
+        return this.chatrooms.some((result) => {
+          if (result.listing[0]?.id === this.listingId) {
+            const participants = result.participants;
+            if (participants && participants?.length === 2) {
+              const [participant1, participant2] = participants;
+              return (
+                participant1.id === this.getUserDetails.userData.id ||
+                participant2.id === this.getUserDetails.userData.id
+              );
+            }
+          }
+          return false;
+        });
+      }
+      return false;
+    },
+    getId() {
+      return this.getUserDetails?.userData.id;
+    },
   },
-  created() {
+  mounted() {
     this.fetchData();
   },
   methods: {
@@ -102,8 +147,11 @@ export default {
     },
     fetchData() {
       const data = this.getCommunityListings;
-      const listingId = this.$route.params.id;
-      const selectedListing = data.find((item) => item.id === listingId);
+      if (this.getChatRooms) {
+        this.chatrooms = this.getChatRooms;
+      }
+      this.listingId = this.$route.params.id;
+      const selectedListing = data.find((item) => item.id === this.listingId);
 
       if (selectedListing) {
         const {
@@ -119,7 +167,8 @@ export default {
 
         this.details = {
           id: id,
-          name: createdBy.name,
+          createdId: createdBy.id,
+          name: createdBy.name ? createdBy.name : createdBy.email,
           profilePic: createdBy.profilePic,
           availablity: isAvailable,
           title: listingTitle,
@@ -130,23 +179,46 @@ export default {
         };
       }
     },
+    viewChat(listingid) {
+      if (listingid !== null && listingid !== undefined && listingid != '') {
+        const selectedChatRoom = this.chatrooms.find(
+          (item) => item.listing[0].id === listingid,
+        );
+        this.$router.push(`/message/${selectedChatRoom.id}`);
+      } else {
+        this.$router.push('/message');
+      }
+    },
     createChatRoom() {
-      const participants = [this.id, '653297865a3478ad39210492'];
+      const participants = [
+        this.getUserDetails.userData.id,
+        this.details.createdId,
+      ];
       this.$store
         .dispatch('createChatRoom', {
           participants: participants,
           listing: this.details.id,
         })
         .then((id) => {
+          let initialLength;
+          if (this.getChatRooms === null) {
+            initialLength = 0;
+          } else {
+            initialLength = this.getChatRooms.length;
+          }
           this.fetchChatRoomDetails();
-          this.$store.watch(
-            (state, getters) => getters.getChatRooms,
-            (newValue) => {
-              if (newValue) {
+          const waitForLengthIncrease = () => {
+            if (this.getChatRooms) {
+              if (this.getChatRooms.length >= initialLength + 1) {
                 this.$router.push(`/message/${id}`);
+              } else {
+                setTimeout(waitForLengthIncrease, 100);
               }
-            },
-          );
+            } else {
+              setTimeout(waitForLengthIncrease, 100);
+            }
+          };
+          waitForLengthIncrease();
         });
     },
   },

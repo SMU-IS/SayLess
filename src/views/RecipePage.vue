@@ -75,6 +75,7 @@ import ListRecipe from '@/components/Listings/ListRecipe.vue';
 import ChipLabel from '@/components/Chip/ChipLabel.vue';
 import ParentHeader from '@/components/NavBar/ParentHeader.vue';
 import { mapGetters } from 'vuex';
+import { getResponse } from '@/helpers/getResponse';
 
 export default {
   name: 'RecipePage',
@@ -148,7 +149,7 @@ export default {
           ingredientsList: this.tags,
         });
       } catch (err) {
-        throw err;
+        getResponse('error', err.message);
       }
     },
   },

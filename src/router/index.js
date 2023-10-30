@@ -101,11 +101,6 @@ const routes = [
     component: ProfilePage,
   },
   {
-    path: '/chat',
-    name: 'ChatDetails',
-    component: ChatDetails,
-  },
-  {
     path: '/message/:chatId',
     name: 'chat-details',
     component: ChatDetails,

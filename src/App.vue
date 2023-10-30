@@ -2,9 +2,18 @@
   <div class="flex flex-col min-h-screen bg-main">
     <div v-if="isAuthenticated" class="hidden md:block fixed z-50 w-screen">
       <DesktopNavBar />
+      <div class="float-right mr-3">
+        <AlertComponent />
+      </div>
     </div>
 
     <main :class="childrenStyle">
+      <div
+        class="md:hidden w-full flex justify-center"
+        style="position: fixed; top: 1rem; left: 0; z-index: 20"
+      >
+        <AlertComponent />
+      </div>
       <router-view />
     </main>
 
@@ -22,9 +31,16 @@
 import NavBar from '@/components/NavBar/NavBar.vue';
 import DesktopNavBar from '@/components/NavBar/DesktopNavBar.vue';
 import CustomFooter from '@/components/Footer/CustomFooter.vue';
+import AlertComponent from '@/components/Notification/AlertComponent.vue';
+import io from 'socket.io-client';
 
 export default {
-  components: { NavBar, DesktopNavBar, CustomFooter },
+  components: { NavBar, DesktopNavBar, CustomFooter, AlertComponent },
+  data() {
+    return {
+      hasAlert: false,
+    };
+  },
   computed: {
     isAuthenticated() {
       return this.$store.getters.getEmail;
@@ -57,6 +73,33 @@ export default {
           this.getRouteName !== 'AddItem' &&
           this.getRouteName !== 'ProfilePage',
       };
+    },
+  },
+  mounted() {
+    this.initializeSocket();
+  },
+  methods: {
+    initializeSocket() {
+      const token = JSON.parse(localStorage.getItem('user-data'));
+      this.socket = io('ws://54.252.152.169:8887', {
+        extraHeaders: {
+          'x-access-token': token?.['x-access-token'],
+        },
+      });
+
+      this.socket.on('connected', () => {
+        this.socket.emit('chatNotification', {});
+      });
+      this.socket.on('notiMessage', (event) => {
+        let message = event;
+        if (this.$route.params.chatId != message.chatroom) {
+          this.$store.dispatch('showNotification', {
+            notimsg: message.message,
+            room: message.chatroom,
+          });
+          this.$store.dispatch('fetchChatRoomDetails');
+        }
+      });
     },
   },
 };

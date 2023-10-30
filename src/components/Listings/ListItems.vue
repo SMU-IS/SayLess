@@ -14,6 +14,7 @@
 
 <script>
 import CustomCard from '@/components/Card/CustomCard.vue';
+import { getResponse } from '@/helpers/getResponse';
 
 export default {
   name: 'ListItems',
@@ -35,7 +36,7 @@ export default {
         await this.$store.dispatch('getFoodListings');
         this.foodListings = this.$store.getters.getFood;
       } catch (err) {
-        throw err;
+        getResponse('error', err.message);
       }
     },
   },

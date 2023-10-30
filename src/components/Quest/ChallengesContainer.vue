@@ -10,10 +10,10 @@
               <div
                 class="p-4 font-bold tracking-tight min-h-[20px] bg-[#221E2F] w-full text-pink"
               >
-                Challenge {{ getQuestName.indexOf(data?.challenge.id) + 1 }}
+                Challenge {{ getQuestName?.indexOf(data?.challenge.id) + 1 }}
 
                 <CheckCircleIcon
-                  v-if="data.status === 'Completed'"
+                  v-if="data?.status === 'Completed'"
                   class="w-5 h-auto float-right"
                 />
               </div>
@@ -69,6 +69,7 @@ import CustomDrawer from '@/components/Modal/CustomDrawer.vue';
 import { toggleDrawer } from '@/helpers/common';
 import { mapGetters } from 'vuex';
 import { CheckCircleIcon } from '@heroicons/vue/24/solid';
+import { getResponse } from '@/helpers/getResponse';
 
 export default {
   name: 'ChallengesContainer',
@@ -103,7 +104,7 @@ export default {
           status: 'In Progress',
         });
       } catch (err) {
-        throw err;
+        getResponse('error', err.message);
       }
     },
   },

@@ -131,7 +131,6 @@ export default {
           } catch (err) {
             this.isLoading = false;
             getResponse('error', getErrorMessage(err.message));
-            throw err.message;
           }
         } else {
           this.isLoading = false;
@@ -147,7 +146,6 @@ export default {
       tokenId.then(async (id) => {
         const data = {
           accessTokenId: id,
-          name: this.name,
         };
         await this.$store.dispatch('authenticateUser', data);
       });

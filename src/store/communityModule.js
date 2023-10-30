@@ -33,6 +33,23 @@ const communityModule = {
         }
       }
     },
+    UPDATE_LISTINGS_AVAILABILITY(state, payload) {
+      let listingid = payload[0];
+      let available = payload[1];
+      const storedData = localStorage.getItem('community-sharing-data');
+      if (storedData) {
+        const jsonData = JSON.parse(storedData);
+        const itemIndex = jsonData.findIndex((x) => x.id === listingid);
+        if (itemIndex !== -1) {
+          jsonData[itemIndex].isAvailable = available;
+          state.user.communityListings = JSON.stringify(jsonData);
+          localStorage.setItem(
+            'community-sharing-data',
+            JSON.stringify(jsonData),
+          );
+        }
+      }
+    },
   },
   actions: {
     async fetchCommunityListings(context) {
@@ -47,7 +64,7 @@ const communityModule = {
         context.commit('SET_COMMUNITY_SHARING_LISTINGS', strData);
       }
     },
-    async setRequest(context, { listingid }) {
+    async setRequest(_, { listingid }) {
       const token = JSON.parse(localStorage.getItem('user-data'));
       const apiURL = import.meta.env.VITE_SET_REQUEST;
       const headers = {
@@ -56,11 +73,18 @@ const communityModule = {
       const postData = {
         listingId: listingid,
       };
-      const response = await axios.post(apiURL, postData, { headers });
-      if (response) {
-        let result = [response.data.id, response.data.requested];
-        context.commit('UPDATE_LISTINGS', result);
-      }
+      await axios.post(apiURL, postData, { headers });
+    },
+    async closeListing(_, { listingid }) {
+      const token = JSON.parse(localStorage.getItem('user-data'));
+      const apiURL = import.meta.env.VITE_CLOSE_LISTING;
+      const headers = {
+        'x-access-token': token?.['x-access-token'],
+      };
+      const postData = {
+        listingId: listingid,
+      };
+      await axios.post(apiURL, postData, { headers });
     },
     async postCommunityListings(_, data) {
       const apiURL = import.meta.env.VITE_POST_LISTING;

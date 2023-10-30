@@ -1,15 +1,14 @@
 import { getAuth } from 'firebase/auth';
+import { getResponse } from './getResponse';
 
 const getAccessToken = async () => {
-  let userToken = '';
   try {
-    const response = await getAuth().currentUser;
+    const response = getAuth().currentUser;
     const { accessToken } = response;
-    userToken = accessToken;
-  } catch (error) {
-    throw error;
+    return accessToken;
+  } catch (err) {
+    getResponse('error', err.message);
   }
-  return userToken;
 };
 
 export { getAccessToken };

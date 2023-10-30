@@ -44,6 +44,13 @@ const inventoryModule = {
       };
       await axios.post(apiURL, data, { headers });
     },
+    async handleRemoveItem(_, data) {
+      const apiURL = import.meta.env.VITE_REMOVE_INVENTORY;
+      const headers = {
+        'x-access-token': data.token,
+      };
+      await axios.post(apiURL, data, { headers });
+    },
     async sendImageEdenAI(context, data) {
       const apiURL = import.meta.env.VITE_SEND_IMAGE_EDEN_AI;
       const headers = {

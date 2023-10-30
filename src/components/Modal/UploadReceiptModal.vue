@@ -7,13 +7,20 @@
           <thead>
             <tr>
               <th>Item</th>
-              <th>Price ($)</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="data in dataToDisplay" :key="data.description">
-              <td>{{ data.description }}</td>
-              <td>${{ data.amount }}</td>
+            <tr v-for="data in dataToDisplay" :key="data?.description">
+              <td v-if="data?.description">
+                <div class="grid grid-cols-3 gap-4 items-center">
+                  <div></div>
+                  <div>{{ data?.description }}</div>
+                  <XMarkIcon
+                    class="w-3 h-auto cursor-pointer"
+                    @click="deleteItem(data?.description)"
+                  />
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -60,10 +67,17 @@ import CongratsModal from '@/components/Modal/CongratsModal.vue';
 import ImageUpload from '@/components/Form/ImageUpload.vue';
 import { mapGetters, mapActions } from 'vuex';
 import CustomLoader from '@/components/Loader/CustomLoader.vue';
+import { XMarkIcon } from '@heroicons/vue/24/outline';
 
 export default {
   name: 'UploadReceiptModal',
-  components: { CustomButton, ImageUpload, CongratsModal, CustomLoader },
+  components: {
+    CustomButton,
+    ImageUpload,
+    CongratsModal,
+    CustomLoader,
+    XMarkIcon,
+  },
   props: {
     modalId: {
       type: String,
@@ -80,15 +94,19 @@ export default {
   },
   data() {
     return {
-      item: '',
-      itemName: [],
       isLoading: false,
       childImage: null,
       dataToDisplay: [],
+      itemName: [],
     };
   },
   computed: {
-    ...mapGetters(['getInventoryData', 'getQuestData', 'getUserDetails']),
+    ...mapGetters([
+      'getInventoryData',
+      'getQuestData',
+      'getUserDetails',
+      'getEdenAIData',
+    ]),
     getChallengeStatus() {
       return this.getQuestData?.[0].status;
     },
@@ -99,14 +117,17 @@ export default {
       this.isLoading = true;
       const data = {
         token: this.getUserDetails['x-access-token'],
-        img: imageUrl,
+        image: imageUrl,
       };
-      const response = await this.$store.dispatch('sendImageEdenAI', data);
-      if (response) {
-        const { item_lines } = response.data.extracted_data[0];
-        this.dataToDisplay = item_lines;
-        this.isLoading = false;
-      }
+      await this.$store.dispatch('sendImageEdenAI', data);
+      this.isLoading = false;
+      this.dataToDisplay = await this.$store.getters.getEdenAIData;
+    },
+    deleteItem(name) {
+      let id = this.dataToDisplay.findIndex(
+        (result) => result.description == name,
+      );
+      this.dataToDisplay.splice(id, 1);
     },
     onModalClose() {
       closeModal(this.modalId);
@@ -121,9 +142,13 @@ export default {
       ) {
         this.showCongratsModal();
       }
-      if (this.item.length !== 0) {
+      if (this.dataToDisplay.length !== 0) {
         try {
-          this.itemName.push(this.item);
+          for (let i = 0; i < this.dataToDisplay.length; i++) {
+            if (this.dataToDisplay[i].description != null) {
+              this.itemName.push(this.dataToDisplay[i].description);
+            }
+          }
           const data = {
             token: this.getUserDetails['x-access-token'],
             itemName: this.itemName,

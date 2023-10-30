@@ -4,17 +4,24 @@ const inventoryModule = {
   state: {
     user: {
       inventoryData: localStorage.getItem('inventory-data'),
+      EDEN_AI_DATA: [],
     },
   },
   getters: {
     getInventoryData(state) {
       return JSON.parse(state.user.inventoryData);
     },
+    getEdenAIData(state) {
+      return state.user.EDEN_AI_DATA;
+    },
   },
   mutations: {
     SET_INVENTORY_DATA(state, payload) {
       state.user.inventoryData = payload;
       localStorage.setItem('inventory-data', payload);
+    },
+    SET_EDEN_AI_DATA(state, payload) {
+      state.user.EDEN_AI_DATA = payload;
     },
   },
   actions: {
@@ -37,12 +44,15 @@ const inventoryModule = {
       };
       await axios.post(apiURL, data, { headers });
     },
-    async sendImageEdenAI(_, data) {
+    async sendImageEdenAI(context, data) {
       const apiURL = import.meta.env.VITE_SEND_IMAGE_EDEN_AI;
       const headers = {
         'x-access-token': data.token,
       };
-      await axios.post(apiURL, data, { headers });
+      const response = await axios.post(apiURL, data, { headers });
+      if (response) {
+        context.commit('SET_EDEN_AI_DATA', response.data[0].item_lines);
+      }
     },
   },
 };

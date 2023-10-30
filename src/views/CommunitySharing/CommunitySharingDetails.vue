@@ -115,24 +115,24 @@ export default {
   },
   computed: {
     ...mapGetters(['getCommunityListings', 'getUserDetails', 'getChatRooms']),
-    checkExistingChat() {
-      if (this.chatrooms) {
-        return this.chatrooms.some((result) => {
-          if (result.listing[0]?.id === this.listingId) {
-            const participants = result.participants;
-            if (participants && participants.length === 2) {
-              const [participant1, participant2] = participants;
-              return (
-                participant1.id === this.getUserDetails.userData.id ||
-                participant2.id === this.getUserDetails.userData.id
-              );
-            }
-          }
-          return false;
-        });
-      }
-      return false;
-    },
+    // checkExistingChat() {
+    //   if (this.chatrooms) {
+    //     return this.chatrooms.some((result) => {
+    //       if (result.listing[0]?.id === this.listingId) {
+    //         const participants = result.participants;
+    //         if (participants && participants.length === 2) {
+    //           const [participant1, participant2] = participants;
+    //           return (
+    //             participant1.id === this.getUserDetails.userData.id ||
+    //             participant2.id === this.getUserDetails.userData.id
+    //           );
+    //         }
+    //       }
+    //       return false;
+    //     });
+    //   }
+    //   return false;
+    // },
     getId() {
       return this.getUserDetails?.userData.id;
     },

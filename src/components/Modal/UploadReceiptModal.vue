@@ -150,11 +150,11 @@ export default {
           await this.$store.dispatch('handleAddItem', data);
 
           if (this.getChallengeStatus === 'In Progress') {
-            this.isLoading = false;
             this.showCongratsModal();
+          } else {
+            getResponse('success', 'Your item has been added!');
           }
 
-          getResponse('success', 'Your item has been added!');
           this.fetchInventory();
         } catch (err) {
           getResponse('error', getErrorMessage(err.message));

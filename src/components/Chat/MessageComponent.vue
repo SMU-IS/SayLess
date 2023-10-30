@@ -52,7 +52,7 @@ export default {
       };
     },
   },
-  created() {
+  mounted() {
     if (this.message === 'Requested' || this.message === 'Deal Closed') {
       this.fetchCommunityListings();
     }

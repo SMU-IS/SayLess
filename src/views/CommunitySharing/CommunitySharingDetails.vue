@@ -11,14 +11,14 @@
             <div
               v-for="imgData in details?.allImages"
               :key="imgData?.id"
-              class="carousel-item w-full"
+              class="carousel-item w-full h-72"
             >
               <img :src="imgData" class="w-full object-cover" />
             </div>
           </div>
         </div>
 
-        <div class="flex flex-col order-last gap-4">
+        <div class="flex flex-col order-last gap-3">
           <p class="text-sm">{{ details?.lastPosted }}</p>
 
           <div class="flex items-center gap-3">
@@ -109,30 +109,30 @@ export default {
   data() {
     return {
       details: [],
-      chatrooms: Object,
+      chatrooms: [],
       listingId: '',
     };
   },
   computed: {
     ...mapGetters(['getCommunityListings', 'getUserDetails', 'getChatRooms']),
-    // checkExistingChat() {
-    //   if (this.chatrooms) {
-    //     return this.chatrooms.some((result) => {
-    //       if (result.listing[0]?.id === this.listingId) {
-    //         const participants = result.participants;
-    //         if (participants && participants.length === 2) {
-    //           const [participant1, participant2] = participants;
-    //           return (
-    //             participant1.id === this.getUserDetails.userData.id ||
-    //             participant2.id === this.getUserDetails.userData.id
-    //           );
-    //         }
-    //       }
-    //       return false;
-    //     });
-    //   }
-    //   return false;
-    // },
+    checkExistingChat() {
+      if (this.chatrooms) {
+        return this.chatrooms.some((result) => {
+          if (result.listing[0]?.id === this.listingId) {
+            const participants = result.participants;
+            if (participants && participants?.length === 2) {
+              const [participant1, participant2] = participants;
+              return (
+                participant1.id === this.getUserDetails.userData.id ||
+                participant2.id === this.getUserDetails.userData.id
+              );
+            }
+          }
+          return false;
+        });
+      }
+      return false;
+    },
     getId() {
       return this.getUserDetails?.userData.id;
     },
@@ -147,7 +147,9 @@ export default {
     },
     fetchData() {
       const data = this.getCommunityListings;
-      this.chatrooms = this.getChatRooms;
+      if (this.getChatRooms) {
+        this.chatrooms = this.getChatRooms;
+      }
       this.listingId = this.$route.params.id;
       const selectedListing = data.find((item) => item.id === this.listingId);
 
@@ -198,15 +200,25 @@ export default {
           listing: this.details.id,
         })
         .then((id) => {
+          let initialLength;
+          if (this.getChatRooms === null) {
+            initialLength = 0;
+          } else {
+            initialLength = this.getChatRooms.length;
+          }
           this.fetchChatRoomDetails();
-          this.$store.watch(
-            (state, getters) => getters.getChatRooms,
-            (newValue) => {
-              if (newValue) {
+          const waitForLengthIncrease = () => {
+            if (this.getChatRooms) {
+              if (this.getChatRooms.length >= initialLength + 1) {
                 this.$router.push(`/message/${id}`);
+              } else {
+                setTimeout(waitForLengthIncrease, 100);
               }
-            },
-          );
+            } else {
+              setTimeout(waitForLengthIncrease, 100);
+            }
+          };
+          waitForLengthIncrease();
         });
     },
   },

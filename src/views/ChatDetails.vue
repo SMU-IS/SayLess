@@ -54,6 +54,7 @@ export default {
   },
   watch: {
     $route(to, from) {
+      this.messages = [];
       this.chatId = this.$route.params.chatId;
       this.initializeSocket();
       this.fetchData(this.chatId);
@@ -147,6 +148,7 @@ export default {
       });
       this.socket.on('messageData', (event) => {
         this.messages = this.messages.concat(event);
+        console.log('reading chat');
         this.$store.dispatch('readChat', this.chatId);
         this.$nextTick(() => {
           if (this.$refs.messageList) {

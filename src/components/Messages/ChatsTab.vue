@@ -31,7 +31,7 @@
               >
             </h4>
             <p v-if="chat.latest_msg[0]" class="text-white-light text-sm">
-              {{ chat.latest_msg[0].message }}
+              {{ chat.latest_msg[0].message.slice(0, 200) }}
             </p>
             <p v-else class="text-white-light text-sm">No messages yet.</p>
           </div>

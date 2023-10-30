@@ -66,5 +66,31 @@ export default {
       };
     },
   },
+  mounted() {
+    this.initializeSocket();
+  },
+  methods: {
+    initializeSocket() {
+      const token = JSON.parse(localStorage.getItem('user-data'));
+      this.socket = io('ws://54.252.152.169:8887', {
+        extraHeaders: {
+          'x-access-token': token?.['x-access-token'],
+        },
+      });
+
+      this.socket.on('connected', () => {
+        this.socket.emit('chatNotification', {});
+      });
+      this.socket.on('notiMessage', (event) => {
+        let message = event;
+        if (this.$route.params.chatId != message.chatroom) {
+          this.$store.dispatch('showNotification', {
+            notimsg: message.message,
+            room: message.chatroom,
+          });
+        }
+      });
+    },
+  },
 };
 </script>

@@ -52,6 +52,15 @@ export default {
       return this.getUserDetails?.userData.id;
     },
   },
+  watch: {
+    $route() {
+      this.messages = [];
+      this.chatId = this.$route.params.chatId;
+      this.initializeSocket();
+      this.fetchData(this.chatId);
+      this.getCorrespondent(this.details.participants);
+    },
+  },
   mounted() {
     this.chatId = this.$route.params.chatId;
     this.initializeSocket();
@@ -85,8 +94,13 @@ export default {
       this.sendMessage('Requested');
       this.$store.getters.getCommunityListings;
     },
-    updateAvailableFlag(listingid) {
-      this.$store.dispatch('closeListing', { listingid: listingid });
+    async updateAvailableFlag(listingid) {
+      try {
+        await this.$store.dispatch('closeListing', { listingid: listingid });
+      } catch (err) {
+        throw err;
+      }
+
       this.sendMessage('Deal Closed');
       this.$store.getters.getCommunityListings;
     },
@@ -94,10 +108,8 @@ export default {
     fetchData(chatid) {
       if (chatid) {
         const data = this.$store.getters.getChatRooms;
-
         if (data) {
           const selectedChatRoom = data.find((item) => item.id === chatid);
-
           if (selectedChatRoom) {
             const { participants, listing, createdOn, id } = selectedChatRoom;
 
@@ -136,6 +148,7 @@ export default {
       });
       this.socket.on('messageData', (event) => {
         this.messages = this.messages.concat(event);
+
         this.$store.dispatch('readChat', this.chatId);
         this.$nextTick(() => {
           if (this.$refs.messageList) {

@@ -115,7 +115,7 @@ export default {
       if (path === '/rewards') {
         this.$router.push(path);
       } else {
-        alert(name);
+        getResponse('warning', `${name} Available Soon!`);
       }
     },
   },

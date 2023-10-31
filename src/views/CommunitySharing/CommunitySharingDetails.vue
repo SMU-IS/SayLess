@@ -88,8 +88,10 @@
             roundness="round"
             color="green"
             @click="createChatRoom"
-            >Chat to Deal</CustomButton
           >
+            <span v-if="isLoading"> <CustomLoader color="white" /> </span>
+            <span v-else> Chat to Deal </span>
+          </CustomButton>
         </div>
       </div>
     </div>
@@ -102,15 +104,17 @@ import CustomButton from '@/components/Button/CustomButton.vue';
 import CustomCard from '@/components/Card/CustomCard.vue';
 import { mapActions, mapGetters } from 'vuex';
 import { calculateTimeSincePosted } from '@/helpers/common';
+import CustomLoader from '@/components/Loader/CustomLoader.vue';
 
 export default {
   name: 'CommunitySharingDetails',
-  components: { DetailsHeader, CustomButton, CustomCard },
+  components: { DetailsHeader, CustomButton, CustomCard, CustomLoader },
   data() {
     return {
       details: [],
       chatrooms: [],
       listingId: '',
+      isLoading: false,
     };
   },
   computed: {
@@ -190,6 +194,7 @@ export default {
       }
     },
     createChatRoom() {
+      this.isLoading = true;
       const participants = [
         this.getUserDetails.userData.id,
         this.details.createdId,
@@ -219,6 +224,7 @@ export default {
             }
           };
           waitForLengthIncrease();
+          this.isLoading = false;
         });
     },
   },

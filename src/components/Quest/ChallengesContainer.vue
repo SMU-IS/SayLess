@@ -67,7 +67,7 @@
 import CustomButton from '@/components/Button/CustomButton.vue';
 import CustomDrawer from '@/components/Modal/CustomDrawer.vue';
 import { toggleDrawer } from '@/helpers/common';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import { CheckCircleIcon } from '@heroicons/vue/24/solid';
 import { getResponse } from '@/helpers/getResponse';
 
@@ -93,6 +93,7 @@ export default {
     },
   },
   methods: {
+    ...mapActions(['fetchQuestData']),
     onDrawerOpen(drawerId) {
       toggleDrawer(`my_drawer_${drawerId}`);
       this.handleUpdateChallengeStatus(drawerId);

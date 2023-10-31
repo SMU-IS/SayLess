@@ -1,19 +1,15 @@
 <template>
   <div class="chat-header text-white border-b-2 pb-4 px-6 md:px-12 lg:px-20">
     <div class="chat-header-content">
-      <div class="owner-content flex mb-4">
+      <div class="owner-content flex mb-4 items-center">
         <div class="container w-1/4 flex justify-start">
           <CustomButton
             roundness="full"
             size="small"
-            style="padding: 0px; background: none"
+            color="ghost"
             @click="goBack"
           >
-            <img
-              src="@/assets/Icons/back.png"
-              alt="Custom Icon"
-              class="h-8 w-8"
-            />
+            <ArrowLeftIcon class="w-6 h-auto text-white" />
           </CustomButton>
         </div>
         <div class="container w-2/4 text-center">
@@ -25,7 +21,7 @@
           <img
             :src="correspondentObj.profilePic"
             alt="Owner's Picture"
-            class="owner-picture w-8 h-8 float-right rounded-full border-2 border-white"
+            class="owner-picture w-8 h-8 float-right rounded-full border-white"
           />
         </div>
       </div>
@@ -88,11 +84,13 @@
 <script>
 import CustomButton from '@/components/Button/CustomButton.vue';
 import { mapGetters } from 'vuex';
+import { ArrowLeftIcon } from '@heroicons/vue/24/outline';
 
 export default {
   name: 'ChatHeader',
   components: {
     CustomButton,
+    ArrowLeftIcon,
   },
   props: {
     listingId: {
@@ -125,7 +123,7 @@ export default {
     goBack() {
       this.$router.go(-1);
     },
-    requestItem() {
+    async requestItem() {
       this.$emit('request', this.specificListing.id);
     },
     closeDeal() {

@@ -13,22 +13,24 @@
           />
         </div>
         <div class="flex flex-col gap-2 mt-8">
-          <h3 class="text-xl font-bold text-center">Your current coins</h3>
+          <h3 class="text-xl font-bold text-center text-white">
+            Your Current Coins
+          </h3>
           <h2
             class="text-base font-bold mt-4 mx-auto px-6 py-1 w-fit rounded-full bg-[#FFE993]"
           >
-            {{ coins }} coins
+            {{ coins === 0 ? `${coins} Coin` : `${coins} Coins` }}
           </h2>
           <CustomButton width="full" color="ghost" @click="navigate">
-            <p class="text-black underline">Get more coins?</p>
+            <p class="text-black">Get more coins?</p>
           </CustomButton>
         </div>
       </div>
       <div class="bg-white rounded-3xl rounded-tr-[30px] p-8 relative">
         <div class="mt-0">
           <form method="dialog" class="w-full">
-            <CustomButton width="full" color="green" @click="alert">
-              <p>Redeem for vouchers</p>
+            <CustomButton width="full" color="green" @click="redeemVoucher">
+              <p>Redeem Vouchers</p>
             </CustomButton>
           </form>
         </div>
@@ -74,8 +76,8 @@ export default {
     navigate() {
       this.$router.push('/quest');
     },
-    alert() {
-      getResponse('error', 'This feature will be available soon!');
+    redeemVoucher() {
+      getResponse('warning', 'Available Soon!');
     },
   },
 };

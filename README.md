@@ -5,11 +5,12 @@
 ![Pull Request](https://img.shields.io/github/issues-pr/SMU-IS/SayLess)
 ![Release Badge](https://img.shields.io/github/downloads/SMU-IS/SayLess/total)
 
-<img src="https://github.com/SMU-IS/SayLess/assets/54788382/56d85fc6-d134-471a-a05b-0bb2341b2aa1" alt="landing-banner" width="200" /> 
+<img src="https://github.com/SMU-IS/SayLess/assets/54788382/f64f7a5f-7d38-407e-ac14-13bb78f74bd4" alt="landing-banner" width="700" /> 
+<br />
 <br />
 <br />
 
-- [View Project](https://sayless.netlify.app)
+- [View Project](https://sayless.space)
 - [Report Bug](https://github.com/SMU-IS/SayLess/issues/new?assignees=&labels=&projects=&template=bug_report.md&title=)
 - [Request Feature](https://github.com/SMU-IS/SayLess/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=)
 
@@ -28,13 +29,20 @@
 
 Hosting
 
-- Frontend: [Netlify](https://netlify.com/)
-- Backend: [AWS](https://heroku.com)
+- Frontend: Custom Server
+- Backend: Custom Server
 
 CI/CD
 
 - Continuous Integration: GitHub Actions
 - Continuous Deployment: Automatic deployment triggered by GitHub pushes
+
+### APIs
+
+- [AI Receipt Data Extraction](https://www.edenai.co/feature/ocr-receipt-parsing-apis)
+- [Firebase Authentication](https://firebase.google.com/docs/auth)
+- [Super Cook Online Recipe Finder](https://github.com/pradnyalgandhi/SuperCook)
+- Other In-House APIs
 
 ## Getting Started
 
@@ -66,13 +74,13 @@ CI/CD
 
 ## Contact
 
-Joshua - cxang.2022@scis.smu.edu.sg  
+Joshua David Ang - cxang.2022@scis.smu.edu.sg  
 Project Link - https://sayless.netlify.app
 
 ## Acknowledgements
 
 Developers  
-[@Joshua](https://github.com/joshuadavidang)  
-[@Shawn](https://github.com/shawnkharece)  
-[@Derrick](https://github.com/derrick-lkh)  
-[@Bryan](https://github.com/bryantheball)
+[@Joshua David Ang](https://github.com/joshuadavidang)  
+[@Shawn Ng](https://github.com/shawnkharece)  
+[@Derrick Lim](https://github.com/derrick-lkh)  
+[@Bryan Chua](https://github.com/bryantheball)

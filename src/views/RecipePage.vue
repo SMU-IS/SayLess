@@ -2900,6 +2900,7 @@ export default {
     addPrompt(item) {
       this.tags.push(item);
       this.newTag = '';
+      this.addData();
     },
     addSuggestions(tag) {
       this.tags.push(tag);

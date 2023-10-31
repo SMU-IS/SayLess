@@ -98,6 +98,7 @@ export default {
             notimsg: message.message,
             room: message.chatroom,
           });
+          this.$store.dispatch('fetchChatRoomDetails');
         }
       });
     },

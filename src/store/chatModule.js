@@ -64,7 +64,7 @@ const chatModule = {
         return response.data;
       }
     },
-    async createChat(context, { chat }) {
+    async createChat(_, { chat }) {
       const token = JSON.parse(localStorage.getItem('user-data'));
       const apiURL = import.meta.env.VITE_CREATE_CHAT;
       const headers = {
@@ -89,7 +89,7 @@ const chatModule = {
       const response = await axios.post(apiURL, postData, { headers });
       return response.data.id;
     },
-    async readChat(context, chatroomId) {
+    async readChat(_, chatroomId) {
       const token = JSON.parse(localStorage.getItem('user-data'));
       const apiURL = import.meta.env.VITE_READ_CHAT;
       const headers = {

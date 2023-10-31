@@ -53,7 +53,8 @@ export default {
     },
   },
   watch: {
-    $route(to, from) {
+    $route() {
+      this.messages = [];
       this.chatId = this.$route.params.chatId;
       this.initializeSocket();
       this.fetchData(this.chatId);

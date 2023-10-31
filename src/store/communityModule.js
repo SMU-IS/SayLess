@@ -64,7 +64,7 @@ const communityModule = {
         context.commit('SET_COMMUNITY_SHARING_LISTINGS', strData);
       }
     },
-    async setRequest(context, { listingid }) {
+    async setRequest(_, { listingid }) {
       const token = JSON.parse(localStorage.getItem('user-data'));
       const apiURL = import.meta.env.VITE_SET_REQUEST;
       const headers = {
@@ -75,7 +75,7 @@ const communityModule = {
       };
       await axios.post(apiURL, postData, { headers });
     },
-    async closeListing(context, { listingid }) {
+    async closeListing(_, { listingid }) {
       const token = JSON.parse(localStorage.getItem('user-data'));
       const apiURL = import.meta.env.VITE_CLOSE_LISTING;
       const headers = {
@@ -85,7 +85,6 @@ const communityModule = {
         listingId: listingid,
       };
       await axios.post(apiURL, postData, { headers });
-      // console.log(response)
     },
     async postCommunityListings(_, data) {
       const apiURL = import.meta.env.VITE_POST_LISTING;

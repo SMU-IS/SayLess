@@ -75,8 +75,6 @@ const userModule = {
         }).then(() => {
           context.commit('SET_DISPLAY_NAME_MANUAL', name);
         });
-      } else {
-        throw new Error('Unable to register user');
       }
     },
     async authenticateUser(context, data) {
@@ -91,8 +89,6 @@ const userModule = {
       const response = await signInWithEmailAndPassword(auth, email, password);
       if (response) {
         context.commit('SET_USER', response.user);
-      } else {
-        throw new Error('login failed');
       }
     },
     async logout(context) {
@@ -107,8 +103,6 @@ const userModule = {
       const response = await signInWithPopup(auth, provider);
       if (response) {
         context.commit('SET_USER', response.user);
-      } else {
-        throw new Error('login failed');
       }
     },
   },

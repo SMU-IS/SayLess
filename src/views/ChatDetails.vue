@@ -30,6 +30,7 @@ import MessageInput from '@/components/Chat/MessageInput.vue';
 import ChatHeader from '@/components/Chat/ChatHeader.vue';
 import io from 'socket.io-client';
 import { mapGetters } from 'vuex';
+import { getResponse } from '@/helpers/getResponse';
 
 export default {
   name: 'ChatDetails',
@@ -105,7 +106,7 @@ export default {
       try {
         await this.$store.dispatch('closeListing', { listingid: listingid });
       } catch (err) {
-        throw err;
+        getResponse('error', err.message);
       }
 
       await this.sendMessage('Deal Closed');

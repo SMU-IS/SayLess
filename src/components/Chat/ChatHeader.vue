@@ -14,12 +14,12 @@
         </div>
         <div class="container w-2/4 text-center">
           <div class="owner-name text-center">
-            <h3 class="text-sm">{{ correspondentObj.name }}</h3>
+            <h3 class="text-sm">{{ correspondentObj?.name }}</h3>
           </div>
         </div>
         <div class="container w-1/4 flex justify-end">
           <img
-            :src="correspondentObj.profilePic"
+            :src="correspondentObj?.profilePic"
             alt="Owner's Picture"
             class="owner-picture w-8 h-8 float-right rounded-full border-white"
           />
@@ -27,51 +27,51 @@
       </div>
       <div v-if="specificListing" class="listing-content flex">
         <img
-          :src="specificListing.listingImages[0]"
+          :src="specificListing?.listingImages[0]"
           alt="Listing Picture"
           class="listing-picture w-16 h-16 object-cover"
         />
         <div class="container ms-4">
           <div class="listing-name">
             <p class="text-xs font-semibold mb-2">
-              {{ specificListing.listingTitle }}
+              {{ specificListing?.listingTitle }}
             </p>
           </div>
           <CustomButton
             v-if="
-              specificListing.isAvailable &&
-              getId !== specificListing.createdBy.id
+              specificListing?.isAvailable &&
+              getId !== specificListing?.createdBy?.id
             "
             size="small"
             roundness="round"
             :color="
-              specificListing.requested.some((obj) => obj.id === getId)
+              specificListing.requested.some((obj) => obj?.id === getId)
                 ? 'disabled'
                 : 'green'
             "
             :disabled="
-              specificListing.requested.some((obj) => obj.id === getId)
+              specificListing.requested.some((obj) => obj?.id === getId)
             "
             @click="requestItem"
             >{{ isLoading ? 'Loading...' : 'Request Item' }}</CustomButton
           >
           <CustomButton
             v-if="
-              specificListing.isAvailable &&
-              getId == specificListing.createdBy.id
+              specificListing?.isAvailable &&
+              getId == specificListing?.createdBy.id
             "
             size="small"
             roundness="round"
             :color="
               !specificListing.requested.some(
-                (obj) => obj.id === correspondentObj.id,
+                (obj) => obj?.id === correspondentObj?.id,
               )
                 ? 'disabled'
                 : 'green'
             "
             :disabled="
               !specificListing.requested.some(
-                (obj) => obj.id === correspondentObj.id,
+                (obj) => obj?.id === correspondentObj?.id,
               )
             "
             @click="closeDeal"
@@ -80,7 +80,7 @@
             }}</CustomButton
           >
           <CustomButton
-            v-if="!specificListing.isAvailable"
+            v-if="!specificListing?.isAvailable"
             size="small"
             roundness="round"
             color="gray"

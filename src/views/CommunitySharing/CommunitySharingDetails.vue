@@ -2,9 +2,7 @@
   <div
     class="pb-8 flex flex-col md:flex-row text-white justify-between items-center gap-4 lg:mb-44 mx-6 md:mx-12"
   >
-    <DetailsHeader @header-click="goBack"
-      >{{ details.title }}xxxx</DetailsHeader
-    >
+    <DetailsHeader @header-click="goBack">{{ details.title }}</DetailsHeader>
     <div class="w-full flex flex-col gap-5 md:flex-row md:mt-48">
       <div class="flex flex-col gap-6 mt-24 md:mt-0 w-full md:w-1/2">
         <div class="p-2 bg-transparent rounded-xl">
@@ -18,7 +16,6 @@
             </div>
           </div>
         </div>
-
         <div class="flex flex-col order-last gap-3">
           <p class="text-sm">{{ details?.lastPosted }}</p>
           <div class="flex items-center gap-3">

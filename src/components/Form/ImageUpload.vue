@@ -12,7 +12,7 @@
     <span v-if="showImageDropText">or</span>
     <div
       id="preview"
-      class="max-w-full rounded-lg shadow-md overflow-hidden max-h-[250px] items-center flex"
+      class="max-w-full rounded-lg shadow-md overflow-hidden max-h-[250px] flex justify-center items-center"
     >
       <img v-if="item.imageUrl" :src="item.imageUrl" />
     </div>

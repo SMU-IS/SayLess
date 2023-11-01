@@ -5,12 +5,12 @@
 ![Pull Request](https://img.shields.io/github/issues-pr/SMU-IS/SayLess)
 ![Release Badge](https://img.shields.io/github/downloads/SMU-IS/SayLess/total)
 
-<img src="https://github.com/SMU-IS/SayLess/assets/54788382/f64f7a5f-7d38-407e-ac14-13bb78f74bd4" alt="landing-banner" width="700" /> 
+<img src="https://github.com/SMU-IS/SayLess/assets/54788382/5d8caf04-6a27-4411-9fd5-1c15b54c0382" alt="landing-banner" width="555" /> 
 <br />
 <br />
 <br />
 
-- [View Project](https://sayless.space)
+- [View Project](http://sayless.space)
 - [Report Bug](https://github.com/SMU-IS/SayLess/issues/new?assignees=&labels=&projects=&template=bug_report.md&title=)
 - [Request Feature](https://github.com/SMU-IS/SayLess/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=)
 
@@ -69,13 +69,13 @@ CI/CD
 4. Run the project in development environment
 
    ```
-   npm run serve
+   npm run dev
    ```
 
 ## Contact
 
 Joshua David Ang - cxang.2022@scis.smu.edu.sg  
-Project Link - https://sayless.netlify.app
+Project Link - http://sayless.space
 
 ## Acknowledgements
 

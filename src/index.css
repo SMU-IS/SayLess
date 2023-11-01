@@ -4,7 +4,7 @@
 
 @layer base {
   * {
-    word-break: break-word !important;
+    word-break: break-word;
   }
 
   html {

@@ -8,6 +8,8 @@
         :messages="messages"
         :listing-id="details.listing[0].id"
         :correspondent-obj="correspondentObj"
+        :is-loading="isLoading"
+        :is-loading-close-deal="isLoadingCloseDeal"
         @request="updateReqFlag"
         @close="updateAvailableFlag"
       />
@@ -44,6 +46,8 @@ export default {
       listingId: '',
       correspondentObj: Object,
       details: [],
+      isLoading: false,
+      isLoadingCloseDeal: false,
     };
   },
   computed: {
@@ -80,28 +84,32 @@ export default {
         .padStart(2, '0')}`;
     },
 
-    sendMessage(message) {
+    async sendMessage(message) {
       let currentTime = new Date();
       currentTime = currentTime.toISOString();
-      this.socket.emit('chat message', {
+      await this.socket.emit('chat message', {
         chatroom: this.chatId,
         message: message,
         timestamp: currentTime,
       });
     },
-    updateReqFlag(listingid) {
-      this.$store.dispatch('setRequest', { listingid: listingid });
-      this.sendMessage('Requested');
+    async updateReqFlag(listingid) {
+      this.isLoading = true;
+      await this.$store.dispatch('setRequest', { listingid: listingid });
+      await this.sendMessage('Requested');
+      this.isLoading = false;
       this.$store.getters.getCommunityListings;
     },
     async updateAvailableFlag(listingid) {
+      this.isLoadingCloseDeal = true;
       try {
         await this.$store.dispatch('closeListing', { listingid: listingid });
       } catch (err) {
         throw err;
       }
 
-      this.sendMessage('Deal Closed');
+      await this.sendMessage('Deal Closed');
+      this.isLoadingCloseDeal = false;
       this.$store.getters.getCommunityListings;
     },
 

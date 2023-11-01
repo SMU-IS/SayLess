@@ -44,12 +44,16 @@
             "
             size="small"
             roundness="round"
-            color="green"
+            :color="
+              specificListing.requested.some((obj) => obj.id === getId)
+                ? 'disabled'
+                : 'green'
+            "
             :disabled="
               specificListing.requested.some((obj) => obj.id === getId)
             "
             @click="requestItem"
-            >Request Item</CustomButton
+            >{{ isLoading ? 'Loading...' : 'Request Item' }}</CustomButton
           >
           <CustomButton
             v-if="
@@ -58,14 +62,22 @@
             "
             size="small"
             roundness="round"
-            color="green"
+            :color="
+              !specificListing.requested.some(
+                (obj) => obj.id === correspondentObj.id,
+              )
+                ? 'disabled'
+                : 'green'
+            "
             :disabled="
               !specificListing.requested.some(
                 (obj) => obj.id === correspondentObj.id,
               )
             "
             @click="closeDeal"
-            >Close Deal</CustomButton
+            >{{
+              isLoadingCloseDeal ? 'Loading...' : 'Close Deal'
+            }}</CustomButton
           >
           <CustomButton
             v-if="!specificListing.isAvailable"
@@ -103,6 +115,14 @@ export default {
     },
     correspondentObj: {
       type: Object,
+      required: true,
+    },
+    isLoading: {
+      type: Boolean,
+      required: true,
+    },
+    isLoadingCloseDeal: {
+      type: Boolean,
       required: true,
     },
   },

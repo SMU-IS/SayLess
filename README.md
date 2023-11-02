@@ -29,8 +29,8 @@
 
 Hosting
 
-- Frontend: Custom Server
-- Backend: Custom Server
+- Frontend: AWS
+- Backend: AWS
 
 CI/CD
 

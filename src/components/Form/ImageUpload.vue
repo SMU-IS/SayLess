@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import { processImage } from '@/helpers/common';
+
 export default {
   name: 'ImageUploader',
   emits: ['image-changed'],
@@ -55,66 +57,28 @@ export default {
     onChange(e) {
       const file = e.target.files[0];
       this.image = file;
-      this.item.imageUrl = URL.createObjectURL(file);
       this.showImageDropText = false;
       this.changeImage = true;
 
       if (file) {
-        const reader = new FileReader();
-        reader.onload = () => {
-          const img = new Image();
-          img.onload = () => {
-            const MAX_WIDTH = 800;
-            const MAX_HEIGHT = 600;
-
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-
-            let width = img.width;
-            let height = img.height;
-
-            if (width > height) {
-              if (width > MAX_WIDTH) {
-                height *= MAX_WIDTH / width;
-                width = MAX_WIDTH;
-              }
-            } else {
-              if (height > MAX_HEIGHT) {
-                width *= MAX_HEIGHT / height;
-                height = MAX_HEIGHT;
-              }
-            }
-
-            canvas.width = width;
-            canvas.height = height;
-            ctx.drawImage(img, 0, 0, width, height);
-
-            const compressedImageUrl = canvas.toDataURL('image/jpeg', 0.7);
-
-            this.item.imageUrl = compressedImageUrl;
-            this.$emit('image-changed', this.item.imageUrl);
-          };
-
-          img.src = reader.result;
-        };
-
-        reader.readAsDataURL(file);
+        processImage(file, (compressedImageUrl) => {
+          this.item.imageUrl = compressedImageUrl;
+          this.$emit('image-changed', this.item.imageUrl);
+        });
       }
-      this.showImageDropText = false;
-      this.changeImage = true;
     },
     handleDrop(event) {
       event.preventDefault();
       const droppedFiles = event.dataTransfer.files;
       if (droppedFiles.length > 0) {
         const file = droppedFiles[0];
-        const reader = new FileReader();
-        reader.onload = () => {
-          this.item.imageUrl = reader.result;
-        };
-        reader.readAsDataURL(file);
         this.showImageDropText = false;
         this.changeImage = true;
+
+        processImage(file, (compressedImageUrl) => {
+          this.item.imageUrl = compressedImageUrl;
+          this.$emit('image-changed', this.item.imageUrl);
+        });
       }
     },
   },

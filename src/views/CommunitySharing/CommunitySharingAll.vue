@@ -22,7 +22,7 @@
           @click="getItemDetails(item?.id)"
         >
           <div
-            class="h-full w-32 md:h-48 lg:h-60 md:w-full flex-none bg-cover rounded-l md:rounded-l-none md:rounded-t text-center overflow-hidden"
+            class="h-full w-32 md:h-48 lg:h-60 xl:h-72 md:w-full flex-none bg-cover rounded-l md:rounded-l-none md:rounded-t text-center overflow-hidden"
             :style="'background-image: url(' + item?.listingImages[0] + ')'"
           ></div>
 

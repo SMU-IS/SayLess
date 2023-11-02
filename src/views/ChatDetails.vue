@@ -4,10 +4,12 @@
       class="chat-container d-flex flex flex-col w-full md:w-3/4 h-screen py-8 bg-main-dark md:rounded-xl md:h-[80vh]"
     >
       <ChatHeader
-        v-if="details.listing"
+        v-if="details?.listing"
         :messages="messages"
-        :listing-id="details.listing[0].id"
+        :listing-id="details?.listing[0]?.id"
         :correspondent-obj="correspondentObj"
+        :is-loading="isLoading"
+        :is-loading-close-deal="isLoadingCloseDeal"
         @request="updateReqFlag"
         @close="updateAvailableFlag"
       />
@@ -15,7 +17,7 @@
         v-if="messages.length !== 0"
         ref="messageList"
         :messages="messages"
-        :listing-id="details.listing[0].id"
+        :listing-id="details?.listing[0]?.id"
       />
       <MessageInput :messages="messages" @send="sendMessage" />
     </div>
@@ -28,6 +30,7 @@ import MessageInput from '@/components/Chat/MessageInput.vue';
 import ChatHeader from '@/components/Chat/ChatHeader.vue';
 import io from 'socket.io-client';
 import { mapGetters } from 'vuex';
+import { getResponse } from '@/helpers/getResponse';
 
 export default {
   name: 'ChatDetails',
@@ -44,12 +47,14 @@ export default {
       listingId: '',
       correspondentObj: Object,
       details: [],
+      isLoading: false,
+      isLoadingCloseDeal: false,
     };
   },
   computed: {
     ...mapGetters(['getUserDetails']),
     getId() {
-      return this.getUserDetails?.userData.id;
+      return this.getUserDetails?.userData?.id;
     },
   },
   watch: {
@@ -80,28 +85,32 @@ export default {
         .padStart(2, '0')}`;
     },
 
-    sendMessage(message) {
+    async sendMessage(message) {
       let currentTime = new Date();
       currentTime = currentTime.toISOString();
-      this.socket.emit('chat message', {
+      await this.socket.emit('chat message', {
         chatroom: this.chatId,
         message: message,
         timestamp: currentTime,
       });
     },
-    updateReqFlag(listingid) {
-      this.$store.dispatch('setRequest', { listingid: listingid });
-      this.sendMessage('Requested');
+    async updateReqFlag(listingid) {
+      this.isLoading = true;
+      await this.$store.dispatch('setRequest', { listingid: listingid });
+      await this.sendMessage('Requested');
+      this.isLoading = false;
       this.$store.getters.getCommunityListings;
     },
     async updateAvailableFlag(listingid) {
+      this.isLoadingCloseDeal = true;
       try {
         await this.$store.dispatch('closeListing', { listingid: listingid });
       } catch (err) {
-        throw err;
+        getResponse('error', err.message);
       }
 
-      this.sendMessage('Deal Closed');
+      await this.sendMessage('Deal Closed');
+      this.isLoadingCloseDeal = false;
       this.$store.getters.getCommunityListings;
     },
 
@@ -135,7 +144,8 @@ export default {
 
     initializeSocket() {
       const token = JSON.parse(localStorage.getItem('user-data'));
-      this.socket = io('ws://54.252.152.169:8887', {
+      const apiURL = import.meta.env.VITE_CHAT_SOCKET;
+      this.socket = io(apiURL, {
         extraHeaders: {
           'x-access-token': token?.['x-access-token'],
         },

@@ -125,9 +125,9 @@ export default {
               email: this.email,
               password: this.password,
             });
-            this.$router.push('/');
+            await this.authenticateUser_Manual();
             getResponse('success', `Welcome, ${this.email}`);
-            this.authenticateUser_Manual();
+            this.$router.push('/');
           } catch (err) {
             this.isLoading = false;
             getResponse('error', getErrorMessage(err.message));

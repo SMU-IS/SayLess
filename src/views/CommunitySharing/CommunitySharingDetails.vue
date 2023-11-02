@@ -3,7 +3,6 @@
     class="pb-8 flex flex-col md:flex-row text-white justify-between items-center gap-4 lg:mb-44 mx-6 md:mx-12"
   >
     <DetailsHeader @header-click="goBack">{{ details.title }}</DetailsHeader>
-
     <div class="w-full flex flex-col gap-5 md:flex-row md:mt-48">
       <div class="flex flex-col gap-6 mt-24 md:mt-0 w-full md:w-1/2">
         <div class="p-2 bg-transparent rounded-xl">
@@ -17,10 +16,8 @@
             </div>
           </div>
         </div>
-
         <div class="flex flex-col order-last gap-3">
           <p class="text-sm">{{ details?.lastPosted }}</p>
-
           <div class="flex items-center gap-3">
             <div v-if="details.profilePic" class="avatar">
               <div class="w-8 rounded-full">
@@ -38,7 +35,6 @@
             <p v-if="details?.profilePic" class="text-sm">
               {{ details.name }}
             </p>
-
             <p v-else class="text-white text-sm">
               {{ details?.name?.split('@')[0] }}
             </p>
@@ -88,8 +84,10 @@
             roundness="round"
             color="green"
             @click="createChatRoom"
-            >Chat to Deal</CustomButton
           >
+            <span v-if="isLoading"> <CustomLoader color="white" /> </span>
+            <span v-else> Chat to Deal </span>
+          </CustomButton>
         </div>
       </div>
     </div>
@@ -102,15 +100,17 @@ import CustomButton from '@/components/Button/CustomButton.vue';
 import CustomCard from '@/components/Card/CustomCard.vue';
 import { mapActions, mapGetters } from 'vuex';
 import { calculateTimeSincePosted } from '@/helpers/common';
+import CustomLoader from '@/components/Loader/CustomLoader.vue';
 
 export default {
   name: 'CommunitySharingDetails',
-  components: { DetailsHeader, CustomButton, CustomCard },
+  components: { DetailsHeader, CustomButton, CustomCard, CustomLoader },
   data() {
     return {
       details: [],
       chatrooms: [],
       listingId: '',
+      isLoading: false,
     };
   },
   computed: {
@@ -190,6 +190,7 @@ export default {
       }
     },
     createChatRoom() {
+      this.isLoading = true;
       const participants = [
         this.getUserDetails.userData.id,
         this.details.createdId,
@@ -219,6 +220,7 @@ export default {
             }
           };
           waitForLengthIncrease();
+          this.isLoading = false;
         });
     },
   },

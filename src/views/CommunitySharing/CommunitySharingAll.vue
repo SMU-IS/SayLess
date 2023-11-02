@@ -76,9 +76,9 @@
       <div
         class="btn text-white bg-green hover:bg-green-dark border-0 shadow-xl"
       >
-        <div class="flex flex-row">
-          <PlusIcon class="w-6 h-6 stroke-2 text-white mr-2" />
-          <p>Add Listing</p>
+        <div class="flex flex-row items-center">
+          <PlusIcon class="w-5 h-5 stroke-2 text-white mr-2" />
+          <p class="text-sm">Add Listing</p>
         </div>
       </div>
     </div>

@@ -4,9 +4,9 @@
       class="chat-container d-flex flex flex-col w-full md:w-3/4 h-screen py-8 bg-main-dark md:rounded-xl md:h-[80vh]"
     >
       <ChatHeader
-        v-if="details.listing"
+        v-if="details?.listing"
         :messages="messages"
-        :listing-id="details.listing[0].id"
+        :listing-id="details?.listing[0]?.id"
         :correspondent-obj="correspondentObj"
         :is-loading="isLoading"
         :is-loading-close-deal="isLoadingCloseDeal"
@@ -17,7 +17,7 @@
         v-if="messages.length !== 0"
         ref="messageList"
         :messages="messages"
-        :listing-id="details.listing[0].id"
+        :listing-id="details?.listing[0]?.id"
       />
       <MessageInput :messages="messages" @send="sendMessage" />
     </div>
@@ -54,7 +54,7 @@ export default {
   computed: {
     ...mapGetters(['getUserDetails']),
     getId() {
-      return this.getUserDetails?.userData.id;
+      return this.getUserDetails?.userData?.id;
     },
   },
   watch: {

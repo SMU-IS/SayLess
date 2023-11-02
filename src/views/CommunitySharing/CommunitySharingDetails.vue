@@ -4,13 +4,13 @@
   >
     <DetailsHeader @header-click="goBack">{{ details.title }}</DetailsHeader>
     <div class="w-full flex flex-col gap-5 md:flex-row md:mt-48">
-      <div class="flex flex-col gap-6 mt-24 md:mt-0 w-full md:w-1/2">
+      <div class="flex flex-col gap-6 mt-24 md:mt-0 w-full md:w-1/3">
         <div class="p-2 bg-transparent rounded-xl">
           <div class="carousel w-full rounded-box">
             <div
               v-for="imgData in details?.allImages"
               :key="imgData?.id"
-              class="carousel-item w-full h-72"
+              class="carousel-item w-full h-96"
             >
               <img :src="imgData" class="w-full object-cover" />
             </div>
@@ -42,7 +42,7 @@
         </div>
       </div>
 
-      <div class="w-full md:w-1/2 mt-3 md:mt-0">
+      <div class="w-full md:w-2/3 mt-3 md:mt-0">
         <div class="p-2 bg-transparent rounded-xl">
           <CustomCard background="gray" width="full" class="mb-4">
             <div class="flex flex-col text-left gap-1">
@@ -53,7 +53,7 @@
             </div>
           </CustomCard>
 
-          <CustomCard background="gray" width="full">
+          <CustomCard background="gray" width="full" class="mb-4">
             <div class="flex flex-col text-left gap-1">
               <p class="text-gray text-xl">Description</p>
               <p class="text-black-light pb-10">

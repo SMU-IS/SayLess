@@ -3,7 +3,7 @@
     class="flex md:flex-row flex-col md:gap-12 md:justify-start justify-between h-screen"
   >
     <img
-      src="../assets/Onboard.png"
+      src="../assets/Reusable/Onboard.png"
       class="h-[60vh] md:h-screen md:w-[50vw] object-cover"
     />
 

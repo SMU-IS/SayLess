@@ -32,7 +32,6 @@ import NavBar from '@/components/NavBar/NavBar.vue';
 import DesktopNavBar from '@/components/NavBar/DesktopNavBar.vue';
 import CustomFooter from '@/components/Footer/CustomFooter.vue';
 import AlertComponent from '@/components/Notification/AlertComponent.vue';
-import io from 'socket.io-client';
 
 export default {
   components: { NavBar, DesktopNavBar, CustomFooter, AlertComponent },
@@ -76,32 +75,8 @@ export default {
     },
   },
   mounted() {
-    this.initializeSocket();
+    this.$store.dispatch('initializeSocket');
   },
-  methods: {
-    initializeSocket() {
-      const token = JSON.parse(localStorage.getItem('user-data'));
-      const apiURL = import.meta.env.VITE_CHAT_SOCKET;
-      this.socket = io(apiURL, {
-        extraHeaders: {
-          'x-access-token': token?.['x-access-token'],
-        },
-      });
-
-      this.socket.on('connected', () => {
-        this.socket.emit('chatNotification', {});
-      });
-      this.socket.on('notiMessage', (event) => {
-        let message = event;
-        if (this.$route.params.chatId != message.chatroom) {
-          this.$store.dispatch('showNotification', {
-            notimsg: message.message,
-            room: message.chatroom,
-          });
-          this.$store.dispatch('fetchChatRoomDetails');
-        }
-      });
-    },
-  },
+  methods: {},
 };
 </script>

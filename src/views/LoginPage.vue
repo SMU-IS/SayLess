@@ -114,9 +114,8 @@ export default {
             password: this.password,
           });
           await this.authenticateUser();
-
-          this.$router.push('/');
           getResponse('success', `Welcome, ${this.email}!`);
+          this.$router.push('/');
         } catch (err) {
           this.isLoading = false;
           getResponse('error', getErrorMessage(err.message));

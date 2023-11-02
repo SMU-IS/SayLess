@@ -81,7 +81,8 @@ export default {
   methods: {
     initializeSocket() {
       const token = JSON.parse(localStorage.getItem('user-data'));
-      this.socket = io('ws://54.252.152.169:8887', {
+      const apiURL = import.meta.env.VITE_CHAT_SOCKET;
+      this.socket = io(apiURL, {
         extraHeaders: {
           'x-access-token': token?.['x-access-token'],
         },

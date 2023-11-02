@@ -6,9 +6,9 @@
     <div v-else>
       <div
         v-for="chat in selectedChat"
-        :key="chat.id"
+        :key="chat?.id"
         class="chat-item cursor-pointer"
-        @click="viewChat(chat.id)"
+        @click="viewChat(chat?.id)"
       >
         <div
           class="chatContent flex items-center p-2 border-b border-transparent"
@@ -23,15 +23,15 @@
               {{ getCorrespondentName(chat) }}
             </p>
             <h4 v-if="chat.listing" class="text-white text-base">
-              {{ chat.listing[0].listingTitle }}
+              {{ chat?.listing[0]?.listingTitle }}
               <span
-                v-if="chat.unread_msg.length >= 1"
+                v-if="chat?.unread_msg?.length >= 1"
                 class="inline-flex items-center justify-center w-6 h-6 ml-2 text-xs font-semibold text-white bg-gradient-header rounded-full float-right me-4"
-                >{{ chat.unread_msg.length }}</span
+                >{{ chat?.unread_msg.length }}</span
               >
             </h4>
-            <p v-if="chat.latest_msg[0]" class="text-white-light text-sm">
-              {{ chat.latest_msg[0].message.slice(0, 200) }}
+            <p v-if="chat?.latest_msg[0]" class="text-white-light text-sm">
+              {{ chat?.latest_msg[0]?.message?.slice(0, 200) }}
             </p>
             <p v-else class="text-white-light text-sm">No messages yet.</p>
           </div>

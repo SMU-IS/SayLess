@@ -59,6 +59,7 @@
           roundness="full"
           color="green"
           size="small"
+          @click="toggleEdit"
         >
           <div class="flex flex-row gap-1.5">
             <p class="md:text-center text-sm text-white">Edit</p>
@@ -81,17 +82,39 @@
               :key="grocery?.id"
               background="white"
               width="full"
-              @click="deleteItem(grocery?.id)"
             >
               <div class="flex flex-row justify-between items-center">
-                <div class="flex flex-col">
-                  <p class="text-white-light">Item</p>
-                  <p>{{ grocery?.itemName }}</p>
+                <div
+                  v-if="showDelete"
+                  class="w-10 cursor-pointer relative"
+                  @click="deleteItem(grocery?.id)"
+                >
+                  <TrashIcon
+                    :class="isBounce == grocery?.id ? 'animate-bounce' : ''"
+                    class="text-red w-5"
+                  />
+                  <div
+                    class="absolute w-full h-full top-0 left-0"
+                    @mouseover="
+                      () => {
+                        isBounce = grocery?.id;
+                      }
+                    "
+                    @mouseout="
+                      () => {
+                        isBounce = '';
+                      }
+                    "
+                  ></div>
+                </div>
+                <div class="flex flex-col flex-1">
+                  <p class="text-sm text-white-light">Item</p>
+                  <p class="text-black-light">{{ grocery?.itemName }}</p>
                 </div>
 
                 <div class="flex flex-col">
                   <p class="text-white-light">Expiry Date</p>
-                  <p class="text-red">{{ grocery?.expiry }}</p>
+                  <p class="text-black-light">{{ grocery?.expiry }}</p>
                 </div>
               </div>
             </CustomCard>
@@ -121,7 +144,7 @@
 import ParentHeader from '@/components/NavBar/ParentHeader.vue';
 import CustomCard from '@/components/Card/CustomCard.vue';
 import CustomButton from '@/components/Button/CustomButton.vue';
-import { PencilSquareIcon } from '@heroicons/vue/24/outline';
+import { PencilSquareIcon, TrashIcon } from '@heroicons/vue/24/outline';
 import FormModal from '@/components/Modal/FormModal.vue';
 import UploadReceiptModal from '@/components/Modal/UploadReceiptModal.vue';
 import { openModal } from '@/helpers/common';
@@ -135,9 +158,16 @@ export default {
     CustomCard,
     CustomButton,
     PencilSquareIcon,
+    TrashIcon,
     FormModal,
     UploadReceiptModal,
     CustomLoader,
+  },
+  data() {
+    return {
+      showDelete: false,
+      isBounce: '',
+    };
   },
   computed: {
     ...mapGetters(['getInventoryData', 'getQuestData', 'getUserDetails']),
@@ -163,6 +193,9 @@ export default {
       };
       await this.$store.dispatch('handleRemoveItem', data);
       this.fetchInventory();
+    },
+    toggleEdit() {
+      this.showDelete = this.showDelete ? false : true;
     },
   },
 };

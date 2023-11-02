@@ -14,7 +14,7 @@
       >
         <div class="flex h-full">
           <div class="bg-gray-800 h-full w-6/12 overflow-hidden">
-            <img :src="item.img" class="w-full" />
+            <img :src="item.img" class="min-w-full min-h-full object-cover" />
           </div>
           <div class="p-3 py-2 w-6/12">
             <h3 class="text-lg font-regular text-slate-700 leading-5">

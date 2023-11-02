@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- <transition name="fade" mode="out-in"> -->
     <transition>
       <div
         v-if="getNotificationVisibilty"
@@ -20,12 +19,18 @@
           ></path>
         </svg>
         <div class="text-left">
-          <h3 class="font-bold text-sm">{{ getNotificationMessage }}</h3>
+          <h3 class="font-bold text-sm">
+            {{ getNotificationMessage }}
+          </h3>
           <div class="text-xs">Go to chat now!</div>
         </div>
         <div class="grid-rows-2">
-          <button class="btn btn-xs" @click="closeAlert">Close</button>
-          <button class="btn btn-xs btn-primary" @click="goChat">Chat</button>
+          <CustomButton color="ghost" size="small" @click="closeAlert"
+            >Close</CustomButton
+          >
+          <CustomButton color="gradient" size="small" @click="goChat"
+            >Chat</CustomButton
+          >
         </div>
       </div>
     </transition>
@@ -34,9 +39,11 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import CustomButton from '@/components/Button/CustomButton.vue';
 
 export default {
   name: 'AlertComponent',
+  components: { CustomButton },
   props: {
     showElement: Boolean,
   },

@@ -9,7 +9,7 @@
       <div
         v-for="(prompt, index) in prompts"
         :key="index"
-        class="text-sm bg-gray-300 rounded-md text-center text-white bg-opacity-20 p-4 mb-3 w-3/4 mx-auto"
+        class="text-sm bg-gray-300 rounded-md text-center text-white bg-opacity-20 p-4 mb-3 w-3/4 mx-auto cursor-pointer"
         @click="selectPrompt(prompt)"
       >
         {{ prompt }}

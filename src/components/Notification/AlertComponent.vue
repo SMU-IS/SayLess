@@ -22,6 +22,7 @@
           ></path>
         </svg>
         <div class="text-left">
+          {{ startHideCountDown() }}
           <h3 class="font-bold text-sm">
             {{ getNotificationMessage }}
           </h3>
@@ -69,6 +70,11 @@ export default {
     goChat() {
       this.$router.push('/message/' + this.getNotificationRoom);
       this.$store.dispatch('hideNotification');
+    },
+    startHideCountDown() {
+      setTimeout(() => {
+        this.closeAlert();
+      }, 3000);
     },
   },
 };

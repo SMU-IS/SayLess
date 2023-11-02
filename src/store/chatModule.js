@@ -1,4 +1,5 @@
 import axios from 'axios';
+import io from 'socket.io-client';
 
 const chatModule = {
   state: {
@@ -99,6 +100,26 @@ const chatModule = {
         chatroomId: chatroomId,
       };
       await axios.post(apiURL, postData, { headers });
+    },
+    initializeSocket(context) {
+      const token = JSON.parse(localStorage.getItem('user-data'));
+      const apiURL = import.meta.env.VITE_CHAT_SOCKET;
+      this.socket = io(apiURL, {
+        extraHeaders: {
+          'x-access-token': token?.['x-access-token'],
+        },
+      });
+      this.socket.on('connected', () => {
+        this.socket.emit('chatNotification', {});
+      });
+      this.socket.on('notiMessage', (event) => {
+        let message = event;
+        context.dispatch('showNotification', {
+          notimsg: message.message,
+          room: message.chatroom,
+        });
+        context.dispatch('fetchChatRoomDetails');
+      });
     },
   },
 };

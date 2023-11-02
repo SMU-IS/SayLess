@@ -83,6 +83,7 @@ const userModule = {
       if (response) {
         const strData = JSON.stringify(response.data);
         context.commit('SET_USER_DETAILS', strData);
+        context.dispatch('initializeSocket');
       }
     },
     async login(context, { email, password }) {

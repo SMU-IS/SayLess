@@ -2,7 +2,10 @@
   <div>
     <transition>
       <div
-        v-if="getNotificationVisibilty"
+        v-if="
+          getNotificationVisibilty &&
+          $route.params.chatId != getNotificationRoom
+        "
         class="alert shadow-lg flex flex-wrap justify-center"
       >
         <svg

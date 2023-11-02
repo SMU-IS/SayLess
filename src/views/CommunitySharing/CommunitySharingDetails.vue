@@ -56,7 +56,7 @@
           <CustomCard background="gray" width="full" class="mb-4">
             <div class="flex flex-col text-left gap-1">
               <p class="text-gray text-xl">Description</p>
-              <p class="text-black-light pb-10">
+              <p class="text-black-light pb-10 whitespace-break-spaces">
                 {{ details?.details }}
               </p>
             </div>

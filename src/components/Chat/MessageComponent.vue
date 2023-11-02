@@ -5,7 +5,7 @@
         {{ sender.name }}
       </p>
     </div>
-    <div :class="chatColor">{{ message }}</div>
+    <div :class="chatColor" class="whitespace-break-spaces">{{ message }}</div>
     <div class="chat-footer text-white">
       <time class="text-xs opacity-50">{{ formatTimestamp(timestamp) }}</time>
     </div>

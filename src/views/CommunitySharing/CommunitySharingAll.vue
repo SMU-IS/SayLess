@@ -105,12 +105,12 @@ export default {
   computed: {
     ...mapGetters(['getCommunityListings', 'getUserDetails']),
     communityListings() {
-      const availableListings = this.getCommunityListings.filter(
+      const availableListings = this.getCommunityListings?.filter(
         (item) => item?.isAvailable === true,
       );
       if (this.dataField) {
-        return availableListings.filter((item) => {
-          return item.listingTitle
+        return availableListings?.filter((item) => {
+          return item?.listingTitle
             .toLowerCase()
             .includes(this.dataField.toLowerCase());
         });

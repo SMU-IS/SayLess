@@ -68,7 +68,7 @@ export default {
       this.$store.dispatch('hideNotification');
     },
     goChat() {
-      this.$router.push('/message/' + this.getNotificationRoom);
+      this.$router.push('/message');
       this.$store.dispatch('hideNotification');
     },
     startHideCountDown() {

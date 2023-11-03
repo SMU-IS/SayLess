@@ -114,9 +114,9 @@ export default {
       this.$store.getters.getCommunityListings;
     },
 
-    async fetchData(chatid) {
+    fetchData(chatid) {
       if (chatid) {
-        const data = await this.$store.getters.getChatRooms;
+        const data = this.$store.getters.getChatRooms;
         if (data) {
           const selectedChatRoom = data.find((item) => item.id === chatid);
           if (selectedChatRoom) {

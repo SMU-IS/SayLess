@@ -5,8 +5,7 @@
 ![Pull Request](https://img.shields.io/github/issues-pr/SMU-IS/SayLess)
 ![Release Badge](https://img.shields.io/github/downloads/SMU-IS/SayLess/total)
 
-<img src="https://github.com/SMU-IS/SayLess/assets/54788382/f64f7a5f-7d38-407e-ac14-13bb78f74bd4" alt="landing-banner" width="700" /> 
-<br />
+<img src="https://github.com/SMU-IS/SayLess/assets/54788382/56d4b2c4-2afc-438a-b54e-b65967df0853" alt="landing-banner" width="700" /> 
 <br />
 <br />
 

@@ -15,7 +15,7 @@ const recipeModule = {
       return state.user.recipeListings;
     },
     getRecipePrompt(state) {
-      return state.user.recipePrompt.splice(0, 10);
+      return state.user.recipePrompt?.splice(0, 10);
     },
     getIngredient(state) {
       return state.user.recipeIngredients;

@@ -17,7 +17,7 @@
             />
 
             <ul
-              v-if="newTag.length > 0"
+              v-if="newTag?.length"
               class="max-h-80 overflow-scroll absolute top-100 left-0 w-full z-10"
             >
               <template v-for="(catPrompt, category) in prompt" :key="category">

@@ -17,7 +17,7 @@
         v-if="messages.length !== 0"
         ref="messageList"
         :messages="messages"
-        :listing-id="details?.listing[0]?.id"
+        :listing-id="details?.listing?.[0]?.id"
       />
       <MessageInput :messages="messages" @send="sendMessage" />
     </div>

@@ -27,7 +27,7 @@
       </div>
       <div v-if="specificListing" class="listing-content flex">
         <img
-          :src="specificListing?.listingImages[0]"
+          :src="specificListing?.listingImages?.[0]"
           alt="Listing Picture"
           class="listing-picture w-16 h-16 object-cover"
         />
@@ -130,6 +130,7 @@ export default {
   computed: {
     ...mapGetters(['getCommunityListings', 'getUserDetails']),
     specificListing() {
+      this.$store.dispatch('fetchCommunityListings');
       const listing = this.getCommunityListings.find(
         (listing) => listing.id === this.listingId,
       );

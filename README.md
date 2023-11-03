@@ -74,11 +74,11 @@ CI/CD
 ## Contact
 
 Joshua David Ang - cxang.2022@scis.smu.edu.sg  
-Project Link - https://sayless.netlify.app
+Project Link - http://sayless.space
 
 ## Acknowledgements
 
-Developers  
+G4T7
 [@Joshua David Ang](https://github.com/joshuadavidang)  
 [@Shawn Ng](https://github.com/shawnkharece)  
 [@Derrick Lim](https://github.com/derrick-lkh)  

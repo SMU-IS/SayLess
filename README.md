@@ -1,31 +1,49 @@
-# SAYLESS
+## Project SayLess
 
-A gamified web application connecting people to reduce food wastage by sharing excess food, and providing a platform for inventory management
+![Contributors](https://img.shields.io/github/contributors/SMU-IS/SayLess)
+![Issue](https://img.shields.io/github/issues/SMU-IS/SayLess)
+![Pull Request](https://img.shields.io/github/issues-pr/SMU-IS/SayLess)
+![Release Badge](https://img.shields.io/github/downloads/SMU-IS/SayLess/total)
 
-## Credentials to login to the app:
+<img src="https://github.com/SMU-IS/SayLess/assets/54788382/56d4b2c4-2afc-438a-b54e-b65967df0853" alt="landing-banner" width="700" /> 
+<br />
+<br />
 
-`Email: demo@gmail.com`
-`Password: P@ssw0rd`
+- [View Project](http://sayless.space)
+- [Report Bug](https://github.com/SMU-IS/SayLess/issues/new?assignees=&labels=&projects=&template=bug_report.md&title=)
+- [Request Feature](https://github.com/SMU-IS/SayLess/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=)
 
-##### Feature Includes
+## Tech Stack
 
-- Users can scan supermarket receipts to add items into their food inventory.
-- Users can search for recipes based on the ingredients they have in their inventory
-- A community sharing page for users to list/get free food items from the community
-- They can complete missions to reduce food waste and win vouchers
+### Frontend
 
-## Project Links
+- Framework: [Vue.js](https://vuejs.org/) + [Vite](https://vitejs.dev)
+- CSS: [Tailwind CSS](https://tailwindcss.com) + [DaisyUI](https://daisyui.com/)
 
-Deployed to cloud: `http://sayless.space`
-Client Git Repo: `https://github.com/SMU-IS/SayLess.git`
-Server Git Repo: `https://github.com/SMU-IS/SayLess-Server.git`
+### Backend
 
-##### Tested on
+- Framework: [Express.js](https://expressjs.com/)
 
-NPM Version - `9.8.0`
-Node Version - `v20.5.1`
+### Deployment
 
-## To run the front-end app,
+Hosting
+
+- Frontend: [AWS](https://aws.amazon.com)
+- Backend: [AWS](https://aws.amazon.com)
+
+CI/CD
+
+- Continuous Integration: GitHub Actions
+- Continuous Deployment: Automatic deployment triggered by GitHub pushes
+
+### APIs
+
+- [AI Receipt Data Extraction](https://www.edenai.co/feature/ocr-receipt-parsing-apis)
+- [Firebase Authentication](https://firebase.google.com/docs/auth)
+- [Super Cook Online Recipe Finder](https://github.com/pradnyalgandhi/SuperCook)
+- Other In-House APIs
+
+## Getting Started
 
 1. Clone the project
 
@@ -42,81 +60,26 @@ Node Version - `v20.5.1`
 3. Update environment variables
 
    - Create `.env.local` at the project root folder
-   - Add in the these lines of code
+   - Update the environment variables
+   - Refer to `.env.sample` file for configuration
+     <br />
+     <br />
 
-4. To run the project, enter the command
-
-   ```
-   npm run dev
-   ```
-
-5. Project running on `localhost:5173` (default)
-
-## To run the back-end app,
-
-Server is currently deployed on AWS EC2 Server
-`54.252.152.169`
-
-### To run your own server,
-
-##### Note: Update the base URL for client .env.local file to the respective IP address
-
-1. Clone the project
+4. Run the project in development environment
 
    ```
-   git clone https://github.com/SMU-IS/SayLess-Server.git
+   npm run serve
    ```
 
-2. Install dependencies
+## Contact
 
-   `npm install`
+Joshua David Ang - cxang.2022@scis.smu.edu.sg  
+Project Link - https://sayless.netlify.app
 
-3. Update environment variables
+## Acknowledgements
 
-   - Create `.env` at the project root folder
-   - Add in the these lines of code
-
-4. Run the project Locally
-
-   `nodemon index.js`
-
-   or
-   Run the project in Deployment
-
-   1. Install PM2 globally
-      `npm install pm2 -g`
-   2. Create config file
-      `eco.config.js`
-      `    module.exports = {
-apps: [
-    {
-        name: "wasteless-kitchen",
-        script: "index.js", // Replace with the entry point of your Node.js app
-        watch: true, // Auto-restart the app on file changes (optional)
-        "node_args": "--max_old_space_size=512",
-        env: {
-        NODE_ENV: "production", // Set the environment variable (optional)
-        // PORT: 3000, // Set your application's port (optional)
-    }
-   }
- ]};
- `
-   3. Run Server in deployment
-      ```
-      > pm2 eco.config.js
-      ```
-
-5. Project running on `localhost:3000` (default)
-
-6. Refer to API documentation
-   `https://documenter.getpostman.com/view/23431593/2s9YJgU1Pv#75b2c1a7-e22b-4c3b-8c21-35789a3b7665`
-
-### G4T7 - Team Details
-
-##### [@Joshua David Ang Chun Xiong - 01404384](https://github.com/joshuadavidang)
-
-##### [@Shawn Ng Yong Han - 01404613](https://github.com/shawnkharece)
-
-##### [@Derrick Lim Kai Hao - 01405417](https://github.com/derrick-lkh)
-
-##### [@Bryan Chua Jia Heng - 01429656](https://github.com/bryantheball)
+Developers  
+[@Joshua David Ang](https://github.com/joshuadavidang)  
+[@Shawn Ng](https://github.com/shawnkharece)  
+[@Derrick Lim](https://github.com/derrick-lkh)  
+[@Bryan Chua](https://github.com/bryantheball)
